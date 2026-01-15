@@ -18,7 +18,48 @@
 *.zip
 *.tar.gz
 *.rar
+*.kar
 
 # virtual machine crash logs, see http://www.java.com/en/download/help/error_hotspot.xml
 hs_err_pid*
 replay_pid*
+/.project
+
+# specific for this file
+/maven/
+
+ 
+# Maven
+log/
+target/
+
+# Eclipse
+.classpath
+.project
+.settings/
+ 
+# Intellij
+.idea/
+*.iml
+*.iws
+ 
+# Mac
+.DS_Store
+
+
+# NetBeans specific #
+nbproject
+build/
+nbbuild/
+dist/
+nbdist/
+nbactions.xml
+nb-configuration.xml
+
+# Container stack configuration files
+core-etc/
+core-data/
+core-deploy/
+
+# drawio backup
+*.bkp
