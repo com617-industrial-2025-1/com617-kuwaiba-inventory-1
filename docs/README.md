@@ -1,4 +1,4 @@
 # Contents
 
-[Project Brief](../ProjectBrief.md)
+[Project Brief](../docs/ProjectBrief.md)
 
