@@ -1,4 +1,4 @@
-**Goals**
+# Goals
 
 **Extract streets and Houses from OSM **
 -Overpass API or HOT Export Tool. https://overpass-turbo.eu/ https://export.hotosm.org/v3/
@@ -6,8 +6,8 @@
 -JOSM to download a specific area and filter, or osm2streets library it turns map data into a clean graph. 
 
 **Predict Infrastructure **
--FiberQ   https://www.fiberq.net/
--FiberQ allows placement of poles and manholes on the streets 
+* FiberQ   https://www.fiberq.net/
+* FiberQ allows placement of poles and manholes on the streets 
 
 **Export Data to Kuwaiba **
 -Convert data into csv 
