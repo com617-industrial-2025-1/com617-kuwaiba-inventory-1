@@ -1,3 +1,14 @@
+# uprn processing
+
+https://www.ordnancesurvey.co.uk/products/os-open-uprn 
+
+https://github.com/gallenc/kuwaiba-examples-1/blob/main/workup/kuwaiba-opennms-integration/reporttester/src/test/java/org/entimoss/misc/test/ExtractFromUPRNGis.java 
+area of uprns
+
+add nominatum data https://github.com/gallenc/kuwaiba-examples-1/blob/main/workup/kuwaiba-opennms-integration/reporttester/src/test/java/org/entimoss/misc/test/ExtractOSMDataFromUprn.java
+
+resulting https://github.com/gallenc/kuwaiba-examples-1/blob/main/workup/kuwaiba-opennms-integration/reporttester/src/test/resources/modelimportCsv/uprnBitternePk1nominatum-modified.csv
+
 # gpon network
 
 splitting typically
