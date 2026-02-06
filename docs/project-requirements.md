@@ -1,6 +1,6 @@
 # Project Requirements
 
-## 1 Project Objectives
+## 1. Project Objectives
 
 ### 1.1 Geographic Data Extraction
 * **1.1.1 OpenStreetMap (OSM) Extraction:** The system must allow the user to select a specific area and then extract the street graphs and house locations.
@@ -18,3 +18,8 @@
 ## 1.4 Simulation and Visualisation
 * **1.4.1 Network Simulation:** Simulate the suggested network within Kuwaiba.
 * **1.4.2 OSM Map:** Produce a map in OSM showcasing the predicted infrastructure.
+
+## 2. Deliverables
+* **2.1 Worked Example:** A functional model of the simulated network within Kuwaiba.
+* **2.2 Project Report:** Documentation recording how we managed this project and what work we did.
+* **2.3 Project Presentation and Demo:** A Presentation demonstrating this product and the process behind it, which is then delivered to the project's sponsors.
