@@ -31,3 +31,22 @@
 |Network Design|FibreQ|
 |Simulation|?|
 |Inventory|Kuwaiba|
+
+## some classes to look at
+
+get subset of ordinance survey uprn using geobounding
+
+raw OS date from https://www.ordnancesurvey.co.uk/products/os-open-uprn  each uprn has lat and lon and UPRN number
+
+https://github.com/gallenc/kuwaiba-examples-1/blob/main/workup/kuwaiba-opennms-integration/reporttester/src/test/java/org/entimoss/misc/test/ExtractFromUPRNGis.java
+
+get address for given lat/lon date in Ordinance survey GIS (uses nominatum api)
+
+https://github.com/gallenc/kuwaiba-examples-1/blob/main/workup/kuwaiba-opennms-integration/reporttester/src/test/java/org/entimoss/misc/test/ExtractOSMDataFromUprn.java
+
+```
+      // https://nominatim.openstreetmap.org/reverse?format=geojson&lat=50.9246111&lon=-1.3719191
+      String url = "https://nominatim.openstreetmap.org/reverse?format=geojson"
+               + "&lat=" + latitude
+               + "&lon=" + longitude;
+```
