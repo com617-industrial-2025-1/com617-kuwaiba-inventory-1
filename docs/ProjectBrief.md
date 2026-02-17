@@ -3,6 +3,16 @@
 # Project Brief
 
 **Project Title:** Telecoms Network Inventory - Kuwaiba 
+**Project Sponsor:** 
+Charles Edward Bedón Cortázar (Columbia)
+https://www.linkedin.com/in/charles-edward-bed%C3%B3n-cort%C3%A1zar-4525294/ 
+https://www.neotropic.co/   Neotropic SAS provides products and services related to OSS (Operations Support Systems)  
+
+Ryan Jeffery Passionate About OSS (Australia)
+https://www.linkedin.com/in/ryan-jeffery-oss/
+https://passionateaboutoss.com
+
+
 
 # 1. Project Summary 
 The aim of this project is to create a pipleine that extracts geographic data from OpenStreetMap and UPRN Retrival datasets, predicts optimal fiber infrastruture placement and exports the network inventory into Kuwaiba inventory management. 
