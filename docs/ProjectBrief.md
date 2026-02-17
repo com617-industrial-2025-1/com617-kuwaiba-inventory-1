@@ -2,15 +2,15 @@
 
 # Project Brief
 
-**Project Title:** Telecoms Network Inventory - Kuwaiba 
-**Project Sponsor:** 
+**Project Title:** Telecoms Network Inventory - Kuwaiba   
+**Project Sponsor:**  
 Charles Edward Bedón Cortázar (Columbia)
 https://www.linkedin.com/in/charles-edward-bed%C3%B3n-cort%C3%A1zar-4525294/ 
 https://www.neotropic.co/   Neotropic SAS provides products and services related to OSS (Operations Support Systems)  
 
 Ryan Jeffery Passionate About OSS (Australia)
 https://www.linkedin.com/in/ryan-jeffery-oss/
-https://passionateaboutoss.com
+https://passionateaboutoss.com  
 
 
 
