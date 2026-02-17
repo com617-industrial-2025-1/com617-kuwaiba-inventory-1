@@ -9,7 +9,7 @@
 - [qgis] through the **quickosm** plugin.
 
 **UPRN retrieval**
-- OS Data Hub as `.csv` or `.gpkg` Geopackage
+- [OS Data Hub](https://osdatahub.os.uk/data/downloads/open/OpenUPRN) as `.csv` or `.gpkg` Geopackage
 
 ### Data Processing
 
