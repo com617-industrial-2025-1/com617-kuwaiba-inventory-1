@@ -143,20 +143,20 @@ extracted from the below listed datasets (OS products).
     detailed view of an address and its lifecycle, based on pre-build, built, and
     historical property lifecycle phases.
 
-```
+
 What OS GB Address provides
-```
-```
+
+
 UPRN data management –
 Link data to an address using the Unique Property Reference Number (UPRN). This
 identifier is assigned to a property and persists through its full lifecycle. From
 construction through to its demolition, the UPRN ensures accurate and consistent
 management of data, even when changes are made to an address.
-```
-```
+
+
 Data Structure – Vector
 Format – CSV, GeoPackage
-```
+
 2. AddressBase Core –
     AddressBase Core contains more than 33 million addresses. It includes Unique Property
     Reference Numbers (UPRNs), property-level coordinates and secondary classifications.
@@ -164,18 +164,16 @@ Format – CSV, GeoPackage
     that combines authoritative data from local authorities not found in Royal Mail Postal
     Address File.
 
-```
+
 What AddressBase Core provides
-```
-```
+
 The dataset contains –
 AddressBase Core contains more than 33 million addresses. It includes Unique Property
 Reference Numbers (UPRNs), property-level coordinates and secondary classifications.
-```
-```
+
 Data Structure – Vector
 Format – CSV, GeoPackage
-```
+
 
 3. OS Open UPRN –
     OS Open UPRN provides a coordinates reference point and Unique Property Reference
@@ -183,40 +181,34 @@ Format – CSV, GeoPackage
     to identify an addressable location, it helps to reduce ambiguity and ensures accurate
     identification of locations.
 
-```
+
 What OS Open UPRN provides
-```
-```
+
 Unique Property Reference Number –
 A Unique Property Reference Number (UPRN) is a unique numeric identifier for every
 addressable location in Great Britain, found in OS's AddressBase products.
-```
-```
+
 Addressable features –
 UPRNs are assigned to approximately 40 million addressable locations, which may be
 any kind of building; residential or commercial. It may also be an object that might not
 have a ‘postal ’ address – such as a bus shelter or electricity sub-station.
-```
-```
+
 Share and link data –
 OS Open UPRN will enable you to share and link data related to UPRNs, which you can
 spatially analyse and visualise using the accurate location.
-```
-```
+
 Authoritative source –
 The UPRNs in OS Open UPRN are primarily allocated by Local Authorities, under their
 legal duty to maintain this information. This means you can have confidence you're
 accessing an authoritative source of these identifiers.
-```
-```
+
 Identifiers you can trust –
 The UPRN is a persistent identifier to an addressable location that is never re-used,
 allowing you to confidently manage associated information to an address.
-```
-```
+
 Data Structure – Vector
 Format – CSV, GeoPackage
-```
+
 
 ## 4. Methods of Retrieval
 
