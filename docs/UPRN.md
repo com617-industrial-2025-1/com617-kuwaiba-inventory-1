@@ -1,9 +1,9 @@
 ## Sprint 1 Document
 
-## UPRN Research................................................................................................................................
+## UPRN Research
 
 - Sprint 1 Document Contents
-- UPRN Research................................................................................................................................
+- UPRN Research
 - 1. Introduction
    - 1. What the project is about
    - 2. Why UPRN matters
@@ -11,7 +11,7 @@
 - 3. Ordnance Survey Data
 - 4. Methods of Retrieval
 - 5. Data Conversion
-- 6. Linking UPRN to OpenStreetMap..........................................................................................
+- 6. Linking UPRN to OpenStreetMap
 - 7. Challenges and risks
 - 8. Conclusion
 
@@ -313,7 +313,7 @@ Proper data conversion and preparation ensure compatibility between datasets and
 the reliability of the spatial matching process in later stages of the project.
 
 
-## 6. Linking UPRN to OpenStreetMap..........................................................................................
+## 6. Linking UPRN to OpenStreetMap
 
 This section outlines how UPRN data obtained from Ordnance Survey can be linked to building
 data extracted from OpenStreetMap (OSM). Establishing this connection is essential in order to
