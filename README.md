@@ -9,5 +9,7 @@ See [Project Brief](../main/docs/ProjectBrief.md)
 
 [workup](../main/workup) contains experimental work and examples not committed to the main project.
 
+[Documentation](../docs) contains documentation and research related to the project.
+
 ## Project Google Document
 [Google document](https://docs.google.com/document/d/1keXioDJD0lFwCEk_XmnK4_YQjVj3Teg2Vi0qG5qHSBw/edit?usp=sharing)
