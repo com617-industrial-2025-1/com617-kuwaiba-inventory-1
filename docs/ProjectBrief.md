@@ -15,7 +15,7 @@ https://passionateaboutoss.com
 
 
 # 1. Project Summary 
-The aim of this project is to create a pipleine that extracts geographic data from OpenStreetMap and UPRN Retrival datasets, predicts optimal fiber infrastruture placement and exports the network inventory into Kuwaiba inventory management. 
+The aim of this project is to create a pipeline that extracts geographic data from OpenStreetMap and UPRN Retrival datasets, predicts optimal fiber infrastrcture placement and exports the network inventory into Kuwaiba inventory management. 
 
 # 2. Problem Statement 
 
@@ -52,4 +52,5 @@ The aim of this project is to create a pipleine that extracts geographic data fr
 •**4.1 Worked Example:** A functional model of the simulated network within Kuwaiba.  
 •**4.2 Project Report:** Documentation recording how we managed this project and what work we did.  
 •**4.3 Project Presentation and Demo:** A Presentation demonstrating this product and the process behind it, which is then delivered to the project's sponsors.  
+
 
