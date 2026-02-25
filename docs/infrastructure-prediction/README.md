@@ -116,7 +116,52 @@ the data at the end.
 
 ### PGRouting
 
+As PGRouting is an extension of the PostGIS database, all functionality is done in the form of
+SQL queries. QGIS is only used for the visualisation aspect to check the work done.
 
+After ideas for storing data in different tables was explored the following three tables should be
+used:
+
+**Physical Infrastructure**
+This includes all the static elements that are in one place e.g. splitters and poles.
+
+| id | asset_tag | type | longitude | latitude | max_ports | notes |
+|---|---|---|---|---|---|---|
+|1|SOU_EXCH_01|Exchange|-1.404212|50.906541|10000|Southampton Central Exchange|
+|2|SOU_AGG_B1|Agg_Node|-1.385421|50.921345|48|Serving Bitterne Park Sector 1|
+|3|SOU_CAB_B1_01|Cabinet|-1.384102|50.923110|30|Street Cabinet (Secondary Splitter)|
+|4|SOU_POLE_001|Pole|-1.383550|50.923551|12|12-Port CBT Mounted|
+|5|SOU_POLE_002|Pole|-1.383120|50.923980|8|8-Port CBT Mounted|
+
+**Fiber Segments**
+This contains data for the connections between the static elements.
+
+We can also break up the types of connections into four types:
+- Lines from distribution to aggregation nodes
+- Lines from aggregation nodes to splitters
+- Lines from splitters to poles
+- Lines from poles to buildings
+
+|id|segment_type|source_id|target_id|length_m|geom_wkt (Simplified)|
+|---|---|---|---|---|---|
+|101|Spine|1|2|1850.4|LINESTRING(-1.404... -1.385...)|
+|102|Distribution|2|3|420.2|LINESTRING(-1.385... -1.384...)|
+|103|Lateral|3|4|85.5|LINESTRING(-1.384... -1.383...)|
+|104|Drop|4|5001|12.3|LINESTRING(-1.383... -1.3832...)|
+
+`geom_wkt` is geometry well-known text. The LINESTRING data type provides a list of coordinates
+along a road in this case. This can be handled by PGRouting and [pgr_dijkstra](https://apslight.github.io/doc/html/en/pgr_dijkstra.html)
+LOOK INTO PGR_DIJKSTRA
+
+**Service Connections**
+A non spatial table that tracks which building is connected to each specific pole/cabinet.
+
+|uprn|service_pole_id|splitter_cab_id|install_type|
+|---|---|---|---|
+|10001234567|4|3|Aerial|
+|10001234568|4|3|Aerial|
+|10001234569|5|3|Underground|
+|20000455121|NULL|3|Direct (MDU)|
 
 
 
@@ -127,4 +172,5 @@ A Spatial Visualisation and decision making tool.
 
 #### [FiberQ](https://www.fiberq.net/) (QGIS Plugin)
 
-#### [PGRouting](https://qgis.pgrouting.org/) (QGIS Plugin)
+#### [PGRouting](https://qgis.pgrouting.org/) 
+
