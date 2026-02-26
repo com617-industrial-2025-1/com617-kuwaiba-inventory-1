@@ -68,10 +68,10 @@ At the present moment it is also under assumption that:
 - Joint Boxes should be placed where fibre has to turn more than 45 degrees.
 - Telegraph poles can be connected to 12 buildings max.
 - The cable from telegraph poles to buildings can be no longer than 68m.
-- Splitters support maximum 32 manifolds(CBTs).
+- Splitters support maximum 32 buildings with recommended at 30.
 - Splitters can be linked to aggregation points.
-- The network should begin at a telecomunications distribution point.
-- Use Centralized Splitting Architecture (Maybe Cascading for rural areas)
+- The network should begin at a telecomunications distribution point (Exchange).
+- Use Centralized Splitting Architecture (Maybe Cascading for rural areas).
 
 ### Sample Data
 There are no readily available PostGIS databases for testing on so a quick creation has to be done
@@ -173,4 +173,5 @@ A Spatial Visualisation and decision making tool.
 #### [FiberQ](https://www.fiberq.net/) (QGIS Plugin)
 
 #### [PGRouting](https://qgis.pgrouting.org/) 
+
 
