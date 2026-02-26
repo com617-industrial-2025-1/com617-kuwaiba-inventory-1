@@ -1,0 +1,42 @@
+
+# using fixed ip addresses
+# to see all network use docker network ls
+# to see config use docker network inspect kuwabia-docker-compose_kuwaiba-net
+# note gateway is 172.30.0.1 
+networks:
+  kuwaiba-net:
+
+
+volumes:
+  data-kuwaiba: {}
+
+services:
+
+  kuwaiba:
+ #    image: ${DOCKER_REGISTRY:-docker.io}/neotropic/kuwaiba:${KUWAIBA_VERSION:-v2.1-nightly}
+    image: onms-integration/kuwaiba
+    build: ./container-fs/kuwaiba/
+    hostname: kuwaiba
+ #   environment:
+ #    URL_DATA: https://sourceforge.net/projects/kuwaiba/files/Version%202.x/kuwaiba_server_2.1.1_stable.zip
+    volumes:
+      - data-kuwaiba:/data
+      - ./container-fs/kuwaiba/start.sh:/start.sh
+      - ./container-fs/kuwaiba/data-overlay:/data-overlay
+      - ./container-fs/kuwaiba/data-zip:/data-zip
+    ports:
+      - "8080:8080"
+      - "8081:8081"
+
+    # To combine stderr and stdout into the stdout stream, we append this to a command: 2>&1
+    # command: sh -c "java -jar /opt/programs/kuwaiba_server_2.1.1-stable.jar > /data/logs/kuwaiba_$(date +%Y%m%d_%H%M%S).log 2>&1"
+    command: sh /start.sh
+    healthcheck:
+      test: ["CMD", "curl", "-f", "-I", "http://localhost:8080/kuwaiba/"]
+      interval: 30s
+      timeout: 5s
+      retries: 1
+    networks:
+      kuwaiba-net:
+
+        
