@@ -40,3 +40,7 @@ do the mathematical prediction using the EPSG:27700 system and switch to ESPG:43
 the data at the end.
 
 ## Docker Database
+
+[Test Southampton Fiber Prediction](https://github.com/45inertia/Test-Southampton-Fiber-Prediction/tree/master)
+is a repository containing the code for the test prediction. This was added here as was not sure where
+to put it in the main repository and didn't want to break anything. 
