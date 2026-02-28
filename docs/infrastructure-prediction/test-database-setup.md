@@ -44,3 +44,15 @@ the data at the end.
 [Test Southampton Fiber Prediction](https://github.com/45inertia/Test-Southampton-Fiber-Prediction/tree/master)
 is a repository containing the code for the test prediction. This was added here as was not sure where
 to put it in the main repository and didn't want to break anything. 
+A test docker database has been setup to interact with the java. 
+
+What docker does to setup the database:
+1. Sets up the empty PostGIS database.
+2. Installs `osm2pgsql` (so the `.pbf` file can be imported).
+3. Copies the `.pbf` file into the container.
+4. Creates the [tables](./database-and-program-design.md) needed for prediction.
+5. Runs osm2pgsql to import data into database (In their own tables, NOT our tables)
+
+This is the sequence of events that occurs everytime the docker container is restarted.
+
+This test database functionality can be found
