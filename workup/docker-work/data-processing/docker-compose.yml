@@ -1,0 +1,40 @@
+version: '3.8'
+
+services:
+  db:
+    image: postgis/postgis:15-3.3
+    environment:
+      - POSTGRES_USER=osmuser
+      - POSTGRES_PASSWORD=osmpass
+      - POSTGRES_DB=osm
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    command: >
+      postgres -c "search_path=public,postgis"
+    healthcheck:
+      test: ["CMD-SHELL", "psql -U osmuser -d osm -c 'CREATE EXTENSION IF NOT EXISTS hstore;'"]
+      interval: 5s
+      timeout: 5s
+      retries: 5
+
+  importer:
+    image: iboates/osm2pgsql:latest
+    depends_on:
+      db:
+        condition: service_healthy
+    volumes:
+      - ./data:/data
+    environment:
+      - PGHOST=db
+      - PGUSER=osmuser
+      - PGPASSWORD=osmpass
+      - PGDATABASE=osm
+    entrypoint: /bin/sh -c
+    command: >
+      "echo 'Starting import...';
+       osm2pgsql --create --slim --hstore /data/bittern_park.xml"
+
+volumes:
+  postgres_data:
