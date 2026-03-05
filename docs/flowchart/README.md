@@ -1,9 +1,7 @@
 # Contents
 
-[Flowchart](../flowchart.md)
+[Flowchart](../docs/flowchart/flowchart.md)
 
-[Data Flow Diagram](../data-flow-diagram.png)
+[Data Flow Diagram](../docs/flowchart/data-flow-diagram.png)
 
-[Project Flowchart](../project-flowchart.png)
-
-
+[Project Flowchart](../docs/flowchart/project-flowchart.png)
