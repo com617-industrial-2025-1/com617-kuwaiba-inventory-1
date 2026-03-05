@@ -1,12 +1,12 @@
 {
     "Servers": {
         "1": {
-            "Name": "data-processing-db-1",
+            "Name": "postgis-db",
             "Group": "Servers",
             "Host": "db",
             "Port": 5432,
             "MaintenanceDB": "postgres",
-            "Username": "postgres",
+            "Username": "osmuser",
             "UseSSHTunnel": 0,
             "TunnelPort": "22",
             "TunnelAuthentication": 0,
