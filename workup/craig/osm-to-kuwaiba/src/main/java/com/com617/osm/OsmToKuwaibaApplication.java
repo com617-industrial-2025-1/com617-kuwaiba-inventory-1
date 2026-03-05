@@ -1,4 +1,4 @@
-package ac.uk.solent.com617.osm;
+package com.com617.osm;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

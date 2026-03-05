@@ -1,4 +1,4 @@
-package ac.uk.solent.com617.osm;
+package com.com617.osm.test;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
