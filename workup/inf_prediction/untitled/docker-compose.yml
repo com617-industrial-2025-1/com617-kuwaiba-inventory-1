@@ -1,0 +1,39 @@
+services:
+   fiber-db:
+    env_file:
+      - ./.env
+    build:
+      context: ./docker
+      dockerfile: Dockerfile
+    container_name: fiber_postgres
+    environment:
+      POSTGRES_USER: ${DB_USER}
+      POSTGRES_PASSWORD: ${DB_PASSWORD}
+      POSTGRES_DB: ${DB_NAME}
+    ports:
+      - "5432:5432"
+    # database setup won't be instant so the healthcheck probes the database to check if it is ready for connections.
+    # if the conditions are not met then the database is marked "unhealthy".
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U admin -d southampton_fiber"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+    volumes:
+      # using named volume stores the data
+      - fiber_postgres_data:/var/lib/postgresql/data
+volumes:
+  fiber_postgres_data:
+
+
+
+    #image: postgis/postgis:15-3.3
+    #container_name: fiber_postgres
+    #environment:
+   #   POSTGRES_USER: admin
+   #   POSTGRES_PASSWORD: admin
+    #  POSTGRES_DB: southampton_fiber
+   # ports:
+   #   - "5432:5432"
+   # volumes:
+   #   - ./postgres_data:/var/lib/postgresql/data
