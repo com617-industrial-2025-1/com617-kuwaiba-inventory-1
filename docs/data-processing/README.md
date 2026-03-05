@@ -1,5 +1,5 @@
 # Contents
 
-[Data Cleaning](../docs/data-processing/data-cleaning.md)
+[Data Cleaning](../data-processing/data-cleaning.md)
 
-[OSM Data Cleaning](../docs/data-processing/osm-data-cleaning)
+[OSM Data Cleaning](../data-processing/osm-data-cleaning)
