@@ -3,6 +3,7 @@ version: '3.8'
 services:
   db:
     image: postgis/postgis:15-3.3
+    container_name: db
     environment:
       - POSTGRES_USER=osmuser
       - POSTGRES_PASSWORD=osmpass
@@ -21,6 +22,7 @@ services:
 
   importer:
     image: iboates/osm2pgsql:latest
+    container_name: importer
     depends_on:
       db:
         condition: service_healthy
@@ -36,5 +38,20 @@ services:
       "echo 'Starting import...';
        osm2pgsql --create --slim --hstore /data/bittern_park.xml"
 
+  pgadmin:
+    image: dpage/pgadmin4
+    container_name: pgadmin
+    restart: always
+    ports:
+      - "8888:80"
+    environment:
+      PGADMIN_DEFAULT_EMAIL: user-name@domain-name.com
+      PGADMIN_DEFAULT_PASSWORD: minad1234
+      PGADMIN_SERVER_JSON_FILE: /pgadmin/servers.json
+    volumes:
+      - pgadmin_data:/var/lib/pgadmin
+      - ./container-fs/pgadmin/:/pgadmin
+
 volumes:
   postgres_data:
+  pgadmin_data:
