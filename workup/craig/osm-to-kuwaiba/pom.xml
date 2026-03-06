@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+   xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
    <modelVersion>4.0.0</modelVersion>
    <parent>
       <groupId>org.springframework.boot</groupId>
@@ -40,10 +41,23 @@
       </dependency>
 
       <dependency>
+         <groupId>org.hibernate.orm</groupId>
+         <artifactId>hibernate-spatial</artifactId>
+      </dependency>
+
+      <dependency>
          <groupId>org.locationtech.jts</groupId>
          <artifactId>jts-core</artifactId>
-         <version>1.19.0</version>
+         <!-- <version>1.19.0</version>-->
+         <version>1.20.0</version>
       </dependency>
+      
+      <!-- Jackson Module which provides custom serializers and deserializers for JTS Geometry objects using the GeoJSON  -->
+      <dependency>
+         <groupId>com.bedatadriven</groupId>
+         <artifactId>jackson-datatype-jts</artifactId>
+         <version>2.4</version>
+      </dependency>   
 
       <dependency>
          <groupId>org.postgresql</groupId>

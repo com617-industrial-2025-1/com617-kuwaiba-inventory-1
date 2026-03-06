@@ -1,4 +1,4 @@
-package com.com617.osm;
+package com.com617.spring.osm;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
