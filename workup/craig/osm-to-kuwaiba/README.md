@@ -13,13 +13,15 @@ configuration: propeties
 additional dependencies:
 
 * Spring Web : Build web, including RESTful, applications using Spring MVC. Uses Apache Tomcat as the default embedded container.
-*Spring Data JPA SQL: Persist data in SQL stores with Java Persistence API using Spring Data and Hibernate.
-*PostgreSQL Driver SQL: A JDBC and R2DBC driver that allows Java programs to connect to a PostgreSQL database using standard, database independent Java code.
+* Spring Data JPA SQL: Persist data in SQL stores with Java Persistence API using Spring Data and Hibernate.
+* PostgreSQL Driver SQL: A JDBC and R2DBC driver that allows Java programs to connect to a PostgreSQL database using standard, database independent Java code.
 
 
 ## spring boot and postgis tutorials 
 
-Spring boot and PostGIS
+I have based the work on the following examples with some modification to get working in latest libraries
+
+## Spring boot and PostGIS
 
 * [How to Implement Geospatial Queries in Spring Boot with PostgreSQL - Alexander Obregon](https://medium.com/@AlexanderObregon/how-to-implement-geospatial-queries-in-spring-boot-with-postgresql-bce52e7ffafa)
 
@@ -27,18 +29,19 @@ Spring boot and PostGIS
 
 * [Spring Boot and PostGIS](https://bocharoviliyav.blog/java/2021/02/03/Spring-Boot-Postgis-Example.html) (a bit more complicated)
 
-For basic Spring DATA JPA see
+## For basic Spring DATA JPA see
 
 [Comprehensive Guide to Spring Data JPA with Example Codes](https://vijayskr.medium.com/comprehensive-guide-to-spring-data-jpa-with-example-codes-8db0c9683b0f)
 
 [Introduction to spring data jpa (including basic JDBC queries example)](https://codesignal.com/learn/courses/persisting-data-with-spring-data-jpa/lessons/introduction-to-spring-data-jpa)
 
+queries used in dao and also run in pgadmin4 against imported database
 
 ```
 -- ST_MakePoint(:lng, :lat) lat=1.4049&lng=-50.9105&radius=500000
 -- "SELECT * FROM planet_osm_point p WHERE ST_DWithin(p.way, ST_SetSRID(ST_MakePoint(:lng, :lat), 4326), :radius) LIMIT 10"
 --  SELECT * FROM planet_osm_point p WHERE ST_DWithin(p.way, ST_SetSRID(ST_MakePoint(50.9105,-1.4049), 4326), 500000) LIMIT 10
-SELECT * FROM planet_osm_point p LIMIT 10
+--  SELECT * FROM planet_osm_point p LIMIT 10
 ```
 
 ## building and running
