@@ -12,12 +12,10 @@ services:
       - "5432:5432"
     volumes:
       - postgres_data:/var/lib/postgresql/data
-    command: >
-      postgres -c "search_path=public,postgis"
     healthcheck:
       test: ["CMD-SHELL", "psql -U osmuser -d osm -c 'CREATE EXTENSION IF NOT EXISTS hstore;'"]
       interval: 5s
-      timeout: 5s
+      timeout: 10s
       retries: 5
 
   importer:
