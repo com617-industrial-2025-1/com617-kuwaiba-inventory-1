@@ -9,4 +9,119 @@ pgadmin4 server available at http://localhost:8888
 username: user-name@domain-name.com
 password: minad1234
 
+# Cleaning commands
 
+## Cleaning House Footprints
+
+Cleans up house footprints.
+Uses ```ST_MakeValid``` to clean up and put them on a 2D plane. Checks for the tags in the column list and tags column.
+
+```
+CREATE TABLE cleaned_buildings AS
+SELECT 
+    osm_id,
+    ST_CollectionExtract(ST_MakeValid(ST_Multi(way)), 3)::geometry(MultiPolygon, 3857) as geom,
+    COALESCE(tags->'name', 'Building ' || osm_id) as building_name,
+    tags->'addr:housenumber' as house_num,
+    tags->'addr:street' as street_name,
+    tags->'building:levels' as floors
+FROM planet_osm_polygon
+WHERE building IS NOT NULL;
+
+CREATE INDEX idx_buildings_geom ON cleaned_buildings USING GIST (geom);
+```
+
+This creates a table called cleaned_buildings. The columns are osm_id, geom, name, house_number, street_name
+
+## Street Nodes
+
+This makes a table for the cleaned roads. 
+The roads are simplified by 1 meter.
+A node is created at each junction making it so each road starts and ends at a node.
+
+```
+CREATE TABLE cleaned_roads AS
+SELECT 
+    osm_id,
+    ST_SimplifyPreserveTopology(way, 0.5)::geometry(LineString, 3857) as geom,
+    highway as road_type,
+    tags->'name' as street_name
+FROM planet_osm_line
+WHERE highway IS NOT NULL;
+
+CREATE INDEX idx_roads_geom ON cleaned_roads USING GIST (geom);
+
+CREATE TABLE noded_streets AS 
+SELECT (ST_Dump(ST_Node(ST_Union(geom)))).geom::geometry(LineString, 3857) as geom
+FROM cleaned_roads;
+```
+
+## Remove road islands
+
+Sometimes there are roads which don't connect to other roads, these will cause errors when trying to predict infrastructure.
+
+```
+ALTER TABLE cleaned_roads ADD COLUMN is_island BOOLEAN DEFAULT FALSE;
+
+WITH islands AS (
+    SELECT a.osm_id
+    FROM cleaned_roads a
+    WHERE NOT EXISTS (
+        SELECT 1 FROM cleaned_roads b 
+        WHERE a.osm_id <> b.osm_id 
+        AND ST_DWithin(ST_StartPoint(a.geom), b.geom, 0.1)
+    )
+    AND NOT EXISTS (
+        SELECT 1 FROM cleaned_roads b 
+        WHERE a.osm_id <> b.osm_id 
+        AND ST_DWithin(ST_EndPoint(a.geom), b.geom, 0.1)
+    )
+)
+UPDATE cleaned_roads 
+SET is_island = TRUE 
+WHERE osm_id IN (SELECT osm_id FROM islands);
+
+DELETE FROM cleaned_roads WHERE is_island = TRUE;
+```
+
+## Fix missing street names
+
+This will fill in missing street names based on the closted street.
+
+```
+UPDATE cleaned_buildings b
+SET street_name = (
+    SELECT r.street_name 
+    FROM cleaned_roads r 
+    WHERE r.street_name IS NOT NULL
+    ORDER BY b.geom <-> r.geom
+    LIMIT 1
+)
+WHERE b.street_name IS NULL;
+```
+
+## Creating connection points
+
+This will create points to connect the cables too, by using the closest point in the building to the road.
+
+```
+CREATE TABLE building_drop_points AS
+SELECT 
+    b.osm_id as building_id,
+    ST_ClosestPoint(ST_ExteriorRing(ST_GeometryN(b.geom, 1)), r.geom) as geom
+FROM cleaned_buildings b
+CROSS JOIN LATERAL (
+    SELECT geom FROM cleaned_roads 
+    ORDER BY b.geom <-> geom 
+    LIMIT 1
+) r;
+```
+
+## Check commands worked
+
+```
+SELECT 
+    count(*) as total_buildings,
+    count(street_name) as buildings_with_street
+FROM cleaned_buildings;
+```
