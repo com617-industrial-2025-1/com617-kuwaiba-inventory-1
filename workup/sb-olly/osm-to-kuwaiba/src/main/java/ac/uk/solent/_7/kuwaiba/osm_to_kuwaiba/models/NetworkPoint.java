@@ -6,14 +6,15 @@ import org.locationtech.jts.geom.Point;
 
 @Entity
 @Table(name = "network_point")
-public class Network_Point {
+public class NetworkPoint {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
     private String external_id;
     private String type;
 
-    @Column(name = "point_type")
+    // using SRID 3857
+    @Column(columnDefinition = "geometry(Point, 3857)")
     private Point geom;
 
     // getters and setters

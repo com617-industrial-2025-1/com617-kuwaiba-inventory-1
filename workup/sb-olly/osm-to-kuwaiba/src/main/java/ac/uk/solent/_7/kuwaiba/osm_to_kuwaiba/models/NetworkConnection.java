@@ -9,7 +9,7 @@ import org.locationtech.jts.geom.LineString;
 
 @Entity
 @Table(name = "network_connection")
-public class Network_Connection {
+public class NetworkConnection {
     @Id
     private long id;
     private String external_id;
@@ -17,7 +17,8 @@ public class Network_Connection {
     private long end_id;
     private String link_type;
 
-    @Column(columnDefinition = "geometry(LineString, 4326)")
+    // Using SRID 3857
+    @Column(columnDefinition = "geometry(LineString, 3857)")
     private LineString geom;
 
     // getters and setters
