@@ -8,7 +8,6 @@ import org.hibernate.annotations.Immutable;
 import org.locationtech.jts.geom.MultiPolygon;
 
 @Entity
-@Immutable // can be queried without being changed
 @Table(name = "cleaned_buildings")
 public class CleanedBuilding {
     @Id

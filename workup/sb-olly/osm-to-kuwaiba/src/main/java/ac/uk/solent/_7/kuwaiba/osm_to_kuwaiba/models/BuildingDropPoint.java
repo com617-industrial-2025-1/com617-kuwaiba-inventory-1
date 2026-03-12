@@ -8,7 +8,6 @@ import org.hibernate.annotations.Immutable;
 import org.locationtech.jts.geom.Point;
 
 @Entity
-@Immutable // can be queried without being changed
 @Table(name = "building_drop_points")
 public class BuildingDropPoint {
     @Id
