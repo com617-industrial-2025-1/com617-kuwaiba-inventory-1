@@ -34,7 +34,12 @@ public class ClusteringService {
     public String runFullPrediction() {
         pointRepository.deleteAll(); // deleting for fresh start
 
-        return "Prediction Completed.";
+        predictPoles();
+        predictCabinets();
+        predictAggregators();
+        predictExchanges();
+
+        return "Clustering Prediction Completed.";
     }
 
     public void predictPoles() {
@@ -48,7 +53,7 @@ public class ClusteringService {
     public void predictAggregators() {
 
     }
-    
+
     public void predictExchanges() {
 
     }
