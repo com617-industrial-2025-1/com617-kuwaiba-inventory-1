@@ -8,7 +8,7 @@ import jakarta.persistence.Table;
 import org.locationtech.jts.geom.LineString;
 
 @Entity
-@Table(name = "network_connection")
+@Table(name = "network_connections")
 public class NetworkConnection {
     @Id
     private Long id;

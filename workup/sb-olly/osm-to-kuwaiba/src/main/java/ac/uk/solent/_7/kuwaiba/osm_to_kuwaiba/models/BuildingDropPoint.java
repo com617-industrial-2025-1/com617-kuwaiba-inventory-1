@@ -11,7 +11,7 @@ import org.locationtech.jts.geom.Point;
 @Table(name = "building_drop_points")
 public class BuildingDropPoint {
     @Id
-    private Long id;
+    private Long building_id;
 
     @Column(columnDefinition = "geometry(Point, 3857)")
     private Point geom;
