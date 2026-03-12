@@ -9,7 +9,7 @@ import org.locationtech.jts.geom.Point;
 public class NetworkPoint {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long id;
+    private Long id;
     private String external_id;
     private String type;
 
@@ -18,14 +18,14 @@ public class NetworkPoint {
     private Point geom;
 
     // getters and setters
-    public long getId() { return id; }
+    public Long getId() { return id; }
     public String getExternal_id() { return external_id; }
     public String getType() { return type; }
 
     @JsonIgnore
     public Point getGeom() { return geom; }
 
-    public void setId(long id) { this.id = id; }
+    public void setId(Long id) { this.id = id; }
     public void setExternal_id(String ex_id) { this.external_id = ex_id; }
     public void setType(String type) { this.type = type; }
     public void setGeom(Point geom) { this.geom = geom; }
