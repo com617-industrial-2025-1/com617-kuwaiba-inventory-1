@@ -1,10 +1,7 @@
 package ac.uk.solent._7.kuwaiba.osm_to_kuwaiba.models;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 import org.locationtech.jts.geom.LineString;
 
 @Entity
@@ -15,6 +12,9 @@ public class NetworkConnection {
     private String external_id;
     private Long start_id;
     private Long end_id;
+
+    // Tells JPA to store the enum string in the database instead of number.
+    @Enumerated(EnumType.STRING)
     private LinkType link_type;
 
     // Using SRID 3857
