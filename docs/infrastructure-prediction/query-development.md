@@ -69,7 +69,29 @@ with type `POLE`.
 `@Modifying` is used to let spring boot know that the uery modifies the database. This means
 the query can also be used in a `@Transactional` that the service uses.
 
-### 
+### Other Clustering of Points
+
+All other clustering relies on the same type of query with the difference that it gathers points
+from the `network_points` table and all are grouped into 8 as per the requirements. Below is an
+example of the Cabinet clustering. **Note** that Aggregator and Exchange clustering works the same
+way and can be viewed in `workflow/`.
+
+```sql
+INSERT INTO network_points(type, geom)
+        SELECT 
+            'CABINET',
+            ST_Centroid(ST_Collect(geom))
+        FROM (
+            SELECT 
+                ST_ClusterKMeans(geom,
+                    CAST(CEIL(COUNT(*) OVER() / 8.0) AS INTEGER)
+                ) OVER () AS cluster_id,
+                geom
+            FROM network_points
+            WHERE type = 'POLE'
+        ) clustered 
+        GROUP BY cluster_id
+```
 
 
 
