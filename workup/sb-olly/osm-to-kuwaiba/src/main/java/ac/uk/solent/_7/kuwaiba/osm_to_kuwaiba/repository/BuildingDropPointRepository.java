@@ -20,7 +20,7 @@ public interface BuildingDropPointRepository extends JpaRepository<BuildingDropP
         FROM (
             SELECT
                 ST_ClusterKMeans(geom,
-                    CAST(CEIL(COUNT(*) OVER() / 12.0) AS INTEGER)
+                    CAST(CEIL((SELECT COUNT(*) FROM building_drop_points) / 12.0) AS INTEGER)
                 ) OVER () AS cluster_id,
                 geom
             FROM building_drop_points

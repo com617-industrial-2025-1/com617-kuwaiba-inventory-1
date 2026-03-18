@@ -30,7 +30,7 @@ public interface NetworkPointRepository extends JpaRepository<NetworkPoint, Long
         FROM (
             SELECT 
                 ST_ClusterKMeans(geom,
-                    CAST(CEIL(COUNT(*) OVER() / 8.0) AS INTEGER)
+                    CAST(CEIL((SELECT COUNT(*) FROM network_points WHERE type = 'POLE') / 8.0) AS INTEGER)
                 ) OVER () AS cluster_id,
                 geom
             FROM network_points
@@ -49,7 +49,7 @@ public interface NetworkPointRepository extends JpaRepository<NetworkPoint, Long
         FROM (
             SELECT
                 ST_ClusterKMeans(geom,
-                    CAST(CIEL(COUNT(*) OVER() / 8.0) AS INTEGER)   
+                    CAST(CEIL((SELECT COUNT(*) FROM network_points WHERE type = 'CABINET') / 8.0) AS INTEGER)   
                 ) OVER() AS cluster_id,
                 geom
             FROM network_points
@@ -68,7 +68,7 @@ public interface NetworkPointRepository extends JpaRepository<NetworkPoint, Long
         FROM (
             SELECT
                 ST_ClusterKMeans(geom,
-                    CAST(CIEL(COUNT(*) OVER() / 8.0) AS INTEGER)   
+                    CAST(CEIL((SELECT COUNT(*) FROM network_points WHERE type = 'AGGREGATOR') / 8.0) AS INTEGER)   
                 ) OVER() AS cluster_id,
                 geom
             FROM network_points
@@ -85,7 +85,7 @@ public interface NetworkPointRepository extends JpaRepository<NetworkPoint, Long
     @Modifying
     @Query(nativeQuery = true, value = """
         UPDATE network_points poles
-        SET parent_id = nearest_id
+        SET parent_id = nearest.id
             FROM (
                 SELECT
                     p.id AS pole_id,
@@ -95,7 +95,7 @@ public interface NetworkPointRepository extends JpaRepository<NetworkPoint, Long
                         SELECT id
                         FROM network_points
                         WHERE type = 'CABINET'
-                        ORDER_BY ST_Distance(geom, p.geom)
+                        ORDER BY ST_Distance(geom, p.geom)
                         LIMIT 1
                     ) c
                     WHERE p.type = 'POLE'
@@ -107,7 +107,7 @@ public interface NetworkPointRepository extends JpaRepository<NetworkPoint, Long
     @Modifying
     @Query(nativeQuery = true, value = """
         UPDATE network_points cabinets
-        SET parent_id = nearest_id
+        SET parent_id = nearest.id
             FROM (
                 SELECT
                     c.id AS cabinet_id,
@@ -117,7 +117,7 @@ public interface NetworkPointRepository extends JpaRepository<NetworkPoint, Long
                         SELECT id
                         FROM network_points
                         WHERE type = 'AGGREGATOR'
-                        ORDER_BY ST_Distance(geom, c.geom)
+                        ORDER BY ST_Distance(geom, c.geom)
                         LIMIT 1
                     ) a
                     WHERE c.type = 'CABINET'
@@ -129,7 +129,7 @@ public interface NetworkPointRepository extends JpaRepository<NetworkPoint, Long
     @Modifying
     @Query(nativeQuery = true, value = """
         UPDATE network_points aggregators
-        SET parent_id = nearest_id
+        SET parent_id = nearest.id
             FROM (
                 SELECT
                     a.id AS aggregator_id,
@@ -139,7 +139,7 @@ public interface NetworkPointRepository extends JpaRepository<NetworkPoint, Long
                         SELECT id
                         FROM network_points
                         WHERE type = 'EXCHANGE'
-                        ORDER_BY ST_Distance(geom, a.geom)
+                        ORDER BY ST_Distance(geom, a.geom)
                         LIMIT 1
                     ) e
                     WHERE a.type = 'AGGREGATOR'

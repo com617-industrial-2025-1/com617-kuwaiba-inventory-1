@@ -165,3 +165,8 @@ CREATE INDEX idx_network_points_type ON network_points (type);
 
 A full version that can me copied and pasted into the pgadmin query tool 
 can be found [here](./full-tables-creation-query.md)
+
+If `docker compose up -d` has been run but there is no osm tables, rerun the importer command:
+```bash
+docker compose run importer
+```
