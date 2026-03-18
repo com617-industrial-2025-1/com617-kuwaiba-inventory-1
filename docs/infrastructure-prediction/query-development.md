@@ -33,8 +33,30 @@ database. For very large tables BRIN index can be considered as an alternative.
 WKT reader can then be implemented to convert the wkt into a JTS Point that can be stored in geom
 fields.
 
-WINDOW FUNCTIONS?????????
+**WINDOW FUNCTIONS**
+A Window function performs a calculation across a set of table rows that are related to the
+current row. It is similar to an aggregate function like `COUNT()` however window functions do not
+cause the rows to become grouped into a single output row.
 
+## Creating Network Tables
+```sql
+CREATE TABLE network_points (
+    id        BIGSERIAL PRIMARY KEY,
+    external_id VARCHAR,
+    parent_id BIGINT,
+    type      VARCHAR,
+    geom      geometry(Point, 3857)
+);
+
+CREATE TABLE network_connections (
+    id          BIGSERIAL PRIMARY KEY,
+    external_id VARCHAR,
+    start_id    BIGINT,
+    end_id      BIGINT,
+    link_type   VARCHAR,
+    geom        geometry(LineString, 3857)
+);
+```
 
 ## Bottom Up Point Prediction
 
