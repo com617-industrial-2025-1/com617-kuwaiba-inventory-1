@@ -16,7 +16,7 @@ password: minad1234
 Cleans up house footprints.
 Uses ```ST_MakeValid``` to clean up and put them on a 2D plane. Checks for the tags in the column list and tags column.
 
-```
+```sql
 CREATE TABLE cleaned_buildings AS
 SELECT 
     osm_id,
@@ -27,6 +27,8 @@ SELECT
     tags->'building:levels' as floors
 FROM planet_osm_polygon
 WHERE building IS NOT NULL;
+
+ALTER TABLE cleaned_buildings ADD PRIMARY KEY (osm_id);
 
 CREATE INDEX idx_buildings_geom ON cleaned_buildings USING GIST (geom);
 ```
@@ -39,7 +41,7 @@ This makes a table for the cleaned roads.
 The roads are simplified by 1 meter.
 A node is created at each junction making it so each road starts and ends at a node.
 
-```
+```sql
 CREATE TABLE cleaned_roads AS
 SELECT 
     osm_id,
@@ -54,13 +56,15 @@ CREATE INDEX idx_roads_geom ON cleaned_roads USING GIST (geom);
 CREATE TABLE noded_streets AS 
 SELECT (ST_Dump(ST_Node(ST_Union(geom)))).geom::geometry(LineString, 3857) as geom
 FROM cleaned_roads;
+
+CREATE INDEX idx_noded_streets_geom ON noded_streets USING GIST (geom);
 ```
 
 ## Remove road islands
 
 Sometimes there are roads which don't connect to other roads, these will cause errors when trying to predict infrastructure.
 
-```
+```sql
 ALTER TABLE cleaned_roads ADD COLUMN is_island BOOLEAN DEFAULT FALSE;
 
 WITH islands AS (
@@ -88,7 +92,7 @@ DELETE FROM cleaned_roads WHERE is_island = TRUE;
 
 This will fill in missing street names based on the closted street.
 
-```
+```sql
 UPDATE cleaned_buildings b
 SET street_name = (
     SELECT r.street_name 
@@ -104,10 +108,11 @@ WHERE b.street_name IS NULL;
 
 This will create points to connect the cables too, by using the closest point in the building to the road.
 
-```
+```sql
 CREATE TABLE building_drop_points AS
 SELECT 
     b.osm_id as building_id,
+    NULL::BIGINT AS parent_id,
     ST_ClosestPoint(ST_ExteriorRing(ST_GeometryN(b.geom, 1)), r.geom) as geom
 FROM cleaned_buildings b
 CROSS JOIN LATERAL (
@@ -115,13 +120,45 @@ CROSS JOIN LATERAL (
     ORDER BY b.geom <-> geom 
     LIMIT 1
 ) r;
+
+ALTER TABLE building_drop_points ADD PRIMARY KEY (building_id);
+
+CREATE INDEX idx_building_drop_points_geom ON building_drop_points USING GIST (geom);
 ```
 
 ## Check commands worked
 
-```
+```sql
 SELECT 
     count(*) as total_buildings,
     count(street_name) as buildings_with_street
 FROM cleaned_buildings;
+```
+
+## Adding Tables for Infrastructure Prediction
+```sql
+CREATE TABLE network_points (
+    id        BIGSERIAL PRIMARY KEY,
+    external_id VARCHAR,
+    parent_id BIGINT,
+    type      VARCHAR,
+    geom      geometry(Point, 3857)
+);
+
+CREATE INDEX idx_network_points_geom ON network_points USING GIST (geom);
+
+CREATE TABLE network_connections (
+    id          BIGSERIAL PRIMARY KEY,
+    external_id VARCHAR,
+    start_id    BIGINT,
+    end_id      BIGINT,
+    link_type   VARCHAR,
+    geom        geometry(LineString, 3857)
+);
+
+CREATE INDEX idx_network_connections_geom ON network_connections USING GIST (geom);
+
+-- Indexing the type column on network points
+
+CREATE INDEX idx_network_points_type ON network_points (type);
 ```
