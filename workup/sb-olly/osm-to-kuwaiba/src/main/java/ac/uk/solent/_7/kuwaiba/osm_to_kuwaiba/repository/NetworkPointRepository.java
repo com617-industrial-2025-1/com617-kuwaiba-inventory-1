@@ -78,10 +78,73 @@ public interface NetworkPointRepository extends JpaRepository<NetworkPoint, Long
     """)
     void insertExchangeClusters();
 
-    // TODO: Query for finding nearest pole to a given coordinate.
-    // Used in RoutingService.poleToBuildingPrediction()
+    // Linking children to parents
+    // Note that this may change the ratio of children to parents in cases
+    // That should be TODO in the next iterative develompment process.
 
-    // TODO: Query for finding all network points near a location.
-    // Used for validation and REST controller (maybe)
+    @Modifying
+    @Query(nativeQuery = true, value = """
+        UPDATE network_points poles
+        SET parent_id = nearest_id
+            FROM (
+                SELECT
+                    p.id AS pole_id,
+                    c.id
+                    FROM network_points p
+                    CROSS JOIN LATERAL (
+                        SELECT id
+                        FROM network_points
+                        WHERE type = 'CABINET'
+                        ORDER_BY ST_Distance(geom, p.geom)
+                        LIMIT 1
+                    ) c
+                    WHERE p.type = 'POLE'
+            ) nearest
+            WHERE poles.id = nearest.pole_id
+    """)
+    void updatePoleParents();
 
+    @Modifying
+    @Query(nativeQuery = true, value = """
+        UPDATE network_points cabinets
+        SET parent_id = nearest_id
+            FROM (
+                SELECT
+                    c.id AS cabinet_id,
+                    a.id
+                    FROM network_points c
+                    CROSS JOIN LATERAL (
+                        SELECT id
+                        FROM network_points
+                        WHERE type = 'AGGREGATOR'
+                        ORDER_BY ST_Distance(geom, c.geom)
+                        LIMIT 1
+                    ) a
+                    WHERE c.type = 'CABINET'
+            ) nearest
+            WHERE cabinets.id = nearest.cabinet_id
+    """)
+    void updateCabinetParents();
+
+    @Modifying
+    @Query(nativeQuery = true, value = """
+        UPDATE network_points aggregators
+        SET parent_id = nearest_id
+            FROM (
+                SELECT
+                    a.id AS aggregator_id,
+                    e.id
+                    FROM network_points a
+                    CROSS JOIN LATERAL (
+                        SELECT id
+                        FROM network_points
+                        WHERE type = 'EXCHANGE'
+                        ORDER_BY ST_Distance(geom, a.geom)
+                        LIMIT 1
+                    ) e
+                    WHERE a.type = 'AGGREGATOR'
+            ) nearest
+            WHERE aggregators.id = nearest.aggregator_id
+    """)
+    void updateAggregatorParents();
 }

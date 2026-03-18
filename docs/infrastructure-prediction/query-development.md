@@ -57,7 +57,7 @@ INSERT INTO network_points (type, geom)
 ```
 
 Clusters with `ST_ClusterKMeans`: taking total number of building drop points and dividing into
-groups of 12. This creates a temporary derived table that matches building_id with cluster_id and
+groups of 12. This creates a subquery result that matches building_id with cluster_id and
 the buildings geom POINT. 
 
 `ST_Collect` aggregates points into a `GEOMETRYCOLLECTION` which `ST_Centroid` then uses to 
@@ -92,6 +92,37 @@ INSERT INTO network_points(type, geom)
         ) clustered 
         GROUP BY cluster_id
 ```
+
+### Updating Parents
+
+These are a set of SQL queries designed to match up the parents to the children in the hierarchy
+of the network. All follow a similar format. Below is the updating pole parents query.
+
+```sql
+UPDATE network_points poles
+        SET parent_id = nearest_id
+            FROM (
+                SELECT
+                    p.id AS pole_id,
+                    c.id
+                    FROM network_points p
+                    CROSS JOIN LATERAL (
+                        SELECT id
+                        FROM network_points
+                        WHERE type = 'CABINET'
+                        ORDER_BY ST_Distance(geom, p.geom)
+                        LIMIT 1
+                    ) c
+                    WHERE p.type = 'POLE'
+            ) nearest
+            WHERE poles.id = nearest.pole_id
+```
+
+This updates the `network_points` table. From the innermost query outward:
+- For each pole the nearest cabinet is selected and `id` returned.
+- The cabinet id is matched with the pole id in a temporary subquery result.
+- Then the `network_points` table is updated by looking for the pole id and adding the cabinet
+  id as the `parent_id`
 
 
 
