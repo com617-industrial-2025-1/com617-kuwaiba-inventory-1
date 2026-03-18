@@ -13,8 +13,6 @@ public class CleanedBuilding {
     @Id
     private Long osm_id;
 
-    private Long parent_id;
-
     @Column(columnDefinition = "geometry(MultiPolygon, 3857)")
     private MultiPolygon geom;
 

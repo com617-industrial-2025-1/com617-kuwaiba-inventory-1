@@ -36,20 +36,22 @@ public class ClusteringService {
     }
 
     public void predictPoles() {
-        // cluster buildings
-        // predict poles
-
+        dropPointRepository.insertPoleClusters();
+        dropPointRepository.updateBuildingParents();
     }
 
     public void predictCabinets() {
-
+        pointRepository.insertCabinetClusters();
+        pointRepository.updatePoleParents();
     }
 
     public void predictAggregators() {
-
+        pointRepository.insertAggregatorClusters();
+        pointRepository.updateCabinetParents();
     }
 
     public void predictExchanges() {
-
+        pointRepository.insertExchangeClusters();
+        pointRepository.updateAggregatorParents();
     }
 }

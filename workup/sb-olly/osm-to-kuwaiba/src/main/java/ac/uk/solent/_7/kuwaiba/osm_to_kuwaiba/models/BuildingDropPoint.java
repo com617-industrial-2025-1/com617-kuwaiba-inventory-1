@@ -13,6 +13,8 @@ public class BuildingDropPoint {
     @Id
     private Long building_id;
 
+    private Long parent_id;
+
     @Column(columnDefinition = "geometry(Point, 3857)")
     private Point geom;
 

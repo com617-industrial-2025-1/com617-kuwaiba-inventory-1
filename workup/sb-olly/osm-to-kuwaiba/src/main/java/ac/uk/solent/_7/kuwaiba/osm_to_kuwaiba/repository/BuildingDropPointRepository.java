@@ -20,7 +20,7 @@ public interface BuildingDropPointRepository extends JpaRepository<BuildingDropP
         FROM (
             SELECT
                 ST_ClusterKMeans(geom,
-                    CAST(CIEL(COUNT(*) OVER() / 12.0) AS INTEGER)
+                    CAST(CEIL(COUNT(*) OVER() / 12.0) AS INTEGER)
                 ) OVER () AS cluster_id,
                 geom
             FROM building_drop_points
@@ -29,4 +29,24 @@ public interface BuildingDropPointRepository extends JpaRepository<BuildingDropP
     """)
     void insertPoleClusters();
 
+    @Modifying
+    @Query(nativeQuery = true, value = """
+        UPDATE building_drop_points bdp
+        SET parent_id = nearest_pole.id
+            FROM (
+                SELECT
+                    b.building_id,
+                    p.id
+                FROM building_drop_points b
+                CROSS JOIN LATERAL (
+                    SELECT id
+                    FROM network_points
+                    WHERE type = 'POLE'
+                    ORDER BY ST_Distance(geom, b.geom)
+                    LIMIT 1
+                ) p
+            ) nearest_pole
+            WHERE bdp.building_id = nearest_pole.building_id
+    """)
+    void updateBuildingParents();
 }
