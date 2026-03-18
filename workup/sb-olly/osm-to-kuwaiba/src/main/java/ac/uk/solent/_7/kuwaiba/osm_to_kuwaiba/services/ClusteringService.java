@@ -23,13 +23,6 @@ public class ClusteringService {
     @Autowired
     private NetworkPointRepository pointRepository;
 
-
-    // runFullPrediction()
-    // predictPoles()
-    // predictCabinets()
-    // predictAggregators()
-    // predictExchanges()
-
     @Transactional // all methods are treated as an all or nothing incase things go wrong.
     public String runFullPrediction() {
         pointRepository.deleteAll(); // deleting for fresh start
@@ -43,6 +36,8 @@ public class ClusteringService {
     }
 
     public void predictPoles() {
+        // cluster buildings
+        // predict poles
 
     }
 
