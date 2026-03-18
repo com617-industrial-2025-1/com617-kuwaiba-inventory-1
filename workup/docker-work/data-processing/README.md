@@ -162,3 +162,6 @@ CREATE INDEX idx_network_connections_geom ON network_connections USING GIST (geo
 
 CREATE INDEX idx_network_points_type ON network_points (type);
 ```
+
+A full version that can me copied and pasted into the pgadmin query tool 
+can be found [here](./full-tables-creation-query.md)
