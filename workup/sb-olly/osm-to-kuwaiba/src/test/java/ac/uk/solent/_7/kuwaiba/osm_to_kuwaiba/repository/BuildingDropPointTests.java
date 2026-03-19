@@ -48,7 +48,7 @@ public class BuildingDropPointTests {
 	            (22, ST_GeomFromText('POINT(443108 5425000)', 3857)),
 	            (23, ST_GeomFromText('POINT(443120 5425000)', 3857)),
 	            (24, ST_GeomFromText('POINT(443132 5425000)', 3857))
-		""");
+		"""); // generated test data but checked for relevance
 	}
 	
 	// --------------------------------------
