@@ -10,11 +10,11 @@ Testing will be completed for each repository and each service
 
 - [ ] Repository
   - [ ] `BuildingDropPointRepository`
-    - [ ] Pole creation for each cluster.
-    - [ ] Only creates poles.
-    - [ ] Doesn't create poles when no buildings exist.
-    - [ ] Set Parent Id on every building.
-    - [ ] Building Parent Id links to an existing pole.
+    - [x] Pole creation for each cluster.
+    - [x] Only creates poles.
+    - [x] Doesn't create poles when no buildings exist.
+    - [x] Set Parent Id on every building.
+    - [x] Building Parent Id links to an existing pole.
   - [ ] `CleanedBuildingRepository`
     - [ ] 
   - [ ] `CleanedRoadRepository`

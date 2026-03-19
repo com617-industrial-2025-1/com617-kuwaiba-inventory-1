@@ -99,9 +99,39 @@ public class BuildingDropPointTests {
 	// -----------------------------------
 	// updateBuildingParents() tests
 	// -----------------------------------
+	// have to insertPoleClusters() before updateBuildingParents() can work
 	
-	//@Test
-	//void updateBuildingParents_setParentIdOnEveryBuilding() {
+	@Test
+	void updateBuildingParents_setParentIdOnEveryBuilding() {
+		dropPointRepository.insertPoleClusters();
 		
-	//}
+		dropPointRepository.updateBuildingParents();
+		
+		int incompParentFieldCount = jdbcTemplate.queryForObject(
+			"SELECT COUNT(*) FROM building_drop_points WHERE parent_id IS NULL",
+			Integer.class
+		);
+		
+		assertEquals(0, incompParentFieldCount);
+	}
+	
+	@Test
+	void updateBuildingParents_bdpParentIdLinksToPole() {
+		dropPointRepository.insertPoleClusters();
+		
+		dropPointRepository.updateBuildingParents();
+		
+		int invalidParentCount = jdbcTemplate.queryForObject("""
+			SELECT COUNT(*) FROM building_drop_points bdp
+			WHERE NOT EXISTS(
+				SELECT 1 FROM network_points np
+				WHERE np.id = bdp.parent_id AND np.type = 'POLE'
+			)	
+			""",
+			Integer.class
+		);
+		
+		assertEquals(0, invalidParentCount);
+		
+	}
 }
