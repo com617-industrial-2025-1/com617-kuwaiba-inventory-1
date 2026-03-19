@@ -16,7 +16,7 @@ public interface NetworkConnectionRepository extends JpaRepository<NetworkConnec
             pole_id,
             bdp.building_id,
             'DROP',
-            ST_Makeline(pole.geom, bdp.geom)
+            ST_MakeLine(pole.geom, bdp.geom)
         FROM building_drop_points
         JOIN network_points pole ON pole.id = bdp.parent_id
     """)

@@ -27,8 +27,8 @@ public class NetworkPoint {
 
     // getters and setters
     public Long getId() { return id; }
-    public String getExternal_id() { return externalId; }
-    public Long getParent_id() { return parentId; }
+    public String getExternalId() { return externalId; }
+    public Long getParentId() { return parentId; }
     public PointType getType() { return type; }
 
     @JsonIgnore

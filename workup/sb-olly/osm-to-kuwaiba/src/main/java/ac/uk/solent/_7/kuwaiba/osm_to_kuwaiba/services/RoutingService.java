@@ -24,19 +24,19 @@ public class RoutingService {
     }
 
     public void exchangeToAggregatorPrediction() {
-        connectionRepository.insertDropConnections();
+        connectionRepository.insertTrunkConnections();
     }
 
     public void aggregatorToCabinetPrediction() {
-        connectionRepository.insertFeederConnections();
-    }
-
-    public void cabinetToPolePrediction() {
         connectionRepository.insertDistributionConnections();
     }
 
+    public void cabinetToPolePrediction() {
+        connectionRepository.insertFeederConnections();
+    }
+
     public void poleToBuildingPrediction() {
-        connectionRepository.insertTrunkConnections();
+        connectionRepository.insertDropConnections();
     }
 
 }
