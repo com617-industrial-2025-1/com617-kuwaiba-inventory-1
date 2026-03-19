@@ -10,7 +10,9 @@ public class NetworkPoint {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    private String external_id;
+    
+    @Column(name = "external_id")
+    private String externalId;
     
     @Column(name = "parent_id")
     private Long parentId;
@@ -25,7 +27,7 @@ public class NetworkPoint {
 
     // getters and setters
     public Long getId() { return id; }
-    public String getExternal_id() { return external_id; }
+    public String getExternal_id() { return externalId; }
     public Long getParent_id() { return parentId; }
     public PointType getType() { return type; }
 
@@ -33,7 +35,7 @@ public class NetworkPoint {
     public Point getGeom() { return geom; }
 
     public void setId(Long id) { this.id = id; }
-    public void setExternalId(String ex_id) { this.external_id = ex_id; }
+    public void setExternalId(String ex_id) { this.externalId = ex_id; }
     public void setParentId(Long id) { this.parentId = id; }
     public void setType(PointType type) { this.type = type; }
     public void setGeom(Point geom) { this.geom = geom; }

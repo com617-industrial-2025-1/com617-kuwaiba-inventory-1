@@ -11,11 +11,13 @@ import org.locationtech.jts.geom.LineString;
 @Table(name = "cleaned_roads")
 public class CleanedRoad {
     @Id
-    private Long osm_id;
+    @Column(name = "osm_id")
+    private Long osmId;
 
     // TODO: find out road_type data type (String/Boolean)
     // private String road_type;
-    private String street_name;
+    @Column(name = "street_name")
+    private String streetName;
 
     @Column(columnDefinition = "geometry(LineString, 3857)")
     private LineString geom;

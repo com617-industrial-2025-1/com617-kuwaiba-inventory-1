@@ -11,14 +11,21 @@ import org.locationtech.jts.geom.MultiPolygon;
 @Table(name = "cleaned_buildings")
 public class CleanedBuilding {
     @Id
-    private Long osm_id;
+    @Column(name = "osm_id")
+    private Long osmId;
 
     @Column(columnDefinition = "geometry(MultiPolygon, 3857)")
     private MultiPolygon geom;
 
-    private String building_name;
-    private String house_num;
-    private String street_name;
+    @Column(name = "building_name")
+    private String buildingName;
+    
+    @Column(name = "house_num")
+    private String houseNum;
+    
+    @Column(name = "street_name")
+    private String streetName;
+    
     private String floors;
 
 }
