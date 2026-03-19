@@ -11,7 +11,9 @@ public class NetworkPoint {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String external_id;
-    private Long parent_id;
+    
+    @Column(name = "parent_id")
+    private Long parentId;
 
     // Tells JPA to store the enum string in the database instead of number.
     @Enumerated(EnumType.STRING)
@@ -24,15 +26,15 @@ public class NetworkPoint {
     // getters and setters
     public Long getId() { return id; }
     public String getExternal_id() { return external_id; }
-    public Long getParent_id() { return parent_id; }
+    public Long getParent_id() { return parentId; }
     public PointType getType() { return type; }
 
     @JsonIgnore
     public Point getGeom() { return geom; }
 
     public void setId(Long id) { this.id = id; }
-    public void setExternal_id(String ex_id) { this.external_id = ex_id; }
-    public void setParent_id(Long id) { this.parent_id = id; }
+    public void setExternalId(String ex_id) { this.external_id = ex_id; }
+    public void setParentId(Long id) { this.parentId = id; }
     public void setType(PointType type) { this.type = type; }
     public void setGeom(Point geom) { this.geom = geom; }
 }

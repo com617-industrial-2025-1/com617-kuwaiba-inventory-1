@@ -17,9 +17,9 @@ public interface NetworkPointRepository extends JpaRepository<NetworkPoint, Long
     // Spring Boot generates from method name
     List<NetworkPoint> findByType(PointType type);
     // Find points by parent_id
-    List<NetworkPoint> findByParent_id(Long parentId);
+    List<NetworkPoint> findByParentId(Long parentId);
     // Find points by parent_id and type
-    List<NetworkPoint> findByTypeAndParent_id(PointType type, Long parentId);
+    List<NetworkPoint> findByTypeAndParentId(PointType type, Long parentId);
 
     @Modifying
     @Query(nativeQuery = true, value = """
