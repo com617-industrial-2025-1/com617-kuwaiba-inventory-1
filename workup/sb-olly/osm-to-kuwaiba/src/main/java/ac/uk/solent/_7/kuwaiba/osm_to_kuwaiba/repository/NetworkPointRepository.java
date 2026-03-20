@@ -6,6 +6,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
@@ -22,6 +23,7 @@ public interface NetworkPointRepository extends JpaRepository<NetworkPoint, Long
     List<NetworkPoint> findByTypeAndParentId(PointType type, Long parentId);
 
     @Modifying
+    @Transactional
     @Query(nativeQuery = true, value = """
         INSERT INTO network_points(type, geom)
         SELECT 
@@ -41,6 +43,7 @@ public interface NetworkPointRepository extends JpaRepository<NetworkPoint, Long
     void insertCabinetClusters();
 
     @Modifying
+    @Transactional
     @Query(nativeQuery = true, value = """
         INSERT INTO network_points(type, geom)
         SELECT
@@ -60,6 +63,7 @@ public interface NetworkPointRepository extends JpaRepository<NetworkPoint, Long
     void insertAggregatorClusters();
 
     @Modifying
+    @Transactional
     @Query(nativeQuery = true, value = """
         INSERT INTO network_points(type, geom)
         SELECT
@@ -83,6 +87,7 @@ public interface NetworkPointRepository extends JpaRepository<NetworkPoint, Long
     // That should be TODO in the next iterative develompment process.
 
     @Modifying
+    @Transactional
     @Query(nativeQuery = true, value = """
         UPDATE network_points poles
         SET parent_id = nearest.id
@@ -105,6 +110,7 @@ public interface NetworkPointRepository extends JpaRepository<NetworkPoint, Long
     void updatePoleParents();
 
     @Modifying
+    @Transactional
     @Query(nativeQuery = true, value = """
         UPDATE network_points cabinets
         SET parent_id = nearest.id
@@ -127,6 +133,7 @@ public interface NetworkPointRepository extends JpaRepository<NetworkPoint, Long
     void updateCabinetParents();
 
     @Modifying
+    @Transactional
     @Query(nativeQuery = true, value = """
         UPDATE network_points aggregators
         SET parent_id = nearest.id

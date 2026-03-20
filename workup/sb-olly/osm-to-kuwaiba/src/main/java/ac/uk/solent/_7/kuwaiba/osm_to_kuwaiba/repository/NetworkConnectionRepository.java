@@ -5,11 +5,13 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
 
 @Repository
 public interface NetworkConnectionRepository extends JpaRepository<NetworkConnection, Long> {
 
     @Modifying
+    @Transactional
     @Query(nativeQuery = true, value = """
         INSERT INTO network_connections(start_id, end_id, link_type, geom)
         SELECT 
@@ -23,6 +25,7 @@ public interface NetworkConnectionRepository extends JpaRepository<NetworkConnec
     void insertDropConnections();
 
     @Modifying
+    @Transactional
     @Query(nativeQuery = true, value = """
         INSERT INTO network_connections (start_id, end_id, link_type, geom)
         SELECT
@@ -37,6 +40,7 @@ public interface NetworkConnectionRepository extends JpaRepository<NetworkConnec
     void insertFeederConnections();
 
     @Modifying
+    @Transactional
     @Query(nativeQuery = true, value = """
         INSERT INTO network_connections (start_id, end_id, link_type, geom)
         SELECT
@@ -51,6 +55,7 @@ public interface NetworkConnectionRepository extends JpaRepository<NetworkConnec
     void insertDistributionConnections();
 
     @Modifying
+    @Transactional
     @Query(nativeQuery = true, value = """
         INSERT INTO network_connections (start_id, end_id, link_type, geom)
         SELECT

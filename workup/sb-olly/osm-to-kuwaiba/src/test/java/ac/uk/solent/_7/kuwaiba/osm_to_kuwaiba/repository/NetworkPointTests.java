@@ -74,7 +74,18 @@ public class NetworkPointTests {
 	// findByParentId() tests
 	// ------------------------------
 	
-	
+	@Test
+	void findByParentId_returnPolesWithMatchingParentId() {
+		jdbcTemplate.execute("""
+				UPDATE network_points SET parent_id = 999
+				WHERE type = 'POLE' AND ST_X(geom) < 442400
+		"""); // Sets 8 poles to the parent 999
+		
+		List<NetworkPoint> children = networkPointRepository.findByParentId(999L);
+		
+		assertEquals(8, children.size());
+		assertTrue(children.stream().allMatch(p -> p.getParentId() == 999L));
+	}
 	
 	// ------------------------------
 	// findByTypeAndParentId() tests

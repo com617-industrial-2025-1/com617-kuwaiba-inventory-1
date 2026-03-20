@@ -5,6 +5,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
 
 @Repository
 public interface BuildingDropPointRepository extends JpaRepository<BuildingDropPoint, Long> {
@@ -12,6 +13,7 @@ public interface BuildingDropPointRepository extends JpaRepository<BuildingDropP
     // Clusters building drop points into groups of 12. Inserts a pole into the network_points
     // table at the geo center of the cluster.
     @Modifying
+    @Transactional
     @Query(nativeQuery = true, value = """
         INSERT INTO network_points (type, geom)
         SELECT 
@@ -30,6 +32,7 @@ public interface BuildingDropPointRepository extends JpaRepository<BuildingDropP
     void insertPoleClusters();
 
     @Modifying
+    @Transactional
     @Query(nativeQuery = true, value = """
         UPDATE building_drop_points bdp
         SET parent_id = nearest_pole.id
