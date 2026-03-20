@@ -87,36 +87,186 @@ public class NetworkPointTests {
 		assertTrue(children.stream().allMatch(p -> p.getParentId() == 999L));
 	}
 	
+	@Test
+	void findByParentId_returnsEmptyListWhenNoMatchingId() {
+		List<NetworkPoint> children = networkPointRepository.findByParentId(99999L);
+		
+		assertTrue(children.isEmpty());
+	}
+	
 	// ------------------------------
 	// findByTypeAndParentId() tests
 	// -------------------------------
 	
+	@Test
+	void findByTypeAndParentId_returnsOnlyMatchingTypeAndParentId() {
+		jdbcTemplate.execute("""
+			UPDATE network_points
+			SET parent_id = 777
+			WHERE type = 'POLE'
+		"""); // self explanatory
+		
+		List<NetworkPoint> children = networkPointRepository.findByTypeAndParentId(PointType.POLE, 777L);
+		
+		assertEquals(16, children.size());
+		assertTrue(children.stream().allMatch(p -> p.getType() == PointType.POLE && p.getParentId() == 777L));
+	}
 	
 	// ------------------------------
 	// insertCabinetClusters() tests
 	// ------------------------------
 	
+	@Test
+	void insertCabinetClusters_createsCabinetForEachCluster() {
+		networkPointRepository.insertCabinetClusters();
+		
+		int cabinetCount = jdbcTemplate.queryForObject(
+			"SELECT COUNT(*) FROM network_points WHERE type = 'CABINET'",
+			Integer.class
+		); // Should return 2 as 16 poles / 8 = 2
+		
+		assertEquals(2, cabinetCount);
+	}
+	
+	@Test
+	void insertCabinetClusters_doesNotAffectExistingPoles() {
+		networkPointRepository.insertCabinetClusters();
+		
+		int poleCount = jdbcTemplate.queryForObject(
+			"SELECT COUNT(*) FROM network_points WHERE type = 'POLE'",
+			Integer.class
+		); // Should remain 16
+		
+		assertEquals(16, poleCount);
+	}
 	
 	// ----------------------------------
 	// insertAggregatorClusters() tests
 	// ----------------------------------
 	
+	@Test
+	void insertAggregatorClusters_createAggregatorForEachCluster() {
+		networkPointRepository.insertCabinetClusters();
+		networkPointRepository.insertAggregatorClusters();
+		
+		int aggregatorCount = jdbcTemplate.queryForObject(
+			"SELECT COUNT(*) FROM network_points WHERE type = 'AGGREGATOR'",
+			Integer.class
+		);
+		
+		assertEquals(1, aggregatorCount);
+	}
 	
 	// ----------------------------------
 	// insertExchangeClusters() tests
 	// ----------------------------------
 	
+	@Test
+	void insertExchangeClusters_createExchangeForEachCluster() {
+		networkPointRepository.insertCabinetClusters();
+		networkPointRepository.insertAggregatorClusters();
+		networkPointRepository.insertExchangeClusters();
+		
+		int exchangeCount = jdbcTemplate.queryForObject(
+				"SELECT COUNT(*) FROM network_points WHERE type = 'EXCHANGE'",
+				Integer.class
+			);
+			
+		assertEquals(1, exchangeCount);
+	}
 	
 	// ------------------------------------
 	// updatePoleParents() tests
 	// ------------------------------------
 	
+	@Test
+	void updatePoleParents_setsParentIdOnEveryPole() {
+		networkPointRepository.insertCabinetClusters();
+		networkPointRepository.updatePoleParents();
+		
+		int unlinkedPoles = jdbcTemplate.queryForObject(
+				"SELECT COUNT(*) FROM network_points WHERE type = 'POLE' AND parent_id IS NULL",
+				Integer.class
+		);
+		
+		assertEquals(0, unlinkedPoles);
+	}
+	
+	@Test
+	void updatePoleParents_linksToExistingCabinet() {
+		networkPointRepository.insertCabinetClusters();
+		networkPointRepository.updatePoleParents();
+		
+		int invalidParentCount = jdbcTemplate.queryForObject("""
+			SELECT COUNT(*) FROM network_points poles
+			WHERE poles.type = 'POLE'
+			AND NOT EXISTS (
+				SELECT 1 FROM network_points cabinets
+				WHERE cabinets.id = poles.parent_id
+				AND cabinets.type = 'CABINET'
+			)
+		""",
+		Integer.class
+		);
+		
+		assertEquals(0, invalidParentCount);
+	}
 	
 	// ----------------------------------
 	// updateCabinetParents() tests
 	// -----------------------------------
 	
+	@Test
+	void updateCabinetParents_setsParentIdOnEveryCabinet() {
+        networkPointRepository.insertCabinetClusters();
+        networkPointRepository.insertAggregatorClusters();
+        networkPointRepository.updateCabinetParents();
+        
+        int unlinkedCabinets = jdbcTemplate.queryForObject(
+        	"SELECT COUNT(*) FROM network_points WHERE type = 'CABINET' AND parent_id IS NULL",
+        	Integer.class
+        );
+        
+        assertEquals(0, unlinkedCabinets);
+	}
+	
+	@Test
+	void updateCabinetParents_linksToExistingAggregator() {
+        networkPointRepository.insertCabinetClusters();
+        networkPointRepository.insertAggregatorClusters();
+        networkPointRepository.updateCabinetParents();
+        
+        int invalidParentCount = jdbcTemplate.queryForObject("""
+    			SELECT COUNT(*) FROM network_points cabinets
+    			WHERE cabinets.type = 'CABINET'
+    			AND NOT EXISTS (
+    				SELECT 1 FROM network_points aggregators
+    				WHERE aggregators.id = cabinets.parent_id
+    				AND aggregators.type = 'AGGREGATOR'
+    			)
+    		""",
+    		Integer.class
+        );
+        
+        assertEquals(0, invalidParentCount);
+	}
+	
 	// --------------------------------
 	// updateAggregatorParents() tests
 	// --------------------------------
+	
+	@Test
+	void updateAggregatorParents_setsParentIdOnEveryAggregator() {
+		networkPointRepository.insertCabinetClusters();
+        networkPointRepository.insertAggregatorClusters();
+        networkPointRepository.insertExchangeClusters();
+        networkPointRepository.updateAggregatorParents();
+        
+        int unlinkedAggregators = jdbcTemplate.queryForObject(
+        	"SELECT COUNT(*) FROM network_points WHERE type = 'AGGREGATOR' AND parent_id IS NULL",
+        	Integer.class
+        );
+        
+        assertEquals(0, unlinkedAggregators);
+	}
 }
