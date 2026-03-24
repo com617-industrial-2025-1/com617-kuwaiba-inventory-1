@@ -27,6 +27,9 @@ public class NetworkPointTests {
 	
 	@BeforeEach
 	void insertTestPoles() {
+		// Deleting data from tables to not pollute tests.
+		jdbcTemplate.execute("DELETE FROM network_points");
+		
 		jdbcTemplate.execute("""
 			INSERT INTO network_points (type, geom) VALUES
                 -- Street 1: 8 poles spaced 50m apart on a road running east-west

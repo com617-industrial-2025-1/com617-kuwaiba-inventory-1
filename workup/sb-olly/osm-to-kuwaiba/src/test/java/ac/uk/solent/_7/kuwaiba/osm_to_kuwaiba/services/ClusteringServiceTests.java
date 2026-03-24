@@ -21,6 +21,11 @@ public class ClusteringServiceTests {
 	
 	@BeforeEach
 	void insertTestData() {
+		// Deleting data from tables to not polute tests.
+		jdbcTemplate.execute("DELETE FROM building_drop_points");
+		jdbcTemplate.execute("DELETE FROM network_points");
+		jdbcTemplate.execute("DELETE FROM network_connections");
+		
         jdbcTemplate.execute("""
                 INSERT INTO building_drop_points (building_id, geom) VALUES
                     -- Street 1: 12 houses spaced 12m apart

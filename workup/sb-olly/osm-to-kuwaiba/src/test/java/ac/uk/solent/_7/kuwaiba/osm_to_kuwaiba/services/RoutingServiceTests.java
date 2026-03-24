@@ -21,6 +21,11 @@ public class RoutingServiceTests {
  
     @BeforeEach
     void insertTestHierarchy() {
+    	// Deleting data from tables to not polute tests.
+    	jdbcTemplate.execute("DELETE FROM network_connections");
+    	jdbcTemplate.execute("DELETE FROM network_points");
+    	jdbcTemplate.execute("DELETE FROM building_drop_points");
+    	
         jdbcTemplate.execute("""
             INSERT INTO network_points (id, type, geom) VALUES
                 (1, 'POLE',       ST_GeomFromText('POINT(442066 5425005)', 3857)),

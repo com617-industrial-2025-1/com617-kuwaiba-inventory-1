@@ -22,6 +22,10 @@ public class BuildingDropPointTests {
 	
 	@BeforeEach
 	void insertTestData() {
+		// Deleting data from relevant tables to not polute tests.
+		jdbcTemplate.execute("DELETE FROM building_drop_points");
+		jdbcTemplate.execute("DELETE FROM network_points");
+		
 		jdbcTemplate.execute("""
 			INSERT INTO building_drop_points (building_id, geom) VALUES
 	            (1,  ST_GeomFromText('POINT(442000 5425000)', 3857)),

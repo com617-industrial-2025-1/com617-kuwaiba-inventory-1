@@ -22,6 +22,11 @@ public class NetworkConnectionTests {
 	
 	@BeforeEach
 	void insertTestData() {
+		// Deleting data from tables to not pollute tests.
+		jdbcTemplate.execute("DELETE FROM network_connections");
+		jdbcTemplate.execute("DELETE FROM network_points");
+		jdbcTemplate.execute("DELETE FROM building_drop_points");
+		
 		// Network points on a road running east-west at Y=5425005 (road centre)
         // Pole is 5m north of the houses (Y=5425000 → Y=5425005)
         jdbcTemplate.execute("""
