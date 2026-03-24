@@ -53,7 +53,6 @@ public class NetworkPointTests {
 	// ------------------------
 	// findByType() tests
 	// -----------------------
-	// HAS NOT BEEN TESTED WITH DOCKER RUNNING YET
 	@Test
 	void findByType_returnPolesWhenQueryingPole() {
 		List<NetworkPoint> pointList = networkPointRepository.findByType(PointType.POLE);
