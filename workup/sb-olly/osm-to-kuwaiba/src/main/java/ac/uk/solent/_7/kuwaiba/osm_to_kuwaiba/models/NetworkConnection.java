@@ -8,6 +8,7 @@ import org.locationtech.jts.geom.LineString;
 @Table(name = "network_connections")
 public class NetworkConnection {
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     
     @Column(name = "external_id")

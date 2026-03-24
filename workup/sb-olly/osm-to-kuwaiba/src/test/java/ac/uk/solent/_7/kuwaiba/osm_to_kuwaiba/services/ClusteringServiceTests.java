@@ -63,6 +63,23 @@ public class ClusteringServiceTests {
 	}
 	
 	@Test
+	void runFullPrediction_deletesExistingData() {
+	    jdbcTemplate.execute("""
+	        INSERT INTO network_points (type, geom)
+	        VALUES ('POLE', ST_GeomFromText('POINT(999999 999999)', 3857))
+	    """);
+	 
+	    clusteringService.runFullPrediction();
+	 
+	    int stalePoints = jdbcTemplate.queryForObject(
+	        "SELECT COUNT(*) FROM network_points WHERE ST_X(geom) = 999999",
+	        Integer.class
+	    );
+	    assertEquals(0, stalePoints);
+	        
+	}
+	
+	@Test
 	void runFullPrediction_createsTwoPoles() {
 		clusteringService.runFullPrediction();
 		

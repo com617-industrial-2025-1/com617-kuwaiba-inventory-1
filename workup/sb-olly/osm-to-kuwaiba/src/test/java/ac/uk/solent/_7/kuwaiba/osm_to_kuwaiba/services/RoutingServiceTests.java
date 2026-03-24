@@ -51,6 +51,23 @@ public class RoutingServiceTests {
     }
     
     @Test
+    void runFullPrediction_deletesExistingData() {
+    	jdbcTemplate.execute("""
+                INSERT INTO network_connections (id, start_id, end_id, link_type, geom)
+                VALUES (999, 1, 2, 'FEEDER',
+                    ST_GeomFromText('LINESTRING(442066 5425005, 442200 5425005)', 3857))
+            """);
+     
+        routingService.runFullPrediction();
+     
+        int staleCount = jdbcTemplate.queryForObject(
+            "SELECT COUNT(*) FROM network_connections WHERE id = 999",
+            Integer.class
+        );
+        assertEquals(0, staleCount);
+    }
+    
+    @Test
     void runFullPrediction_createsDropConnections() {
         routingService.runFullPrediction();
  
@@ -140,4 +157,5 @@ public class RoutingServiceTests {
             Integer.class
         );
         assertEquals(1, trunkCount);
+    }
 }
