@@ -1,5 +1,3 @@
-
-
 services:
   db:
     image: postgis/postgis:15-3.3
@@ -12,11 +10,16 @@ services:
       - "5432:5432"
     volumes:
       - postgres_data:/var/lib/postgresql/data
+      # Postgres looks for /docker-entrypoint-initdb.d and runs on startup.
+      - ./container-fs/init:/docker-entrypoint-initdb.d
     healthcheck:
-      test: ["CMD-SHELL", "psql -U osmuser -d osm -c 'CREATE EXTENSION IF NOT EXISTS hstore;'"]
+        # Checks whether the database is accepting TCP connections on the network.
+        # Passes when the port is open and reachable
+      test: ["CMD-SHELL", "pg_isready -h localhost -p 5432 -U osmuser -d osm"]
       interval: 5s
       timeout: 10s
-      retries: 5
+      retries: 10
+      start_period: 30s
 
   importer:
     # image: iboates/osm2pgsql:latest # changed to specific version 
@@ -37,8 +40,23 @@ services:
       "echo 'Starting osm2pgsql import...';
        osm2pgsql --create --slim --hstore /data/bittern_park.xml"
 
+  table-creator:
+    image: postgis/postgis:15-3.3
+    container_name: table-creator
+    depends_on:
+      importer:
+        condition: service_completed_successfully
+    volumes:
+      - ./container-fs/data:/data
+    environment:
+      - PGHOST=db
+      - PGUSER=osmuser
+      - PGPASSWORD=osmpass
+      - PGDATABASE=osm
+    entrypoint: ["psql", "-U", "osmuser", "-d", "osm", "-f", "/data/createtables.sql"]
+
   pgadmin:
-    # image: dpage/pgadmin4  # changed to specific version 
+    # image: dpage/pgadmin4  # changed to specific version
     image: dpage/pgadmin4:9.13.0
     container_name: pgadmin
     restart: always
