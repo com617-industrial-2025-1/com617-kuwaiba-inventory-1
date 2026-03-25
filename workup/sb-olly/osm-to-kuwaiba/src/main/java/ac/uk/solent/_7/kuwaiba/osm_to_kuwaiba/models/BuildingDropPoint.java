@@ -4,8 +4,9 @@ import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
-import org.hibernate.annotations.Immutable;
 import org.locationtech.jts.geom.Point;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
 @Table(name = "building_drop_points")
@@ -20,4 +21,15 @@ public class BuildingDropPoint {
     @Column(columnDefinition = "geometry(Point, 3857)")
     private Point geom;
 
+    // getters and setters
+    public Long getBuildingId() { return buildingId; }
+    public Long getParentId() { return parentId; }
+    
+    @JsonIgnore
+    public Point getGeom() { return geom; }
+    
+    public void setBuildingId(Long id) { buildingId = id; }
+    public void setParentId(Long id) { parentId = id; }
+    public void setGeom(Point new_geom) { geom = new_geom; }
+    
 }
