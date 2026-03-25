@@ -21,6 +21,8 @@ public interface NetworkPointRepository extends JpaRepository<NetworkPoint, Long
     List<NetworkPoint> findByParentId(Long parentId);
     // Find points by parent_id and type
     List<NetworkPoint> findByTypeAndParentId(PointType type, Long parentId);
+    // NOTE: Finding all points (findAll()) is inherited from JpaRepository and so doesn't need to be defined here.
+    
 
     @Modifying
     @Transactional

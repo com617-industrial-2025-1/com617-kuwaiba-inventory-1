@@ -1,6 +1,10 @@
 package ac.uk.solent._7.kuwaiba.osm_to_kuwaiba.repository;
 
+import ac.uk.solent._7.kuwaiba.osm_to_kuwaiba.models.LinkType;
 import ac.uk.solent._7.kuwaiba.osm_to_kuwaiba.models.NetworkConnection;
+
+import java.util.List;
+
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
@@ -10,6 +14,15 @@ import org.springframework.transaction.annotation.Transactional;
 @Repository
 public interface NetworkConnectionRepository extends JpaRepository<NetworkConnection, Long> {
 
+	// These Retrievers are to be used by the rest api
+	List<NetworkConnection> findByLinkType(LinkType linkType);
+	
+	List<NetworkConnection> findByStartId(Long startId);
+	
+	List<NetworkConnection> findByEndId(Long endId);
+	
+	List<NetworkConnection> findByStartIdOrEndId(Long startId, Long endId);
+	
     @Modifying
     @Transactional
     @Query(nativeQuery = true, value = """
