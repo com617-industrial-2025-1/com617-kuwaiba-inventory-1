@@ -1,0 +1,85 @@
+services:
+  db:
+    image: postgis/postgis:15-3.3
+    container_name: db
+    environment:
+      - POSTGRES_USER=osmuser
+      - POSTGRES_PASSWORD=osmpass
+      - POSTGRES_DB=osm
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+      - ./container-fs/init:/docker-entrypoint-initdb.d
+    healthcheck:
+      test: [ "CMD-SHELL", "pg_isready -h localhost -p 5432 -U osmuser -d osm" ]
+      interval: 5s
+      timeout: 10s
+      retries: 10
+      start_period: 30s
+
+  importer:
+    image: iboates/osm2pgsql:2.2.0
+    container_name: importer
+    depends_on:
+      db:
+        condition: service_healthy
+    volumes:
+      - ./container-fs/data:/data
+    environment:
+      - PGHOST=db
+      - PGUSER=osmuser
+      - PGPASSWORD=osmpass
+      - PGDATABASE=osm
+    entrypoint: /bin/sh -c
+    command: >
+      "echo 'Starting osm2pgsql import...';
+       osm2pgsql --create --slim --hstore /data/bittern_park.xml"
+
+  table-creator:
+    image: postgis/postgis:15-3.3
+    container_name: table-creator
+    depends_on:
+      importer:
+        condition: service_completed_successfully
+    volumes:
+      - ./container-fs/data:/data
+    environment:
+      - PGHOST=db
+      - PGUSER=osmuser
+      - PGPASSWORD=osmpass
+      - PGDATABASE=osm
+    entrypoint: [ "psql", "-U", "osmuser", "-d", "osm", "-f", "/data/createtables.sql" ]
+
+  pgadmin:
+    image: dpage/pgadmin4:9.13.0
+    container_name: pgadmin
+    restart: always
+    ports:
+      - "8888:80"
+    environment:
+      PGADMIN_DEFAULT_EMAIL: user-name@domain-name.com
+      PGADMIN_DEFAULT_PASSWORD: minad1234
+      PGADMIN_SERVER_JSON_FILE: /pgadmin/servers.json
+    volumes:
+      - pgadmin_data:/var/lib/pgadmin
+      - ./container-fs/pgadmin/:/pgadmin
+
+  uprn-linker:
+    build: ./uprn-linker
+    container_name: uprn-linker
+    depends_on:
+      db:
+        condition: service_healthy
+      table-creator:
+        condition: service_completed_successfully
+    volumes:
+      - ./container-fs/data:/data
+    environment:
+      - DB_URL=jdbc:postgresql://db:5432/osm
+      - DB_USER=osmuser
+      - DB_PASS=osmpass
+
+volumes:
+  postgres_data:
+  pgadmin_data:
