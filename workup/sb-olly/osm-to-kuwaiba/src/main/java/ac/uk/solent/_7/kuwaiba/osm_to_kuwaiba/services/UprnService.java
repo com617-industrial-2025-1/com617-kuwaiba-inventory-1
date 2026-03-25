@@ -10,11 +10,11 @@ import ac.uk.solent._7.kuwaiba.osm_to_kuwaiba.repository.LinkedBuildingRepositor
 public class UprnService {
 	
 	@Autowired
-	private LinkedBuildingRepository linkedBuildingRepository;
-	
-	@Transactional
-	public String linksUprns() {
-		linkedBuildingRepository.createLinkedBuildings();
-		return "UPRN linking complete.";
-	}
+    private LinkedBuildingRepository linkedBuildingRepository;
+
+    @Transactional
+    public String linksUprns() {
+        linkedBuildingRepository.createLinkedBuildings();
+        return "UPRN linking complete.";
+    }
 }
