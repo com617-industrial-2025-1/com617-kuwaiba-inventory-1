@@ -61,6 +61,7 @@ tables.
 |POST|`/predict/all`|Run full clustering and routing pipeline|
 |POST|`/predict/clustering`|Run clustering only|
 |POST|`/predict/routing`|Run routing only|
+|POST|`/predict/uprns`|Link buildings to UPRNs|
 
 **Query Endpoints**
 
