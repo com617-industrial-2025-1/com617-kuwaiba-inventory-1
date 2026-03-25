@@ -114,3 +114,20 @@ CREATE INDEX idx_network_connections_geom ON network_connections USING GIST (geo
 -- Indexing the type column on network points
 
 CREATE INDEX idx_network_points_type ON network_points (type);
+
+-- Creating UPRN table and linked_building table
+CREATE TABLE raw_uprns (
+    uprn BIGINT,
+    lat  DOUBLE PRECISION,
+    lon  DOUBLE PRECISION
+);
+
+CREATE TABLE linked_buildings (
+    osm_id        BIGINT PRIMARY KEY,
+    building_name VARCHAR,
+    house_num     VARCHAR,
+    street_name   VARCHAR,
+    floors        VARCHAR,
+    uprn          BIGINT
+);
+
