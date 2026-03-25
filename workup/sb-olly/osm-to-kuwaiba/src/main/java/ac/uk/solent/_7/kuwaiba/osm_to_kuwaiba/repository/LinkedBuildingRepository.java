@@ -32,5 +32,4 @@ public interface LinkedBuildingRepository extends JpaRepository<LinkedBuilding, 
     	-- ORDER BY b.osm_id is required by PostgreSQL when using DISTINCT ON.
     """)
     void createLinkedBuildings();
-	// Added DISTINCT ON to the query as
 }
