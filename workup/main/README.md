@@ -61,12 +61,24 @@ In Eclipse:
 
 right-click `OsmToKuwaibaApplication.java` -> Run As -> Spring Boot App
 
-When you see the following in the console the app is ready:
+When you see the following statements in the console, the app is ready:
 ```
 Tomcat started on port(s): 8080 (http)
+
+UPRN IMPORT AND LINKING COMPLETE
 ```
 
 ## REST API
+To use the REST API you can use a tool like [Postman](https://www.postman.com/downloads/) to send
+POST and GET requests.
+
+Alternatively Swagger UI has been implemented. Once the app is running you'll have two URLs 
+available:
+
+- `http://localhost:8080/swagger-ui.html` — the interactive UI where you can click endpoints and hit
+  "Execute" to run them.
+- `http://localhost:8080/v3/api-docs` — the raw JSON spec if you ever need it
+
 **Prediction Endpoints**
 
 These trigger the network prediction algorithms. These should be run after the application has
