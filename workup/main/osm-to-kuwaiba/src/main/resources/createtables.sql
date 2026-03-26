@@ -1,3 +1,13 @@
+-- Dropping tables before running
+DROP TABLE IF EXISTS linked_buildings CASCADE;
+DROP TABLE IF EXISTS raw_uprns CASCADE;
+DROP TABLE IF EXISTS network_connections CASCADE;
+DROP TABLE IF EXISTS network_points CASCADE;
+DROP TABLE IF EXISTS building_drop_points CASCADE;
+DROP TABLE IF EXISTS noded_streets CASCADE;
+DROP TABLE IF EXISTS cleaned_roads CASCADE;
+DROP TABLE IF EXISTS cleaned_buildings CASCADE;
+
 -- Cleaning House Footprints
 
 CREATE TABLE cleaned_buildings AS

@@ -68,6 +68,12 @@
 			<artifactId>jackson-datatype-jts</artifactId>
 			<version>2.4</version>
 		</dependency>
+		
+		<dependency>
+            <groupId>org.postgresql</groupId>
+            <artifactId>postgresql</artifactId>
+            <version>42.7.2</version>
+        </dependency>
 	</dependencies>
 
 	<build>

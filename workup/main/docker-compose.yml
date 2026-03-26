@@ -36,21 +36,6 @@ services:
       "echo 'Starting osm2pgsql import...';
        osm2pgsql --create --slim --hstore /data/bittern_park.xml"
 
-  table-creator:
-    image: postgis/postgis:15-3.3
-    container_name: table-creator
-    depends_on:
-      importer:
-        condition: service_completed_successfully
-    volumes:
-      - ./container-fs/data:/data
-    environment:
-      - PGHOST=db
-      - PGUSER=osmuser
-      - PGPASSWORD=osmpass
-      - PGDATABASE=osm
-    entrypoint: [ "psql", "-U", "osmuser", "-d", "osm", "-f", "/data/createtables.sql" ]
-
   pgadmin:
     image: dpage/pgadmin4:9.13.0
     container_name: pgadmin
@@ -64,21 +49,6 @@ services:
     volumes:
       - pgadmin_data:/var/lib/pgadmin
       - ./container-fs/pgadmin/:/pgadmin
-
-  uprn-linker:
-    build: ./uprn-linker
-    container_name: uprn-linker
-    depends_on:
-      db:
-        condition: service_healthy
-      table-creator:
-        condition: service_completed_successfully
-    volumes:
-      - ./container-fs/data:/data
-    environment:
-      - DB_URL=jdbc:postgresql://db:5432/osm
-      - DB_USER=osmuser
-      - DB_PASS=osmpass
 
 volumes:
   postgres_data:
