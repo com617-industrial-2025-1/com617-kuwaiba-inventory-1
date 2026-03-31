@@ -149,7 +149,7 @@ top of eachother
 ### TODO
 - [ ] Improve Prediction
   - [ ] Relevant Connections follow roads
-  - [ ] Points are placed next to roads
+  - [x] Points are placed next to roads
 - [ ] QGIS in a docker container
 - [ ] Export Mechanism
 - [ ] Naming Conventions
