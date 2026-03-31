@@ -30,10 +30,11 @@ public interface NetworkPointRepository extends JpaRepository<NetworkPoint, Long
         INSERT INTO network_points(type, geom)
         SELECT 
             'CABINET',
-            ST_Centroid(ST_Collect(geom))
+            ST_ClosestPoint(r.geom, c.centroid)
         FROM (
-            SELECT 
-                ST_ClusterKMeans(geom,
+            SELECT ST_Centroid(ST_Collect(geom)) AS centroid
+            FROM (
+    		    SELECT ST_ClusterKMeans(geom,
                     CAST(CEIL((SELECT COUNT(*) FROM network_points WHERE type = 'POLE') / 8.0) AS INTEGER)
                 ) OVER () AS cluster_id,
                 geom
@@ -41,6 +42,12 @@ public interface NetworkPointRepository extends JpaRepository<NetworkPoint, Long
             WHERE type = 'POLE'
         ) clustered 
         GROUP BY cluster_id
+        ) c
+        CROSS JOIN LATERAL (
+    		SELECT geom FROM cleaned_roads
+    		ORDER BY c.centroid <-> geom
+    		LIMIT 1
+    	) r
     """)
     void insertCabinetClusters();
 
@@ -50,10 +57,11 @@ public interface NetworkPointRepository extends JpaRepository<NetworkPoint, Long
         INSERT INTO network_points(type, geom)
         SELECT
             'AGGREGATOR',
-            ST_Centroid(ST_Collect(geom))
+            ST_ClosestPoint(r.geom, c.centroid)
         FROM (
-            SELECT
-                ST_ClusterKMeans(geom,
+    		SELECT ST_Centroid(ST_Collect(geom)) AS centroid
+    		FROM (
+    		    SELECT ST_ClusterKMeans(geom,
                     CAST(CEIL((SELECT COUNT(*) FROM network_points WHERE type = 'CABINET') / 8.0) AS INTEGER)   
                 ) OVER() AS cluster_id,
                 geom
@@ -61,6 +69,12 @@ public interface NetworkPointRepository extends JpaRepository<NetworkPoint, Long
             WHERE type = 'CABINET'
         ) clustered
         GROUP BY cluster_id
+        ) c
+        CROSS JOIN LATERAL (
+            SELECT geom FROM cleaned_roads
+            ORDER BY c.centroid <-> geom
+            LIMIT 1
+        ) r
     """)
     void insertAggregatorClusters();
 
@@ -70,10 +84,11 @@ public interface NetworkPointRepository extends JpaRepository<NetworkPoint, Long
         INSERT INTO network_points(type, geom)
         SELECT
             'EXCHANGE',
-            ST_Centroid(ST_Collect(geom))
+            ST_ClosestPoint(r.geom, c.centroid)
         FROM (
-            SELECT
-                ST_ClusterKMeans(geom,
+            SELECT ST_Centroid(ST_Collect(geom)) AS centroid
+    		FROM (
+    		    SELECT ST_ClusterKMeans(geom,
                     CAST(CEIL((SELECT COUNT(*) FROM network_points WHERE type = 'AGGREGATOR') / 8.0) AS INTEGER)   
                 ) OVER() AS cluster_id,
                 geom
@@ -81,6 +96,12 @@ public interface NetworkPointRepository extends JpaRepository<NetworkPoint, Long
             WHERE type = 'AGGREGATOR'
         ) clustered
         GROUP BY cluster_id
+        ) c
+        CROSS JOIN LATERAL (
+            SELECT geom FROM cleaned_roads
+            ORDER BY c.centroid <-> geom
+            LIMIT 1
+        ) r
     """)
     void insertExchangeClusters();
 

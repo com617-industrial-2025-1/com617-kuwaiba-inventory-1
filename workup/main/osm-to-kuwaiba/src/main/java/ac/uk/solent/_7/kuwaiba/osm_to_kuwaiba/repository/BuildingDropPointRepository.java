@@ -18,16 +18,23 @@ public interface BuildingDropPointRepository extends JpaRepository<BuildingDropP
         INSERT INTO network_points (type, geom)
         SELECT 
             'POLE',
-            ST_Centroid(ST_Collect(geom))
+            ST_ClosestPoint(r.geom, c.centroid)
         FROM (
-            SELECT
-                ST_ClusterKMeans(geom,
+            SELECT ST_Centroid(ST_Collect(geom)) AS centroid
+            FROM ( 
+    		    SELECT ST_ClusterKMeans(geom,
                     CAST(CEIL((SELECT COUNT(*) FROM building_drop_points) / 12.0) AS INTEGER)
                 ) OVER () AS cluster_id,
                 geom
             FROM building_drop_points
             ) clustered
         GROUP BY cluster_id
+        ) c
+        CROSS JOIN LATERAL (
+    		SELECT geom from cleaned_roads
+    		ORDER BY c.centroid <-> geom
+    		LIMIT 1
+    	) r
     """)
     void insertPoleClusters();
 

@@ -19,9 +19,6 @@ public class PredictionController {
 	@Autowired
 	private RoutingService routingService;
 	
-	@Autowired
-	private UprnService uprnService;
-	
 	// run the full pipeline
 	@PostMapping("/all")
 	public String runAll() {
@@ -41,10 +38,6 @@ public class PredictionController {
 		return routingService.runFullPrediction();
 	}
 	
-	@PostMapping("/uprns")
-	public String linkUprns() {
-		return uprnService.linksUprns();
-	}
 	
 	
 	

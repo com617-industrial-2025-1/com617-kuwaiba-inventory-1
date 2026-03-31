@@ -156,7 +156,7 @@ public class NetworkConnectionTests {
 		connectionRepository.insertTrunkConnections();
 		 
         int trunkCount = jdbcTemplate.queryForObject(
-            "SELECT COUNT(*) FROM network_connections WHERE link_type = 'TRUK'",
+            "SELECT COUNT(*) FROM network_connections WHERE link_type = 'TRUNK'",
             Integer.class
         );
         assertEquals(1, trunkCount);
@@ -168,7 +168,7 @@ public class NetworkConnectionTests {
         
         int invalidCount = jdbcTemplate.queryForObject("""
             SELECT COUNT(*) FROM network_connections nc
-            WHERE nc.link_type = 'TRUK'
+            WHERE nc.link_type = 'TRUNK'
             AND NOT EXISTS (
                 SELECT 1 FROM network_points np
                 WHERE np.id = nc.start_id AND np.type = 'EXCHANGE'

@@ -74,7 +74,7 @@ public interface NetworkConnectionRepository extends JpaRepository<NetworkConnec
         SELECT
             exchange.id,
             aggregator.id,
-            'TRUK',
+            'TRUNK',
             ST_MakeLine(exchange.geom, aggregator.geom)
         FROM network_points aggregator
         JOIN network_points exchange ON exchange.id = aggregator.parent_id
