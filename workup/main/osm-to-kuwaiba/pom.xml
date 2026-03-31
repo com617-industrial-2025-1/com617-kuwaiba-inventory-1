@@ -8,7 +8,7 @@
 		<version>4.0.3</version>
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
-	<groupId>ac.uk.solent.617.kuwaiba</groupId>
+	<groupId>ac.uk.solent.com617.kuwaiba</groupId>
 	<artifactId>osm-to-kuwaiba</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<name>osm-to-kuwaiba</name>
