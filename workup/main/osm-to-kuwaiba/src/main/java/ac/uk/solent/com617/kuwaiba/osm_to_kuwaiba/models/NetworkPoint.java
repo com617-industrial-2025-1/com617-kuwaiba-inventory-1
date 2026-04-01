@@ -1,6 +1,9 @@
 package ac.uk.solent.com617.kuwaiba.osm_to_kuwaiba.models;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
+
+import ac.uk.solent.com617.kuwaiba.osm_to_kuwaiba.config.PointSerializer;
 import jakarta.persistence.*;
 import org.locationtech.jts.geom.Point;
 
@@ -31,7 +34,6 @@ public class NetworkPoint {
     public Long getParentId() { return parentId; }
     public PointType getType() { return type; }
 
-    @JsonIgnore
     public Point getGeom() { return geom; }
 
     public void setId(Long id) { this.id = id; }

@@ -109,6 +109,9 @@ right-clicking the test file -> Run As -> JUnit Test
 **Note**: Test uses `@Transactional` so all test data is automatically rolled back after each test, 
 the live database is not affected.
 
+[Customizing Object Mapper Resource](https://codingtechroom.com/tutorial/java-customizing-jackson-objectmapper-spring-boot)
 
+[Using @JsonComponent for serialization](https://www.baeldung.com/spring-boot-jsoncomponent)
 
+[GeoJson format](https://datatracker.ietf.org/doc/html/rfc7946#appendix-A.1)
 

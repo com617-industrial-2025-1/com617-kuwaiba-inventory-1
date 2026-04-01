@@ -74,11 +74,19 @@
             <artifactId>postgresql</artifactId>
             <version>42.7.2</version>
         </dependency>
-        <!-- FORK OF jackson-datatype-jts-->
+        
+        <!-- FORK OF jackson-datatype-jts
         <dependency>
 		    <groupId>com.github.45inertia</groupId>
 		    <artifactId>jackson-datatype-jts</artifactId>
-		    <version>accfa29538</version>
+		    <version>4f581a9aa6</version>
+		</dependency>
+		-->
+		
+		<dependency>
+		    <groupId>ac.uk.solent.com617</groupId>
+		    <artifactId>jackson-datatype-jts</artifactId>
+		    <version>2.5-SNAPSHOT</version>
 		</dependency>
         
         <dependency>
@@ -86,15 +94,21 @@
     		<artifactId>springdoc-openapi-starter-webmvc-ui</artifactId>
     		<version>2.8.6</version>
 		</dependency>
+		
+		<dependency>
+		    <groupId>org.springframework.boot</groupId>
+		    <artifactId>spring-boot-starter-web</artifactId>
+		</dependency>
 	</dependencies>
 	
-	<!-- Jitpack repository to access jackson-datatype-jts-->
+	<!-- Jitpack repository to access jackson-datatype-jts
 	<repositories>
     	<repository>
         	<id>jitpack.io</id>
         	<url>https://jitpack.io</url>
     	</repository>
 	</repositories>
+	-->
 
 	<build>
 		<plugins>

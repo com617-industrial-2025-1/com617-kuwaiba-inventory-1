@@ -1,6 +1,9 @@
 package ac.uk.solent.com617.kuwaiba.osm_to_kuwaiba.models;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
+
+import ac.uk.solent.com617.kuwaiba.osm_to_kuwaiba.config.LineStringSerializer;
 import jakarta.persistence.*;
 import org.locationtech.jts.geom.Geometry;
 
@@ -26,7 +29,6 @@ public class NetworkConnection {
     private LinkType linkType;
 
     // Using SRID 3857
-    // Was previously linestring but changed to accomodate multilinestring
     @Column(columnDefinition = "geometry(LineString, 3857)")
     private Geometry geom;
 
@@ -37,7 +39,6 @@ public class NetworkConnection {
     public Long getEnd_id() { return endId; }
     public LinkType getLink_type() { return linkType; }
 
-    @JsonIgnore
     public Geometry getGeom() { return geom; }
 
     public void setId(Long id) { this.id = id; }
