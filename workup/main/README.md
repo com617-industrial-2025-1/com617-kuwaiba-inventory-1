@@ -151,7 +151,8 @@ top of eachother
   - [ ] Relevant Connections follow roads
   - [x] Points are placed next to roads
 - [ ] QGIS in a docker container
-- [ ] Export Mechanism
+- [x] Export Mechanism
 - [ ] Naming Conventions
+- [ ] Fix Table Creation and Hibernate Interaction
 
 
