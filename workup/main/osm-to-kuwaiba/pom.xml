@@ -74,6 +74,12 @@
             <artifactId>postgresql</artifactId>
             <version>42.7.2</version>
         </dependency>
+        <!-- FORK OF jackson-datatype-jts-->
+        <dependency>
+		    <groupId>com.github.45inertia</groupId>
+		    <artifactId>jackson-datatype-jts</artifactId>
+		    <version>accfa29538</version>
+		</dependency>
         
         <dependency>
     		<groupId>org.springdoc</groupId>
@@ -81,6 +87,14 @@
     		<version>2.8.6</version>
 		</dependency>
 	</dependencies>
+	
+	<!-- Jitpack repository to access jackson-datatype-jts-->
+	<repositories>
+    	<repository>
+        	<id>jitpack.io</id>
+        	<url>https://jitpack.io</url>
+    	</repository>
+	</repositories>
 
 	<build>
 		<plugins>

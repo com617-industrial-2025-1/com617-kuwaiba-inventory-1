@@ -2,11 +2,16 @@ package ac.uk.solent.com617.kuwaiba.osm_to_kuwaiba.rest;
 
 import java.util.List;
 
+import org.locationtech.jts.geom.Coordinate;
+import org.locationtech.jts.geom.GeometryFactory;
+import org.locationtech.jts.geom.Point;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
+
+import com.fasterxml.jackson.databind.ObjectMapper;
 
 import ac.uk.solent.com617.kuwaiba.osm_to_kuwaiba.models.LinkType;
 import ac.uk.solent.com617.kuwaiba.osm_to_kuwaiba.models.NetworkConnection;
@@ -18,6 +23,13 @@ import ac.uk.solent.com617.kuwaiba.osm_to_kuwaiba.repository.NetworkPointReposit
 @RestController
 @RequestMapping("/network")
 public class NetworkController {
+	
+	// final as only assigned once
+	private final ObjectMapper mapper;
+	
+	public NetworkController(ObjectMapper mapper) {
+		this.mapper = mapper;
+	}
 	
 	@Autowired
 	private NetworkPointRepository pointRepository;
@@ -48,4 +60,11 @@ public class NetworkController {
     public List<NetworkConnection> getConnectionsByType(@RequestParam LinkType linkType) {
         return connectionRepository.findByLinkType(linkType);
     }
+	
+	@GetMapping("/test/geometry")
+	public String testGeometry() throws Exception {
+		GeometryFactory gf = new GeometryFactory();
+		Point point = gf.createPoint(new Coordinate(-1.2577, 51.7520));
+		return mapper.writeValueAsString(point);
+	}
 }
