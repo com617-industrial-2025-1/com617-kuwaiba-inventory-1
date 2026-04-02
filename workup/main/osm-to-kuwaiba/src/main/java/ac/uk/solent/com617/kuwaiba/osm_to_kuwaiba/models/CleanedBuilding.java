@@ -18,16 +18,16 @@ public class CleanedBuilding {
     @Column(columnDefinition = "geometry(MultiPolygon, 3857)")
     private MultiPolygon geom;
 
-    @Column(name = "building_name")
+    @Column(name = "building_name", columnDefinition = "TEXT")
     private String buildingName;
     
-    @Column(name = "house_num")
+    @Column(name = "house_num", columnDefinition = "TEXT")
     private String houseNum;
     
-    @Column(name = "street_name")
+    @Column(name = "street_name", columnDefinition = "TEXT")
     private String streetName;
     
-    @Column(name = "floors")
+    @Column(name = "floors", columnDefinition = "TEXT")
     private String floors;
 
     // getters and setters

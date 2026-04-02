@@ -5,6 +5,9 @@ import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 
 import ac.uk.solent.com617.kuwaiba.osm_to_kuwaiba.config.PointSerializer;
 import jakarta.persistence.*;
+
+import org.hibernate.annotations.JdbcTypeCode;
+import org.hibernate.type.SqlTypes;
 import org.locationtech.jts.geom.Point;
 
 @Entity
@@ -14,7 +17,7 @@ public class NetworkPoint {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     
-    @Column(name = "external_id")
+    @Column(name = "external_id", columnDefinition = "TEXT")
     private String externalId;
     
     @Column(name = "parent_id")
@@ -25,6 +28,7 @@ public class NetworkPoint {
     private PointType type;
 
     // using SRID 3857
+    @JdbcTypeCode(SqlTypes.GEOMETRY)
     @Column(columnDefinition = "geometry(Point, 3857)")
     private Point geom;
 

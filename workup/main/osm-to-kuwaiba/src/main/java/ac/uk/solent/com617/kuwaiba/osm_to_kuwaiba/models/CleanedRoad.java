@@ -15,12 +15,14 @@ public class CleanedRoad {
     @Column(name = "osm_id")
     private Long osmId;
 
-    // TODO: find out road_type data type (String/Boolean)
-    @Column(name = "road_type")
+    @Column(name = "road_type", columnDefinition = "TEXT")
     private String roadType;
     
-    @Column(name = "street_name")
+    @Column(name = "street_name", columnDefinition = "TEXT")
     private String streetName;
+    
+    @Column(name = "is_island")
+    private Boolean isIsland;
 
     @Column(columnDefinition = "geometry(LineString, 3857)")
     private LineString geom;
@@ -29,13 +31,15 @@ public class CleanedRoad {
     public Long getId() { return osmId; }
     public String getRoadType() { return roadType; }
     public String getStreetName() { return streetName; }
+    public Boolean getIsIsland() { return isIsland; }
     
-    @JsonIgnore
+
     public LineString getGeom() { return geom; }
     
     public void setId(Long new_id) { osmId = new_id; }
     public void setRoadType(String type) { roadType = type; }
     public void setStreetName(String name) { streetName = name; }
+    public void setIsIsland(Boolean input) { isIsland = input; }
     public void setGeom(LineString new_geom) { geom = new_geom; }
     
     

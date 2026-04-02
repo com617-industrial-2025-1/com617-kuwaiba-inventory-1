@@ -25,7 +25,6 @@ public class BuildingDropPoint {
     public Long getBuildingId() { return buildingId; }
     public Long getParentId() { return parentId; }
     
-    @JsonIgnore
     public Point getGeom() { return geom; }
     
     public void setBuildingId(Long id) { buildingId = id; }

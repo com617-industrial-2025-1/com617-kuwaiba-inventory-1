@@ -12,17 +12,16 @@ public class LinkedBuilding {
 	@Column(name = "osm_id")
 	private Long osmId;
 	
-	@Column(name = "building_name")
+	@Column(name = "building_name", columnDefinition = "TEXT")
 	private String buildingName;
 	
-	@Column(name = "house_num")
+	@Column(name = "house_num", columnDefinition = "TEXT")
 	private String houseNum;
 	
-	@Column(name = "street_name")
+	@Column(name = "street_name", columnDefinition = "TEXT")
 	private String streetName;
 	
-	// TODO: WHY IS THIS STRING AND NOT INT
-	@Column(name = "floors")
+	@Column(name = "floors", columnDefinition = "TEXT")
 	private String floors;
 	
 	@Column(name = "uprn")

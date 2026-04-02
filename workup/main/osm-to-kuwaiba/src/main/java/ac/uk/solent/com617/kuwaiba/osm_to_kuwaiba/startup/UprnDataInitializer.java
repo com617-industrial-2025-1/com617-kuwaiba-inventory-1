@@ -23,7 +23,7 @@ public class UprnDataInitializer {
     private UprnService uprnService;
     
     @EventListener(ApplicationReadyEvent.class) // Runs as soon as spring boot runs and is ready.
-    @Order(2)
+    @Order(3)
     public void onStartup() throws Exception {
         uprnImportService.importUprns();
         uprnService.linksUprns();

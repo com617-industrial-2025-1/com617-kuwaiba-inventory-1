@@ -5,6 +5,9 @@ import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 
 import ac.uk.solent.com617.kuwaiba.osm_to_kuwaiba.config.LineStringSerializer;
 import jakarta.persistence.*;
+
+import org.hibernate.annotations.JdbcTypeCode;
+import org.hibernate.type.SqlTypes;
 import org.locationtech.jts.geom.Geometry;
 
 @Entity
@@ -14,7 +17,7 @@ public class NetworkConnection {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     
-    @Column(name = "external_id")
+    @Column(name = "external_id", columnDefinition = "TEXT")
     private String externalId;
     
     @Column(name = "start_id")
@@ -29,6 +32,7 @@ public class NetworkConnection {
     private LinkType linkType;
 
     // Using SRID 3857
+    @JdbcTypeCode(SqlTypes.GEOMETRY)
     @Column(columnDefinition = "geometry(LineString, 3857)")
     private Geometry geom;
 

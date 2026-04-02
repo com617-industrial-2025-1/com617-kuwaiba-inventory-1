@@ -7,6 +7,7 @@ import org.springframework.transaction.annotation.Transactional;
 import ac.uk.solent.com617.kuwaiba.osm_to_kuwaiba.repository.BuildingDropPointRepository;
 import ac.uk.solent.com617.kuwaiba.osm_to_kuwaiba.repository.CleanedBuildingRepository;
 import ac.uk.solent.com617.kuwaiba.osm_to_kuwaiba.repository.CleanedRoadRepository;
+import ac.uk.solent.com617.kuwaiba.osm_to_kuwaiba.repository.NetworkConnectionRepository;
 import ac.uk.solent.com617.kuwaiba.osm_to_kuwaiba.repository.NetworkPointRepository;
 
 @Service
@@ -23,9 +24,14 @@ public class ClusteringService {
 
     @Autowired
     private NetworkPointRepository pointRepository;
+    
+    @Autowired
+    private NetworkConnectionRepository networkRepository;
 
     @Transactional // all methods are treated as an all or nothing incase things go wrong.
     public String runFullPrediction() {
+    	// Deleting the connections before the points
+    	networkRepository.deleteAll();
         pointRepository.deleteAll(); // deleting for fresh start
 
         predictPoles();
