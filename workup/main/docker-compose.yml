@@ -1,7 +1,8 @@
 services:
   db:
-    image: postgis/postgis:15-3.3
+    image: pgrouting/pgrouting:15-3.3-3.4.1
     container_name: db
+    restart: always
     environment:
       - POSTGRES_USER=osmuser
       - POSTGRES_PASSWORD=osmpass
@@ -16,7 +17,7 @@ services:
       interval: 5s
       timeout: 10s
       retries: 10
-      start_period: 30s
+      start_period: 60s
 
   importer:
     image: iboates/osm2pgsql:2.2.0
@@ -46,9 +47,13 @@ services:
       PGADMIN_DEFAULT_EMAIL: user-name@domain-name.com
       PGADMIN_DEFAULT_PASSWORD: minad1234
       PGADMIN_SERVER_JSON_FILE: /pgadmin/servers.json
+    depends_on:
+      db:
+        condition: service_healthy
     volumes:
       - pgadmin_data:/var/lib/pgadmin
       - ./container-fs/pgadmin/:/pgadmin
+
 
 volumes:
   postgres_data:

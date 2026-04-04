@@ -23,7 +23,11 @@ CREATE TABLE IF NOT EXISTS cleaned_roads (
 CREATE INDEX IF NOT EXISTS idx_roads_geom ON cleaned_roads USING GIST (geom);
 
 CREATE TABLE IF NOT EXISTS noded_streets (
-    geom 			geometry(LineString, 3857)
+	id				BIGSERIAL PRIMARY KEY,
+    geom 			geometry(LineString, 3857),
+    source			INTEGER,
+    target			INTEGER,
+    cost			DOUBLE PRECISION
 );
 
 CREATE INDEX IF NOT EXISTS idx_noded_streets_geom ON noded_streets USING GIST (geom);

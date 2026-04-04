@@ -25,6 +25,7 @@ public interface LinkedBuildingRepository extends JpaRepository<LinkedBuilding, 
             b.geom,
             ST_Transform(ST_SetSRID(ST_Point(u.lon, u.lat), 4326), 3857)
         )
+        WHERE NOT EXISTS (SELECT 1 FROM linked_buildings LIMIT 1)
         ORDER BY b.osm_id
         -- DISTINCT ON (b.osm_id) ensures only one UPRN is assigned per building.
     	-- A building polygon may contain more than one UPRN point, which would

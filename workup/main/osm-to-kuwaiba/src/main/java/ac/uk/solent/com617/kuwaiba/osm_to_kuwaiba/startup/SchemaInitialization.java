@@ -11,7 +11,6 @@ import org.springframework.boot.context.event.ApplicationReadyEvent;
 import org.springframework.context.event.EventListener;
 import org.springframework.core.annotation.Order;
 import org.springframework.core.io.ClassPathResource;
-import org.springframework.core.io.support.EncodedResource;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.datasource.init.ScriptUtils;
 import org.springframework.stereotype.Service;
@@ -24,6 +23,8 @@ public class SchemaInitialization {
     @Autowired
     private DataSource dataSource;
     
+    @Autowired
+    private JdbcTemplate jdbcTemplate;
     
     /*
      * While createSchema doesn't create tables anymore (hibernate does), it creates the indexes 
@@ -48,6 +49,31 @@ public class SchemaInitialization {
     		ScriptUtils.executeSqlScript(conn, new ClassPathResource("createtables.sql"));
     	}
     	logger.info("Table Population Complete.");
+    }
+    
+    // Building the topology for the routing of connections
+    @EventListener(ApplicationReadyEvent.class)
+    @Order(4)
+    public void buildTopology() throws Exception {
+        logger.info("Building pgRouting topology...");
+        Integer vertexCount = jdbcTemplate.queryForObject(
+            "SELECT COUNT(*) FROM information_schema.tables " +
+            "WHERE table_name = 'noded_streets_vertices_pgr'", Integer.class);
+        
+        if (vertexCount == null || vertexCount == 0) {
+            logger.info("Creating topology...");
+            jdbcTemplate.execute(
+                "SELECT pgr_createTopology('noded_streets', 1.0, 'geom', 'id')"
+            );
+            
+            logger.info("Calculating edge costs...");
+            jdbcTemplate.execute(
+                "UPDATE noded_streets SET cost = ST_Length(geom) WHERE cost IS NULL"
+            );
+            logger.info("Topology build complete.");
+        } else {
+            logger.info("Topology already exists, skipping.");
+        }
     }
  
 }

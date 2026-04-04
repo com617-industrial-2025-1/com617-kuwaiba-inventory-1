@@ -60,9 +60,9 @@ AND EXISTS (SELECT 1 FROM cleaned_buildings WHERE street_name IS NULL);
 
 
 INSERT INTO noded_streets (geom)
-SELECT (ST_Dump(ST_Node(ST_Union(geom)))).geom::geometry(LineString, 3857)
+SELECT (ST_Dump(ST_Node(ST_Union(ST_SnapToGrid(geom, 1.0))))).geom::geometry(LineString, 3857)
 FROM cleaned_roads
-WHERE NOT EXISTS (SELECT 1 FROM noded_streets LIMIT 1);
+WHERE NOT EXISTS (SELECT 1 FROM noded_streets WHERE geom IS NOT NULL LIMIT 1);
 
 
 INSERT INTO building_drop_points (building_id, parent_id, geom)

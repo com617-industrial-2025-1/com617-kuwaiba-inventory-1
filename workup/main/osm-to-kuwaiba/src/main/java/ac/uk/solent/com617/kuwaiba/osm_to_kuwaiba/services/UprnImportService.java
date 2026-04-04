@@ -28,7 +28,18 @@ public class UprnImportService {
         logger.info("Importing UPRN CSV into raw_uprns...");
 
         try (Connection conn = dataSource.getConnection()) { // borrows connection from spring boot connection pool.
-            BaseConnection pgConn = conn.unwrap(BaseConnection.class); // unwrapping the spring postgresql connection.
+            
+        	// Check if raw_uprns already has data
+            try (var stmt = conn.createStatement();
+                 var rs = stmt.executeQuery("SELECT COUNT(*) FROM raw_uprns")) {
+                rs.next();
+                if (rs.getInt(1) > 0) {
+                    logger.info("raw_uprns already populated, skipping import.");
+                    return;
+                }
+            }
+        	
+        	BaseConnection pgConn = conn.unwrap(BaseConnection.class); // unwrapping the spring postgresql connection.
             CopyManager copyManager = new CopyManager(pgConn);
 
             try (FileReader reader = new FileReader(uprnCsvPath)) { // uprnCsvPath might need to be changed when spring boot

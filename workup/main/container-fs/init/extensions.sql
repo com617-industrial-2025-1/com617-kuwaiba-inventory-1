@@ -5,3 +5,4 @@ CREATE EXTENSION IF NOT EXISTS postgis;
 CREATE EXTENSION IF NOT EXISTS postgis_topology;
 CREATE EXTENSION IF NOT EXISTS hstore;
 CREATE EXTENSION IF NOT EXISTS pgrouting;
+-- extensions are not enabled automatically in the image so this must still be run.

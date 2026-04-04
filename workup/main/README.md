@@ -153,6 +153,6 @@ top of eachother
 - [ ] QGIS in a docker container
 - [x] Export Mechanism
 - [ ] Naming Conventions
-- [ ] Fix Table Creation and Hibernate Interaction
+- [x] Fix Table Creation and Hibernate Interaction
 
 
