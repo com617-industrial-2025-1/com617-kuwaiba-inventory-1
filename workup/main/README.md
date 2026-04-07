@@ -1,83 +1,53 @@
-# OSM to Kuwaiba
+# OSM-To-Kuwaiba
 
-A Spring Boot application that processes OpenStreetMap data to predict fiber network infrastructure 
-(placing poles, cabinets, aggregators, and exchanges) and exposes the results via a REST API.
+A Spring Boot Application that processes Open Street Map (OSM) data to predict a fibre network.
+
+Poles, Cabinets, Aggregators, Exchanges are placed and results exposed via a REST API.
+
+The prediction uses PostGIS spatial clustering to cluster buildings and place network points.
+pgRouting is used to trace road connections between these points and make connections.
+
+Results can be queried as GeoJSON for use in GIS tools as well as exported for Kuwaiba.
+
+### Limitations
+
 
 ## Prerequisites
-Before running this project you will need the following installed:
 - Docker Desktop
-- Java 21+
-- Maven
-- Eclipse(Development)
 
-## Project Structure
+The entire stack runs inside docker. Java and Maven are needed if the intention is to run the
+application outside of docker.
 
-## Setup and Running
-**Step 1 - Start the Docker Environment** 
+## Using your own data
+1. OSM exports can be gathered for an area of interest in `.xml` format online. 
+2. The `.xml` file should be placed in `container-fs/data/` replacing existing `.xml` files.
+   **Only one `.xml` file should be present at a time.**
+3. UPRN CSV data can be gathered from the area and placed in `container-fs/data/` named `uprns.csv`
+   replacing any existing files.
 
-The Docker environment handles setting up the database ,importing the OSM data, and starting a
-pgAdmin container.
-1. Starts a PostGIS database
-2. Runs the OSM importer (osm2pgsql)
+**Note**: All buildings present in the OSM file are included in the prediction regardless if they
+have a UPRN or not. UPRNS are used to enrich the output with official address references.
 
-Make sure you are in the root directory `/main`
+## Running the Application
+
 ```bash
-docker compose up
+docker compose up -d
 ```
 
-Wait until the `importer` container exits. Once it has finished the database is ready for the
-Spring Boot Application.
+This will:
+1. Start the PostGIS/pgRouting database
+2. Run the OSM importer to load the XML data
+3. Build and start the Spring Boot application once the import is complete
 
-To start fresh(wiping all data):
-```bash
-docker compose down -v
-docker compose up
+The first run may take several minutes because docker must download all images and maven must
+download all dependencies. Subsequent runs are much faster as cached layers are used.
+
+### Using the REST API
+The simplest way this can be done is through the Swagger UI:
 ```
-
-**Step 2 - Run the Spring Boot Application**
-
-On startup the Spring Boot Application will automatically:
-- Create the database schema
-- Import the UPRN data
-- Link UPRNs to buildings
-
-From the command line:
-```bash
-# Make sure you are in the osm-to-kuwaiba project
-cd osm-to-kuwaiba 
-
-# Run directly with Maven (recommended for development)
-mvn spring-boot:run
-
-# Or skip tests for faster startup
-mvn spring-boot:run -DskipTests
-
-# Building a jar (will be done for production)
-mvn package -DskipTests
-java -jar target/osm-to-kuwaiba-0.0.1-SNAPSHOT.jar
+http://localhost:8080/swagger-ui/index.html
 ```
-
-In Eclipse:
-
-right-click `OsmToKuwaibaApplication.java` -> Run As -> Spring Boot App
-
-When you see the following statements in the console, the app is ready:
-```
-Tomcat started on port(s): 8080 (http)
-
-UPRN IMPORT AND LINKING COMPLETE
-```
-
-## REST API
-To use the REST API you can use a tool like [Postman](https://www.postman.com/downloads/) to send
-POST and GET requests.
-
-Alternatively Swagger UI has been implemented. Once the app is running you'll have two URLs 
-available:
-
-- `http://localhost:8080/swagger-ui.html` — the interactive UI where you can click endpoints and hit
-  "Execute" to run them.
-- `http://localhost:8080/v3/api-docs` — the raw JSON spec if you ever need it
+The endpoints availabe are as follows:
 
 **Prediction Endpoints**
 
@@ -106,53 +76,19 @@ These return the predicted network data.
 
 ## Database
 
-The database runs in Docker on `localhost:5432`
+The database runs in Docker on `localhost:5431`
 
 |Setting|Value|
 |-------|-----|
 |Host|localhost|
-|Port|5432|
+|Port|5431|
 |Database|osm|
 |Username|osmuser|
 |Password|osmpass|
 
-pgAdmin is available at `http://localhost:8888` for browsing the database directly.
+pgAdmin is available at `http://localhost:8887` for browsing the database directly.
 
 |Setting|Value|
 |-------|-----|
 |Email|user-name@domain-name.com|
-|Password|minad1234|
-
-## Running Tests
-Tests require the Docker database to be running. Then from the project root:
-
-```bash
-cd main/osm-to-kuwaiba
-mvn test
-```
-
-Individual test classes can be run from Eclipse by 
-right-clicking the test file -> Run As -> JUnit Test
-
-**Note**: Test uses `@Transactional` so all test data is automatically rolled back after each test, 
-the live database is not affected.
-
-## Developer Notes
-
-I believe that an unintentional side effect of dropping tables using the sql script is that any
-time the spring boot application is started any previous prediciton data is removed. This means
-the lifetime of the data is the lifetime of the spring boot application running.
-
-**UPRN PROBLEM** with the uprns matching up to houses that share the same building or are flats on 
-top of eachother
-
-### TODO
-- [x] Improve Prediction
-  - [x] Relevant Connections follow roads
-  - [x] Points are placed next to roads
-- [ ] QGIS in a docker container
-- [x] Export Mechanism
-- [x] Naming Conventions
-- [x] Fix Table Creation and Hibernate Interaction
-
-
+|Password|minad1233|
