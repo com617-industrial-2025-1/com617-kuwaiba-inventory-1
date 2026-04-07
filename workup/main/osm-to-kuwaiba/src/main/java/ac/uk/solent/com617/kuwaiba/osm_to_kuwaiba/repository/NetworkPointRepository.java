@@ -28,10 +28,11 @@ public interface NetworkPointRepository extends JpaRepository<NetworkPoint, Long
     @Modifying
     @Transactional
     @Query(nativeQuery = true, value = """
-        INSERT INTO network_points(type, geom)
+        INSERT INTO network_points(type, geom, external_id)
         SELECT 
             'CABINET',
-            ST_ClosestPoint(r.geom, c.centroid)
+            ST_ClosestPoint(r.geom, c.centroid),
+            'CABINET-' || gen_random_uuid()
         FROM (
             SELECT ST_Centroid(ST_Collect(geom)) AS centroid
             FROM (
@@ -55,10 +56,11 @@ public interface NetworkPointRepository extends JpaRepository<NetworkPoint, Long
     @Modifying
     @Transactional
     @Query(nativeQuery = true, value = """
-        INSERT INTO network_points(type, geom)
+        INSERT INTO network_points(type, geom, external_id)
         SELECT
             'AGGREGATOR',
-            ST_ClosestPoint(r.geom, c.centroid)
+            ST_ClosestPoint(r.geom, c.centroid),
+            'AGGREGATOR-' || gen_random_uuid()
         FROM (
     		SELECT ST_Centroid(ST_Collect(geom)) AS centroid
     		FROM (
@@ -82,10 +84,11 @@ public interface NetworkPointRepository extends JpaRepository<NetworkPoint, Long
     @Modifying
     @Transactional
     @Query(nativeQuery = true, value = """
-        INSERT INTO network_points(type, geom)
+        INSERT INTO network_points(type, geom, external_id)
         SELECT
             'EXCHANGE',
-            ST_ClosestPoint(r.geom, c.centroid)
+            ST_ClosestPoint(r.geom, c.centroid),
+            'EXCHANGE-' || gen_random_uuid()
         FROM (
             SELECT ST_Centroid(ST_Collect(geom)) AS centroid
     		FROM (

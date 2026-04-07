@@ -16,10 +16,11 @@ public interface BuildingDropPointRepository extends JpaRepository<BuildingDropP
     @Modifying
     @Transactional
     @Query(nativeQuery = true, value = """
-        INSERT INTO network_points (type, geom)
+        INSERT INTO network_points (type, geom, external_id)
         SELECT 
             'POLE',
-            ST_ClosestPoint(r.geom, c.centroid)
+            ST_ClosestPoint(r.geom, c.centroid),
+            'POLE-' || gen_random_uuid()
         FROM (
             SELECT ST_Centroid(ST_Collect(geom)) AS centroid
             FROM ( 

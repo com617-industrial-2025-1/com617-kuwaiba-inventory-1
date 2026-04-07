@@ -26,12 +26,13 @@ public interface NetworkConnectionRepository extends JpaRepository<NetworkConnec
     @Modifying
     @Transactional
     @Query(nativeQuery = true, value = """
-        INSERT INTO network_connections(start_id, end_id, link_type, geom)
+        INSERT INTO network_connections(start_id, end_id, link_type, geom, external_id)
         SELECT 
             pole.id,
             bdp.building_id,
             'DROP',
-            ST_MakeLine(pole.geom, bdp.geom)
+            ST_MakeLine(pole.geom, bdp.geom),
+            'DROP-' || gen_random_uuid()
         FROM building_drop_points bdp
         JOIN network_points pole ON pole.id = bdp.parent_id
     """)
@@ -40,15 +41,16 @@ public interface NetworkConnectionRepository extends JpaRepository<NetworkConnec
     @Modifying
     @Transactional
     @Query(nativeQuery = true, value = """
-        INSERT INTO network_connections (start_id, end_id, link_type, geom)
+        INSERT INTO network_connections (start_id, end_id, link_type, geom, external_id)
 	    SELECT
 	        cabinet.id,
 	        pole.id,
 	        'FEEDER',
 	        COALESCE(
-            ST_LineMerge(ST_Collect(ns.geom)),
-            ST_MakeLine(cabinet.geom, pole.geom)
-        )
+    		    ST_LineMerge(ST_Collect(ns.geom)),
+    		    ST_MakeLine(cabinet.geom, pole.geom)
+    		),
+    		'FEEDER-' || gen_random_uuid()
 	    FROM network_points pole
 	    JOIN network_points cabinet ON cabinet.id = pole.parent_id
 	    JOIN LATERAL (
@@ -82,15 +84,16 @@ public interface NetworkConnectionRepository extends JpaRepository<NetworkConnec
     @Modifying
     @Transactional
     @Query(nativeQuery = true, value = """
-        INSERT INTO network_connections (start_id, end_id, link_type, geom)
+        INSERT INTO network_connections (start_id, end_id, link_type, geom, external_id)
 	    SELECT
 	        aggregator.id,
 	        cabinet.id,
 	        'DISTRIBUTION',
 	        COALESCE(
-            ST_LineMerge(ST_Collect(ns.geom)),
-            ST_MakeLine(aggregator.geom, cabinet.geom)
-        )
+    		    ST_LineMerge(ST_Collect(ns.geom)),
+    		    ST_MakeLine(aggregator.geom, cabinet.geom)
+    		),
+    		'DISTRIBUTION-' || gen_random_uuid()
 	    FROM network_points cabinet
 	    JOIN network_points aggregator ON aggregator.id = cabinet.parent_id
 	    JOIN LATERAL (
@@ -124,15 +127,16 @@ public interface NetworkConnectionRepository extends JpaRepository<NetworkConnec
     @Modifying
     @Transactional
     @Query(nativeQuery = true, value = """
-        INSERT INTO network_connections (start_id, end_id, link_type, geom)
+        INSERT INTO network_connections (start_id, end_id, link_type, geom, external_id)
 	    SELECT
 	        exchange.id,
 	        aggregator.id,
 	        'TRUNK',
 	        COALESCE(
-            ST_LineMerge(ST_Collect(ns.geom)),
-            ST_MakeLine(exchange.geom, aggregator.geom)
-        )
+    		    ST_LineMerge(ST_Collect(ns.geom)),
+    			ST_MakeLine(exchange.geom, aggregator.geom)
+    		),
+    		'TRUNK-' || gen_random_uuid()
 	    FROM network_points aggregator
 	    JOIN network_points exchange ON exchange.id = aggregator.parent_id
 	    JOIN LATERAL (
