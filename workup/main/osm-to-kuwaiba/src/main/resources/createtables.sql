@@ -19,7 +19,20 @@ SELECT
     highway,
     tags->'name'
 FROM planet_osm_line
-WHERE highway IS NOT NULL
+WHERE highway IN (
+    'trunk',
+    'trunk_link',
+    'primary',
+    'primary_link',
+    'secondary',
+    'secondary_link',
+    'tertiary',
+    'tertiary_link',
+    'unclassified',
+    'residential',
+    'service',
+    'living_street'
+)
 AND NOT EXISTS (SELECT 1 FROM cleaned_roads LIMIT 1);
 
 -- Remove road islands
@@ -60,9 +73,23 @@ AND EXISTS (SELECT 1 FROM cleaned_buildings WHERE street_name IS NULL);
 
 
 INSERT INTO noded_streets (geom)
-SELECT (ST_Dump(ST_Node(ST_Union(ST_SnapToGrid(geom, 1.0))))).geom::geometry(LineString, 3857)
-FROM cleaned_roads
-WHERE NOT EXISTS (SELECT 1 FROM noded_streets WHERE geom IS NOT NULL LIMIT 1);
+SELECT (ST_Dump(ST_Node(ST_Union(ST_SnapToGrid(way, 0.1))))).geom::geometry(LineString, 3857)
+FROM planet_osm_line
+WHERE highway IN (
+    'trunk',
+    'trunk_link',
+    'primary',
+    'primary_link',
+    'secondary',
+    'secondary_link',
+    'tertiary',
+    'tertiary_link',
+    'unclassified',
+    'residential',
+    'service',
+    'living_street'
+)
+AND NOT EXISTS (SELECT 1 FROM noded_streets LIMIT 1);
 
 
 INSERT INTO building_drop_points (building_id, parent_id, geom)

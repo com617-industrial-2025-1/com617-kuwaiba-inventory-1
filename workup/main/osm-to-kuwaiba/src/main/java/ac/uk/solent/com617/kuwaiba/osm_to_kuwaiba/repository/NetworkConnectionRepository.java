@@ -45,7 +45,10 @@ public interface NetworkConnectionRepository extends JpaRepository<NetworkConnec
 	        cabinet.id,
 	        pole.id,
 	        'FEEDER',
-	        ST_LineMerge(ST_Collect(ns.geom))
+	        COALESCE(
+            ST_LineMerge(ST_Collect(ns.geom)),
+            ST_MakeLine(cabinet.geom, pole.geom)
+        )
 	    FROM network_points pole
 	    JOIN network_points cabinet ON cabinet.id = pole.parent_id
 	    JOIN LATERAL (
@@ -60,7 +63,7 @@ public interface NetworkConnectionRepository extends JpaRepository<NetworkConnec
 	        ORDER BY v.the_geom <-> pole.geom
 	        LIMIT 1
 	    ) tgt ON true
-	    JOIN LATERAL (
+	    LEFT JOIN LATERAL (
 	        SELECT ns2.geom
 	        FROM pgr_dijkstra(
 	            'SELECT id, source, target, cost FROM noded_streets',
@@ -72,7 +75,7 @@ public interface NetworkConnectionRepository extends JpaRepository<NetworkConnec
 	        WHERE path.edge != -1
 	    ) ns ON true
 	    WHERE pole.type = 'POLE'
-	    GROUP BY cabinet.id, pole.id
+	    GROUP BY cabinet.id, pole.id, cabinet.geom, pole.geom
     """)
     void insertFeederConnections();
 
@@ -84,7 +87,10 @@ public interface NetworkConnectionRepository extends JpaRepository<NetworkConnec
 	        aggregator.id,
 	        cabinet.id,
 	        'DISTRIBUTION',
-	        ST_LineMerge(ST_Collect(ns.geom))
+	        COALESCE(
+            ST_LineMerge(ST_Collect(ns.geom)),
+            ST_MakeLine(aggregator.geom, cabinet.geom)
+        )
 	    FROM network_points cabinet
 	    JOIN network_points aggregator ON aggregator.id = cabinet.parent_id
 	    JOIN LATERAL (
@@ -99,7 +105,7 @@ public interface NetworkConnectionRepository extends JpaRepository<NetworkConnec
 	        ORDER BY v.the_geom <-> cabinet.geom
 	        LIMIT 1
 	    ) tgt ON true
-	    JOIN LATERAL (
+	    LEFT JOIN LATERAL (
 	        SELECT ns2.geom
 	        FROM pgr_dijkstra(
 	            'SELECT id, source, target, cost FROM noded_streets',
@@ -111,7 +117,7 @@ public interface NetworkConnectionRepository extends JpaRepository<NetworkConnec
 	        WHERE path.edge != -1
 	    ) ns ON true
 	    WHERE cabinet.type = 'CABINET'
-	    GROUP BY aggregator.id, cabinet.id
+	    GROUP BY aggregator.id, cabinet.id, aggregator.geom, cabinet.geom
     """)
     void insertDistributionConnections();
 
@@ -123,7 +129,10 @@ public interface NetworkConnectionRepository extends JpaRepository<NetworkConnec
 	        exchange.id,
 	        aggregator.id,
 	        'TRUNK',
-	        ST_LineMerge(ST_Collect(ns.geom))
+	        COALESCE(
+            ST_LineMerge(ST_Collect(ns.geom)),
+            ST_MakeLine(exchange.geom, aggregator.geom)
+        )
 	    FROM network_points aggregator
 	    JOIN network_points exchange ON exchange.id = aggregator.parent_id
 	    JOIN LATERAL (
@@ -138,7 +147,7 @@ public interface NetworkConnectionRepository extends JpaRepository<NetworkConnec
 	        ORDER BY v.the_geom <-> aggregator.geom
 	        LIMIT 1
 	    ) tgt ON true
-	    JOIN LATERAL (
+	    LEFT JOIN LATERAL (
 	        SELECT ns2.geom
 	        FROM pgr_dijkstra(
 	            'SELECT id, source, target, cost FROM noded_streets',
@@ -150,7 +159,7 @@ public interface NetworkConnectionRepository extends JpaRepository<NetworkConnec
 	        WHERE path.edge != -1
 	    ) ns ON true
 	    WHERE aggregator.type = 'AGGREGATOR'
-	    GROUP BY exchange.id, aggregator.id
+	    GROUP BY exchange.id, aggregator.id, exchange.geom, aggregator.geom
     """)
     void insertTrunkConnections();
 }

@@ -63,7 +63,7 @@ public class SchemaInitialization {
         if (vertexCount == null || vertexCount == 0) {
             logger.info("Creating topology...");
             jdbcTemplate.execute(
-                "SELECT pgr_createTopology('noded_streets', 1.0, 'geom', 'id')"
+                "SELECT pgr_createTopology('noded_streets', 0.1, 'geom', 'id')"
             );
             
             logger.info("Calculating edge costs...");
