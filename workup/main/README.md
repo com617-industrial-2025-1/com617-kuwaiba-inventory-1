@@ -147,12 +147,12 @@ the lifetime of the data is the lifetime of the spring boot application running.
 top of eachother
 
 ### TODO
-- [ ] Improve Prediction
-  - [ ] Relevant Connections follow roads
+- [x] Improve Prediction
+  - [x] Relevant Connections follow roads
   - [x] Points are placed next to roads
 - [ ] QGIS in a docker container
 - [x] Export Mechanism
-- [ ] Naming Conventions
+- [x] Naming Conventions
 - [x] Fix Table Creation and Hibernate Interaction
 
 

@@ -55,6 +55,29 @@ services:
       - ./container-fs/pgadmin/:/pgadmin
 
 
+  app:
+    build:
+      context: ./osm-to-kuwaiba
+      dockerfile: Dockerfile
+    container_name: app
+    restart: on-failure
+    ports:
+      - "8080:8080"
+    depends_on:
+      db:
+        condition: service_healthy
+      importer:
+        condition: service_completed_successfully
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:postgresql://db:5432/osm
+      SPRING_DATASOURCE_USERNAME: osmuser
+      SPRING_DATASOURCE_PASSWORD: osmpass
+        # Overiding csv path
+      UPRN_CSV_PATH: /data/uprns.csv
+    volumes:
+      - ./container-fs/data:/data
+
+
 volumes:
   postgres_data:
   pgadmin_data:
