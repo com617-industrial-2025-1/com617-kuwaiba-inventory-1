@@ -57,7 +57,7 @@ services:
 
   app:
     build:
-      context: ./osm-to-kuwaiba
+      context: ./osm-to-kuwaiba-spring-boot
       dockerfile: Dockerfile
     container_name: app
     restart: on-failure
