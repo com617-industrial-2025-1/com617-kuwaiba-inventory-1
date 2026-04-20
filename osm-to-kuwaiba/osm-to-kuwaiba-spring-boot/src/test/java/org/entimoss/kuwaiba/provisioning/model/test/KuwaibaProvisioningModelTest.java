@@ -17,9 +17,8 @@ class KuwaibaProvisioningModelTest {
 
    @Test
    void test() throws StreamReadException, DatabindException, IOException {
-      
+
       KuwaibaProvisioningRequisition pr = new KuwaibaProvisioningRequisition();
-      
 
       ObjectMapper om = new ObjectMapper();
       om.enable(SerializationFeature.INDENT_OUTPUT);
@@ -48,7 +47,6 @@ class KuwaibaProvisioningModelTest {
       KuwaibaProvisioningRequisition pr2 = om.readValue(provisioningFile, KuwaibaProvisioningRequisition.class);
       System.out.println("read file: " + pr2);
 
-
-}
+   }
 
 }
