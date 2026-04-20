@@ -47,7 +47,7 @@ The simplest way this can be done is through the Swagger UI:
 ```
 http://localhost:8080/swagger-ui/index.html
 ```
-The endpoints availabe are as follows:
+The endpoints available are as follows:
 
 **Prediction Endpoints**
 

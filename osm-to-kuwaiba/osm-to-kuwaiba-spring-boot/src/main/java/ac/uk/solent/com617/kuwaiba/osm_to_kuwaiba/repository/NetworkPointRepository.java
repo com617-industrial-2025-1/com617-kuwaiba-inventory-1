@@ -1,5 +1,7 @@
 package ac.uk.solent.com617.kuwaiba.osm_to_kuwaiba.repository;
 
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
@@ -24,7 +26,16 @@ public interface NetworkPointRepository extends JpaRepository<NetworkPoint, Long
     List<NetworkPoint> findByTypeAndParentId(PointType type, Long parentId);
     // NOTE: Finding all points (findAll()) is inherited from JpaRepository and so doesn't need to be defined here.
     
+    // paginated retrievers for rest api
+    Page<NetworkPoint> findAll(Pageable pageable);
+    
+    Page<NetworkPoint> findByType(PointType type, Pageable pageable);
+    
+    Page<NetworkPoint> findByParentId(Long parentId, Pageable pageable);
 
+    Page<NetworkPoint> findByTypeAndParentId(PointType type, Long parentId, Pageable pageable);
+    
+    
     @Modifying
     @Transactional
     @Query(nativeQuery = true, value = """
