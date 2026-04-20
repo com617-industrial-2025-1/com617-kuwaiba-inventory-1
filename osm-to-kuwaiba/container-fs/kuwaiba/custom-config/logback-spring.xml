@@ -1,0 +1,51 @@
+<configuration>
+    <springProperty scope="context" name="LOG_PATH" source="logging.path"/>
+    <springProperty scope="context" name="RECORDS" source="logging.history"/>
+    <springProperty scope="context" name="MAX_FILE_SIZE" source="logging.policy.max-file-size"/>
+
+    <!-- Appender for INFO messages -->
+    <appender name="DEFAULT" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <file>${LOG_PATH}/kuwaiba.log</file>
+        <rollingPolicy class="ch.qos.logback.core.rolling.FixedWindowRollingPolicy">
+            <fileNamePattern>${LOG_PATH}/kuwaiba.log.%i.gz</fileNamePattern>
+            <maxIndex>${RECORDS}</maxIndex>
+        </rollingPolicy>
+        <triggeringPolicy class="ch.qos.logback.core.rolling.SizeBasedTriggeringPolicy">
+            <maxFileSize>${MAX_FILE_SIZE}</maxFileSize> <!-- Max size of each log file before rolling -->
+        </triggeringPolicy>
+        <encoder>
+            <pattern>%d{yyyy-MM-dd HH:mm:ss.SSS} [%thread] %-5level %logger{36} - %msg%n</pattern>
+        </encoder>
+    </appender>
+    
+    <appender name="CONSOLE" class="ch.qos.logback.core.ConsoleAppender">
+        <encoder>
+            <pattern>%d{yyyy-MM-dd HH:mm:ss.SSS} [%thread] %-5level %logger{36} - %msg%n</pattern>
+        </encoder>
+    </appender>
+    
+    <!-- see https://gist.github.com/aoudiamoncef/8863b4efacad7497120fdd83ef216d43 Spring Boot Logback Async Logging -->
+    <appender name="ASYNC_CONSOLE" class="ch.qos.logback.classic.AsyncAppender">
+        <!-- All available configurations and default values are shown -->
+        <appender-ref ref="CONSOLE" />
+        <queueSize>1000</queueSize>
+        <!-- <discardingThreshold></discardingThreshold> -->
+        <includeCallerData>false</includeCallerData>
+        <!-- <maxFlushTime></maxFlushTime> -->
+        <neverBlock>true</neverBlock>
+    </appender>
+    
+    <logger name="org.entimoss.kuwaiba.provisioning.script" level="DEBUG" additivity="false" >
+        <appender-ref ref="ASYNC_CONSOLE" />
+    </logger>
+    
+    <logger name="org.entimoss.kuwaiba.export" level="DEBUG" additivity="false" >
+        <appender-ref ref="ASYNC_CONSOLE" />
+    </logger>
+
+    <!-- Root logger configuration -->
+    <root level="info">
+        <appender-ref ref="ASYNC_CONSOLE" />
+       <!-- <appender-ref ref="CONSOLE"/> -->
+    </root>
+</configuration>
