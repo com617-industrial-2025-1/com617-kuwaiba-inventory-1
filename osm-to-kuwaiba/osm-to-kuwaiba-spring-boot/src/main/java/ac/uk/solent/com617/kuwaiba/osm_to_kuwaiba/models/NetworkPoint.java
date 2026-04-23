@@ -6,6 +6,9 @@ import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import ac.uk.solent.com617.kuwaiba.osm_to_kuwaiba.config.PointSerializer;
 import jakarta.persistence.*;
 
+import java.util.Map;
+import java.util.HashMap;
+
 import org.hibernate.annotations.JdbcTypeCode;
 import org.hibernate.type.SqlTypes;
 import org.locationtech.jts.geom.Point;
@@ -31,6 +34,16 @@ public class NetworkPoint {
     @JdbcTypeCode(SqlTypes.GEOMETRY)
     @Column(columnDefinition = "geometry(Point, 3857)")
     private Point geom;
+    
+    // to store key-value pairs for the point, we can use a Map<String, KeyValuePair> where 
+    // KeyValuePair is a simple class with 'key' and 'value' fields.
+    // see https://stackoverflow.com/questions/7131440/storing-key-value-pairs-in-hibernate-can-we-use-map
+    @ElementCollection(fetch=FetchType.EAGER)
+    @MapKeyColumn(name="key")
+    @CollectionTable(name="keyvaluepair", joinColumns= @JoinColumn(name="id"))
+    private Map<String, KeyValuePair> keyValuePairMap = 
+            new HashMap<String, KeyValuePair>();
+
 
     // getters and setters
     public Long getId() { return id; }
@@ -45,4 +58,7 @@ public class NetworkPoint {
     public void setParentId(Long id) { this.parentId = id; }
     public void setType(PointType type) { this.type = type; }
     public void setGeom(Point geom) { this.geom = geom; }
+    
+    public Map<String, KeyValuePair> getKeyValuePairMap() { return keyValuePairMap; }
+    public void setKeyValuePairMap(Map<String, KeyValuePair> map) { this.keyValuePairMap = map; }
 }

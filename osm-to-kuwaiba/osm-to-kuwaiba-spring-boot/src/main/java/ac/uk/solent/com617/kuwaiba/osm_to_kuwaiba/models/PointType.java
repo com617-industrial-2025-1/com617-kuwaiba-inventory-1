@@ -4,5 +4,6 @@ public enum PointType {
     POLE,
     CABINET,
     AGGREGATOR,
-    EXCHANGE
+    EXCHANGE,
+    BUILDING
 }
