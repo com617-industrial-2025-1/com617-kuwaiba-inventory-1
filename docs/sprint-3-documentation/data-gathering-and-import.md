@@ -8,7 +8,7 @@ OpenStreetMap data can be gathered from several sources:
 For this project, the raw data (such as `bittern_park.xml`) should be placed in the `container-fs/data/` directory.
 
 ## 2. Data Import (`osm2pgsql`)
-The **importer** service in the `docker-compose.yml` file utilizes the `iboates/osm2pgsql` tool to convert raw XML data into a structured PostGIS database.
+The importer service in the `docker-compose.yml` file utilizes the `iboates/osm2pgsql` tool to convert raw XML data into a structured PostGIS database.
 
 ### What `osm2pgsql` does to the data:
 * **Schema Creation:** It creates a series of tables (such as `planet_osm_polygon` and `planet_osm_line`) representing map features.
@@ -39,3 +39,12 @@ The system generates a logical "Drop Point" for every building, which serves as 
 There is a close relationship between the database tables and the Spring Boot application:
 * **Data Models:** Tables like `cleaned_buildings` and `cleaned_roads` map directly to JPA entities (models) such as `CleanedBuilding.java` and `CleanedRoad.java`.
 * **Repositories:** Logic that is too complex for standard Java code—such as the K-means clustering—is handled via "Native Queries" within repositories like `BuildingDropPointRepository.java`. This allows the application to leverage the high-performance spatial processing of the database while maintaining a clean Java interface.
+
+## 5. UPRNs
+The Unique Property Reference Number (UPRN) data is retrieved from Ordenate Survey. The UPRNs are important as it allows the network to be cross-references with exsisting networks:
+* **Cleaning:** The UPRN data needs tripping down to just contain the Lat/Long and the UPRN itself.
+* **Spatial Filtering:** All data outside the boundaries of the OSM data is removed.
+
+To link the data together the router `UPRNLinaker.java` is used. 
+* **Import:** The data is converted into PostgreSQL database so it can be used with the existing data.
+* **Linking:** The data is then joined to the geodata using a spatial join. Any UPRN which is inside the building footprints established is then linked to that houses footprint. 
