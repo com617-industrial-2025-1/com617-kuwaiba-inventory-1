@@ -1,4 +1,5 @@
 # Services and Orchestration Documentation
+Relevant files are in the [services folder](../../osm-to-kuwaiba/osm-to-kuwaiba-spring-boot/src/main/java/ac/uk/solent/com617/kuwaiba/osm_to_kuwaiba/services/)
 
 Initial Notes:
 
@@ -18,6 +19,4 @@ RoutingService - predicts the cable connections between.
 ClusteringService works bottom-up because each tier depends on the one below it: drop points into poles, poles into cabinets, cabinets into aggregators, and aggregators into exchanges. We clear old predictions first, deleting connections before points to avoid foreign key issues. RoutingService runs afterwards and works top-down, from exchange down to building, because that mirrors how a real network is laid out.
 
 To eliminate the data being accidently loaded twice, data was checked in UprnImportService to see if it was already present before loading. If there is already data then the loading the data skips
-
-Relevant files are in the [services folder](../../osm-to-kuwaiba/osm-to-kuwaiba-spring-boot/src/main/java/ac/uk/solent/com617/kuwaiba/osm_to_kuwaiba/services/)
 
