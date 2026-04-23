@@ -1,4 +1,4 @@
-The service layer is used to connect the API layer which handles HTTP requests and the repository layer which interacts with the database. It handles the logic that decides what needs to happen when a request comes in.
+The service layer is used to connect the API layer which handles HTTP requests and the repository layer which interacts with the database. Each service decides which SQL queries to run and in what order.
 Services were split into 4 sections with each one doing a different job:
 
 ·	UprnImportService - loads the raw UPRN data from a CSV file into the database.
@@ -9,4 +9,4 @@ Services were split into 4 sections with each one doing a different job:
 ClusteringService works bottom-up because each tier depends on the one below it: drop points into poles, poles into cabinets, cabinets into aggregators, and aggregators into exchanges. We clear old predictions first, deleting connections before points to avoid foreign key issues.
 RoutingService runs afterwards and works top-down, from exchange down to building, because that mirrors how a real network is laid out.
 
-To eliminate the data being accidently loaded twice, it is checked to see if it present before loading. If there is already data then this step is skipped. 
+To eliminate the data being accidently loaded twice, data was checked in UprnImportService to see if it was already present before loading. If there is already data then the loading the data skips 
