@@ -4,11 +4,11 @@ import jakarta.persistence.Embeddable;
 
 @Embeddable
 public class KeyValuePair {
-
-    //no need of declaring key
-    //key column will be created by MapKeyColumn
-
     private String value;
 
-    //getter and setter methods
+    public KeyValuePair() {}
+    public KeyValuePair(String value) { this.value = value; }
+
+    public String getValue() { return value; }
+    public void setValue(String value) { this.value = value; }
 }

@@ -13,6 +13,27 @@ import org.hibernate.annotations.JdbcTypeCode;
 import org.hibernate.type.SqlTypes;
 import org.locationtech.jts.geom.Geometry;
 
+import jakarta.persistence.Embeddable;
+
+@Embeddable
+public class KeyValuePair {
+    private String key;
+    private String value;
+
+    public KeyValuePair() {}
+
+    public KeyValuePair(String key, String value) {
+        this.key = key;
+        this.value = value;
+    }
+
+    public String getKey() { return key; }
+    public void setKey(String key) { this.key = key; }
+
+    public String getValue() { return value; }
+    public void setValue(String value) { this.value = value; }
+}
+
 @Entity
 @Table(name = "network_connections")
 public class NetworkConnection {
@@ -28,6 +49,12 @@ public class NetworkConnection {
     
     @Column(name = "end_id")
     private Long endId;
+
+    @Column(name = "street_name", columnDefinition = "TEXT")
+    private String streetName;
+
+    @Column(name = "osm_id")
+    private Long osmId;
 
     // Tells JPA to store the enum string in the database instead of number.
     @Enumerated(EnumType.STRING)
@@ -54,6 +81,8 @@ public class NetworkConnection {
     public Long getStart_id() { return startId; }
     public Long getEnd_id() { return endId; }
     public LinkType getLink_type() { return linkType; }
+    public String getStreetName() { return streetName; }
+    public Long getOsmId() { return osmId; }
 
     public Geometry getGeom() { return geom; }
 
@@ -63,6 +92,8 @@ public class NetworkConnection {
     public void setEnd_id(Long id) { this.endId = id; }
     public void setLink_type(LinkType type) { this.linkType = type; }
     public void setGeom(Geometry geom) { this.geom = geom; }
+    public void setStreetName(String streetName) { this.streetName = streetName; }
+    public void setOsmId(Long osmId) { this.osmId = osmId; }
     
     public Map<String, KeyValuePair> getKeyValuePairMap() { return keyValuePairMap; }
     public void setKeyValuePairMap(Map<String, KeyValuePair> map) { this.keyValuePairMap = map; }

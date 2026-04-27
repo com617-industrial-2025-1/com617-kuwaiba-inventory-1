@@ -104,3 +104,31 @@ CROSS JOIN LATERAL (
     LIMIT 1
 ) r
 WHERE NOT EXISTS (SELECT 1 FROM building_drop_points LIMIT 1);
+
+-- Metadata
+-- Creates the table for the KeyValuePair entity
+CREATE TABLE IF NOT EXISTS keyvaluepair (
+    id BIGINT NOT NULL,
+    key TEXT NOT NULL,
+    value TEXT,
+    PRIMARY KEY (id, key)
+);
+
+-- Add street_name column to network_connections
+ALTER TABLE network_connections ADD COLUMN IF NOT EXISTS street_name TEXT;
+
+-- Populate street_name in network_connections by finding the nearest road to each connection's geometry
+UPDATE network_points p
+SET osm_id = b.building_id
+FROM building_drop_points b
+WHERE ST_Equals(p.geom, b.geom) AND p.type = 'AGGREGATOR';
+
+UPDATE network_connections c
+SET street_name = (
+    SELECT r.street_name 
+    FROM cleaned_roads r 
+    WHERE r.street_name IS NOT NULL
+    ORDER BY c.geom <-> r.geom
+    LIMIT 1
+)
+WHERE c.street_name IS NULL;

@@ -165,12 +165,31 @@ public class KuwabaNetworkController {
       ProjectConstants.addStaticTemplatesToProvisioningRequisition(pr);
       ProjectConstants.addStaticObjectsToProvisioningRequisition(pr);
 
+      // Export buildings
+      List<LinkedBuilding> linkedBuildings = linkedBuildingRepository.findAll();
+      for (LinkedBuilding lb : linkedBuildings) {
+         KuwaibaClass kc = new KuwaibaClass();
+         kc.getParentClasses().add(ProjectConstants.parentNeighbourhood);
+         kc.setName(lb.getBuildingName());
+         kc.setClassName("Building");
+         kc.getAttributes().put("uprn", lb.getUprn().toString());
+         kc.getAttributes().put("house_num", lb.getHouseNum());
+         kc.getAttributes().put("street", lb.getStreetName());
+         pr.getKuwaibaClassList().add(kc);
+      }
+
       for (NetworkConnection conn : connections) {
 
          KuwaibaClass kuwaibaConnectionClass = new KuwaibaClass();
          kuwaibaConnectionClass.setName(conn.getExternal_id());
          kuwaibaConnectionClass.getAttributes().put("link_type", conn.getLink_type().toString());
          kuwaibaConnectionClass.getAttributes().put("geometry", createGeometryMapper().writeValueAsString(conn.getGeom()));
+         kuwaibaConnectionClass.getAttributes().put("street_name", conn.getStreetName());
+
+         // Map the KeyValuePair map to the attributes of the KuwaibaClass
+         if (conn.getKeyValuePairMap() != null) {
+            conn.getKeyValuePairMap().forEach((k, v) -> kuwaibaConnectionClass.getAttributes().put(k, v.getValue()));
+         }
          
          switch (conn.getLink_type()) {
          case TRUNK:
@@ -201,15 +220,22 @@ public class KuwabaNetworkController {
             kuwaibaConnection.setEndpointA(kuwaibaClassStart);
          });
          
+         // When linking buildings, pull UPRN metadata
          pointRepository.findById(conn.getEnd_id()).ifPresent(point -> {
-            KuwaibaClass kuwaibaClassEnd =pointToKuwaibaClass(point);
-            pr.getKuwaibaClassList().add(kuwaibaClassEnd);
-            kuwaibaConnection.setEndpointB(kuwaibaClassEnd);
-         });
-         
-         pr.getKuwaibaConnectionList().add(kuwaibaConnection);
+            KuwaibaClass kuwaibaClassEnd = pointToKuwaibaClass(point);
+            
+            if (point.getType() == PointType.AGGREGATOR && point.getOsmId() != null) {
+               linkedBuildingRepository.findById(point.getOsmId()).ifPresent(lb -> {
+                  kuwaibaClassEnd.setName(lb.getUprn().toString()); 
+                  kuwaibaClassEnd.getAttributes().put("uprn", lb.getUprn().toString());
+                  kuwaibaClassEnd.getAttributes().put("house_num", lb.getHouseNum());
+                  kuwaibaClassEnd.getAttributes().put("street", lb.getStreetName());
+            });
+         }
 
-      }
+         pr.getKuwaibaClassList().add(kuwaibaClassEnd);
+         kuwaibaConnection.setEndpointB(kuwaibaClassEnd);
+      });
       
       return ResponseEntity.ok(createGeometryMapper().writeValueAsString(pr));
    }

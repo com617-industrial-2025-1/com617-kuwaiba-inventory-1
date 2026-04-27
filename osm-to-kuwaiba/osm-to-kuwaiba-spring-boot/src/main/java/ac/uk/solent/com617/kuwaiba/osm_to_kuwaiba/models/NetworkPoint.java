@@ -26,6 +26,9 @@ public class NetworkPoint {
     @Column(name = "parent_id")
     private Long parentId;
 
+    @Column(name = "osm_id")
+    private Long osmId;
+
     // Tells JPA to store the enum string in the database instead of number.
     @Enumerated(EnumType.STRING)
     private PointType type;
@@ -50,6 +53,7 @@ public class NetworkPoint {
     public String getExternalId() { return externalId; }
     public Long getParentId() { return parentId; }
     public PointType getType() { return type; }
+    public Long getOsmId() { return osmId; }
 
     public Point getGeom() { return geom; }
 
@@ -58,6 +62,7 @@ public class NetworkPoint {
     public void setParentId(Long id) { this.parentId = id; }
     public void setType(PointType type) { this.type = type; }
     public void setGeom(Point geom) { this.geom = geom; }
+    public void setOsmId(Long osmId) { this.osmId = osmId; }
     
     public Map<String, KeyValuePair> getKeyValuePairMap() { return keyValuePairMap; }
     public void setKeyValuePairMap(Map<String, KeyValuePair> map) { this.keyValuePairMap = map; }
