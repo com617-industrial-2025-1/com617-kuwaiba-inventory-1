@@ -44,3 +44,12 @@ infrastructure prediction and sprint component write ups.
 
 The report document for university assessment can be found [here](https://docs.google.com/document/d/1keXioDJD0lFwCEk_XmnK4_YQjVj3Teg2Vi0qG5qHSBw/edit?usp=sharing)
 
+
+## Project Information 
+
+| | |
+|---|---|
+| Module | COM617 Industrial Consulting Project |
+| University | Solent University |
+| Tutor | Craig Gallen |
+| Participants | Rachel Ayres, Hayden Calkin, Corey Maltby, Oliver Myers, Oskar Phung Van, Hasnain, Ravidu |
