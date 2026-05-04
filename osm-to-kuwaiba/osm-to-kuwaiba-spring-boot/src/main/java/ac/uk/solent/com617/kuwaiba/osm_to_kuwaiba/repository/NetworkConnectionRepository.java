@@ -40,13 +40,14 @@ public interface NetworkConnectionRepository extends JpaRepository<NetworkConnec
    @Modifying
    @Transactional
    @Query(nativeQuery = true, value = """
-                INSERT INTO network_connections(start_id, end_id, link_type, geom, external_id)
+                INSERT INTO network_connections(start_id, end_id, link_type, geom, external_id, osm_id)
                 SELECT
                     pole.id,
                     bdp.building_id,
                     'DROP',
                     ST_MakeLine(pole.geom, bdp.geom),
-                    'DROP-' || gen_random_uuid()
+                    'DROP-' || gen_random_uuid(),
+                    bdp.building_id
                 FROM building_drop_points bdp
                 JOIN network_points pole ON pole.id = bdp.parent_id
             """)

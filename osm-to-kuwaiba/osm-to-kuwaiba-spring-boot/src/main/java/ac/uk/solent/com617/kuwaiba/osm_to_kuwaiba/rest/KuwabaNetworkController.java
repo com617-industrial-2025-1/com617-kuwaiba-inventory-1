@@ -1,6 +1,7 @@
 package ac.uk.solent.com617.kuwaiba.osm_to_kuwaiba.rest;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.entimoss.kuwaiba.provisioning.model.KuwaibaClass;
 import org.entimoss.kuwaiba.provisioning.model.KuwaibaConnection;
@@ -33,6 +34,7 @@ import ac.uk.solent.com617.kuwaiba.osm_to_kuwaiba.models.LinkedBuilding;
 import ac.uk.solent.com617.kuwaiba.osm_to_kuwaiba.models.NetworkConnection;
 import ac.uk.solent.com617.kuwaiba.osm_to_kuwaiba.models.NetworkPoint;
 import ac.uk.solent.com617.kuwaiba.osm_to_kuwaiba.models.PointType;
+import ac.uk.solent.com617.kuwaiba.osm_to_kuwaiba.repository.CleanedBuildingRepository;
 import ac.uk.solent.com617.kuwaiba.osm_to_kuwaiba.repository.LinkedBuildingRepository;
 import ac.uk.solent.com617.kuwaiba.osm_to_kuwaiba.repository.NetworkConnectionRepository;
 import ac.uk.solent.com617.kuwaiba.osm_to_kuwaiba.repository.NetworkPointRepository;
@@ -65,6 +67,9 @@ public class KuwabaNetworkController {
    
    @Autowired
    private LinkedBuildingRepository linkedBuildingRepository;
+   
+   @Autowired
+   private CleanedBuildingRepository cleanedBuildingRepository ;
 
    // Finding all points with pagenation
    @GetMapping("/points")
@@ -219,6 +224,7 @@ public class KuwabaNetworkController {
          
          kuwaibaConnection.setConnectionClass(kuwaibaConnectionClass);
 
+         // EndpointA - always a network point
          pointRepository.findById(conn.getStart_id()).ifPresent(point -> {
             KuwaibaClass kuwaibaClassStart =pointToKuwaibaClass(point);
             pr.getKuwaibaClassList().add(kuwaibaClassStart);
@@ -226,27 +232,43 @@ public class KuwabaNetworkController {
          });
          
          // When linking buildings, pull UPRN metadata
-         pointRepository.findById(conn.getEnd_id()).ifPresent(point -> {
-            KuwaibaClass kuwaibaClassEnd = pointToKuwaibaClass(point);
-            
-            if (point.getType() == PointType.AGGREGATOR && point.getOsmId() != null) {
-               linkedBuildingRepository.findById(point.getOsmId()).ifPresent(lb -> {
-                  kuwaibaClassEnd.setName(lb.getUprn().toString()); 
-                  kuwaibaClassEnd.getAttributes().put("uprn", lb.getUprn().toString());
-                  kuwaibaClassEnd.getAttributes().put("house_num", lb.getHouseNum());
-                  kuwaibaClassEnd.getAttributes().put("street", lb.getStreetName());
-               });
-            }
+         // EndpointB - DROP connections reference buildings, others reference network_points
+         if (conn.getLink_type() == LinkType.DROP && conn.getOsmId() != null) {
+             Optional<LinkedBuilding> linked = linkedBuildingRepository.findById(conn.getOsmId());
+             if (linked.isPresent()) {
+                 LinkedBuilding lb = linked.get();
+                 KuwaibaClass building = new KuwaibaClass();
+                 building.setClassName("Building");
+                 building.setName(lb.getUprn() != null ? lb.getUprn().toString() : lb.getBuildingName());
+                 building.getParentClasses().add(ProjectConstants.parentNeighbourhood);
+                 if (lb.getUprn() != null) building.getAttributes().put("uprn", lb.getUprn().toString());
+                 if (lb.getStreetName() != null) building.getAttributes().put("street", lb.getStreetName());
+                 pr.getKuwaibaClassList().add(building);
+                 kuwaibaConnection.setEndpointB(building);
+             } else {
+                 cleanedBuildingRepository.findById(conn.getOsmId()).ifPresent(cb -> {
+                     KuwaibaClass building = new KuwaibaClass();
+                     building.setClassName("Building");
+                     building.setName(cb.getBuildingName());
+                     building.getParentClasses().add(ProjectConstants.parentNeighbourhood);
+                     if (cb.getStreetName() != null) building.getAttributes().put("street", cb.getStreetName());
+                     pr.getKuwaibaClassList().add(building);
+                     kuwaibaConnection.setEndpointB(building);
+                 });
+             }
+         } else {
+             pointRepository.findById(conn.getEnd_id()).ifPresent(endPoint -> {
+                 KuwaibaClass endPointClass = pointToKuwaibaClass(endPoint);
+                 pr.getKuwaibaClassList().add(endPointClass);
+                 kuwaibaConnection.setEndpointB(endPointClass);
+             });
+         }
 
-         pr.getKuwaibaClassList().add(kuwaibaClassEnd);
-         kuwaibaConnection.setEndpointB(kuwaibaClassEnd);
-      });
-         // adding kuwiaba connection to the list
          pr.getKuwaibaConnectionList().add(kuwaibaConnection);
-      }
-      
-      return ResponseEntity.ok(createGeometryMapper().writeValueAsString(pr));
      }
+
+     return ResponseEntity.ok(createGeometryMapper().writeValueAsString(pr));
+ }
    
    public static  KuwaibaClass pointToKuwaibaClass(NetworkPoint point) {
          KuwaibaClass kc = new KuwaibaClass(); 
