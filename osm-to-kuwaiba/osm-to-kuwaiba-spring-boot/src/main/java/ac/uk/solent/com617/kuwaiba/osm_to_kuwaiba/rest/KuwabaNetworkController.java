@@ -29,9 +29,11 @@ import com.fasterxml.jackson.databind.json.JsonMapper;
 import com.fasterxml.jackson.databind.module.SimpleModule;
 
 import ac.uk.solent.com617.kuwaiba.osm_to_kuwaiba.models.LinkType;
+import ac.uk.solent.com617.kuwaiba.osm_to_kuwaiba.models.LinkedBuilding;
 import ac.uk.solent.com617.kuwaiba.osm_to_kuwaiba.models.NetworkConnection;
 import ac.uk.solent.com617.kuwaiba.osm_to_kuwaiba.models.NetworkPoint;
 import ac.uk.solent.com617.kuwaiba.osm_to_kuwaiba.models.PointType;
+import ac.uk.solent.com617.kuwaiba.osm_to_kuwaiba.repository.LinkedBuildingRepository;
 import ac.uk.solent.com617.kuwaiba.osm_to_kuwaiba.repository.NetworkConnectionRepository;
 import ac.uk.solent.com617.kuwaiba.osm_to_kuwaiba.repository.NetworkPointRepository;
 import ac.uk.solent.com617.kuwaiba.osm_to_kuwaiba.config.PointSerializer;
@@ -60,6 +62,9 @@ public class KuwabaNetworkController {
 
    @Autowired
    private NetworkConnectionRepository connectionRepository;
+   
+   @Autowired
+   private LinkedBuildingRepository linkedBuildingRepository;
 
    // Finding all points with pagenation
    @GetMapping("/points")
@@ -230,15 +235,18 @@ public class KuwabaNetworkController {
                   kuwaibaClassEnd.getAttributes().put("uprn", lb.getUprn().toString());
                   kuwaibaClassEnd.getAttributes().put("house_num", lb.getHouseNum());
                   kuwaibaClassEnd.getAttributes().put("street", lb.getStreetName());
-            });
-         }
+               });
+            }
 
          pr.getKuwaibaClassList().add(kuwaibaClassEnd);
          kuwaibaConnection.setEndpointB(kuwaibaClassEnd);
       });
+         // adding kuwiaba connection to the list
+         pr.getKuwaibaConnectionList().add(kuwaibaConnection);
+      }
       
       return ResponseEntity.ok(createGeometryMapper().writeValueAsString(pr));
-   }
+     }
    
    public static  KuwaibaClass pointToKuwaibaClass(NetworkPoint point) {
          KuwaibaClass kc = new KuwaibaClass(); 
