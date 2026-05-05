@@ -6,7 +6,8 @@ and exports the results into Kuwaiba, an open-source network inventory managemen
 
 ## What It Does
 
-Starting from an OpenStreetMap export (XML) and an optional UPRN dataset, the system:
+Starting from an OpenStreetMap export (.xml, .pbf, .osm.pbf) and an optional UPRN dataset, the 
+system:
 - Imports and cleans building footprints and road geometry from OSM
 - Predicts a four level fibre network hierarchy (poles, cabinets, aggregators and exchanges) using
   PostGIS spatial clustering

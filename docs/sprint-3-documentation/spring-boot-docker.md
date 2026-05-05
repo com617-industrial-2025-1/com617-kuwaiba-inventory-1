@@ -57,7 +57,7 @@ the build context is pointed to the `osm-to-kuwaiba-sprint-boot` folder where th
 `Dockerfile`. 
 
 The container `depends_on` the database passing its healthcheck (meaning PostgreSQL is ready to 
-accept connections) and also waits for the `importer` to finish loading the OSM XML data.
+accept connections) and also waits for the `importer` to finish loading the OSM data.
 
 `restart: on-failure` means the container will restart is the Spring Boot process crashes but will
 not restart if the container is deliberately stopped.
@@ -80,7 +80,7 @@ volumes:
   - ./container-fs/data:/data
 ```
 
-The `container-fs/data` folder on the host (contains the OSM XML file and `uprns.csv`) is mounted
-into the container at `/data`. This is the same mount used by the importer service so both the
-importer and the app have access to the same files. 
+The `container-fs/data` folder on the host (contains the OSM data file (.osm.pbf, .xml, .pbf) and
+`uprns.csv`) is mounted into the container at `/data`. This is the same mount used by the importer 
+service so both the importer and the app have access to the same files. 
 

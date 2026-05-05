@@ -16,8 +16,8 @@ The entire stack runs inside docker. Java and Maven are needed if the intention 
 application outside of docker.
 
 ## Using your own data
-1. OSM exports can be gathered for an area of interest in `.xml` format online. The recommended
-   tools are:
+1. OSM exports can be gathered for an area of interest in `.xml`, `.pbf`, `.osm.pbf` format online.
+   The recommended tools are:
    - [HOT Export Tool](https://export.hotosm.org/)
    - [Geofabrik](https://download.geofabrik.de/)
 2. The `.xml` file should be placed in `container-fs/data/` replacing existing `.xml` files.
@@ -39,7 +39,7 @@ docker compose up -d
 
 This will:
 1. Start the PostGIS/pgRouting database
-2. Run the OSM importer to load the XML data
+2. Run the OSM importer to load the data
 3. Build and start the Spring Boot application once the import is complete
 
 The first run may take several minutes because docker must download all images and maven must
@@ -117,7 +117,7 @@ The database is reachable directly on `localhost:5431`
 
 ## Resetting
 
-To wipe all data and start fresh (e.g. after changing the input XML):
+To wipe all data and start fresh (e.g. after changing the input data):
 
 ```bash
 docker compose down -v
