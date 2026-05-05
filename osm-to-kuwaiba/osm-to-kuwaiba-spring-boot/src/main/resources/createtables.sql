@@ -10,7 +10,8 @@ SELECT
         tags->'building:levels'
 FROM planet_osm_polygon
 WHERE building IS NOT NULL
-AND NOT EXISTS (SELECT 1 FROM cleaned_buildings LIMIT 1);
+AND NOT EXISTS (SELECT 1 FROM cleaned_buildings LIMIT 1)
+ON CONFLICT (osm_id) DO NOTHING;
 
 INSERT INTO cleaned_roads (osm_id, geom, road_type, street_name)
 SELECT 
@@ -33,7 +34,8 @@ WHERE highway IN (
     'service',
     'living_street'
 )
-AND NOT EXISTS (SELECT 1 FROM cleaned_roads LIMIT 1);
+AND NOT EXISTS (SELECT 1 FROM cleaned_roads LIMIT 1)
+ON CONFLICT (osm_id) DO NOTHING;
 
 -- Remove road islands
 WITH islands AS (
