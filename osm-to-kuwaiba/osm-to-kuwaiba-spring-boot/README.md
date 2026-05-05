@@ -1,117 +1,86 @@
-# OSM to Kuwaiba
+# osm-to-kuwaiba-spring-boot
 
-A Spring Boot application that processes OpenStreetMap data to predict fiber network infrastructure 
-(placing poles, cabinets, aggregators, and exchanges) and exposes the results via a REST API.
+The Spring Boot REST API component of the OSM to Kuwaiba project. In normal usage this runs
+as a Docker container: see the [parent README](../README.md). This file covers running and
+testing the application outside of Docker for development purposes.
 
 ## Prerequisites
-Before running this project you will need the following installed:
-- Docker Desktop
+
 - Java 21+
 - Maven
+- The Docker database must be running (see below)
 
-## Project Structure
+## Running Outside Docker
 
-## Setup and Running
-**Step 1 - Start the Docker Environment** 
+The application requires the PostGIS database to be available. Start only the database and
+importer services from the `osm-to-kuwaiba` directory:
 
-The Docker project handles all data preparation automatically in sequence:
-1. Starts a PostGIS database
-2. Runs the OSM importer (osm2pgsql)
-3. Creates and Populates the required tables
-
-```bash
-cd data-processing
-docker compose up
-```
-
-Wait until all containers finish. The `table-creator` container exiting with code 0 means everything
-is ready.
-
-To start fresh(wiping all data):
-```bash
-docker compose down -v
-docker compose up
-```
-
-**Step 2 - Run the Spring Boot Application**
-
-In Eclipse:
-
-right-click `OsmToKuwaibaApplication.java` -> Run As -> Spring Boot App
-
-Or from the command line:
 ```bash
 cd osm-to-kuwaiba
+docker compose up -d db importer
+```
+
+Wait until the `importer` container exits (the OSM data must be loaded before the app starts).
+You can check with:
+
+```bash
+docker compose logs importer
+```
+
+Then run the Spring Boot application from this directory:
+
+```bash
 ./mvnw spring-boot:run
 ```
 
-When you see the following in the console the app is ready:
+Or from Eclipse: right-click `OsmToKuwaibaApplication.java` → Run As → Spring Boot App.
+
+The application is ready when the console shows:
+
 ```
 Tomcat started on port(s): 8080 (http)
 ```
 
-## REST API
-**Prediction Endpoints**
-
-These trigger the network prediction algorithms. These should be run first to populate the network 
-tables.
-
-|Method|Endpoint|Description|
-|------|--------|-----------|
-|POST|`/predict/all`|Run full clustering and routing pipeline|
-|POST|`/predict/clustering`|Run clustering only|
-|POST|`/predict/routing`|Run routing only|
-|POST|`/predict/uprns`|Link buildings to UPRNs|
-
-**Query Endpoints**
-
-These return the predicted network data.
-
-|Method|Endpoint|Description|
-|------|--------|-----------|
-|GET|`network/points`|Get all network points|
-|GET|`/network/points/type?type=POLE`|Get points by type|
-|GET|`/network/connections`|Get all network connections|
-|GET|`/network/connections/type?linkType=DROP`|Get connections by type|
-
-**Point Types**: `POLE`, `CABINET`, `AGGREGATOR`, `EXCHANGE`
-**Connection Types**: `DROP`, `FEEDER`, `DISTRIBUTION`, `TRUNK`
-
-## Database
-
-The database runs in Docker on `localhost:5432`
-
-|Setting|Value|
-|-------|-----|
-|Host|localhost|
-|Port|5432|
-|Database|osm|
-|Username|osmuser|
-|Password|osmpass|
-
-pgAdmin is available at `http://localhost:8888` for browsing the database directly.
-
-|Setting|Value|
-|-------|-----|
-|Email|user-name@domain-name.com|
-|Password|minad1234|
+On startup the application automatically:
+- Creates the database schema (tables and indexes)
+- Imports the UPRN CSV into `raw_uprns`
+- Links UPRNs to building footprints
 
 ## Running Tests
-Tests require the Docker database to be running. Then from the project root:
+
+Tests require the database to be running. With `db` started as above:
 
 ```bash
 ./mvnw test
 ```
 
-Individual test classes can be run from Eclipse by 
-right-clicking the test file -> Run As -> JUnit Test
+Individual test classes can be run from Eclipse by right-clicking the test file →
+Run As → JUnit Test.
 
-**Note**: Test uses `@Transactional` so all test data is automatically rolled back after each test, 
+All tests use `@Transactional` so test data is rolled back automatically after each test —
 the live database is not affected.
 
-[Customizing Object Mapper Resource](https://codingtechroom.com/tutorial/java-customizing-jackson-objectmapper-spring-boot)
+## Project Structure
 
-[Using @JsonComponent for serialization](https://www.baeldung.com/spring-boot-jsoncomponent)
+```
+osm-to-kuwaiba-spring-boot/
+├── src/main/java/ac/uk/solent/com617/kuwaiba/osm_to_kuwaiba/
+│   ├── config/         # Custom Jackson geometry serialisers (GeoJSON output)
+│   ├── init/           # Startup initialisation (schema creation, UPRN import)
+│   ├── models/         # JPA entity classes and enums
+│   ├── repository/     # Spring Data JPA repositories (native PostGIS SQL queries)
+│   ├── rest/           # REST controllers (prediction triggers, network queries)
+│   └── services/       # Service layer (orchestration of repository calls)
+└── src/test/           # Integration tests
+```
 
-[GeoJson format](https://datatracker.ietf.org/doc/html/rfc7946#appendix-A.1)
+## Key Dependencies
 
+| Dependency | Purpose |
+|---|---|
+| Spring Boot 3 | Application framework |
+| Spring Data JPA | Repository layer and database connectivity |
+| Hibernate Spatial | Mapping PostGIS geometry columns to JTS types |
+| JTS (LocationTech) | Java geometry objects |
+| springdoc-openapi | Swagger UI (`/swagger-ui/index.html`) |
+| PostgreSQL JDBC | Database driver |
