@@ -18,8 +18,8 @@ application outside of docker.
 ## Using your own data
 1. OSM exports can be gathered for an area of interest in `.xml` format online. The recommended
    tools are:
-   - [HOT Export Tool]()
-   - [Overpass Turbo]()
+   - [HOT Export Tool](https://export.hotosm.org/)
+   - [Geofabrik](https://download.geofabrik.de/)
 2. The `.xml` file should be placed in `container-fs/data/` replacing existing `.xml` files.
    **Only one `.xml` file should be present at a time.**
 3. UPRN CSV data can be gathered from the area and placed in `container-fs/data/` named `uprns.csv`

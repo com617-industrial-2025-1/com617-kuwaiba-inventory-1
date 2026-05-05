@@ -35,7 +35,9 @@ services:
     entrypoint: /bin/sh -c
     command: >
       "echo 'Starting osm2pgsql import...';
-       osm2pgsql --create --slim --hstore /data/*.xml"
+       FILE=$(ls /data/*.xml /data/*.osm.pbf /data/*.pbf 2>/dev/null | head -1);
+       echo \"Importing $FILE\";
+       osm2pgsql --create --slim --hstore $FILE"
 
   pgadmin:
     image: dpage/pgadmin4:9.13.0
