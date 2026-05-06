@@ -66,3 +66,6 @@ core-deploy/
 
 #vscode
 .vscode/
+
+# eclipse bin creation
+/osm-to-kuwaiba/osm-to-kuwaiba-spring-boot/bin/

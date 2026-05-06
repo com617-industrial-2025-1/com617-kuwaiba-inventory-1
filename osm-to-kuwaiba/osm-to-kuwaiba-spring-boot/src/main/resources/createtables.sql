@@ -38,23 +38,16 @@ AND NOT EXISTS (SELECT 1 FROM cleaned_roads LIMIT 1)
 ON CONFLICT (osm_id) DO NOTHING;
 
 -- Remove road islands
-WITH islands AS (
-    SELECT a.osm_id
+WITH connected_roads AS (
+    SELECT DISTINCT a.osm_id
     FROM cleaned_roads a
-    WHERE NOT EXISTS (
-        SELECT 1 FROM cleaned_roads b 
-        WHERE a.osm_id <> b.osm_id 
-        AND ST_DWithin(ST_StartPoint(a.geom), b.geom, 0.1)
-    )
-    AND NOT EXISTS (
-        SELECT 1 FROM cleaned_roads b 
-        WHERE a.osm_id <> b.osm_id 
-        AND ST_DWithin(ST_EndPoint(a.geom), b.geom, 0.1)
-    )
+    JOIN cleaned_roads b ON a.osm_id <> b.osm_id
+    WHERE ST_DWithin(ST_StartPoint(a.geom), b.geom, 0.1)
+       OR ST_DWithin(ST_EndPoint(a.geom), b.geom, 0.1)
 )
 UPDATE cleaned_roads 
 SET is_island = TRUE 
-WHERE osm_id IN (SELECT osm_id FROM islands)
+WHERE osm_id NOT IN (SELECT osm_id FROM connected_roads)
 AND EXISTS (SELECT 1 FROM cleaned_roads WHERE is_island = FALSE);
 
 DELETE FROM cleaned_roads 
@@ -62,15 +55,18 @@ WHERE is_island = TRUE
 AND EXISTS (SELECT 1 FROM cleaned_roads WHERE is_island = TRUE);
 
 -- Fix missing street names
-UPDATE cleaned_buildings b
-SET street_name = (
-    SELECT r.street_name 
+UPDATE cleaned_buildings 
+SET street_name = nearest.street_name
+FROM cleaned_buildings b
+CROSS JOIN LATERAL (
+	SELECT r.street_name 
     FROM cleaned_roads r 
     WHERE r.street_name IS NOT NULL
     ORDER BY b.geom <-> r.geom
     LIMIT 1
-)
-WHERE b.street_name IS NULL
+) nearest
+WHERE cleaned_buildings.osm_id = b.osm_id
+AND cleaned_buildings.street_name IS NULL
 AND EXISTS (SELECT 1 FROM cleaned_buildings WHERE street_name IS NULL);
 
 
@@ -125,12 +121,15 @@ SET osm_id = b.building_id
 FROM building_drop_points b
 WHERE ST_Equals(p.geom, b.geom) AND p.type = 'AGGREGATOR';
 
-UPDATE network_connections c
-SET street_name = (
+UPDATE network_connections
+SET street_name = nearest.street_name 
+FROM network_connections c
+CROSS JOIN LATERAL  (
     SELECT r.street_name 
     FROM cleaned_roads r 
     WHERE r.street_name IS NOT NULL
     ORDER BY c.geom <-> r.geom
     LIMIT 1
-)
-WHERE c.street_name IS NULL;
+) nearest
+WHERE network_connections.id = c.id
+AND network_connections.street_name IS NULL;

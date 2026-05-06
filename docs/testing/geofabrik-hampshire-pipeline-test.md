@@ -35,97 +35,86 @@ SELECT COUNT(*) FROM planet_osm_polygon WHERE building IS NOT NULL;
 SELECT COUNT(*) FROM planet_osm_line WHERE highway IS NOT NULL;
 ```
 
-**Evidence of pgadmin query results**
+![geofabrik raw osm record 1](./images/geofabrik/geofabrik-raw-osm-table-record-1.png)
+
+![geofabrik raw osm record 2](./images/geofabrik/geofabrik-raw-osm-table-record-2.png)
 
 ## 3. Data Preparation
 
-The Spring Boot Application ran `createtables.sql` on startup to clean and process the raw data.
+### 3.1 Failed Attempt 1
 
-### 3.1 Application Startup Log
-
-**Evidence of spring boot logs showing schema initialization completing successfully**
-
-### 3.2 Cleaned Data Record Counts
-
-The following cleaned data record counts were gathered from pgAdmin
+An attempt was made to run the Docker Compose stack but the application was taking a long time to
+populate the tables from `createstables.sql`. The issue was pinpointed to the street name inference
+query on the `cleaned_buildings` table.
 
 ```sql
-SELECT COUNT(*) FROM cleaned_buildings;
-SELECT COUNT(*) FROM cleaned_roads;
-SELECT COUNT(*) FROM building_drop_points;
-SELECT COUNT(*) FROM linked_buildings;
-SELECT COUNT(*) FROM noded_streets;
+UPDATE cleaned_buildings b
+SET street_name = (
+    SELECT r.street_name 
+    FROM cleaned_roads r 
+    WHERE r.street_name IS NOT NULL
+    ORDER BY b.geom <-> r.geom
+    LIMIT 1
+)
+WHERE b.street_name IS NULL
 ```
 
-**Evidence of pgadmin query results**
+The problem was that the for every row in `cleaned_buildings` that had a null street name the inner
+select query was being run that rescanned and reordered the entire `cleaned_roads` table to find the
+nearest road for that single building before moving onto the next. 
 
-## 4. Infrastructure Prediction
+On the hampshire dataset that has 405,103 buildings missing street names, this resulted in hundreds
+of thousands of individual spatial searches. After 13 hours the query had not completed and only one
+third of the houses had been completed as seen below.
 
+![geofabrik first test time](./images/geofabrik/geofabrik-first-test-time.png)
 
+![geofabrik first test count](./images/geofabrik/geofabrik-first-test-count.png)
 
-### 4.1 Prediction Trigger
+#### The fix
 
-The prediction was triggered via `POST /predict/all`
-
-**Image of swagger ui trigger success**
-
-### 4.2 Network Point Record Count
-
-The following query was used in pgAdmin to gain evidence of the prediction pipeline completing.
+The fix was to alter the query to use a `CROSS JOIN LATERAL` that PostgreSQL to evaluate the nearest
+road search once per row using the spatial GIST index on `cleaned_roads.geom`. The same pattern was
+applied to the street name update and the island removal query was rewritten to use `JOIN` rather
+than `NOT EXISTS` subqueries.
 
 ```sql
-SELECT type, COUNT(*) FROM network_points GROUP BY type ORDER BY type;
+UPDATE cleaned_buildings 
+SET street_name = nearest.street_name
+FROM cleaned_buildings b
+CROSS JOIN LATERAL (
+	SELECT r.street_name 
+    FROM cleaned_roads r 
+    WHERE r.street_name IS NOT NULL
+    ORDER BY b.geom <-> r.geom
+    LIMIT 1
+) nearest
+WHERE cleaned_buildings.osm_id = b.osm_id
+AND cleaned_buildings.street_name IS NULL
+AND EXISTS (SELECT 1 FROM cleaned_buildings WHERE street_name IS NULL);
 ```
 
-**Evidence of pgadmin query results**
+### 3.2 Failed Attempt 2
 
-### 4.3 Network Connection Record Count
+With the mentioned changes, the second attempt at populating the tables was still taking a a long
+time as can be seen below:
 
-The following query was used in pgAdmin to gain evidence of the prediction pipeline completing.
+![geofabrik second test time](./images/geofabrik/geofabrik-second-test-time.png)
 
-```sql
-SELECT link_type, COUNT(*) FROM network_connections GROUP BY link_type ORDER BY link_type;
-```
+## 4. Summary
 
-**Evidence of pgadmin query results**
+**Status**: Incomplete
 
-## 5. API Verification
+The data preparation was not completed in a sufficient amount of time. The cause is the street name
+inference step that performs a spatial nearest neighbour search for 405,103 buildings without an
+OSM `addr:street` tag. 
 
-The Swagger UI was accessible at `http://localhost:8080/swagger-ui/index.html` to confirm the
-REST API was running
+This is identified as a performance limitation and finding a solution is a recommendation for 
+future development. The system is validated for neighbourhood scale data but county scale data
+requires further query opimization so the data preparation pipeline can complete in a reasonable
+timeframe.
 
-**Screenshot of Swagger UI running showing all endpoints**
-
-### 5.1 Network Points Endpoint
-
-`GET /network/points?pageNo=0&pageSize=10`
-
-**Screenshot of browser showing JSON response**
-
-### 5.2 Network Connections Endpoint
-
-### 5.3 Kuwaiba Requisition Sample
-
-`GET /kuwaiba-network/kuwaibaRequisition?pageNo=0&pageSize=10`
-
-**Screenshot of browser showing JSON response**
-
-## 6. Visualisation
-
-### 6.1 QGIS Network Map
-
-The GeoJSON output was loaded into QGIS to visually verify the predicted network covers the
-Hampshire area correctly. 
-
-**Screenshot of QGIS**
-
-## 7. Summary
-
-The full pipeline ran successfully against the Hampshire dataseet, demonstrating that the pipeline
-works with different osm input.
-
-
-## 8. Pipeline Time Duration
+## 5. Pipeline Time Duration
 
 |Stage|Start Time|End Time|Duration|
 |-----|----------|--------|--------|
@@ -133,18 +122,10 @@ works with different osm input.
 |Data Preparation (createtables.sql)||||
 |Prediction (predict/all)||||
 
-**Note** due to the scale of this dataset, the pipeline took approximately **TODO** to complete.
-For live demonstrations a smaller area will be used which produces equivalent results in a fraction
-of the time.
 
-### 8.1 Screenshot Evidence
+
+### 5.1 Screenshot Evidence
 
 **Importer Time**
 
 ![geofabrik importer time](./images/geofabrik/geofabrik-importer-time.png)
-
-**Data Preparation Time**
-
-
-
-**Prediction Time**
