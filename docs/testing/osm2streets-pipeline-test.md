@@ -1,5 +1,10 @@
 # osm2streets Pipeline Test
 
+## Overview
+
+**Dataset**: Winchester Neighbourhood (`winchester-osm.xml`)
+**Source**: osm2streets
+
 ## 1. Data Export from osm2streets
 
 ### 1.1 Area Selection

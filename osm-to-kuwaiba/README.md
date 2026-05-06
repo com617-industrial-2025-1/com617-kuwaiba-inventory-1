@@ -18,13 +18,15 @@ application outside of docker.
 ## Using your own data
 1. OSM exports can be gathered for an area of interest in `.xml`, `.pbf`, `.osm.pbf` format online.
    The recommended tools are:
+   - [osm2streets](https://a-b-street.github.io/osm2streets/)
    - [HOT Export Tool](https://export.hotosm.org/)
    - [Geofabrik](https://download.geofabrik.de/)
-2. The `.xml` file should be placed in `container-fs/data/` replacing existing `.xml` files.
-   **Only one `.xml` file should be present at a time.**
+2. The data file should be placed in `container-fs/data/` replacing existing data files.
+   **Only one data file should be present at a time.**
 3. UPRN CSV data can be gathered from the area and placed in `container-fs/data/` named `uprns.csv`
    replacing any existing files. UPRN data can be gathered for your area from the
-   [Ordnance Survey Open UPRN dataset.]
+   [Ordnance Survey Open UPRN dataset](https://osdatahub.os.uk/data/downloads/open/OpenUPRN).
+   However the current `uprns.csv` contains the full data for all of Great Britain.
 
 **Note**: UPRNs are optional. All buildings present in the OSM file are included in the prediction
 regardless of whether they have a matching UPRN. UPRNs enrich the output with official address
@@ -52,7 +54,7 @@ docker compose logs -f app
 
 The application is ready when you see:
 ```
-Tomcat started on port(s): 8080 (http)
+SchemaInitialization: Topology build complete.
 ```
 
 ## Running a Prediction
@@ -85,7 +87,7 @@ Full interactive documentation is at `http:localhost:8080/swagger-ui/index.html`
 |GET|`/network/connections`|Get all network connections|
 |GET|`/network/connections/type?linkType=DROP`|Get connections by type|
 
-### GeoJSON Endpoints
+### Kuwaiba Network Endpoints
 
 |Method|Endpoint|Description|
 |------|--------|-----------|
