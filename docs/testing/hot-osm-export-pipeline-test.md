@@ -2,72 +2,32 @@
 
 ## Overview
 
+**Dataset**: Guildford, 
 
 ## 1. Data Export From HotOSM Export
 
+HotOSM was not responsive to the data gathering attempt as seen in the screenshot below:
 
+![hotosm](./images/hotosm/hotosm-data-gathering-fail.png)
 
+The decision was made to use the Overpass API as that was where HotOSM retrieved its data from.
+Below shows the data for Guildford being gathered by Overpass Turbo. Guildford data was chosen
+as it provided an area larger than a neighbourhood and could stress test the pipeline.
+
+![ot data gathering](./images/overpass-turbo/ot-data-gathering.png)
+
+This data was then placed in the `container-fs/data` folder where is was the only data source.
+
+![ot export file explorer](./images/overpass-turbo/ot-export-file-explorer.png)
 
 ## 2. OSM Data Import
 
-### 2.1 Importer Service Completion
+The data import threw an error due to the way that Overpass Turbo formats the data with nodes.
+Therefore the conclusion was to rule out Overpass Turbo as an option for data gathering.
 
+![ot importer fail](./images/overpass-turbo/ot-importer-fail.png)
 
+## 3. Summary
 
-### 2.2 Raw OSM Record Table Count
-
-
-
-## 3. Data Preparation
-
-### 3.1 Application Startup Logs
-
-
-
-### 3.2 Cleaned Data Record Counts
-
-
-
-## 4. Infrastructure Prediction
-
-### 4.1 Prediction Trigger
-
-
-
-### 4.2 Network Point Record Count
-
-
-
-### 4.3 Network Connection Record Count
-
-
-
-## 5. API Verification
-
-### 5.1 Network Points Endpoint
-
-
-
-### 5.2 Network Connection Endpoint
-
-
-
-### 5.3 Kuwaiba Requisition Sample
-
-
-
-## 6. Visualisation
-
-### 6.1 Network Map
-
-
-
-## 7. Summary
-
-
-
-## 8. Pipeline Time Duration
-
-
-
-### 8.1 Screenshot Evidence
+Neither HotOSM or Overpass Turbo proved viable options for the data gathering portion of this
+project.

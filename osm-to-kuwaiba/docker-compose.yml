@@ -35,7 +35,7 @@ services:
     entrypoint: /bin/sh -c
     command: >
       "echo 'Starting osm2pgsql import...';
-       FILE=$$(ls /data/*.xml /data/*.osm.pbf /data/*.pbf 2>/dev/null | head -1);
+       FILE=$$(ls /data/*.xml /data/*.osm.pbf /data/*.osm /data/*.pbf 2>/dev/null | head -1);
        echo \"Importing $$FILE\";
        osm2pgsql --create --slim --hstore $$FILE"
 
