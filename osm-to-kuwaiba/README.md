@@ -106,13 +106,21 @@ Once the prediction has been run, the network can be exported into the kuwaiba i
 ### Step 1: Export the requisition to a file
 
 ```bash
+# Bash / Linux / Mac
 curl "http://localhost:8080/kuwaiba-network/kuwaibaRequisition?pageNo=0&pageSize=10000" > requisition.json
+
+# PowerShell (Windows)
+Invoke-WebRequest "http://localhost:8080/kuwaiba-network/kuwaibaRequisition?pageNo=0&pageSize=10000" -OutFile requisition.json
 ```
 
 ### Step 2: Copy the file into the external data folder
 
 ```bash
+# Bash / Linux / Mac
 cp requisition.json ./container-fs/kuwaiba/external-data/kuwaibaProvisioningRequisition-data.json
+
+# PowerShell (Windows)
+Copy-Item requisition.json ./container-fs/kuwaiba/external-data/kuwaibaProvisioningRequisition-data.json
 ```
 
 The external data folder is mounted into the Kuwaiba container at `/external-data/`.
