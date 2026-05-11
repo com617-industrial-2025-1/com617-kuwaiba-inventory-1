@@ -64,8 +64,11 @@ CREATE INDEX IF NOT EXISTS idx_network_connections_geom ON network_connections U
 
 CREATE TABLE IF NOT EXISTS raw_uprns (
     uprn 			BIGINT,
+    x_coordinate  	DOUBLE PRECISION,
+    y_coordinate 	DOUBLE PRECISION,
     lat  			DOUBLE PRECISION,
     lon  			DOUBLE PRECISION
+    
 );
 
 CREATE TABLE IF NOT EXISTS linked_buildings (
