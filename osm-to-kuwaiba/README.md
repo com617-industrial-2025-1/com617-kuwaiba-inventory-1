@@ -98,6 +98,38 @@ Full interactive documentation is at `http:localhost:8080/swagger-ui/index.html`
 **Point Types**: `POLE`, `CABINET`, `AGGREGATOR`, `EXCHANGE`
 **Connection Types**: `DROP`, `FEEDER`, `DISTRIBUTION`, `TRUNK`
 
+## Importing into Kuwaiba
+
+Once the prediction has been run, the network can be exported into the kuwaiba instance at
+`http://localhost:8085/kuwaiba`
+
+### Step 1: Export the requisition to a file
+
+```bash
+curl "http://localhost:8080/kuwaiba-network/kuwaibaRequisition?pageNo=0&pageSize=10000" > requisition.json
+```
+
+### Step 2: Copy the file into the external data folder
+
+```bash
+cp requisition.json ./container-fs/kuwaiba/external-data/kuwaibaProvisioningRequisition-data.json
+```
+
+The external data folder is mounted into the Kuwaiba container at `/external-data/`.
+
+### Step 3: Log in to Kuwaiba
+
+```
+username: admin
+password: kuwaiba
+```
+
+### Step 4: Run the provisioning task
+
+- Navigate to task manager from the menu
+- Select `EntimossKuwaibaProvisioningTask_v2` from the task list
+- Click the run button and wait for the task to complete
+
 ## Database Access
 
 pgAdmin is available at `http://localhost:8888` for browsing the database directly.
