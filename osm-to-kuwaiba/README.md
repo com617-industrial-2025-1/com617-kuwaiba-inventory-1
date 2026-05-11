@@ -26,7 +26,6 @@ application outside of docker.
 3. UPRN CSV data can be gathered from the area and placed in `container-fs/data/` named `uprns.csv`
    replacing any existing files. UPRN data can be gathered for your area from the
    [Ordnance Survey Open UPRN dataset](https://osdatahub.os.uk/data/downloads/open/OpenUPRN).
-   However the current `uprns.csv` contains the full data for all of Great Britain.
 
 **Note**: UPRNs are optional. All buildings present in the OSM file are included in the prediction
 regardless of whether they have a matching UPRN. UPRNs enrich the output with official address
