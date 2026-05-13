@@ -185,6 +185,8 @@ public class KuwabaNetworkController {
          kc.getAttributes().put("uprn", lb.getUprn().toString());
          kc.getAttributes().put("house_num", lb.getHouseNum());
          kc.getAttributes().put("street", lb.getStreetName());
+         if (lb.getLat()!=null) kc.getAttributes().put("latitude",  lb.getLat().toString());
+         if (lb.getLon()!=null) kc.getAttributes().put("longitude",  lb.getLon().toString());
          pr.getKuwaibaClassList().add(kc);
       }
 
@@ -243,6 +245,8 @@ public class KuwabaNetworkController {
                  building.getParentClasses().add(ProjectConstants.parentNeighbourhood);
                  if (lb.getUprn() != null) building.getAttributes().put("uprn", lb.getUprn().toString());
                  if (lb.getStreetName() != null) building.getAttributes().put("street", lb.getStreetName());
+                 if (lb.getLat()!=null) building.getAttributes().put("latitude",  lb.getLat().toString());
+                 if (lb.getLon()!=null) building.getAttributes().put("longitude",  lb.getLon().toString());
                  pr.getKuwaibaClassList().add(building);
                  kuwaibaConnection.setEndpointB(building);
              } else {

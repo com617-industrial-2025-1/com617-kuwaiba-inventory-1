@@ -18,14 +18,16 @@ public interface LinkedBuildingRepository extends JpaRepository<LinkedBuilding, 
 	@Modifying
     @Transactional
     @Query(nativeQuery = true, value = """
-        INSERT INTO linked_buildings (osm_id, building_name, house_num, street_name, floors, uprn)
+        INSERT INTO linked_buildings (osm_id, building_name, house_num, street_name, floors, uprn, lat, lon)
         SELECT DISTINCT ON (b.osm_id) 
             b.osm_id, 
             u.uprn::TEXT, -- Building name is now the UPRN (as a String)
             b.house_num, 
             b.street_name, 
             b.floors, 
-            u.uprn
+            u.uprn,
+            u.lat,
+            u.lon
         FROM cleaned_buildings b
         JOIN raw_uprns u ON ST_Contains(
             b.geom,
