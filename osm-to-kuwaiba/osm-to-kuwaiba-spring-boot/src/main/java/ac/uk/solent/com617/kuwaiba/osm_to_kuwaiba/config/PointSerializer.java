@@ -20,8 +20,10 @@ public class PointSerializer extends StdSerializer<Point> {
         gen.writeStartObject();
         gen.writeStringField("type", "Point");
         gen.writeArrayFieldStart("coordinates");
-        gen.writeNumber(p.getX());
-        gen.writeNumber(p.getY());
+        
+        double[] latLon = CoordinateTranslator.metersToLatLon(p.getX(), p.getY());
+        gen.writeNumber(latLon[0]); // Latitude
+        gen.writeNumber(latLon[1]); // Longitude
         gen.writeEndArray();
         gen.writeEndObject();
     }

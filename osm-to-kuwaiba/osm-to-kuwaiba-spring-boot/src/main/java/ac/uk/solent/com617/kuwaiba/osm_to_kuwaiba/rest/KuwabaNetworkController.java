@@ -39,6 +39,7 @@ import ac.uk.solent.com617.kuwaiba.osm_to_kuwaiba.repository.LinkedBuildingRepos
 import ac.uk.solent.com617.kuwaiba.osm_to_kuwaiba.repository.NetworkConnectionRepository;
 import ac.uk.solent.com617.kuwaiba.osm_to_kuwaiba.repository.NetworkPointRepository;
 import ac.uk.solent.com617.kuwaiba.osm_to_kuwaiba.config.PointSerializer;
+import ac.uk.solent.com617.kuwaiba.osm_to_kuwaiba.config.CoordinateTranslator;
 import ac.uk.solent.com617.kuwaiba.osm_to_kuwaiba.config.LineStringSerializer;
 import ac.uk.solent.com617.kuwaiba.osm_to_kuwaiba.config.MultiLineStringSerializer;
 
@@ -289,14 +290,19 @@ public class KuwabaNetworkController {
       return ResponseEntity.ok(createGeometryMapper().writeValueAsString(pr));
    }
 
+
+   
    public static  KuwaibaClass pointToKuwaibaClass(NetworkPoint point) {
       KuwaibaClass kc = new KuwaibaClass(); 
       kc.getParentClasses().add(ProjectConstants.parentNeighbourhood);
       kc.setName(point.getExternalId());
       
       try {
-        kc.getAttributes().put("longitude",  Double.toString(point.getGeom().getX()));
-        kc.getAttributes().put("latitude",  Double.toString(point.getGeom().getY()));
+         
+        double[] latLon = CoordinateTranslator.metersToLatLon(point.getGeom().getX(), point.getGeom().getY());
+
+        kc.getAttributes().put("latitude",  Double.toString(latLon[0]));
+        kc.getAttributes().put("longitude",  Double.toString(latLon[1]));
       } catch (Exception e) {
          System.out.println("Error converting geometry to attributes for point " + point.getId() + ": " + e.getMessage());
       }
@@ -315,7 +321,15 @@ public class KuwabaNetworkController {
          kc.setTemplateName(null);
          break;
       case AGGREGATOR:
+         kc.setClassName("Aggregator");
+         kc.setTemplateName(null);
+         break;
+      case BUILDING:
          kc.setClassName("Building");
+         kc.setTemplateName(null);
+         break;
+      default:
+         kc.setClassName("UNKNOWN_POINT_TYPE");
          kc.setTemplateName(null);
          break;
       }
