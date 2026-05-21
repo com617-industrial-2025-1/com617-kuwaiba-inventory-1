@@ -7,8 +7,6 @@ import org.entimoss.kuwaiba.provisioning.model.KuwaibaClass;
 import org.entimoss.kuwaiba.provisioning.model.KuwaibaConnection;
 import org.entimoss.kuwaiba.provisioning.model.KuwaibaProvisioningRequisition;
 import org.entimoss.kuwaiba.provisioning.model.ProjectConstants;
-import org.locationtech.jts.geom.Coordinate;
-import org.locationtech.jts.geom.GeometryFactory;
 import org.locationtech.jts.geom.LineString;
 import org.locationtech.jts.geom.MultiLineString;
 import org.locationtech.jts.geom.Point;
@@ -23,10 +21,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.fasterxml.jackson.databind.MapperFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.SerializationFeature;
-import com.fasterxml.jackson.databind.json.JsonMapper;
 import com.fasterxml.jackson.databind.module.SimpleModule;
 
 import ac.uk.solent.com617.kuwaiba.osm_to_kuwaiba.models.LinkType;
@@ -149,6 +145,63 @@ public class KuwabaNetworkController {
    }
 
    /**
+    * This is the main method to create a kuwaiba provisioning requisition for the buildings in the network.
+    * @param pageNo
+    * @param pageSize
+    * @return
+    * @throws Exception
+    */
+   @GetMapping("/kuwaibaRequisitionBuildings")
+   public ResponseEntity<String> getKuwaibaRequisitionBuildings(
+            @RequestParam(defaultValue = "0") int pageNo,
+            @RequestParam(defaultValue = "10") int pageSize,
+            @RequestParam(defaultValue = "true") boolean includeStaticTemplates,
+            @RequestParam(defaultValue = "true") boolean includeStaticObjects,
+            @RequestParam(defaultValue = "true") boolean includeBuildings            
+            ) throws Exception {
+ 
+
+      KuwaibaProvisioningRequisition pr = new KuwaibaProvisioningRequisition();
+
+      if (includeStaticTemplates) {
+         ProjectConstants.addStaticTemplatesToProvisioningRequisition(pr);
+      }
+
+      if (includeStaticObjects) {
+         ProjectConstants.addStaticObjectsToProvisioningRequisition(pr);
+      }
+
+      if (includeBuildings) {
+
+         String sortBy = "osmId";
+         String sortDirection = "ASC";
+
+         Sort sort = Sort.by(Sort.Direction.fromString(sortDirection), sortBy);
+         Pageable pageable = PageRequest.of(pageNo, pageSize, sort);
+
+         Page<LinkedBuilding> result = linkedBuildingRepository.findAll(pageable);
+
+         List<LinkedBuilding> linkedBuildings = result.getContent();
+         
+         for (LinkedBuilding lb : linkedBuildings) {
+            KuwaibaClass kc = new KuwaibaClass();
+            kc.getParentClasses().add(ProjectConstants.parentNeighbourhood);
+            kc.setName(lb.getBuildingName());
+            kc.setClassName("Building");
+            kc.getAttributes().put("osmid", lb.getOsmId().toString());
+            kc.getAttributes().put("uprn", lb.getUprn().toString());
+            kc.getAttributes().put("house_num", lb.getHouseNum());
+            kc.getAttributes().put("street", lb.getStreetName());
+            if (lb.getLat()!=null) kc.getAttributes().put("latitude",  lb.getLat().toString());
+            if (lb.getLon()!=null) kc.getAttributes().put("longitude",  lb.getLon().toString());
+            pr.getKuwaibaClassList().add(kc);
+         }
+      }
+
+      return ResponseEntity.ok(createGeometryMapper().writeValueAsString(pr));
+   }
+
+   /**
     * This is the main method to create a kuwaiba provisioning requisition for the whole network.
     * @param pageNo
     * @param pageSize
@@ -156,13 +209,13 @@ public class KuwabaNetworkController {
     * @throws Exception
     */
    // Finding all connections
-   @GetMapping("/kuwaibaRequisition")
+   @GetMapping("/kuwaibaRequisitionConnections")
    public ResponseEntity<String> getKuwaibaRequisition(
             @RequestParam(defaultValue = "0") int pageNo,
             @RequestParam(defaultValue = "10") int pageSize,
             @RequestParam(defaultValue = "true") boolean includeStaticTemplates,
             @RequestParam(defaultValue = "true") boolean includeStaticObjects,
-            @RequestParam(defaultValue = "true") boolean includeAllBuildings,
+            @RequestParam(defaultValue = "true") boolean includeConnectionBuildings,
             @RequestParam(defaultValue = "true") boolean includeConnections            
             ) throws Exception {
       String sortBy = "id";
@@ -186,24 +239,24 @@ public class KuwabaNetworkController {
          ProjectConstants.addStaticObjectsToProvisioningRequisition(pr);
       }
 
-      if (includeAllBuildings) {
-         // Export buildings
-         List<LinkedBuilding> linkedBuildings = linkedBuildingRepository.findAll();
-         for (LinkedBuilding lb : linkedBuildings) {
-            KuwaibaClass kc = new KuwaibaClass();
-            kc.getParentClasses().add(ProjectConstants.parentNeighbourhood);
-            kc.setName(lb.getBuildingName());
-            kc.setClassName("Building");
-            kc.getAttributes().put("uprn", lb.getUprn().toString());
-            kc.getAttributes().put("house_num", lb.getHouseNum());
-            kc.getAttributes().put("street", lb.getStreetName());
-            if (lb.getLat()!=null) kc.getAttributes().put("latitude",  lb.getLat().toString());
-            if (lb.getLon()!=null) kc.getAttributes().put("longitude",  lb.getLon().toString());
-            pr.getKuwaibaClassList().add(kc);
-         }
-      }
+//      if (includeConnectionBuildings) { // TODO
+//         // Export buildings
+//         List<LinkedBuilding> linkedBuildings = linkedBuildingRepository.findAll();
+//         for (LinkedBuilding lb : linkedBuildings) {
+//            KuwaibaClass kc = new KuwaibaClass();
+//            kc.getParentClasses().add(ProjectConstants.parentNeighbourhood);
+//            kc.setName(lb.getBuildingName());
+//            kc.setClassName("Building");
+//            kc.getAttributes().put("uprn", lb.getUprn().toString());
+//            kc.getAttributes().put("house_num", lb.getHouseNum());
+//            kc.getAttributes().put("street", lb.getStreetName());
+//            if (lb.getLat()!=null) kc.getAttributes().put("latitude",  lb.getLat().toString());
+//            if (lb.getLon()!=null) kc.getAttributes().put("longitude",  lb.getLon().toString());
+//            pr.getKuwaibaClassList().add(kc);
+//         }
+//      }
 
-      if (includeConnections) {
+      
 
          for (NetworkConnection conn : connections) {
 
@@ -244,7 +297,9 @@ public class KuwabaNetworkController {
             // EndpointA - always a network point
             pointRepository.findById(conn.getStart_id()).ifPresent(point -> {
                KuwaibaClass kuwaibaClassStart =pointToKuwaibaClass(point);
-               pr.getKuwaibaClassList().add(kuwaibaClassStart);
+               
+               if (includeConnectionBuildings) pr.getKuwaibaClassList().add(kuwaibaClassStart);
+               
                kuwaibaConnection.setEndpointA(kuwaibaClassStart);
             });
 
@@ -258,11 +313,14 @@ public class KuwabaNetworkController {
                   building.setClassName("Building");
                   building.setName(lb.getUprn() != null ? lb.getUprn().toString() : lb.getBuildingName());
                   building.getParentClasses().add(ProjectConstants.parentNeighbourhood);
+                  if (lb.getOsmId() != null)building.getAttributes().put("osmid", lb.getOsmId().toString());
                   if (lb.getUprn() != null) building.getAttributes().put("uprn", lb.getUprn().toString());
                   if (lb.getStreetName() != null) building.getAttributes().put("street", lb.getStreetName());
                   if (lb.getLat()!=null) building.getAttributes().put("latitude",  lb.getLat().toString());
                   if (lb.getLon()!=null) building.getAttributes().put("longitude",  lb.getLon().toString());
-                  pr.getKuwaibaClassList().add(building);
+                  
+                  if (includeConnectionBuildings)  pr.getKuwaibaClassList().add(building);
+                  
                   kuwaibaConnection.setEndpointB(building);
                } else {
                   cleanedBuildingRepository.findById(conn.getOsmId()).ifPresent(cb -> {
@@ -271,25 +329,30 @@ public class KuwabaNetworkController {
                      building.setName(cb.getBuildingName());
                      building.getParentClasses().add(ProjectConstants.parentNeighbourhood);
                      if (cb.getStreetName() != null) building.getAttributes().put("street", cb.getStreetName());
-                     pr.getKuwaibaClassList().add(building);
+                     
+                     if (includeConnectionBuildings) pr.getKuwaibaClassList().add(building);
+                     
                      kuwaibaConnection.setEndpointB(building);
                   });
                }
             } else {
                pointRepository.findById(conn.getEnd_id()).ifPresent(endPoint -> {
                   KuwaibaClass endPointClass = pointToKuwaibaClass(endPoint);
-                  pr.getKuwaibaClassList().add(endPointClass);
+                  
+                  if (includeConnectionBuildings)  pr.getKuwaibaClassList().add(endPointClass);
+                  
                   kuwaibaConnection.setEndpointB(endPointClass);
                });
             }
 
-            pr.getKuwaibaConnectionList().add(kuwaibaConnection);
+            // Add the connection to the provisioning requisition
+            if (includeConnections) pr.getKuwaibaConnectionList().add(kuwaibaConnection);
+            
          }
-      }
+      
 
       return ResponseEntity.ok(createGeometryMapper().writeValueAsString(pr));
    }
-
 
    
    public static  KuwaibaClass pointToKuwaibaClass(NetworkPoint point) {

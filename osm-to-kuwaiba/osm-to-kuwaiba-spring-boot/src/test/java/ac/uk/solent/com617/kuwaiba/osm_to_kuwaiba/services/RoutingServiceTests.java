@@ -112,7 +112,7 @@ public class RoutingServiceTests {
         routingService.runFullPrediction();
  
         int trunkCount = jdbcTemplate.queryForObject(
-            "SELECT COUNT(*) FROM network_connections WHERE link_type = 'TRUK'",
+            "SELECT COUNT(*) FROM network_connections WHERE link_type = 'TRUNK'",
             Integer.class
         );
         assertEquals(1, trunkCount);
@@ -160,7 +160,7 @@ public class RoutingServiceTests {
         routingService.exchangeToAggregatorPrediction();
  
         int trunkCount = jdbcTemplate.queryForObject(
-            "SELECT COUNT(*) FROM network_connections WHERE link_type = 'TRUK'",
+            "SELECT COUNT(*) FROM network_connections WHERE link_type = 'TRUNK'",
             Integer.class
         );
         assertEquals(1, trunkCount);
