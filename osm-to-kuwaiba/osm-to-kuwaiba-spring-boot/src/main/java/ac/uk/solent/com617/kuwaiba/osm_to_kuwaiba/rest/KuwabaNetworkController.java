@@ -372,11 +372,11 @@ public class KuwabaNetworkController {
 
       switch (point.getType()) { 
       case EXCHANGE:
-         kc.setClassName("Exchange");
+         kc.setClassName("Facility");
          kc.setTemplateName(null);
          break;
       case CABINET:
-         kc.setClassName("Cabinet");
+         kc.setClassName("OutdoorsCabinet");
          kc.setTemplateName(null);
          break;
       case POLE:
@@ -384,7 +384,7 @@ public class KuwabaNetworkController {
          kc.setTemplateName(null);
          break;
       case AGGREGATOR:
-         kc.setClassName("Aggregator");
+         kc.setClassName("OutdoorsCabinet");
          kc.setTemplateName(null);
          break;
       case BUILDING:
