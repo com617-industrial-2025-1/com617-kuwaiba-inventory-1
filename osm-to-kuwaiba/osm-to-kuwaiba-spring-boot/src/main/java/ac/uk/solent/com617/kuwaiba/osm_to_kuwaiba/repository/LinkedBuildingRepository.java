@@ -13,6 +13,8 @@ import ac.uk.solent.com617.kuwaiba.osm_to_kuwaiba.models.LinkedBuilding;
 
 @Repository
 public interface LinkedBuildingRepository extends JpaRepository<LinkedBuilding, Long> {
+   
+
 	List<LinkedBuilding> findByUprn(Long uprn);
 	
 	@Modifying
