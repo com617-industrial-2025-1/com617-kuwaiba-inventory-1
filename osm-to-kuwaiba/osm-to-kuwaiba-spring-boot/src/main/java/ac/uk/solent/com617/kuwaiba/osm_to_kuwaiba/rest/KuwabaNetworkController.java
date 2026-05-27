@@ -1,6 +1,9 @@
 package ac.uk.solent.com617.kuwaiba.osm_to_kuwaiba.rest;
 
+import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.LinkedHashMap;
+import java.util.LinkedHashSet;
 import java.util.List;
 import java.util.Optional;
 import java.util.Set;
@@ -224,6 +227,7 @@ public class KuwabaNetworkController {
             @RequestParam(defaultValue = "true") boolean includeStaticTemplates,
             @RequestParam(defaultValue = "true") boolean includeStaticObjects,
             @RequestParam(defaultValue = "true") boolean includeBuildings,
+            @RequestParam(defaultValue = "true") boolean includeStreets,
             @RequestParam(required = false) String streetName
             ) throws Exception {
 
@@ -240,51 +244,73 @@ public class KuwabaNetworkController {
          ProjectConstants.addStaticObjectsToProvisioningRequisition(pr);
       }
 
-      if (includeBuildings) {
 
-         String sortBy = "osmId";
-         String sortDirection = "ASC";
 
-         Sort sort = Sort.by(Sort.Direction.fromString(sortDirection), sortBy);
-         Pageable pageable = PageRequest.of(pageNo, pageSize, sort);
 
-         Page<LinkedBuilding> result = null;
-         if(streetName !=null ) {
-            if (streetName.equals("UNDEFINED")) {
-               result = linkedBuildingRepository.findByStreetNameIsNull(pageable);
-            } else {
-               result = linkedBuildingRepository.findByStreetName(streetName, pageable);
-            }
+      LinkedHashMap<String, KuwaibaClass> kuwaibaStreets = new LinkedHashMap<String,KuwaibaClass>();
+      List<KuwaibaClass> kuwaibaBuildings = new ArrayList<KuwaibaClass>();
+
+      String sortBy = "osmId";
+      String sortDirection = "ASC";
+
+      Sort sort = Sort.by(Sort.Direction.fromString(sortDirection), sortBy);
+      Pageable pageable = PageRequest.of(pageNo, pageSize, sort);
+
+      Page<LinkedBuilding> result = null;
+      if(streetName !=null ) {
+         if (streetName.equals("UNDEFINED")) {
+            result = linkedBuildingRepository.findByStreetNameIsNull(pageable);
          } else {
-            result = linkedBuildingRepository.findAll(pageable);
+            result = linkedBuildingRepository.findByStreetName(streetName, pageable);
          }
-
-         List<LinkedBuilding> linkedBuildings = result.getContent();
-
-         responseHeaders.set("X-Total-Count", Long.toString(result.getTotalElements()));
-         responseHeaders.set("X-Total-Pages", Long.toString(result.getTotalPages()));
-         responseHeaders.set("X-Page-Size", Integer.toString(pageSize));
-         responseHeaders.set("X-Current-Page", Integer.toString(pageNo));
-
-
-         for (LinkedBuilding lb : linkedBuildings) {
-            KuwaibaClass kc = new KuwaibaClass();
-            kc.getParentClasses().add(ProjectConstants.parentNeighbourhood);
-            kc.setName(lb.getBuildingName());
-            kc.setClassName("Building");
-            kc.getAttributes().put("osmid", lb.getOsmId().toString());
-            kc.getAttributes().put("uprn", lb.getUprn().toString());
-            kc.getAttributes().put("house_num", lb.getHouseNum());
-            kc.getAttributes().put("street", lb.getStreetName());
-            if (lb.getLat()!=null) kc.getAttributes().put("latitude",  lb.getLat().toString());
-            if (lb.getLon()!=null) kc.getAttributes().put("longitude",  lb.getLon().toString());
-            pr.getKuwaibaClassList().add(kc);
-         }
+      } else {
+         result = linkedBuildingRepository.findAll(pageable);
       }
+
+      List<LinkedBuilding> linkedBuildings = result.getContent();
+
+      responseHeaders.set("X-Total-Count", Long.toString(result.getTotalElements()));
+      responseHeaders.set("X-Total-Pages", Long.toString(result.getTotalPages()));
+      responseHeaders.set("X-Page-Size", Integer.toString(pageSize));
+      responseHeaders.set("X-Current-Page", Integer.toString(pageNo));
+
+      for (LinkedBuilding lb : linkedBuildings) {
+         KuwaibaClass kc = new KuwaibaClass();
+
+         if (includeStreets) {
+            streetName = (lb.getStreetName() != null) ? lb.getStreetName() : "UNDEFINED";
+            KuwaibaClass streetClass = addKuwaibaStreetClass(streetName);
+            if (! kuwaibaStreets.containsKey(streetName)) kuwaibaStreets.put(streetName,streetClass);
+            kc.getParentClasses().add(kuwaibaStreets.get(streetName));
+         } else {
+            kc.getParentClasses().add(ProjectConstants.parentNeighbourhood);
+         }
+
+         kc.setName(lb.getBuildingName());
+         kc.setClassName("Building");
+         kc.getAttributes().put("osmid", lb.getOsmId().toString());
+         kc.getAttributes().put("uprn", lb.getUprn().toString());
+         kc.getAttributes().put("house_num", lb.getHouseNum());
+         kc.getAttributes().put("street", lb.getStreetName());
+         if (lb.getLat()!=null) kc.getAttributes().put("latitude",  lb.getLat().toString());
+         if (lb.getLon()!=null) kc.getAttributes().put("longitude",  lb.getLon().toString());
+         kuwaibaBuildings.add(kc);
+      }
+
+      if (includeStreets) pr.getKuwaibaClassList().addAll(kuwaibaStreets.values());
+      if (includeBuildings) pr.getKuwaibaClassList().addAll(kuwaibaBuildings);
 
       return new ResponseEntity<String>(createGeometryMapper().writeValueAsString(pr),
                responseHeaders, HttpStatus.OK);
 
+   }
+
+   static KuwaibaClass addKuwaibaStreetClass(String streetName) {
+      KuwaibaClass street = new KuwaibaClass();
+      street.setClassName("Street");
+      street.setName(streetName);
+      street.getParentClasses().add(ProjectConstants.parentNeighbourhood);
+      return street;
    }
 
    /**
