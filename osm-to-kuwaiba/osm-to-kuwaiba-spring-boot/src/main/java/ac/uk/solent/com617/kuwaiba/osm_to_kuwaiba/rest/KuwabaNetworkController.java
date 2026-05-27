@@ -198,7 +198,11 @@ public class KuwabaNetworkController {
       List<LinkedBuilding> result = linkedBuildingRepository.findAll();
 
       for (LinkedBuilding lb : result) {
-         if (lb.getStreetName() != null) streetNames.add(lb.getStreetName());
+         if (lb.getStreetName() != null && !lb.getStreetName().isEmpty()) { 
+            streetNames.add(lb.getStreetName());
+         }  else {
+            streetNames.add("UNDEFINED");
+         }
       }
 
       return new ResponseEntity<String>(createGeometryMapper().writeValueAsString(streetNames ),
@@ -219,7 +223,8 @@ public class KuwabaNetworkController {
             @RequestParam(defaultValue = "10") int pageSize,
             @RequestParam(defaultValue = "true") boolean includeStaticTemplates,
             @RequestParam(defaultValue = "true") boolean includeStaticObjects,
-            @RequestParam(defaultValue = "true") boolean includeBuildings            
+            @RequestParam(defaultValue = "true") boolean includeBuildings,
+            @RequestParam(required = false) String streetName
             ) throws Exception {
 
 
@@ -243,7 +248,16 @@ public class KuwabaNetworkController {
          Sort sort = Sort.by(Sort.Direction.fromString(sortDirection), sortBy);
          Pageable pageable = PageRequest.of(pageNo, pageSize, sort);
 
-         Page<LinkedBuilding> result = linkedBuildingRepository.findAll(pageable);
+         Page<LinkedBuilding> result = null;
+         if(streetName !=null ) {
+            if (streetName.equals("UNDEFINED")) {
+               result = linkedBuildingRepository.findByStreetNameIsNull(pageable);
+            } else {
+               result = linkedBuildingRepository.findByStreetName(streetName, pageable);
+            }
+         } else {
+            result = linkedBuildingRepository.findAll(pageable);
+         }
 
          List<LinkedBuilding> linkedBuildings = result.getContent();
 

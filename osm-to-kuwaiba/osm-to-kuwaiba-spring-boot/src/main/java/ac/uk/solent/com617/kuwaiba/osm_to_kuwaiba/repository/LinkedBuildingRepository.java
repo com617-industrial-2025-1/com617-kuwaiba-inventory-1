@@ -2,6 +2,8 @@ package ac.uk.solent.com617.kuwaiba.osm_to_kuwaiba.repository;
 
 import java.util.List;
 
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
@@ -17,9 +19,15 @@ public interface LinkedBuildingRepository extends JpaRepository<LinkedBuilding, 
 
 	List<LinkedBuilding> findByUprn(Long uprn);
 	
+	Page<LinkedBuilding> findByStreetName(String StreetName, Pageable pageable);
+	
+	Page<LinkedBuilding> findByStreetNameIsNull(Pageable pageable);
+	
+	List<LinkedBuilding> findByStreetName(String StreetName);
+	
 	@Modifying
-    @Transactional
-    @Query(nativeQuery = true, value = """
+   @Transactional
+   @Query(nativeQuery = true, value = """
         INSERT INTO linked_buildings (osm_id, building_name, house_num, street_name, floors, uprn, lat, lon)
         SELECT DISTINCT ON (b.osm_id) 
             b.osm_id, 
