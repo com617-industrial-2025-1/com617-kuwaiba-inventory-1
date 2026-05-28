@@ -307,7 +307,7 @@ public class KuwabaNetworkController {
 
    static KuwaibaClass addKuwaibaStreetClass(String streetName) {
       KuwaibaClass street = new KuwaibaClass();
-      street.setClassName("Street");
+      street.setClassName(ProjectConstants.STREET_CLASS_NAME);
       street.setName(streetName);
       street.getParentClasses().add(ProjectConstants.parentNeighbourhood);
       return street;

@@ -65,2225 +65,3708 @@
     } ],
     "attributes" : { }
   }, {
-    "className" : "Facility",
+    "className" : "Neighborhood",
     "templateName" : null,
-    "name" : "EXCHANGE-05af20a4-b7bd-489d-bfe7-f4ddfcecf09a",
+    "name" : "UNDEFINED",
     "special" : false,
     "parentClasses" : [ {
       "className" : "City",
       "templateName" : null,
       "name" : "Southampton",
       "special" : false,
+      "parentClasses" : [ ],
+      "attributes" : { }
+    } ],
+    "attributes" : { }
+  }, {
+    "className" : "Neighborhood",
+    "templateName" : null,
+    "name" : "UNDEFINED",
+    "special" : false,
+    "parentClasses" : [ {
+      "className" : "Neighborhood",
+      "templateName" : null,
+      "name" : "UNDEFINED",
+      "special" : false,
       "parentClasses" : [ {
-        "className" : "State",
+        "className" : "City",
         "templateName" : null,
-        "name" : "Hampshire",
+        "name" : "Southampton",
         "special" : false,
         "parentClasses" : [ ],
         "attributes" : { }
       } ],
       "attributes" : { }
     } ],
+    "attributes" : { }
+  }, {
+    "className" : "Neighborhood",
+    "templateName" : null,
+    "name" : "Cobden Avenue",
+    "special" : false,
+    "parentClasses" : [ {
+      "className" : "Neighborhood",
+      "templateName" : null,
+      "name" : "UNDEFINED",
+      "special" : false,
+      "parentClasses" : [ {
+        "className" : "City",
+        "templateName" : null,
+        "name" : "Southampton",
+        "special" : false,
+        "parentClasses" : [ ],
+        "attributes" : { }
+      } ],
+      "attributes" : { }
+    } ],
+    "attributes" : { }
+  }, {
+    "className" : "Neighborhood",
+    "templateName" : null,
+    "name" : "Manor Farm Road",
+    "special" : false,
+    "parentClasses" : [ {
+      "className" : "Neighborhood",
+      "templateName" : null,
+      "name" : "UNDEFINED",
+      "special" : false,
+      "parentClasses" : [ {
+        "className" : "City",
+        "templateName" : null,
+        "name" : "Southampton",
+        "special" : false,
+        "parentClasses" : [ ],
+        "attributes" : { }
+      } ],
+      "attributes" : { }
+    } ],
+    "attributes" : { }
+  }, {
+    "className" : "Neighborhood",
+    "templateName" : null,
+    "name" : "Sandringham Road",
+    "special" : false,
+    "parentClasses" : [ {
+      "className" : "Neighborhood",
+      "templateName" : null,
+      "name" : "UNDEFINED",
+      "special" : false,
+      "parentClasses" : [ {
+        "className" : "City",
+        "templateName" : null,
+        "name" : "Southampton",
+        "special" : false,
+        "parentClasses" : [ ],
+        "attributes" : { }
+      } ],
+      "attributes" : { }
+    } ],
+    "attributes" : { }
+  }, {
+    "className" : "Neighborhood",
+    "templateName" : null,
+    "name" : "Dimond Road",
+    "special" : false,
+    "parentClasses" : [ {
+      "className" : "Neighborhood",
+      "templateName" : null,
+      "name" : "UNDEFINED",
+      "special" : false,
+      "parentClasses" : [ {
+        "className" : "City",
+        "templateName" : null,
+        "name" : "Southampton",
+        "special" : false,
+        "parentClasses" : [ ],
+        "attributes" : { }
+      } ],
+      "attributes" : { }
+    } ],
+    "attributes" : { }
+  }, {
+    "className" : "Neighborhood",
+    "templateName" : null,
+    "name" : "Dimond Close",
+    "special" : false,
+    "parentClasses" : [ {
+      "className" : "Neighborhood",
+      "templateName" : null,
+      "name" : "UNDEFINED",
+      "special" : false,
+      "parentClasses" : [ {
+        "className" : "City",
+        "templateName" : null,
+        "name" : "Southampton",
+        "special" : false,
+        "parentClasses" : [ ],
+        "attributes" : { }
+      } ],
+      "attributes" : { }
+    } ],
+    "attributes" : { }
+  }, {
+    "className" : "Neighborhood",
+    "templateName" : null,
+    "name" : "Bond Road",
+    "special" : false,
+    "parentClasses" : [ {
+      "className" : "Neighborhood",
+      "templateName" : null,
+      "name" : "UNDEFINED",
+      "special" : false,
+      "parentClasses" : [ {
+        "className" : "City",
+        "templateName" : null,
+        "name" : "Southampton",
+        "special" : false,
+        "parentClasses" : [ ],
+        "attributes" : { }
+      } ],
+      "attributes" : { }
+    } ],
+    "attributes" : { }
+  }, {
+    "className" : "Neighborhood",
+    "templateName" : null,
+    "name" : "Oaktree Road",
+    "special" : false,
+    "parentClasses" : [ {
+      "className" : "Neighborhood",
+      "templateName" : null,
+      "name" : "UNDEFINED",
+      "special" : false,
+      "parentClasses" : [ {
+        "className" : "City",
+        "templateName" : null,
+        "name" : "Southampton",
+        "special" : false,
+        "parentClasses" : [ ],
+        "attributes" : { }
+      } ],
+      "attributes" : { }
+    } ],
+    "attributes" : { }
+  }, {
+    "className" : "Neighborhood",
+    "templateName" : null,
+    "name" : "Wellington Road",
+    "special" : false,
+    "parentClasses" : [ {
+      "className" : "Neighborhood",
+      "templateName" : null,
+      "name" : "UNDEFINED",
+      "special" : false,
+      "parentClasses" : [ {
+        "className" : "City",
+        "templateName" : null,
+        "name" : "Southampton",
+        "special" : false,
+        "parentClasses" : [ ],
+        "attributes" : { }
+      } ],
+      "attributes" : { }
+    } ],
+    "attributes" : { }
+  }, {
+    "className" : "Building",
+    "templateName" : null,
+    "name" : "10001317366",
+    "special" : false,
+    "parentClasses" : [ {
+      "className" : "Neighborhood",
+      "templateName" : null,
+      "name" : "UNDEFINED",
+      "special" : false,
+      "parentClasses" : [ {
+        "className" : "Neighborhood",
+        "templateName" : null,
+        "name" : "UNDEFINED",
+        "special" : false,
+        "parentClasses" : [ {
+          "className" : "City",
+          "templateName" : null,
+          "name" : "Southampton",
+          "special" : false,
+          "parentClasses" : [ ],
+          "attributes" : { }
+        } ],
+        "attributes" : { }
+      } ],
+      "attributes" : { }
+    } ],
     "attributes" : {
-      "latitude" : "50.92822511099817",
-      "longitude" : "-1.3718106180090772"
+      "uprn" : "10001317366",
+      "house_num" : null,
+      "osmid" : "153796473",
+      "street" : null,
+      "latitude" : "50.9234116",
+      "longitude" : "-1.3740216"
     }
   }, {
-    "className" : "OutdoorsCabinet",
+    "className" : "Building",
     "templateName" : null,
-    "name" : "AGGREGATOR-ccef0721-0c08-47dc-858e-5d8f3283fac2",
+    "name" : "10034862528",
     "special" : false,
     "parentClasses" : [ {
-      "className" : "City",
+      "className" : "Neighborhood",
       "templateName" : null,
-      "name" : "Southampton",
+      "name" : "Cobden Avenue",
       "special" : false,
       "parentClasses" : [ {
-        "className" : "State",
+        "className" : "Neighborhood",
         "templateName" : null,
-        "name" : "Hampshire",
+        "name" : "UNDEFINED",
         "special" : false,
-        "parentClasses" : [ ],
+        "parentClasses" : [ {
+          "className" : "City",
+          "templateName" : null,
+          "name" : "Southampton",
+          "special" : false,
+          "parentClasses" : [ ],
+          "attributes" : { }
+        } ],
         "attributes" : { }
       } ],
       "attributes" : { }
     } ],
     "attributes" : {
-      "latitude" : "50.92899439365573",
-      "longitude" : "-1.3761516573133212"
+      "uprn" : "10034862528",
+      "house_num" : null,
+      "osmid" : "192359659",
+      "street" : "Cobden Avenue",
+      "latitude" : "50.9231098",
+      "longitude" : "-1.375146"
     }
   }, {
-    "className" : "Facility",
+    "className" : "Building",
     "templateName" : null,
-    "name" : "EXCHANGE-05af20a4-b7bd-489d-bfe7-f4ddfcecf09a",
+    "name" : "100062514545",
     "special" : false,
     "parentClasses" : [ {
-      "className" : "City",
+      "className" : "Neighborhood",
       "templateName" : null,
-      "name" : "Southampton",
+      "name" : "Cobden Avenue",
       "special" : false,
       "parentClasses" : [ {
-        "className" : "State",
+        "className" : "Neighborhood",
         "templateName" : null,
-        "name" : "Hampshire",
+        "name" : "UNDEFINED",
         "special" : false,
-        "parentClasses" : [ ],
+        "parentClasses" : [ {
+          "className" : "City",
+          "templateName" : null,
+          "name" : "Southampton",
+          "special" : false,
+          "parentClasses" : [ ],
+          "attributes" : { }
+        } ],
         "attributes" : { }
       } ],
       "attributes" : { }
     } ],
     "attributes" : {
-      "latitude" : "50.92822511099817",
-      "longitude" : "-1.3718106180090772"
+      "uprn" : "100062514545",
+      "house_num" : null,
+      "osmid" : "192359661",
+      "street" : "Cobden Avenue",
+      "latitude" : "50.9229827",
+      "longitude" : "-1.3749823"
     }
   }, {
-    "className" : "OutdoorsCabinet",
+    "className" : "Building",
     "templateName" : null,
-    "name" : "AGGREGATOR-ccef2719-c1f8-4bdc-a4f9-7c1a264cf65f",
+    "name" : "100062514241",
     "special" : false,
     "parentClasses" : [ {
-      "className" : "City",
+      "className" : "Neighborhood",
       "templateName" : null,
-      "name" : "Southampton",
+      "name" : "Cobden Avenue",
       "special" : false,
       "parentClasses" : [ {
-        "className" : "State",
+        "className" : "Neighborhood",
         "templateName" : null,
-        "name" : "Hampshire",
+        "name" : "UNDEFINED",
         "special" : false,
-        "parentClasses" : [ ],
+        "parentClasses" : [ {
+          "className" : "City",
+          "templateName" : null,
+          "name" : "Southampton",
+          "special" : false,
+          "parentClasses" : [ ],
+          "attributes" : { }
+        } ],
         "attributes" : { }
       } ],
       "attributes" : { }
     } ],
     "attributes" : {
-      "latitude" : "50.92725606757119",
-      "longitude" : "-1.3673386205945919"
+      "uprn" : "100062514241",
+      "house_num" : null,
+      "osmid" : "192359662",
+      "street" : "Cobden Avenue",
+      "latitude" : "50.9237151",
+      "longitude" : "-1.3756644"
     }
   }, {
-    "className" : "Facility",
+    "className" : "Building",
     "templateName" : null,
-    "name" : "EXCHANGE-05af20a4-b7bd-489d-bfe7-f4ddfcecf09a",
+    "name" : "100062514408",
     "special" : false,
     "parentClasses" : [ {
-      "className" : "City",
+      "className" : "Neighborhood",
       "templateName" : null,
-      "name" : "Southampton",
+      "name" : "Cobden Avenue",
       "special" : false,
       "parentClasses" : [ {
-        "className" : "State",
+        "className" : "Neighborhood",
         "templateName" : null,
-        "name" : "Hampshire",
+        "name" : "UNDEFINED",
         "special" : false,
-        "parentClasses" : [ ],
+        "parentClasses" : [ {
+          "className" : "City",
+          "templateName" : null,
+          "name" : "Southampton",
+          "special" : false,
+          "parentClasses" : [ ],
+          "attributes" : { }
+        } ],
         "attributes" : { }
       } ],
       "attributes" : { }
     } ],
     "attributes" : {
-      "latitude" : "50.92822511099817",
-      "longitude" : "-1.3718106180090772"
+      "uprn" : "100062514408",
+      "house_num" : null,
+      "osmid" : "192359663",
+      "street" : "Cobden Avenue",
+      "latitude" : "50.9233174",
+      "longitude" : "-1.3752998"
     }
   }, {
-    "className" : "OutdoorsCabinet",
+    "className" : "Building",
     "templateName" : null,
-    "name" : "AGGREGATOR-3f35964b-4c9b-409c-87ce-9299073ff699",
+    "name" : "100060713775",
     "special" : false,
     "parentClasses" : [ {
-      "className" : "City",
+      "className" : "Neighborhood",
       "templateName" : null,
-      "name" : "Southampton",
+      "name" : "Manor Farm Road",
       "special" : false,
       "parentClasses" : [ {
-        "className" : "State",
+        "className" : "Neighborhood",
         "templateName" : null,
-        "name" : "Hampshire",
+        "name" : "UNDEFINED",
         "special" : false,
-        "parentClasses" : [ ],
+        "parentClasses" : [ {
+          "className" : "City",
+          "templateName" : null,
+          "name" : "Southampton",
+          "special" : false,
+          "parentClasses" : [ ],
+          "attributes" : { }
+        } ],
         "attributes" : { }
       } ],
       "attributes" : { }
     } ],
     "attributes" : {
-      "latitude" : "50.925197605666135",
-      "longitude" : "-1.3734558932734462"
+      "uprn" : "100060713775",
+      "house_num" : null,
+      "osmid" : "206396610",
+      "street" : "Manor Farm Road",
+      "latitude" : "50.9303348",
+      "longitude" : "-1.3758744"
     }
   }, {
-    "className" : "Facility",
+    "className" : "Building",
     "templateName" : null,
-    "name" : "EXCHANGE-05af20a4-b7bd-489d-bfe7-f4ddfcecf09a",
+    "name" : "100060713779",
     "special" : false,
     "parentClasses" : [ {
-      "className" : "City",
+      "className" : "Neighborhood",
       "templateName" : null,
-      "name" : "Southampton",
+      "name" : "Manor Farm Road",
       "special" : false,
       "parentClasses" : [ {
-        "className" : "State",
+        "className" : "Neighborhood",
         "templateName" : null,
-        "name" : "Hampshire",
+        "name" : "UNDEFINED",
         "special" : false,
-        "parentClasses" : [ ],
+        "parentClasses" : [ {
+          "className" : "City",
+          "templateName" : null,
+          "name" : "Southampton",
+          "special" : false,
+          "parentClasses" : [ ],
+          "attributes" : { }
+        } ],
         "attributes" : { }
       } ],
       "attributes" : { }
     } ],
     "attributes" : {
-      "latitude" : "50.92822511099817",
-      "longitude" : "-1.3718106180090772"
+      "uprn" : "100060713779",
+      "house_num" : null,
+      "osmid" : "206396611",
+      "street" : "Manor Farm Road",
+      "latitude" : "50.9304783",
+      "longitude" : "-1.3758013"
     }
   }, {
-    "className" : "OutdoorsCabinet",
+    "className" : "Building",
     "templateName" : null,
-    "name" : "AGGREGATOR-db815997-8d21-48aa-a516-e051803685d8",
+    "name" : "100060713777",
     "special" : false,
     "parentClasses" : [ {
-      "className" : "City",
+      "className" : "Neighborhood",
       "templateName" : null,
-      "name" : "Southampton",
+      "name" : "Manor Farm Road",
       "special" : false,
       "parentClasses" : [ {
-        "className" : "State",
+        "className" : "Neighborhood",
         "templateName" : null,
-        "name" : "Hampshire",
+        "name" : "UNDEFINED",
         "special" : false,
-        "parentClasses" : [ ],
+        "parentClasses" : [ {
+          "className" : "City",
+          "templateName" : null,
+          "name" : "Southampton",
+          "special" : false,
+          "parentClasses" : [ ],
+          "attributes" : { }
+        } ],
         "attributes" : { }
       } ],
       "attributes" : { }
     } ],
     "attributes" : {
-      "latitude" : "50.93129599926152",
-      "longitude" : "-1.3695676"
+      "uprn" : "100060713777",
+      "house_num" : null,
+      "osmid" : "206396612",
+      "street" : "Manor Farm Road",
+      "latitude" : "50.9304067",
+      "longitude" : "-1.3758592"
     }
   }, {
-    "className" : "OutdoorsCabinet",
+    "className" : "Building",
     "templateName" : null,
-    "name" : "AGGREGATOR-ccef0721-0c08-47dc-858e-5d8f3283fac2",
+    "name" : "100060713769",
     "special" : false,
     "parentClasses" : [ {
-      "className" : "City",
+      "className" : "Neighborhood",
       "templateName" : null,
-      "name" : "Southampton",
+      "name" : "Manor Farm Road",
       "special" : false,
       "parentClasses" : [ {
-        "className" : "State",
+        "className" : "Neighborhood",
         "templateName" : null,
-        "name" : "Hampshire",
+        "name" : "UNDEFINED",
         "special" : false,
-        "parentClasses" : [ ],
+        "parentClasses" : [ {
+          "className" : "City",
+          "templateName" : null,
+          "name" : "Southampton",
+          "special" : false,
+          "parentClasses" : [ ],
+          "attributes" : { }
+        } ],
         "attributes" : { }
       } ],
       "attributes" : { }
     } ],
     "attributes" : {
-      "latitude" : "50.92899439365573",
-      "longitude" : "-1.3761516573133212"
+      "uprn" : "100060713769",
+      "house_num" : null,
+      "osmid" : "206396613",
+      "street" : "Manor Farm Road",
+      "latitude" : "50.9301556",
+      "longitude" : "-1.3759906"
     }
   }, {
-    "className" : "OutdoorsCabinet",
+    "className" : "Building",
     "templateName" : null,
-    "name" : "CABINET-13b13b7a-3ae0-4ffa-a3fd-a4f544ee510c",
+    "name" : "100060713781",
     "special" : false,
     "parentClasses" : [ {
-      "className" : "City",
+      "className" : "Neighborhood",
       "templateName" : null,
-      "name" : "Southampton",
+      "name" : "Manor Farm Road",
       "special" : false,
       "parentClasses" : [ {
-        "className" : "State",
+        "className" : "Neighborhood",
         "templateName" : null,
-        "name" : "Hampshire",
+        "name" : "UNDEFINED",
         "special" : false,
-        "parentClasses" : [ ],
+        "parentClasses" : [ {
+          "className" : "City",
+          "templateName" : null,
+          "name" : "Southampton",
+          "special" : false,
+          "parentClasses" : [ ],
+          "attributes" : { }
+        } ],
         "attributes" : { }
       } ],
       "attributes" : { }
     } ],
     "attributes" : {
-      "latitude" : "50.92807023971654",
-      "longitude" : "-1.374597270619378"
+      "uprn" : "100060713781",
+      "house_num" : null,
+      "osmid" : "206396614",
+      "street" : "Manor Farm Road",
+      "latitude" : "50.930541",
+      "longitude" : "-1.3757578"
     }
   }, {
-    "className" : "OutdoorsCabinet",
+    "className" : "Building",
     "templateName" : null,
-    "name" : "AGGREGATOR-ccef2719-c1f8-4bdc-a4f9-7c1a264cf65f",
+    "name" : "100060713771",
     "special" : false,
     "parentClasses" : [ {
-      "className" : "City",
+      "className" : "Neighborhood",
       "templateName" : null,
-      "name" : "Southampton",
+      "name" : "Manor Farm Road",
       "special" : false,
       "parentClasses" : [ {
-        "className" : "State",
+        "className" : "Neighborhood",
         "templateName" : null,
-        "name" : "Hampshire",
+        "name" : "UNDEFINED",
         "special" : false,
-        "parentClasses" : [ ],
+        "parentClasses" : [ {
+          "className" : "City",
+          "templateName" : null,
+          "name" : "Southampton",
+          "special" : false,
+          "parentClasses" : [ ],
+          "attributes" : { }
+        } ],
         "attributes" : { }
       } ],
       "attributes" : { }
     } ],
     "attributes" : {
-      "latitude" : "50.92725606757119",
-      "longitude" : "-1.3673386205945919"
+      "uprn" : "100060713771",
+      "house_num" : null,
+      "osmid" : "206396615",
+      "street" : "Manor Farm Road",
+      "latitude" : "50.9302094",
+      "longitude" : "-1.3759615"
     }
   }, {
-    "className" : "OutdoorsCabinet",
+    "className" : "Building",
     "templateName" : null,
-    "name" : "CABINET-cf3ceaca-d94b-4257-9138-e1ed4398d4b8",
+    "name" : "100060713783",
     "special" : false,
     "parentClasses" : [ {
-      "className" : "City",
+      "className" : "Neighborhood",
       "templateName" : null,
-      "name" : "Southampton",
+      "name" : "Manor Farm Road",
       "special" : false,
       "parentClasses" : [ {
-        "className" : "State",
+        "className" : "Neighborhood",
         "templateName" : null,
-        "name" : "Hampshire",
+        "name" : "UNDEFINED",
         "special" : false,
-        "parentClasses" : [ ],
+        "parentClasses" : [ {
+          "className" : "City",
+          "templateName" : null,
+          "name" : "Southampton",
+          "special" : false,
+          "parentClasses" : [ ],
+          "attributes" : { }
+        } ],
         "attributes" : { }
       } ],
       "attributes" : { }
     } ],
     "attributes" : {
-      "latitude" : "50.92696269926226",
-      "longitude" : "-1.3698335"
+      "uprn" : "100060713783",
+      "house_num" : null,
+      "osmid" : "206396616",
+      "street" : "Manor Farm Road",
+      "latitude" : "50.9306038",
+      "longitude" : "-1.3757285"
     }
   }, {
-    "className" : "OutdoorsCabinet",
+    "className" : "Building",
     "templateName" : null,
-    "name" : "AGGREGATOR-db815997-8d21-48aa-a516-e051803685d8",
+    "name" : "100060713785",
     "special" : false,
     "parentClasses" : [ {
-      "className" : "City",
+      "className" : "Neighborhood",
       "templateName" : null,
-      "name" : "Southampton",
+      "name" : "Manor Farm Road",
       "special" : false,
       "parentClasses" : [ {
-        "className" : "State",
+        "className" : "Neighborhood",
         "templateName" : null,
-        "name" : "Hampshire",
+        "name" : "UNDEFINED",
         "special" : false,
-        "parentClasses" : [ ],
+        "parentClasses" : [ {
+          "className" : "City",
+          "templateName" : null,
+          "name" : "Southampton",
+          "special" : false,
+          "parentClasses" : [ ],
+          "attributes" : { }
+        } ],
         "attributes" : { }
       } ],
       "attributes" : { }
     } ],
     "attributes" : {
-      "latitude" : "50.93129599926152",
-      "longitude" : "-1.3695676"
+      "uprn" : "100060713785",
+      "house_num" : null,
+      "osmid" : "206396617",
+      "street" : "Manor Farm Road",
+      "latitude" : "50.9306846",
+      "longitude" : "-1.375699"
     }
   }, {
-    "className" : "OutdoorsCabinet",
+    "className" : "Building",
     "templateName" : null,
-    "name" : "CABINET-44f2c9f1-72fa-4c96-b60f-263262afdd29",
+    "name" : "100060713773",
     "special" : false,
     "parentClasses" : [ {
-      "className" : "City",
+      "className" : "Neighborhood",
       "templateName" : null,
-      "name" : "Southampton",
+      "name" : "Manor Farm Road",
       "special" : false,
       "parentClasses" : [ {
-        "className" : "State",
+        "className" : "Neighborhood",
         "templateName" : null,
-        "name" : "Hampshire",
+        "name" : "UNDEFINED",
         "special" : false,
-        "parentClasses" : [ ],
+        "parentClasses" : [ {
+          "className" : "City",
+          "templateName" : null,
+          "name" : "Southampton",
+          "special" : false,
+          "parentClasses" : [ ],
+          "attributes" : { }
+        } ],
         "attributes" : { }
       } ],
       "attributes" : { }
     } ],
     "attributes" : {
-      "latitude" : "50.92890579926195",
-      "longitude" : "-1.3716068"
+      "uprn" : "100060713773",
+      "house_num" : null,
+      "osmid" : "206396618",
+      "street" : "Manor Farm Road",
+      "latitude" : "50.9302811",
+      "longitude" : "-1.3759178"
     }
   }, {
-    "className" : "OutdoorsCabinet",
+    "className" : "Building",
     "templateName" : null,
-    "name" : "AGGREGATOR-ccef2719-c1f8-4bdc-a4f9-7c1a264cf65f",
+    "name" : "100060713765",
     "special" : false,
     "parentClasses" : [ {
-      "className" : "City",
+      "className" : "Neighborhood",
       "templateName" : null,
-      "name" : "Southampton",
+      "name" : "Manor Farm Road",
       "special" : false,
       "parentClasses" : [ {
-        "className" : "State",
+        "className" : "Neighborhood",
         "templateName" : null,
-        "name" : "Hampshire",
+        "name" : "UNDEFINED",
         "special" : false,
-        "parentClasses" : [ ],
+        "parentClasses" : [ {
+          "className" : "City",
+          "templateName" : null,
+          "name" : "Southampton",
+          "special" : false,
+          "parentClasses" : [ ],
+          "attributes" : { }
+        } ],
         "attributes" : { }
       } ],
       "attributes" : { }
     } ],
     "attributes" : {
-      "latitude" : "50.92725606757119",
-      "longitude" : "-1.3673386205945919"
+      "uprn" : "100060713765",
+      "house_num" : null,
+      "osmid" : "206396619",
+      "street" : "Manor Farm Road",
+      "latitude" : "50.9300211",
+      "longitude" : "-1.3760636"
     }
   }, {
-    "className" : "OutdoorsCabinet",
+    "className" : "Building",
     "templateName" : null,
-    "name" : "CABINET-0ba751e4-ae8d-4689-a878-bf4c594f7e27",
+    "name" : "100060713767",
     "special" : false,
     "parentClasses" : [ {
-      "className" : "City",
+      "className" : "Neighborhood",
       "templateName" : null,
-      "name" : "Southampton",
+      "name" : "Manor Farm Road",
       "special" : false,
       "parentClasses" : [ {
-        "className" : "State",
+        "className" : "Neighborhood",
         "templateName" : null,
-        "name" : "Hampshire",
+        "name" : "UNDEFINED",
         "special" : false,
-        "parentClasses" : [ ],
+        "parentClasses" : [ {
+          "className" : "City",
+          "templateName" : null,
+          "name" : "Southampton",
+          "special" : false,
+          "parentClasses" : [ ],
+          "attributes" : { }
+        } ],
         "attributes" : { }
       } ],
       "attributes" : { }
     } ],
     "attributes" : {
-      "latitude" : "50.927878673268104",
-      "longitude" : "-1.367894177633129"
+      "uprn" : "100060713767",
+      "house_num" : null,
+      "osmid" : "206396620",
+      "street" : "Manor Farm Road",
+      "latitude" : "50.9300478",
+      "longitude" : "-1.3760063"
     }
   }, {
-    "className" : "OutdoorsCabinet",
+    "className" : "Building",
     "templateName" : null,
-    "name" : "AGGREGATOR-db815997-8d21-48aa-a516-e051803685d8",
+    "name" : "100060713787",
     "special" : false,
     "parentClasses" : [ {
-      "className" : "City",
+      "className" : "Neighborhood",
       "templateName" : null,
-      "name" : "Southampton",
+      "name" : "Manor Farm Road",
       "special" : false,
       "parentClasses" : [ {
-        "className" : "State",
+        "className" : "Neighborhood",
         "templateName" : null,
-        "name" : "Hampshire",
+        "name" : "UNDEFINED",
         "special" : false,
-        "parentClasses" : [ ],
+        "parentClasses" : [ {
+          "className" : "City",
+          "templateName" : null,
+          "name" : "Southampton",
+          "special" : false,
+          "parentClasses" : [ ],
+          "attributes" : { }
+        } ],
         "attributes" : { }
       } ],
       "attributes" : { }
     } ],
     "attributes" : {
-      "latitude" : "50.93129599926152",
-      "longitude" : "-1.3695676"
+      "uprn" : "100060713787",
+      "house_num" : null,
+      "osmid" : "206396621",
+      "street" : "Manor Farm Road",
+      "latitude" : "50.9307114",
+      "longitude" : "-1.3756701"
     }
   }, {
-    "className" : "OutdoorsCabinet",
+    "className" : "Building",
     "templateName" : null,
-    "name" : "CABINET-0fdb2845-1186-436f-a2bc-15a3779fd157",
+    "name" : "100060729644",
     "special" : false,
     "parentClasses" : [ {
-      "className" : "City",
+      "className" : "Neighborhood",
       "templateName" : null,
-      "name" : "Southampton",
+      "name" : "Sandringham Road",
       "special" : false,
       "parentClasses" : [ {
-        "className" : "State",
+        "className" : "Neighborhood",
         "templateName" : null,
-        "name" : "Hampshire",
+        "name" : "UNDEFINED",
         "special" : false,
-        "parentClasses" : [ ],
+        "parentClasses" : [ {
+          "className" : "City",
+          "templateName" : null,
+          "name" : "Southampton",
+          "special" : false,
+          "parentClasses" : [ ],
+          "attributes" : { }
+        } ],
         "attributes" : { }
       } ],
       "attributes" : { }
     } ],
     "attributes" : {
-      "latitude" : "50.93075773327691",
-      "longitude" : "-1.367172664732239"
+      "uprn" : "100060729644",
+      "house_num" : null,
+      "osmid" : "239435606",
+      "street" : "Sandringham Road",
+      "latitude" : "50.9257874",
+      "longitude" : "-1.3697175"
     }
   }, {
-    "className" : "OutdoorsCabinet",
+    "className" : "Building",
     "templateName" : null,
-    "name" : "AGGREGATOR-3f35964b-4c9b-409c-87ce-9299073ff699",
+    "name" : "100060729642",
     "special" : false,
     "parentClasses" : [ {
-      "className" : "City",
+      "className" : "Neighborhood",
       "templateName" : null,
-      "name" : "Southampton",
+      "name" : "Sandringham Road",
       "special" : false,
       "parentClasses" : [ {
-        "className" : "State",
+        "className" : "Neighborhood",
         "templateName" : null,
-        "name" : "Hampshire",
+        "name" : "UNDEFINED",
         "special" : false,
-        "parentClasses" : [ ],
+        "parentClasses" : [ {
+          "className" : "City",
+          "templateName" : null,
+          "name" : "Southampton",
+          "special" : false,
+          "parentClasses" : [ ],
+          "attributes" : { }
+        } ],
         "attributes" : { }
       } ],
       "attributes" : { }
     } ],
     "attributes" : {
-      "latitude" : "50.925197605666135",
-      "longitude" : "-1.3734558932734462"
+      "uprn" : "100060729642",
+      "house_num" : null,
+      "osmid" : "239435607",
+      "street" : "Sandringham Road",
+      "latitude" : "50.9258137",
+      "longitude" : "-1.3695891"
     }
   }, {
-    "className" : "OutdoorsCabinet",
+    "className" : "Building",
     "templateName" : null,
-    "name" : "CABINET-de8e1f75-49fb-4fa7-b5ba-c075b49ec47f",
+    "name" : "100060729640",
     "special" : false,
     "parentClasses" : [ {
-      "className" : "City",
+      "className" : "Neighborhood",
       "templateName" : null,
-      "name" : "Southampton",
+      "name" : "Sandringham Road",
       "special" : false,
       "parentClasses" : [ {
-        "className" : "State",
+        "className" : "Neighborhood",
         "templateName" : null,
-        "name" : "Hampshire",
+        "name" : "UNDEFINED",
         "special" : false,
-        "parentClasses" : [ ],
+        "parentClasses" : [ {
+          "className" : "City",
+          "templateName" : null,
+          "name" : "Southampton",
+          "special" : false,
+          "parentClasses" : [ ],
+          "attributes" : { }
+        } ],
         "attributes" : { }
       } ],
       "attributes" : { }
     } ],
     "attributes" : {
-      "latitude" : "50.92352663213833",
-      "longitude" : "-1.3741677677637694"
+      "uprn" : "100060729640",
+      "house_num" : null,
+      "osmid" : "239435608",
+      "street" : "Sandringham Road",
+      "latitude" : "50.9258941",
+      "longitude" : "-1.3695026"
     }
   }, {
-    "className" : "OutdoorsCabinet",
+    "className" : "Building",
     "templateName" : null,
-    "name" : "AGGREGATOR-ccef2719-c1f8-4bdc-a4f9-7c1a264cf65f",
+    "name" : "100060729638",
     "special" : false,
     "parentClasses" : [ {
-      "className" : "City",
+      "className" : "Neighborhood",
       "templateName" : null,
-      "name" : "Southampton",
+      "name" : "Sandringham Road",
       "special" : false,
       "parentClasses" : [ {
-        "className" : "State",
+        "className" : "Neighborhood",
         "templateName" : null,
-        "name" : "Hampshire",
+        "name" : "UNDEFINED",
         "special" : false,
-        "parentClasses" : [ ],
+        "parentClasses" : [ {
+          "className" : "City",
+          "templateName" : null,
+          "name" : "Southampton",
+          "special" : false,
+          "parentClasses" : [ ],
+          "attributes" : { }
+        } ],
         "attributes" : { }
       } ],
       "attributes" : { }
     } ],
     "attributes" : {
-      "latitude" : "50.92725606757119",
-      "longitude" : "-1.3673386205945919"
+      "uprn" : "100060729638",
+      "house_num" : null,
+      "osmid" : "239435609",
+      "street" : "Sandringham Road",
+      "latitude" : "50.9259835",
+      "longitude" : "-1.3694018"
     }
   }, {
-    "className" : "OutdoorsCabinet",
+    "className" : "Building",
     "templateName" : null,
-    "name" : "CABINET-a13f2bc5-9cfa-4c73-bf88-ea22b9dd7f5c",
+    "name" : "100060729636",
     "special" : false,
     "parentClasses" : [ {
-      "className" : "City",
+      "className" : "Neighborhood",
       "templateName" : null,
-      "name" : "Southampton",
+      "name" : "Sandringham Road",
       "special" : false,
       "parentClasses" : [ {
-        "className" : "State",
+        "className" : "Neighborhood",
         "templateName" : null,
-        "name" : "Hampshire",
+        "name" : "UNDEFINED",
         "special" : false,
-        "parentClasses" : [ ],
+        "parentClasses" : [ {
+          "className" : "City",
+          "templateName" : null,
+          "name" : "Southampton",
+          "special" : false,
+          "parentClasses" : [ ],
+          "attributes" : { }
+        } ],
         "attributes" : { }
       } ],
       "attributes" : { }
     } ],
     "attributes" : {
-      "latitude" : "50.92442589926273",
-      "longitude" : "-1.3684501"
+      "uprn" : "100060729636",
+      "house_num" : null,
+      "osmid" : "239435610",
+      "street" : "Sandringham Road",
+      "latitude" : "50.9260731",
+      "longitude" : "-1.3693294"
     }
   }, {
-    "className" : "OutdoorsCabinet",
+    "className" : "Building",
     "templateName" : null,
-    "name" : "AGGREGATOR-db815997-8d21-48aa-a516-e051803685d8",
+    "name" : "100060729634",
     "special" : false,
     "parentClasses" : [ {
-      "className" : "City",
+      "className" : "Neighborhood",
       "templateName" : null,
-      "name" : "Southampton",
+      "name" : "Sandringham Road",
       "special" : false,
       "parentClasses" : [ {
-        "className" : "State",
+        "className" : "Neighborhood",
         "templateName" : null,
-        "name" : "Hampshire",
+        "name" : "UNDEFINED",
         "special" : false,
-        "parentClasses" : [ ],
+        "parentClasses" : [ {
+          "className" : "City",
+          "templateName" : null,
+          "name" : "Southampton",
+          "special" : false,
+          "parentClasses" : [ ],
+          "attributes" : { }
+        } ],
         "attributes" : { }
       } ],
       "attributes" : { }
     } ],
     "attributes" : {
-      "latitude" : "50.93129599926152",
-      "longitude" : "-1.3695676"
+      "uprn" : "100060729634",
+      "house_num" : null,
+      "osmid" : "239435611",
+      "street" : "Sandringham Road",
+      "latitude" : "50.9261626",
+      "longitude" : "-1.3692571"
     }
   }, {
-    "className" : "OutdoorsCabinet",
+    "className" : "Building",
     "templateName" : null,
-    "name" : "CABINET-85544dd6-b487-48e2-9338-8ff62e8cc30a",
+    "name" : "100060729632",
     "special" : false,
     "parentClasses" : [ {
-      "className" : "City",
+      "className" : "Neighborhood",
       "templateName" : null,
-      "name" : "Southampton",
+      "name" : "Sandringham Road",
       "special" : false,
       "parentClasses" : [ {
-        "className" : "State",
+        "className" : "Neighborhood",
         "templateName" : null,
-        "name" : "Hampshire",
+        "name" : "UNDEFINED",
         "special" : false,
-        "parentClasses" : [ ],
+        "parentClasses" : [ {
+          "className" : "City",
+          "templateName" : null,
+          "name" : "Southampton",
+          "special" : false,
+          "parentClasses" : [ ],
+          "attributes" : { }
+        } ],
         "attributes" : { }
       } ],
       "attributes" : { }
     } ],
     "attributes" : {
-      "latitude" : "50.92955541575825",
-      "longitude" : "-1.3672215750764278"
+      "uprn" : "100060729632",
+      "house_num" : null,
+      "osmid" : "239435612",
+      "street" : "Sandringham Road",
+      "latitude" : "50.9262434",
+      "longitude" : "-1.3692275"
     }
   }, {
-    "className" : "OutdoorsCabinet",
+    "className" : "Building",
     "templateName" : null,
-    "name" : "AGGREGATOR-3f35964b-4c9b-409c-87ce-9299073ff699",
+    "name" : "100060729630",
     "special" : false,
     "parentClasses" : [ {
-      "className" : "City",
+      "className" : "Neighborhood",
       "templateName" : null,
-      "name" : "Southampton",
+      "name" : "Sandringham Road",
       "special" : false,
       "parentClasses" : [ {
-        "className" : "State",
+        "className" : "Neighborhood",
         "templateName" : null,
-        "name" : "Hampshire",
+        "name" : "UNDEFINED",
         "special" : false,
-        "parentClasses" : [ ],
+        "parentClasses" : [ {
+          "className" : "City",
+          "templateName" : null,
+          "name" : "Southampton",
+          "special" : false,
+          "parentClasses" : [ ],
+          "attributes" : { }
+        } ],
         "attributes" : { }
       } ],
       "attributes" : { }
     } ],
     "attributes" : {
-      "latitude" : "50.925197605666135",
-      "longitude" : "-1.3734558932734462"
+      "uprn" : "100060729630",
+      "house_num" : null,
+      "osmid" : "239435613",
+      "street" : "Sandringham Road",
+      "latitude" : "50.9263328",
+      "longitude" : "-1.3691409"
     }
   }, {
-    "className" : "OutdoorsCabinet",
+    "className" : "Building",
     "templateName" : null,
-    "name" : "CABINET-172eed50-3ec6-4f48-b59f-67f58f4a6f89",
+    "name" : "100060729628",
     "special" : false,
     "parentClasses" : [ {
-      "className" : "City",
+      "className" : "Neighborhood",
       "templateName" : null,
-      "name" : "Southampton",
+      "name" : "Sandringham Road",
       "special" : false,
       "parentClasses" : [ {
-        "className" : "State",
+        "className" : "Neighborhood",
         "templateName" : null,
-        "name" : "Hampshire",
+        "name" : "UNDEFINED",
         "special" : false,
-        "parentClasses" : [ ],
+        "parentClasses" : [ {
+          "className" : "City",
+          "templateName" : null,
+          "name" : "Southampton",
+          "special" : false,
+          "parentClasses" : [ ],
+          "attributes" : { }
+        } ],
         "attributes" : { }
       } ],
       "attributes" : { }
     } ],
     "attributes" : {
-      "latitude" : "50.92691827116032",
-      "longitude" : "-1.3725155632366626"
+      "uprn" : "100060729628",
+      "house_num" : null,
+      "osmid" : "239435614",
+      "street" : "Sandringham Road",
+      "latitude" : "50.9264314",
+      "longitude" : "-1.3690827"
     }
   }, {
-    "className" : "OutdoorsCabinet",
+    "className" : "Building",
     "templateName" : null,
-    "name" : "AGGREGATOR-3f35964b-4c9b-409c-87ce-9299073ff699",
+    "name" : "100060729626",
     "special" : false,
     "parentClasses" : [ {
-      "className" : "City",
+      "className" : "Neighborhood",
       "templateName" : null,
-      "name" : "Southampton",
+      "name" : "Sandringham Road",
       "special" : false,
       "parentClasses" : [ {
-        "className" : "State",
+        "className" : "Neighborhood",
         "templateName" : null,
-        "name" : "Hampshire",
+        "name" : "UNDEFINED",
         "special" : false,
-        "parentClasses" : [ ],
+        "parentClasses" : [ {
+          "className" : "City",
+          "templateName" : null,
+          "name" : "Southampton",
+          "special" : false,
+          "parentClasses" : [ ],
+          "attributes" : { }
+        } ],
         "attributes" : { }
       } ],
       "attributes" : { }
     } ],
     "attributes" : {
-      "latitude" : "50.925197605666135",
-      "longitude" : "-1.3734558932734462"
+      "uprn" : "100060729626",
+      "house_num" : null,
+      "osmid" : "239435615",
+      "street" : "Sandringham Road",
+      "latitude" : "50.9265842",
+      "longitude" : "-1.3690664"
     }
   }, {
-    "className" : "OutdoorsCabinet",
+    "className" : "Building",
     "templateName" : null,
-    "name" : "CABINET-060600fa-d7bb-4548-ada0-fa5493d71995",
+    "name" : "100060729621",
     "special" : false,
     "parentClasses" : [ {
-      "className" : "City",
+      "className" : "Neighborhood",
       "templateName" : null,
-      "name" : "Southampton",
+      "name" : "Sandringham Road",
       "special" : false,
       "parentClasses" : [ {
-        "className" : "State",
+        "className" : "Neighborhood",
         "templateName" : null,
-        "name" : "Hampshire",
+        "name" : "UNDEFINED",
         "special" : false,
-        "parentClasses" : [ ],
+        "parentClasses" : [ {
+          "className" : "City",
+          "templateName" : null,
+          "name" : "Southampton",
+          "special" : false,
+          "parentClasses" : [ ],
+          "attributes" : { }
+        } ],
         "attributes" : { }
       } ],
       "attributes" : { }
     } ],
     "attributes" : {
-      "latitude" : "50.92411548051721",
-      "longitude" : "-1.3718265381958803"
+      "uprn" : "100060729621",
+      "house_num" : null,
+      "osmid" : "239435616",
+      "street" : "Sandringham Road",
+      "latitude" : "50.926692",
+      "longitude" : "-1.3690365"
     }
   }, {
-    "className" : "OutdoorsCabinet",
+    "className" : "Building",
     "templateName" : null,
-    "name" : "AGGREGATOR-3f35964b-4c9b-409c-87ce-9299073ff699",
+    "name" : "100060729619",
     "special" : false,
     "parentClasses" : [ {
-      "className" : "City",
+      "className" : "Neighborhood",
       "templateName" : null,
-      "name" : "Southampton",
+      "name" : "Sandringham Road",
       "special" : false,
       "parentClasses" : [ {
-        "className" : "State",
+        "className" : "Neighborhood",
         "templateName" : null,
-        "name" : "Hampshire",
+        "name" : "UNDEFINED",
         "special" : false,
-        "parentClasses" : [ ],
+        "parentClasses" : [ {
+          "className" : "City",
+          "templateName" : null,
+          "name" : "Southampton",
+          "special" : false,
+          "parentClasses" : [ ],
+          "attributes" : { }
+        } ],
         "attributes" : { }
       } ],
       "attributes" : { }
     } ],
     "attributes" : {
-      "latitude" : "50.925197605666135",
-      "longitude" : "-1.3734558932734462"
+      "uprn" : "100060729619",
+      "house_num" : null,
+      "osmid" : "239436008",
+      "street" : "Sandringham Road",
+      "latitude" : "50.9268177",
+      "longitude" : "-1.3690063"
     }
   }, {
-    "className" : "OutdoorsCabinet",
+    "className" : "Building",
     "templateName" : null,
-    "name" : "CABINET-1cfcb265-598a-4067-aaef-c07653826e7d",
+    "name" : "100060729597",
     "special" : false,
     "parentClasses" : [ {
-      "className" : "City",
+      "className" : "Neighborhood",
       "templateName" : null,
-      "name" : "Southampton",
+      "name" : "Sandringham Road",
       "special" : false,
       "parentClasses" : [ {
-        "className" : "State",
+        "className" : "Neighborhood",
         "templateName" : null,
-        "name" : "Hampshire",
+        "name" : "UNDEFINED",
         "special" : false,
-        "parentClasses" : [ ],
+        "parentClasses" : [ {
+          "className" : "City",
+          "templateName" : null,
+          "name" : "Southampton",
+          "special" : false,
+          "parentClasses" : [ ],
+          "attributes" : { }
+        } ],
         "attributes" : { }
       } ],
       "attributes" : { }
     } ],
     "attributes" : {
-      "latitude" : "50.9252589475385",
-      "longitude" : "-1.3738241094970378"
+      "uprn" : "100060729597",
+      "house_num" : null,
+      "osmid" : "239436108",
+      "street" : "Sandringham Road",
+      "latitude" : "50.9274166",
+      "longitude" : "-1.3700084"
     }
   }, {
-    "className" : "OutdoorsCabinet",
+    "className" : "Building",
     "templateName" : null,
-    "name" : "AGGREGATOR-db815997-8d21-48aa-a516-e051803685d8",
+    "name" : "100060729601",
     "special" : false,
     "parentClasses" : [ {
-      "className" : "City",
+      "className" : "Neighborhood",
       "templateName" : null,
-      "name" : "Southampton",
+      "name" : "Sandringham Road",
       "special" : false,
       "parentClasses" : [ {
-        "className" : "State",
+        "className" : "Neighborhood",
         "templateName" : null,
-        "name" : "Hampshire",
+        "name" : "UNDEFINED",
         "special" : false,
-        "parentClasses" : [ ],
+        "parentClasses" : [ {
+          "className" : "City",
+          "templateName" : null,
+          "name" : "Southampton",
+          "special" : false,
+          "parentClasses" : [ ],
+          "attributes" : { }
+        } ],
         "attributes" : { }
       } ],
       "attributes" : { }
     } ],
     "attributes" : {
-      "latitude" : "50.93129599926152",
-      "longitude" : "-1.3695676"
+      "uprn" : "100060729601",
+      "house_num" : null,
+      "osmid" : "240373417",
+      "street" : "Sandringham Road",
+      "latitude" : "50.927388",
+      "longitude" : "-1.36971"
     }
   }, {
-    "className" : "OutdoorsCabinet",
+    "className" : "Building",
     "templateName" : null,
-    "name" : "CABINET-2ac32f0f-c24c-4b0b-b681-a13d986d13df",
+    "name" : "100060729603",
     "special" : false,
     "parentClasses" : [ {
-      "className" : "City",
+      "className" : "Neighborhood",
       "templateName" : null,
-      "name" : "Southampton",
+      "name" : "Sandringham Road",
       "special" : false,
       "parentClasses" : [ {
-        "className" : "State",
+        "className" : "Neighborhood",
         "templateName" : null,
-        "name" : "Hampshire",
+        "name" : "UNDEFINED",
         "special" : false,
-        "parentClasses" : [ ],
+        "parentClasses" : [ {
+          "className" : "City",
+          "templateName" : null,
+          "name" : "Southampton",
+          "special" : false,
+          "parentClasses" : [ ],
+          "attributes" : { }
+        } ],
         "attributes" : { }
       } ],
       "attributes" : { }
     } ],
     "attributes" : {
-      "latitude" : "50.93186199926142",
-      "longitude" : "-1.3689017"
+      "uprn" : "100060729603",
+      "house_num" : null,
+      "osmid" : "240373526",
+      "street" : "Sandringham Road",
+      "latitude" : "50.9273333",
+      "longitude" : "-1.3695685"
     }
   }, {
-    "className" : "OutdoorsCabinet",
+    "className" : "Building",
     "templateName" : null,
-    "name" : "AGGREGATOR-ccef0721-0c08-47dc-858e-5d8f3283fac2",
+    "name" : "100060729605",
     "special" : false,
     "parentClasses" : [ {
-      "className" : "City",
+      "className" : "Neighborhood",
       "templateName" : null,
-      "name" : "Southampton",
+      "name" : "Sandringham Road",
       "special" : false,
       "parentClasses" : [ {
-        "className" : "State",
+        "className" : "Neighborhood",
         "templateName" : null,
-        "name" : "Hampshire",
+        "name" : "UNDEFINED",
         "special" : false,
-        "parentClasses" : [ ],
+        "parentClasses" : [ {
+          "className" : "City",
+          "templateName" : null,
+          "name" : "Southampton",
+          "special" : false,
+          "parentClasses" : [ ],
+          "attributes" : { }
+        } ],
         "attributes" : { }
       } ],
       "attributes" : { }
     } ],
     "attributes" : {
-      "latitude" : "50.92899439365573",
-      "longitude" : "-1.3761516573133212"
+      "uprn" : "100060729605",
+      "house_num" : null,
+      "osmid" : "240373527",
+      "street" : "Sandringham Road",
+      "latitude" : "50.9272968",
+      "longitude" : "-1.3694694"
     }
   }, {
-    "className" : "OutdoorsCabinet",
+    "className" : "Building",
     "templateName" : null,
-    "name" : "CABINET-5f1bb50d-ed68-43e7-91d6-a891243d9af6",
+    "name" : "100060729607",
     "special" : false,
     "parentClasses" : [ {
-      "className" : "City",
+      "className" : "Neighborhood",
       "templateName" : null,
-      "name" : "Southampton",
+      "name" : "Sandringham Road",
       "special" : false,
       "parentClasses" : [ {
-        "className" : "State",
+        "className" : "Neighborhood",
         "templateName" : null,
-        "name" : "Hampshire",
+        "name" : "UNDEFINED",
         "special" : false,
-        "parentClasses" : [ ],
+        "parentClasses" : [ {
+          "className" : "City",
+          "templateName" : null,
+          "name" : "Southampton",
+          "special" : false,
+          "parentClasses" : [ ],
+          "attributes" : { }
+        } ],
         "attributes" : { }
       } ],
       "attributes" : { }
     } ],
     "attributes" : {
-      "latitude" : "50.92941266501363",
-      "longitude" : "-1.375243744845451"
+      "uprn" : "100060729607",
+      "house_num" : null,
+      "osmid" : "240373571",
+      "street" : "Sandringham Road",
+      "latitude" : "50.9272422",
+      "longitude" : "-1.369342"
     }
   }, {
-    "className" : "OutdoorsCabinet",
+    "className" : "Building",
     "templateName" : null,
-    "name" : "AGGREGATOR-ccef0721-0c08-47dc-858e-5d8f3283fac2",
+    "name" : "100060729609",
     "special" : false,
     "parentClasses" : [ {
-      "className" : "City",
+      "className" : "Neighborhood",
       "templateName" : null,
-      "name" : "Southampton",
+      "name" : "Sandringham Road",
       "special" : false,
       "parentClasses" : [ {
-        "className" : "State",
+        "className" : "Neighborhood",
         "templateName" : null,
-        "name" : "Hampshire",
+        "name" : "UNDEFINED",
         "special" : false,
-        "parentClasses" : [ ],
+        "parentClasses" : [ {
+          "className" : "City",
+          "templateName" : null,
+          "name" : "Southampton",
+          "special" : false,
+          "parentClasses" : [ ],
+          "attributes" : { }
+        } ],
         "attributes" : { }
       } ],
       "attributes" : { }
     } ],
     "attributes" : {
-      "latitude" : "50.92899439365573",
-      "longitude" : "-1.3761516573133212"
+      "uprn" : "100060729609",
+      "house_num" : null,
+      "osmid" : "240373643",
+      "street" : "Sandringham Road",
+      "latitude" : "50.9271791",
+      "longitude" : "-1.3693144"
     }
   }, {
-    "className" : "OutdoorsCabinet",
+    "className" : "Building",
     "templateName" : null,
-    "name" : "CABINET-d7f9652b-6cfb-4a67-a881-996f1c6c7da6",
+    "name" : "100060729611",
     "special" : false,
     "parentClasses" : [ {
-      "className" : "City",
+      "className" : "Neighborhood",
       "templateName" : null,
-      "name" : "Southampton",
+      "name" : "Sandringham Road",
       "special" : false,
       "parentClasses" : [ {
-        "className" : "State",
+        "className" : "Neighborhood",
         "templateName" : null,
-        "name" : "Hampshire",
+        "name" : "UNDEFINED",
         "special" : false,
-        "parentClasses" : [ ],
+        "parentClasses" : [ {
+          "className" : "City",
+          "templateName" : null,
+          "name" : "Southampton",
+          "special" : false,
+          "parentClasses" : [ ],
+          "attributes" : { }
+        } ],
         "attributes" : { }
       } ],
       "attributes" : { }
     } ],
     "attributes" : {
-      "latitude" : "50.92734047499498",
-      "longitude" : "-1.3772255792789563"
+      "uprn" : "100060729611",
+      "house_num" : null,
+      "osmid" : "240373644",
+      "street" : "Sandringham Road",
+      "latitude" : "50.9271244",
+      "longitude" : "-1.3691729"
     }
   }, {
-    "className" : "OutdoorsCabinet",
+    "className" : "Building",
     "templateName" : null,
-    "name" : "AGGREGATOR-db815997-8d21-48aa-a516-e051803685d8",
+    "name" : "100060729615",
     "special" : false,
     "parentClasses" : [ {
-      "className" : "City",
+      "className" : "Neighborhood",
       "templateName" : null,
-      "name" : "Southampton",
+      "name" : "Sandringham Road",
       "special" : false,
       "parentClasses" : [ {
-        "className" : "State",
+        "className" : "Neighborhood",
         "templateName" : null,
-        "name" : "Hampshire",
+        "name" : "UNDEFINED",
         "special" : false,
-        "parentClasses" : [ ],
+        "parentClasses" : [ {
+          "className" : "City",
+          "templateName" : null,
+          "name" : "Southampton",
+          "special" : false,
+          "parentClasses" : [ ],
+          "attributes" : { }
+        } ],
         "attributes" : { }
       } ],
       "attributes" : { }
     } ],
     "attributes" : {
-      "latitude" : "50.93129599926152",
-      "longitude" : "-1.3695676"
+      "uprn" : "100060729615",
+      "house_num" : null,
+      "osmid" : "240373897",
+      "street" : "Sandringham Road",
+      "latitude" : "50.927025",
+      "longitude" : "-1.3690889"
     }
   }, {
-    "className" : "OutdoorsCabinet",
+    "className" : "Building",
     "templateName" : null,
-    "name" : "CABINET-a6795133-3b6b-487d-8ebd-4f063dde5d22",
+    "name" : "100060729617",
     "special" : false,
     "parentClasses" : [ {
-      "className" : "City",
+      "className" : "Neighborhood",
       "templateName" : null,
-      "name" : "Southampton",
+      "name" : "Sandringham Road",
       "special" : false,
       "parentClasses" : [ {
-        "className" : "State",
+        "className" : "Neighborhood",
         "templateName" : null,
-        "name" : "Hampshire",
+        "name" : "UNDEFINED",
         "special" : false,
-        "parentClasses" : [ ],
+        "parentClasses" : [ {
+          "className" : "City",
+          "templateName" : null,
+          "name" : "Southampton",
+          "special" : false,
+          "parentClasses" : [ ],
+          "attributes" : { }
+        } ],
         "attributes" : { }
       } ],
       "attributes" : { }
     } ],
     "attributes" : {
-      "latitude" : "50.9318557284965",
-      "longitude" : "-1.3719530601955137"
+      "uprn" : "100060729617",
+      "house_num" : null,
+      "osmid" : "240373898",
+      "street" : "Sandringham Road",
+      "latitude" : "50.9268897",
+      "longitude" : "-1.3690195"
     }
   }, {
-    "className" : "OutdoorsCabinet",
+    "className" : "Building",
     "templateName" : null,
-    "name" : "AGGREGATOR-3f35964b-4c9b-409c-87ce-9299073ff699",
+    "name" : "100060695341",
     "special" : false,
     "parentClasses" : [ {
-      "className" : "City",
+      "className" : "Neighborhood",
       "templateName" : null,
-      "name" : "Southampton",
+      "name" : "Dimond Road",
       "special" : false,
       "parentClasses" : [ {
-        "className" : "State",
+        "className" : "Neighborhood",
         "templateName" : null,
-        "name" : "Hampshire",
+        "name" : "UNDEFINED",
         "special" : false,
-        "parentClasses" : [ ],
+        "parentClasses" : [ {
+          "className" : "City",
+          "templateName" : null,
+          "name" : "Southampton",
+          "special" : false,
+          "parentClasses" : [ ],
+          "attributes" : { }
+        } ],
         "attributes" : { }
       } ],
       "attributes" : { }
     } ],
     "attributes" : {
-      "latitude" : "50.925197605666135",
-      "longitude" : "-1.3734558932734462"
+      "uprn" : "100060695341",
+      "house_num" : null,
+      "osmid" : "240374260",
+      "street" : "Dimond Road",
+      "latitude" : "50.9275625",
+      "longitude" : "-1.3703764"
     }
   }, {
-    "className" : "OutdoorsCabinet",
+    "className" : "Building",
     "templateName" : null,
-    "name" : "CABINET-1af6e3f5-07f6-4008-82af-270723e716af",
+    "name" : "100060695338",
     "special" : false,
     "parentClasses" : [ {
-      "className" : "City",
+      "className" : "Neighborhood",
       "templateName" : null,
-      "name" : "Southampton",
+      "name" : "Dimond Road",
       "special" : false,
       "parentClasses" : [ {
-        "className" : "State",
+        "className" : "Neighborhood",
         "templateName" : null,
-        "name" : "Hampshire",
+        "name" : "UNDEFINED",
         "special" : false,
-        "parentClasses" : [ ],
+        "parentClasses" : [ {
+          "className" : "City",
+          "templateName" : null,
+          "name" : "Southampton",
+          "special" : false,
+          "parentClasses" : [ ],
+          "attributes" : { }
+        } ],
         "attributes" : { }
       } ],
       "attributes" : { }
     } ],
     "attributes" : {
-      "latitude" : "50.924328099262745",
-      "longitude" : "-1.3753638"
+      "uprn" : "100060695338",
+      "house_num" : null,
+      "osmid" : "240374338",
+      "street" : "Dimond Road",
+      "latitude" : "50.9274727",
+      "longitude" : "-1.3703919"
+    }
+  }, {
+    "className" : "Building",
+    "templateName" : null,
+    "name" : "100060695336",
+    "special" : false,
+    "parentClasses" : [ {
+      "className" : "Neighborhood",
+      "templateName" : null,
+      "name" : "Dimond Road",
+      "special" : false,
+      "parentClasses" : [ {
+        "className" : "Neighborhood",
+        "templateName" : null,
+        "name" : "UNDEFINED",
+        "special" : false,
+        "parentClasses" : [ {
+          "className" : "City",
+          "templateName" : null,
+          "name" : "Southampton",
+          "special" : false,
+          "parentClasses" : [ ],
+          "attributes" : { }
+        } ],
+        "attributes" : { }
+      } ],
+      "attributes" : { }
+    } ],
+    "attributes" : {
+      "uprn" : "100060695336",
+      "house_num" : null,
+      "osmid" : "240374387",
+      "street" : "Dimond Road",
+      "latitude" : "50.9274186",
+      "longitude" : "-1.3703784"
+    }
+  }, {
+    "className" : "Building",
+    "templateName" : null,
+    "name" : "100060695334",
+    "special" : false,
+    "parentClasses" : [ {
+      "className" : "Neighborhood",
+      "templateName" : null,
+      "name" : "Dimond Road",
+      "special" : false,
+      "parentClasses" : [ {
+        "className" : "Neighborhood",
+        "templateName" : null,
+        "name" : "UNDEFINED",
+        "special" : false,
+        "parentClasses" : [ {
+          "className" : "City",
+          "templateName" : null,
+          "name" : "Southampton",
+          "special" : false,
+          "parentClasses" : [ ],
+          "attributes" : { }
+        } ],
+        "attributes" : { }
+      } ],
+      "attributes" : { }
+    } ],
+    "attributes" : {
+      "uprn" : "100060695334",
+      "house_num" : null,
+      "osmid" : "240374528",
+      "street" : "Dimond Road",
+      "latitude" : "50.9273107",
+      "longitude" : "-1.3703798"
+    }
+  }, {
+    "className" : "Building",
+    "templateName" : null,
+    "name" : "100060695332",
+    "special" : false,
+    "parentClasses" : [ {
+      "className" : "Neighborhood",
+      "templateName" : null,
+      "name" : "Dimond Road",
+      "special" : false,
+      "parentClasses" : [ {
+        "className" : "Neighborhood",
+        "templateName" : null,
+        "name" : "UNDEFINED",
+        "special" : false,
+        "parentClasses" : [ {
+          "className" : "City",
+          "templateName" : null,
+          "name" : "Southampton",
+          "special" : false,
+          "parentClasses" : [ ],
+          "attributes" : { }
+        } ],
+        "attributes" : { }
+      } ],
+      "attributes" : { }
+    } ],
+    "attributes" : {
+      "uprn" : "100060695332",
+      "house_num" : null,
+      "osmid" : "240374565",
+      "street" : "Dimond Road",
+      "latitude" : "50.9272477",
+      "longitude" : "-1.3703665"
+    }
+  }, {
+    "className" : "Building",
+    "templateName" : null,
+    "name" : "100060695330",
+    "special" : false,
+    "parentClasses" : [ {
+      "className" : "Neighborhood",
+      "templateName" : null,
+      "name" : "Dimond Road",
+      "special" : false,
+      "parentClasses" : [ {
+        "className" : "Neighborhood",
+        "templateName" : null,
+        "name" : "UNDEFINED",
+        "special" : false,
+        "parentClasses" : [ {
+          "className" : "City",
+          "templateName" : null,
+          "name" : "Southampton",
+          "special" : false,
+          "parentClasses" : [ ],
+          "attributes" : { }
+        } ],
+        "attributes" : { }
+      } ],
+      "attributes" : { }
+    } ],
+    "attributes" : {
+      "uprn" : "100060695330",
+      "house_num" : null,
+      "osmid" : "240374610",
+      "street" : "Dimond Road",
+      "latitude" : "50.9271848",
+      "longitude" : "-1.3703673"
+    }
+  }, {
+    "className" : "Building",
+    "templateName" : null,
+    "name" : "100060695328",
+    "special" : false,
+    "parentClasses" : [ {
+      "className" : "Neighborhood",
+      "templateName" : null,
+      "name" : "Dimond Road",
+      "special" : false,
+      "parentClasses" : [ {
+        "className" : "Neighborhood",
+        "templateName" : null,
+        "name" : "UNDEFINED",
+        "special" : false,
+        "parentClasses" : [ {
+          "className" : "City",
+          "templateName" : null,
+          "name" : "Southampton",
+          "special" : false,
+          "parentClasses" : [ ],
+          "attributes" : { }
+        } ],
+        "attributes" : { }
+      } ],
+      "attributes" : { }
+    } ],
+    "attributes" : {
+      "uprn" : "100060695328",
+      "house_num" : null,
+      "osmid" : "240374627",
+      "street" : "Dimond Road",
+      "latitude" : "50.9271218",
+      "longitude" : "-1.3703682"
+    }
+  }, {
+    "className" : "Building",
+    "templateName" : null,
+    "name" : "100060695326",
+    "special" : false,
+    "parentClasses" : [ {
+      "className" : "Neighborhood",
+      "templateName" : null,
+      "name" : "Dimond Road",
+      "special" : false,
+      "parentClasses" : [ {
+        "className" : "Neighborhood",
+        "templateName" : null,
+        "name" : "UNDEFINED",
+        "special" : false,
+        "parentClasses" : [ {
+          "className" : "City",
+          "templateName" : null,
+          "name" : "Southampton",
+          "special" : false,
+          "parentClasses" : [ ],
+          "attributes" : { }
+        } ],
+        "attributes" : { }
+      } ],
+      "attributes" : { }
+    } ],
+    "attributes" : {
+      "uprn" : "100060695326",
+      "house_num" : null,
+      "osmid" : "240374654",
+      "street" : "Dimond Road",
+      "latitude" : "50.9270319",
+      "longitude" : "-1.3703694"
+    }
+  }, {
+    "className" : "Building",
+    "templateName" : null,
+    "name" : "100060695324",
+    "special" : false,
+    "parentClasses" : [ {
+      "className" : "Neighborhood",
+      "templateName" : null,
+      "name" : "Dimond Road",
+      "special" : false,
+      "parentClasses" : [ {
+        "className" : "Neighborhood",
+        "templateName" : null,
+        "name" : "UNDEFINED",
+        "special" : false,
+        "parentClasses" : [ {
+          "className" : "City",
+          "templateName" : null,
+          "name" : "Southampton",
+          "special" : false,
+          "parentClasses" : [ ],
+          "attributes" : { }
+        } ],
+        "attributes" : { }
+      } ],
+      "attributes" : { }
+    } ],
+    "attributes" : {
+      "uprn" : "100060695324",
+      "house_num" : null,
+      "osmid" : "240374691",
+      "street" : "Dimond Road",
+      "latitude" : "50.9269688",
+      "longitude" : "-1.3703418"
+    }
+  }, {
+    "className" : "Building",
+    "templateName" : null,
+    "name" : "100060695322",
+    "special" : false,
+    "parentClasses" : [ {
+      "className" : "Neighborhood",
+      "templateName" : null,
+      "name" : "Dimond Road",
+      "special" : false,
+      "parentClasses" : [ {
+        "className" : "Neighborhood",
+        "templateName" : null,
+        "name" : "UNDEFINED",
+        "special" : false,
+        "parentClasses" : [ {
+          "className" : "City",
+          "templateName" : null,
+          "name" : "Southampton",
+          "special" : false,
+          "parentClasses" : [ ],
+          "attributes" : { }
+        } ],
+        "attributes" : { }
+      } ],
+      "attributes" : { }
+    } ],
+    "attributes" : {
+      "uprn" : "100060695322",
+      "house_num" : null,
+      "osmid" : "240375130",
+      "street" : "Dimond Road",
+      "latitude" : "50.9268967",
+      "longitude" : "-1.3703143"
+    }
+  }, {
+    "className" : "Building",
+    "templateName" : null,
+    "name" : "100060695318",
+    "special" : false,
+    "parentClasses" : [ {
+      "className" : "Neighborhood",
+      "templateName" : null,
+      "name" : "Dimond Road",
+      "special" : false,
+      "parentClasses" : [ {
+        "className" : "Neighborhood",
+        "templateName" : null,
+        "name" : "UNDEFINED",
+        "special" : false,
+        "parentClasses" : [ {
+          "className" : "City",
+          "templateName" : null,
+          "name" : "Southampton",
+          "special" : false,
+          "parentClasses" : [ ],
+          "attributes" : { }
+        } ],
+        "attributes" : { }
+      } ],
+      "attributes" : { }
+    } ],
+    "attributes" : {
+      "uprn" : "100060695318",
+      "house_num" : null,
+      "osmid" : "240375131",
+      "street" : "Dimond Road",
+      "latitude" : "50.9268158",
+      "longitude" : "-1.3703154"
+    }
+  }, {
+    "className" : "Building",
+    "templateName" : null,
+    "name" : "100060695316",
+    "special" : false,
+    "parentClasses" : [ {
+      "className" : "Neighborhood",
+      "templateName" : null,
+      "name" : "Dimond Road",
+      "special" : false,
+      "parentClasses" : [ {
+        "className" : "Neighborhood",
+        "templateName" : null,
+        "name" : "UNDEFINED",
+        "special" : false,
+        "parentClasses" : [ {
+          "className" : "City",
+          "templateName" : null,
+          "name" : "Southampton",
+          "special" : false,
+          "parentClasses" : [ ],
+          "attributes" : { }
+        } ],
+        "attributes" : { }
+      } ],
+      "attributes" : { }
+    } ],
+    "attributes" : {
+      "uprn" : "100060695316",
+      "house_num" : null,
+      "osmid" : "240375132",
+      "street" : "Dimond Road",
+      "latitude" : "50.9267438",
+      "longitude" : "-1.3703164"
+    }
+  }, {
+    "className" : "Building",
+    "templateName" : null,
+    "name" : "100060695315",
+    "special" : false,
+    "parentClasses" : [ {
+      "className" : "Neighborhood",
+      "templateName" : null,
+      "name" : "Dimond Road",
+      "special" : false,
+      "parentClasses" : [ {
+        "className" : "Neighborhood",
+        "templateName" : null,
+        "name" : "UNDEFINED",
+        "special" : false,
+        "parentClasses" : [ {
+          "className" : "City",
+          "templateName" : null,
+          "name" : "Southampton",
+          "special" : false,
+          "parentClasses" : [ ],
+          "attributes" : { }
+        } ],
+        "attributes" : { }
+      } ],
+      "attributes" : { }
+    } ],
+    "attributes" : {
+      "uprn" : "100060695315",
+      "house_num" : null,
+      "osmid" : "240375133",
+      "street" : "Dimond Road",
+      "latitude" : "50.9266269",
+      "longitude" : "-1.3703179"
+    }
+  }, {
+    "className" : "Building",
+    "templateName" : null,
+    "name" : "100060695313",
+    "special" : false,
+    "parentClasses" : [ {
+      "className" : "Neighborhood",
+      "templateName" : null,
+      "name" : "Dimond Close",
+      "special" : false,
+      "parentClasses" : [ {
+        "className" : "Neighborhood",
+        "templateName" : null,
+        "name" : "UNDEFINED",
+        "special" : false,
+        "parentClasses" : [ {
+          "className" : "City",
+          "templateName" : null,
+          "name" : "Southampton",
+          "special" : false,
+          "parentClasses" : [ ],
+          "attributes" : { }
+        } ],
+        "attributes" : { }
+      } ],
+      "attributes" : { }
+    } ],
+    "attributes" : {
+      "uprn" : "100060695313",
+      "house_num" : null,
+      "osmid" : "240375134",
+      "street" : "Dimond Close",
+      "latitude" : "50.9265367",
+      "longitude" : "-1.3702622"
+    }
+  }, {
+    "className" : "Building",
+    "templateName" : null,
+    "name" : "100060695310",
+    "special" : false,
+    "parentClasses" : [ {
+      "className" : "Neighborhood",
+      "templateName" : null,
+      "name" : "Dimond Road",
+      "special" : false,
+      "parentClasses" : [ {
+        "className" : "Neighborhood",
+        "templateName" : null,
+        "name" : "UNDEFINED",
+        "special" : false,
+        "parentClasses" : [ {
+          "className" : "City",
+          "templateName" : null,
+          "name" : "Southampton",
+          "special" : false,
+          "parentClasses" : [ ],
+          "attributes" : { }
+        } ],
+        "attributes" : { }
+      } ],
+      "attributes" : { }
+    } ],
+    "attributes" : {
+      "uprn" : "100060695310",
+      "house_num" : null,
+      "osmid" : "240375204",
+      "street" : "Dimond Road",
+      "latitude" : "50.926348",
+      "longitude" : "-1.3702933"
+    }
+  }, {
+    "className" : "Building",
+    "templateName" : null,
+    "name" : "100060695308",
+    "special" : false,
+    "parentClasses" : [ {
+      "className" : "Neighborhood",
+      "templateName" : null,
+      "name" : "Dimond Road",
+      "special" : false,
+      "parentClasses" : [ {
+        "className" : "Neighborhood",
+        "templateName" : null,
+        "name" : "UNDEFINED",
+        "special" : false,
+        "parentClasses" : [ {
+          "className" : "City",
+          "templateName" : null,
+          "name" : "Southampton",
+          "special" : false,
+          "parentClasses" : [ ],
+          "attributes" : { }
+        } ],
+        "attributes" : { }
+      } ],
+      "attributes" : { }
+    } ],
+    "attributes" : {
+      "uprn" : "100060695308",
+      "house_num" : null,
+      "osmid" : "240375706",
+      "street" : "Dimond Road",
+      "latitude" : "50.9262491",
+      "longitude" : "-1.3702946"
+    }
+  }, {
+    "className" : "Building",
+    "templateName" : null,
+    "name" : "100060695306",
+    "special" : false,
+    "parentClasses" : [ {
+      "className" : "Neighborhood",
+      "templateName" : null,
+      "name" : "Dimond Road",
+      "special" : false,
+      "parentClasses" : [ {
+        "className" : "Neighborhood",
+        "templateName" : null,
+        "name" : "UNDEFINED",
+        "special" : false,
+        "parentClasses" : [ {
+          "className" : "City",
+          "templateName" : null,
+          "name" : "Southampton",
+          "special" : false,
+          "parentClasses" : [ ],
+          "attributes" : { }
+        } ],
+        "attributes" : { }
+      } ],
+      "attributes" : { }
+    } ],
+    "attributes" : {
+      "uprn" : "100060695306",
+      "house_num" : null,
+      "osmid" : "240375707",
+      "street" : "Dimond Road",
+      "latitude" : "50.9261952",
+      "longitude" : "-1.3702953"
+    }
+  }, {
+    "className" : "Building",
+    "templateName" : null,
+    "name" : "100060695305",
+    "special" : false,
+    "parentClasses" : [ {
+      "className" : "Neighborhood",
+      "templateName" : null,
+      "name" : "Dimond Road",
+      "special" : false,
+      "parentClasses" : [ {
+        "className" : "Neighborhood",
+        "templateName" : null,
+        "name" : "UNDEFINED",
+        "special" : false,
+        "parentClasses" : [ {
+          "className" : "City",
+          "templateName" : null,
+          "name" : "Southampton",
+          "special" : false,
+          "parentClasses" : [ ],
+          "attributes" : { }
+        } ],
+        "attributes" : { }
+      } ],
+      "attributes" : { }
+    } ],
+    "attributes" : {
+      "uprn" : "100060695305",
+      "house_num" : null,
+      "osmid" : "240375708",
+      "street" : "Dimond Road",
+      "latitude" : "50.9260962",
+      "longitude" : "-1.3702824"
+    }
+  }, {
+    "className" : "Building",
+    "templateName" : null,
+    "name" : "100060695304",
+    "special" : false,
+    "parentClasses" : [ {
+      "className" : "Neighborhood",
+      "templateName" : null,
+      "name" : "Dimond Road",
+      "special" : false,
+      "parentClasses" : [ {
+        "className" : "Neighborhood",
+        "templateName" : null,
+        "name" : "UNDEFINED",
+        "special" : false,
+        "parentClasses" : [ {
+          "className" : "City",
+          "templateName" : null,
+          "name" : "Southampton",
+          "special" : false,
+          "parentClasses" : [ ],
+          "attributes" : { }
+        } ],
+        "attributes" : { }
+      } ],
+      "attributes" : { }
+    } ],
+    "attributes" : {
+      "uprn" : "100060695304",
+      "house_num" : null,
+      "osmid" : "240375709",
+      "street" : "Dimond Road",
+      "latitude" : "50.9260512",
+      "longitude" : "-1.370283"
+    }
+  }, {
+    "className" : "Building",
+    "templateName" : null,
+    "name" : "100060695302",
+    "special" : false,
+    "parentClasses" : [ {
+      "className" : "Neighborhood",
+      "templateName" : null,
+      "name" : "Dimond Road",
+      "special" : false,
+      "parentClasses" : [ {
+        "className" : "Neighborhood",
+        "templateName" : null,
+        "name" : "UNDEFINED",
+        "special" : false,
+        "parentClasses" : [ {
+          "className" : "City",
+          "templateName" : null,
+          "name" : "Southampton",
+          "special" : false,
+          "parentClasses" : [ ],
+          "attributes" : { }
+        } ],
+        "attributes" : { }
+      } ],
+      "attributes" : { }
+    } ],
+    "attributes" : {
+      "uprn" : "100060695302",
+      "house_num" : null,
+      "osmid" : "240375914",
+      "street" : "Dimond Road",
+      "latitude" : "50.9259702",
+      "longitude" : "-1.3702699"
+    }
+  }, {
+    "className" : "Building",
+    "templateName" : null,
+    "name" : "100060695300",
+    "special" : false,
+    "parentClasses" : [ {
+      "className" : "Neighborhood",
+      "templateName" : null,
+      "name" : "Dimond Road",
+      "special" : false,
+      "parentClasses" : [ {
+        "className" : "Neighborhood",
+        "templateName" : null,
+        "name" : "UNDEFINED",
+        "special" : false,
+        "parentClasses" : [ {
+          "className" : "City",
+          "templateName" : null,
+          "name" : "Southampton",
+          "special" : false,
+          "parentClasses" : [ ],
+          "attributes" : { }
+        } ],
+        "attributes" : { }
+      } ],
+      "attributes" : { }
+    } ],
+    "attributes" : {
+      "uprn" : "100060695300",
+      "house_num" : null,
+      "osmid" : "240375934",
+      "street" : "Dimond Road",
+      "latitude" : "50.9259252",
+      "longitude" : "-1.3702563"
+    }
+  }, {
+    "className" : "Building",
+    "templateName" : null,
+    "name" : "100060695298",
+    "special" : false,
+    "parentClasses" : [ {
+      "className" : "Neighborhood",
+      "templateName" : null,
+      "name" : "Dimond Road",
+      "special" : false,
+      "parentClasses" : [ {
+        "className" : "Neighborhood",
+        "templateName" : null,
+        "name" : "UNDEFINED",
+        "special" : false,
+        "parentClasses" : [ {
+          "className" : "City",
+          "templateName" : null,
+          "name" : "Southampton",
+          "special" : false,
+          "parentClasses" : [ ],
+          "attributes" : { }
+        } ],
+        "attributes" : { }
+      } ],
+      "attributes" : { }
+    } ],
+    "attributes" : {
+      "uprn" : "100060695298",
+      "house_num" : null,
+      "osmid" : "240375983",
+      "street" : "Dimond Road",
+      "latitude" : "50.9258351",
+      "longitude" : "-1.3702291"
+    }
+  }, {
+    "className" : "Building",
+    "templateName" : null,
+    "name" : "100060695296",
+    "special" : false,
+    "parentClasses" : [ {
+      "className" : "Neighborhood",
+      "templateName" : null,
+      "name" : "Dimond Road",
+      "special" : false,
+      "parentClasses" : [ {
+        "className" : "Neighborhood",
+        "templateName" : null,
+        "name" : "UNDEFINED",
+        "special" : false,
+        "parentClasses" : [ {
+          "className" : "City",
+          "templateName" : null,
+          "name" : "Southampton",
+          "special" : false,
+          "parentClasses" : [ ],
+          "attributes" : { }
+        } ],
+        "attributes" : { }
+      } ],
+      "attributes" : { }
+    } ],
+    "attributes" : {
+      "uprn" : "100060695296",
+      "house_num" : null,
+      "osmid" : "240376016",
+      "street" : "Dimond Road",
+      "latitude" : "50.9257632",
+      "longitude" : "-1.37023"
+    }
+  }, {
+    "className" : "Building",
+    "templateName" : null,
+    "name" : "100062513991",
+    "special" : false,
+    "parentClasses" : [ {
+      "className" : "Neighborhood",
+      "templateName" : null,
+      "name" : "Dimond Road",
+      "special" : false,
+      "parentClasses" : [ {
+        "className" : "Neighborhood",
+        "templateName" : null,
+        "name" : "UNDEFINED",
+        "special" : false,
+        "parentClasses" : [ {
+          "className" : "City",
+          "templateName" : null,
+          "name" : "Southampton",
+          "special" : false,
+          "parentClasses" : [ ],
+          "attributes" : { }
+        } ],
+        "attributes" : { }
+      } ],
+      "attributes" : { }
+    } ],
+    "attributes" : {
+      "uprn" : "100062513991",
+      "house_num" : null,
+      "osmid" : "240376529",
+      "street" : "Dimond Road",
+      "latitude" : "50.9262789",
+      "longitude" : "-1.3708064"
+    }
+  }, {
+    "className" : "Building",
+    "templateName" : null,
+    "name" : "100060695303",
+    "special" : false,
+    "parentClasses" : [ {
+      "className" : "Neighborhood",
+      "templateName" : null,
+      "name" : "Dimond Road",
+      "special" : false,
+      "parentClasses" : [ {
+        "className" : "Neighborhood",
+        "templateName" : null,
+        "name" : "UNDEFINED",
+        "special" : false,
+        "parentClasses" : [ {
+          "className" : "City",
+          "templateName" : null,
+          "name" : "Southampton",
+          "special" : false,
+          "parentClasses" : [ ],
+          "attributes" : { }
+        } ],
+        "attributes" : { }
+      } ],
+      "attributes" : { }
+    } ],
+    "attributes" : {
+      "uprn" : "100060695303",
+      "house_num" : null,
+      "osmid" : "240376596",
+      "street" : "Dimond Road",
+      "latitude" : "50.9261889",
+      "longitude" : "-1.3708076"
+    }
+  }, {
+    "className" : "Building",
+    "templateName" : null,
+    "name" : "100060695301",
+    "special" : false,
+    "parentClasses" : [ {
+      "className" : "Neighborhood",
+      "templateName" : null,
+      "name" : "Dimond Road",
+      "special" : false,
+      "parentClasses" : [ {
+        "className" : "Neighborhood",
+        "templateName" : null,
+        "name" : "UNDEFINED",
+        "special" : false,
+        "parentClasses" : [ {
+          "className" : "City",
+          "templateName" : null,
+          "name" : "Southampton",
+          "special" : false,
+          "parentClasses" : [ ],
+          "attributes" : { }
+        } ],
+        "attributes" : { }
+      } ],
+      "attributes" : { }
+    } ],
+    "attributes" : {
+      "uprn" : "100060695301",
+      "house_num" : null,
+      "osmid" : "240376597",
+      "street" : "Dimond Road",
+      "latitude" : "50.926135",
+      "longitude" : "-1.3708084"
+    }
+  }, {
+    "className" : "Building",
+    "templateName" : null,
+    "name" : "100060695299",
+    "special" : false,
+    "parentClasses" : [ {
+      "className" : "Neighborhood",
+      "templateName" : null,
+      "name" : "Dimond Road",
+      "special" : false,
+      "parentClasses" : [ {
+        "className" : "Neighborhood",
+        "templateName" : null,
+        "name" : "UNDEFINED",
+        "special" : false,
+        "parentClasses" : [ {
+          "className" : "City",
+          "templateName" : null,
+          "name" : "Southampton",
+          "special" : false,
+          "parentClasses" : [ ],
+          "attributes" : { }
+        } ],
+        "attributes" : { }
+      } ],
+      "attributes" : { }
+    } ],
+    "attributes" : {
+      "uprn" : "100060695299",
+      "house_num" : null,
+      "osmid" : "240376630",
+      "street" : "Dimond Road",
+      "latitude" : "50.9260449",
+      "longitude" : "-1.3707811"
+    }
+  }, {
+    "className" : "Building",
+    "templateName" : null,
+    "name" : "100060695297",
+    "special" : false,
+    "parentClasses" : [ {
+      "className" : "Neighborhood",
+      "templateName" : null,
+      "name" : "Dimond Road",
+      "special" : false,
+      "parentClasses" : [ {
+        "className" : "Neighborhood",
+        "templateName" : null,
+        "name" : "UNDEFINED",
+        "special" : false,
+        "parentClasses" : [ {
+          "className" : "City",
+          "templateName" : null,
+          "name" : "Southampton",
+          "special" : false,
+          "parentClasses" : [ ],
+          "attributes" : { }
+        } ],
+        "attributes" : { }
+      } ],
+      "attributes" : { }
+    } ],
+    "attributes" : {
+      "uprn" : "100060695297",
+      "house_num" : null,
+      "osmid" : "240376804",
+      "street" : "Dimond Road",
+      "latitude" : "50.9260089",
+      "longitude" : "-1.3707816"
+    }
+  }, {
+    "className" : "Building",
+    "templateName" : null,
+    "name" : "100060695294",
+    "special" : false,
+    "parentClasses" : [ {
+      "className" : "Neighborhood",
+      "templateName" : null,
+      "name" : "Dimond Road",
+      "special" : false,
+      "parentClasses" : [ {
+        "className" : "Neighborhood",
+        "templateName" : null,
+        "name" : "UNDEFINED",
+        "special" : false,
+        "parentClasses" : [ {
+          "className" : "City",
+          "templateName" : null,
+          "name" : "Southampton",
+          "special" : false,
+          "parentClasses" : [ ],
+          "attributes" : { }
+        } ],
+        "attributes" : { }
+      } ],
+      "attributes" : { }
+    } ],
+    "attributes" : {
+      "uprn" : "100060695294",
+      "house_num" : null,
+      "osmid" : "240376805",
+      "street" : "Dimond Road",
+      "latitude" : "50.925919",
+      "longitude" : "-1.3707828"
+    }
+  }, {
+    "className" : "Building",
+    "templateName" : null,
+    "name" : "100060695292",
+    "special" : false,
+    "parentClasses" : [ {
+      "className" : "Neighborhood",
+      "templateName" : null,
+      "name" : "Dimond Road",
+      "special" : false,
+      "parentClasses" : [ {
+        "className" : "Neighborhood",
+        "templateName" : null,
+        "name" : "UNDEFINED",
+        "special" : false,
+        "parentClasses" : [ {
+          "className" : "City",
+          "templateName" : null,
+          "name" : "Southampton",
+          "special" : false,
+          "parentClasses" : [ ],
+          "attributes" : { }
+        } ],
+        "attributes" : { }
+      } ],
+      "attributes" : { }
+    } ],
+    "attributes" : {
+      "uprn" : "100060695292",
+      "house_num" : null,
+      "osmid" : "240376806",
+      "street" : "Dimond Road",
+      "latitude" : "50.9258651",
+      "longitude" : "-1.3707836"
+    }
+  }, {
+    "className" : "Building",
+    "templateName" : null,
+    "name" : "100060695290",
+    "special" : false,
+    "parentClasses" : [ {
+      "className" : "Neighborhood",
+      "templateName" : null,
+      "name" : "Dimond Road",
+      "special" : false,
+      "parentClasses" : [ {
+        "className" : "Neighborhood",
+        "templateName" : null,
+        "name" : "UNDEFINED",
+        "special" : false,
+        "parentClasses" : [ {
+          "className" : "City",
+          "templateName" : null,
+          "name" : "Southampton",
+          "special" : false,
+          "parentClasses" : [ ],
+          "attributes" : { }
+        } ],
+        "attributes" : { }
+      } ],
+      "attributes" : { }
+    } ],
+    "attributes" : {
+      "uprn" : "100060695290",
+      "house_num" : null,
+      "osmid" : "240377026",
+      "street" : "Dimond Road",
+      "latitude" : "50.925802",
+      "longitude" : "-1.3707702"
+    }
+  }, {
+    "className" : "Building",
+    "templateName" : null,
+    "name" : "100060695289",
+    "special" : false,
+    "parentClasses" : [ {
+      "className" : "Neighborhood",
+      "templateName" : null,
+      "name" : "Dimond Road",
+      "special" : false,
+      "parentClasses" : [ {
+        "className" : "Neighborhood",
+        "templateName" : null,
+        "name" : "UNDEFINED",
+        "special" : false,
+        "parentClasses" : [ {
+          "className" : "City",
+          "templateName" : null,
+          "name" : "Southampton",
+          "special" : false,
+          "parentClasses" : [ ],
+          "attributes" : { }
+        } ],
+        "attributes" : { }
+      } ],
+      "attributes" : { }
+    } ],
+    "attributes" : {
+      "uprn" : "100060695289",
+      "house_num" : null,
+      "osmid" : "240377027",
+      "street" : "Dimond Road",
+      "latitude" : "50.925721",
+      "longitude" : "-1.3707428"
+    }
+  }, {
+    "className" : "Building",
+    "templateName" : null,
+    "name" : "100060695288",
+    "special" : false,
+    "parentClasses" : [ {
+      "className" : "Neighborhood",
+      "templateName" : null,
+      "name" : "Bond Road",
+      "special" : false,
+      "parentClasses" : [ {
+        "className" : "Neighborhood",
+        "templateName" : null,
+        "name" : "UNDEFINED",
+        "special" : false,
+        "parentClasses" : [ {
+          "className" : "City",
+          "templateName" : null,
+          "name" : "Southampton",
+          "special" : false,
+          "parentClasses" : [ ],
+          "attributes" : { }
+        } ],
+        "attributes" : { }
+      } ],
+      "attributes" : { }
+    } ],
+    "attributes" : {
+      "uprn" : "100060695288",
+      "house_num" : null,
+      "osmid" : "240377028",
+      "street" : "Bond Road",
+      "latitude" : "50.9256669",
+      "longitude" : "-1.3707293"
+    }
+  }, {
+    "className" : "Building",
+    "templateName" : null,
+    "name" : "100060729599",
+    "special" : false,
+    "parentClasses" : [ {
+      "className" : "Neighborhood",
+      "templateName" : null,
+      "name" : "Sandringham Road",
+      "special" : false,
+      "parentClasses" : [ {
+        "className" : "Neighborhood",
+        "templateName" : null,
+        "name" : "UNDEFINED",
+        "special" : false,
+        "parentClasses" : [ {
+          "className" : "City",
+          "templateName" : null,
+          "name" : "Southampton",
+          "special" : false,
+          "parentClasses" : [ ],
+          "attributes" : { }
+        } ],
+        "attributes" : { }
+      } ],
+      "attributes" : { }
+    } ],
+    "attributes" : {
+      "uprn" : "100060729599",
+      "house_num" : null,
+      "osmid" : "240377497",
+      "street" : "Sandringham Road",
+      "latitude" : "50.9274338",
+      "longitude" : "-1.3698517"
+    }
+  }, {
+    "className" : "Building",
+    "templateName" : null,
+    "name" : "100062514550",
+    "special" : false,
+    "parentClasses" : [ {
+      "className" : "Neighborhood",
+      "templateName" : null,
+      "name" : "Cobden Avenue",
+      "special" : false,
+      "parentClasses" : [ {
+        "className" : "Neighborhood",
+        "templateName" : null,
+        "name" : "UNDEFINED",
+        "special" : false,
+        "parentClasses" : [ {
+          "className" : "City",
+          "templateName" : null,
+          "name" : "Southampton",
+          "special" : false,
+          "parentClasses" : [ ],
+          "attributes" : { }
+        } ],
+        "attributes" : { }
+      } ],
+      "attributes" : { }
+    } ],
+    "attributes" : {
+      "uprn" : "100062514550",
+      "house_num" : null,
+      "osmid" : "281280979",
+      "street" : "Cobden Avenue",
+      "latitude" : "50.9234884",
+      "longitude" : "-1.3753259"
+    }
+  }, {
+    "className" : "Building",
+    "templateName" : null,
+    "name" : "10034869145",
+    "special" : false,
+    "parentClasses" : [ {
+      "className" : "Neighborhood",
+      "templateName" : null,
+      "name" : "Oaktree Road",
+      "special" : false,
+      "parentClasses" : [ {
+        "className" : "Neighborhood",
+        "templateName" : null,
+        "name" : "UNDEFINED",
+        "special" : false,
+        "parentClasses" : [ {
+          "className" : "City",
+          "templateName" : null,
+          "name" : "Southampton",
+          "special" : false,
+          "parentClasses" : [ ],
+          "attributes" : { }
+        } ],
+        "attributes" : { }
+      } ],
+      "attributes" : { }
+    } ],
+    "attributes" : {
+      "uprn" : "10034869145",
+      "house_num" : null,
+      "osmid" : "317687716",
+      "street" : "Oaktree Road",
+      "latitude" : "50.932494",
+      "longitude" : "-1.3710355"
+    }
+  }, {
+    "className" : "Building",
+    "templateName" : null,
+    "name" : "100062514003",
+    "special" : false,
+    "parentClasses" : [ {
+      "className" : "Neighborhood",
+      "templateName" : null,
+      "name" : "Oaktree Road",
+      "special" : false,
+      "parentClasses" : [ {
+        "className" : "Neighborhood",
+        "templateName" : null,
+        "name" : "UNDEFINED",
+        "special" : false,
+        "parentClasses" : [ {
+          "className" : "City",
+          "templateName" : null,
+          "name" : "Southampton",
+          "special" : false,
+          "parentClasses" : [ ],
+          "attributes" : { }
+        } ],
+        "attributes" : { }
+      } ],
+      "attributes" : { }
+    } ],
+    "attributes" : {
+      "uprn" : "100062514003",
+      "house_num" : null,
+      "osmid" : "317687722",
+      "street" : "Oaktree Road",
+      "latitude" : "50.9324584",
+      "longitude" : "-1.3710929"
+    }
+  }, {
+    "className" : "Building",
+    "templateName" : null,
+    "name" : "100060720708",
+    "special" : false,
+    "parentClasses" : [ {
+      "className" : "Neighborhood",
+      "templateName" : null,
+      "name" : "Oaktree Road",
+      "special" : false,
+      "parentClasses" : [ {
+        "className" : "Neighborhood",
+        "templateName" : null,
+        "name" : "UNDEFINED",
+        "special" : false,
+        "parentClasses" : [ {
+          "className" : "City",
+          "templateName" : null,
+          "name" : "Southampton",
+          "special" : false,
+          "parentClasses" : [ ],
+          "attributes" : { }
+        } ],
+        "attributes" : { }
+      } ],
+      "attributes" : { }
+    } ],
+    "attributes" : {
+      "uprn" : "100060720708",
+      "house_num" : null,
+      "osmid" : "317687740",
+      "street" : "Oaktree Road",
+      "latitude" : "50.9324316",
+      "longitude" : "-1.3711359"
+    }
+  }, {
+    "className" : "Building",
+    "templateName" : null,
+    "name" : "100062513785",
+    "special" : false,
+    "parentClasses" : [ {
+      "className" : "Neighborhood",
+      "templateName" : null,
+      "name" : "Oaktree Road",
+      "special" : false,
+      "parentClasses" : [ {
+        "className" : "Neighborhood",
+        "templateName" : null,
+        "name" : "UNDEFINED",
+        "special" : false,
+        "parentClasses" : [ {
+          "className" : "City",
+          "templateName" : null,
+          "name" : "Southampton",
+          "special" : false,
+          "parentClasses" : [ ],
+          "attributes" : { }
+        } ],
+        "attributes" : { }
+      } ],
+      "attributes" : { }
+    } ],
+    "attributes" : {
+      "uprn" : "100062513785",
+      "house_num" : null,
+      "osmid" : "317687741",
+      "street" : "Oaktree Road",
+      "latitude" : "50.932387",
+      "longitude" : "-1.3711934"
+    }
+  }, {
+    "className" : "Building",
+    "templateName" : null,
+    "name" : "100060720583",
+    "special" : false,
+    "parentClasses" : [ {
+      "className" : "Neighborhood",
+      "templateName" : null,
+      "name" : "Wellington Road",
+      "special" : false,
+      "parentClasses" : [ {
+        "className" : "Neighborhood",
+        "templateName" : null,
+        "name" : "UNDEFINED",
+        "special" : false,
+        "parentClasses" : [ {
+          "className" : "City",
+          "templateName" : null,
+          "name" : "Southampton",
+          "special" : false,
+          "parentClasses" : [ ],
+          "attributes" : { }
+        } ],
+        "attributes" : { }
+      } ],
+      "attributes" : { }
+    } ],
+    "attributes" : {
+      "uprn" : "100060720583",
+      "house_num" : null,
+      "osmid" : "317716256",
+      "street" : "Wellington Road",
+      "latitude" : "50.929012",
+      "longitude" : "-1.3757072"
+    }
+  }, {
+    "className" : "Building",
+    "templateName" : null,
+    "name" : "10090587587",
+    "special" : false,
+    "parentClasses" : [ {
+      "className" : "Neighborhood",
+      "templateName" : null,
+      "name" : "Oaktree Road",
+      "special" : false,
+      "parentClasses" : [ {
+        "className" : "Neighborhood",
+        "templateName" : null,
+        "name" : "UNDEFINED",
+        "special" : false,
+        "parentClasses" : [ {
+          "className" : "City",
+          "templateName" : null,
+          "name" : "Southampton",
+          "special" : false,
+          "parentClasses" : [ ],
+          "attributes" : { }
+        } ],
+        "attributes" : { }
+      } ],
+      "attributes" : { }
+    } ],
+    "attributes" : {
+      "uprn" : "10090587587",
+      "house_num" : null,
+      "osmid" : "317716337",
+      "street" : "Oaktree Road",
+      "latitude" : "50.9290568",
+      "longitude" : "-1.375677"
+    }
+  }, {
+    "className" : "Building",
+    "templateName" : null,
+    "name" : "100060720587",
+    "special" : false,
+    "parentClasses" : [ {
+      "className" : "Neighborhood",
+      "templateName" : null,
+      "name" : "Oaktree Road",
+      "special" : false,
+      "parentClasses" : [ {
+        "className" : "Neighborhood",
+        "templateName" : null,
+        "name" : "UNDEFINED",
+        "special" : false,
+        "parentClasses" : [ {
+          "className" : "City",
+          "templateName" : null,
+          "name" : "Southampton",
+          "special" : false,
+          "parentClasses" : [ ],
+          "attributes" : { }
+        } ],
+        "attributes" : { }
+      } ],
+      "attributes" : { }
+    } ],
+    "attributes" : {
+      "uprn" : "100060720587",
+      "house_num" : null,
+      "osmid" : "317716438",
+      "street" : "Oaktree Road",
+      "latitude" : "50.9291194",
+      "longitude" : "-1.3756203"
+    }
+  }, {
+    "className" : "Building",
+    "templateName" : null,
+    "name" : "100060720589",
+    "special" : false,
+    "parentClasses" : [ {
+      "className" : "Neighborhood",
+      "templateName" : null,
+      "name" : "Oaktree Road",
+      "special" : false,
+      "parentClasses" : [ {
+        "className" : "Neighborhood",
+        "templateName" : null,
+        "name" : "UNDEFINED",
+        "special" : false,
+        "parentClasses" : [ {
+          "className" : "City",
+          "templateName" : null,
+          "name" : "Southampton",
+          "special" : false,
+          "parentClasses" : [ ],
+          "attributes" : { }
+        } ],
+        "attributes" : { }
+      } ],
+      "attributes" : { }
+    } ],
+    "attributes" : {
+      "uprn" : "100060720589",
+      "house_num" : null,
+      "osmid" : "317716463",
+      "street" : "Oaktree Road",
+      "latitude" : "50.9291915",
+      "longitude" : "-1.3756336"
+    }
+  }, {
+    "className" : "Building",
+    "templateName" : null,
+    "name" : "100060720591",
+    "special" : false,
+    "parentClasses" : [ {
+      "className" : "Neighborhood",
+      "templateName" : null,
+      "name" : "Oaktree Road",
+      "special" : false,
+      "parentClasses" : [ {
+        "className" : "Neighborhood",
+        "templateName" : null,
+        "name" : "UNDEFINED",
+        "special" : false,
+        "parentClasses" : [ {
+          "className" : "City",
+          "templateName" : null,
+          "name" : "Southampton",
+          "special" : false,
+          "parentClasses" : [ ],
+          "attributes" : { }
+        } ],
+        "attributes" : { }
+      } ],
+      "attributes" : { }
+    } ],
+    "attributes" : {
+      "uprn" : "100060720591",
+      "house_num" : null,
+      "osmid" : "317716571",
+      "street" : "Oaktree Road",
+      "latitude" : "50.9292541",
+      "longitude" : "-1.3755758"
+    }
+  }, {
+    "className" : "Building",
+    "templateName" : null,
+    "name" : "100060720593",
+    "special" : false,
+    "parentClasses" : [ {
+      "className" : "Neighborhood",
+      "templateName" : null,
+      "name" : "Oaktree Road",
+      "special" : false,
+      "parentClasses" : [ {
+        "className" : "Neighborhood",
+        "templateName" : null,
+        "name" : "UNDEFINED",
+        "special" : false,
+        "parentClasses" : [ {
+          "className" : "City",
+          "templateName" : null,
+          "name" : "Southampton",
+          "special" : false,
+          "parentClasses" : [ ],
+          "attributes" : { }
+        } ],
+        "attributes" : { }
+      } ],
+      "attributes" : { }
+    } ],
+    "attributes" : {
+      "uprn" : "100060720593",
+      "house_num" : null,
+      "osmid" : "317716588",
+      "street" : "Oaktree Road",
+      "latitude" : "50.9293167",
+      "longitude" : "-1.3755181"
+    }
+  }, {
+    "className" : "Building",
+    "templateName" : null,
+    "name" : "100060720594",
+    "special" : false,
+    "parentClasses" : [ {
+      "className" : "Neighborhood",
+      "templateName" : null,
+      "name" : "Oaktree Road",
+      "special" : false,
+      "parentClasses" : [ {
+        "className" : "Neighborhood",
+        "templateName" : null,
+        "name" : "UNDEFINED",
+        "special" : false,
+        "parentClasses" : [ {
+          "className" : "City",
+          "templateName" : null,
+          "name" : "Southampton",
+          "special" : false,
+          "parentClasses" : [ ],
+          "attributes" : { }
+        } ],
+        "attributes" : { }
+      } ],
+      "attributes" : { }
+    } ],
+    "attributes" : {
+      "uprn" : "100060720594",
+      "house_num" : null,
+      "osmid" : "317716601",
+      "street" : "Oaktree Road",
+      "latitude" : "50.9293794",
+      "longitude" : "-1.3754746"
+    }
+  }, {
+    "className" : "Building",
+    "templateName" : null,
+    "name" : "100060720595",
+    "special" : false,
+    "parentClasses" : [ {
+      "className" : "Neighborhood",
+      "templateName" : null,
+      "name" : "Oaktree Road",
+      "special" : false,
+      "parentClasses" : [ {
+        "className" : "Neighborhood",
+        "templateName" : null,
+        "name" : "UNDEFINED",
+        "special" : false,
+        "parentClasses" : [ {
+          "className" : "City",
+          "templateName" : null,
+          "name" : "Southampton",
+          "special" : false,
+          "parentClasses" : [ ],
+          "attributes" : { }
+        } ],
+        "attributes" : { }
+      } ],
+      "attributes" : { }
+    } ],
+    "attributes" : {
+      "uprn" : "100060720595",
+      "house_num" : null,
+      "osmid" : "317716635",
+      "street" : "Oaktree Road",
+      "latitude" : "50.9294512",
+      "longitude" : "-1.3754451"
+    }
+  }, {
+    "className" : "Building",
+    "templateName" : null,
+    "name" : "100060720597",
+    "special" : false,
+    "parentClasses" : [ {
+      "className" : "Neighborhood",
+      "templateName" : null,
+      "name" : "Oaktree Road",
+      "special" : false,
+      "parentClasses" : [ {
+        "className" : "Neighborhood",
+        "templateName" : null,
+        "name" : "UNDEFINED",
+        "special" : false,
+        "parentClasses" : [ {
+          "className" : "City",
+          "templateName" : null,
+          "name" : "Southampton",
+          "special" : false,
+          "parentClasses" : [ ],
+          "attributes" : { }
+        } ],
+        "attributes" : { }
+      } ],
+      "attributes" : { }
+    } ],
+    "attributes" : {
+      "uprn" : "100060720597",
+      "house_num" : null,
+      "osmid" : "317716652",
+      "street" : "Oaktree Road",
+      "latitude" : "50.929505",
+      "longitude" : "-1.3754017"
+    }
+  }, {
+    "className" : "Building",
+    "templateName" : null,
+    "name" : "100060720599",
+    "special" : false,
+    "parentClasses" : [ {
+      "className" : "Neighborhood",
+      "templateName" : null,
+      "name" : "Oaktree Road",
+      "special" : false,
+      "parentClasses" : [ {
+        "className" : "Neighborhood",
+        "templateName" : null,
+        "name" : "UNDEFINED",
+        "special" : false,
+        "parentClasses" : [ {
+          "className" : "City",
+          "templateName" : null,
+          "name" : "Southampton",
+          "special" : false,
+          "parentClasses" : [ ],
+          "attributes" : { }
+        } ],
+        "attributes" : { }
+      } ],
+      "attributes" : { }
+    } ],
+    "attributes" : {
+      "uprn" : "100060720599",
+      "house_num" : null,
+      "osmid" : "317716685",
+      "street" : "Oaktree Road",
+      "latitude" : "50.9295678",
+      "longitude" : "-1.3753866"
+    }
+  }, {
+    "className" : "Building",
+    "templateName" : null,
+    "name" : "100060720601",
+    "special" : false,
+    "parentClasses" : [ {
+      "className" : "Neighborhood",
+      "templateName" : null,
+      "name" : "Oaktree Road",
+      "special" : false,
+      "parentClasses" : [ {
+        "className" : "Neighborhood",
+        "templateName" : null,
+        "name" : "UNDEFINED",
+        "special" : false,
+        "parentClasses" : [ {
+          "className" : "City",
+          "templateName" : null,
+          "name" : "Southampton",
+          "special" : false,
+          "parentClasses" : [ ],
+          "attributes" : { }
+        } ],
+        "attributes" : { }
+      } ],
+      "attributes" : { }
+    } ],
+    "attributes" : {
+      "uprn" : "100060720601",
+      "house_num" : null,
+      "osmid" : "317716699",
+      "street" : "Oaktree Road",
+      "latitude" : "50.9296485",
+      "longitude" : "-1.3753429"
+    }
+  }, {
+    "className" : "Building",
+    "templateName" : null,
+    "name" : "100060720603",
+    "special" : false,
+    "parentClasses" : [ {
+      "className" : "Neighborhood",
+      "templateName" : null,
+      "name" : "Oaktree Road",
+      "special" : false,
+      "parentClasses" : [ {
+        "className" : "Neighborhood",
+        "templateName" : null,
+        "name" : "UNDEFINED",
+        "special" : false,
+        "parentClasses" : [ {
+          "className" : "City",
+          "templateName" : null,
+          "name" : "Southampton",
+          "special" : false,
+          "parentClasses" : [ ],
+          "attributes" : { }
+        } ],
+        "attributes" : { }
+      } ],
+      "attributes" : { }
+    } ],
+    "attributes" : {
+      "uprn" : "100060720603",
+      "house_num" : null,
+      "osmid" : "317716753",
+      "street" : "Oaktree Road",
+      "latitude" : "50.9297114",
+      "longitude" : "-1.3753278"
+    }
+  }, {
+    "className" : "Building",
+    "templateName" : null,
+    "name" : "100060720605",
+    "special" : false,
+    "parentClasses" : [ {
+      "className" : "Neighborhood",
+      "templateName" : null,
+      "name" : "Oaktree Road",
+      "special" : false,
+      "parentClasses" : [ {
+        "className" : "Neighborhood",
+        "templateName" : null,
+        "name" : "UNDEFINED",
+        "special" : false,
+        "parentClasses" : [ {
+          "className" : "City",
+          "templateName" : null,
+          "name" : "Southampton",
+          "special" : false,
+          "parentClasses" : [ ],
+          "attributes" : { }
+        } ],
+        "attributes" : { }
+      } ],
+      "attributes" : { }
+    } ],
+    "attributes" : {
+      "uprn" : "100060720605",
+      "house_num" : null,
+      "osmid" : "317716794",
+      "street" : "Oaktree Road",
+      "latitude" : "50.9297649",
+      "longitude" : "-1.3752417"
+    }
+  }, {
+    "className" : "Building",
+    "templateName" : null,
+    "name" : "100060720607",
+    "special" : false,
+    "parentClasses" : [ {
+      "className" : "Neighborhood",
+      "templateName" : null,
+      "name" : "Oaktree Road",
+      "special" : false,
+      "parentClasses" : [ {
+        "className" : "Neighborhood",
+        "templateName" : null,
+        "name" : "UNDEFINED",
+        "special" : false,
+        "parentClasses" : [ {
+          "className" : "City",
+          "templateName" : null,
+          "name" : "Southampton",
+          "special" : false,
+          "parentClasses" : [ ],
+          "attributes" : { }
+        } ],
+        "attributes" : { }
+      } ],
+      "attributes" : { }
+    } ],
+    "attributes" : {
+      "uprn" : "100060720607",
+      "house_num" : null,
+      "osmid" : "317716922",
+      "street" : "Oaktree Road",
+      "latitude" : "50.9298457",
+      "longitude" : "-1.3752264"
+    }
+  }, {
+    "className" : "Building",
+    "templateName" : null,
+    "name" : "100060720609",
+    "special" : false,
+    "parentClasses" : [ {
+      "className" : "Neighborhood",
+      "templateName" : null,
+      "name" : "Oaktree Road",
+      "special" : false,
+      "parentClasses" : [ {
+        "className" : "Neighborhood",
+        "templateName" : null,
+        "name" : "UNDEFINED",
+        "special" : false,
+        "parentClasses" : [ {
+          "className" : "City",
+          "templateName" : null,
+          "name" : "Southampton",
+          "special" : false,
+          "parentClasses" : [ ],
+          "attributes" : { }
+        } ],
+        "attributes" : { }
+      } ],
+      "attributes" : { }
+    } ],
+    "attributes" : {
+      "uprn" : "100060720609",
+      "house_num" : null,
+      "osmid" : "317717003",
+      "street" : "Oaktree Road",
+      "latitude" : "50.9298905",
+      "longitude" : "-1.3751973"
+    }
+  }, {
+    "className" : "Building",
+    "templateName" : null,
+    "name" : "100060720611",
+    "special" : false,
+    "parentClasses" : [ {
+      "className" : "Neighborhood",
+      "templateName" : null,
+      "name" : "Oaktree Road",
+      "special" : false,
+      "parentClasses" : [ {
+        "className" : "Neighborhood",
+        "templateName" : null,
+        "name" : "UNDEFINED",
+        "special" : false,
+        "parentClasses" : [ {
+          "className" : "City",
+          "templateName" : null,
+          "name" : "Southampton",
+          "special" : false,
+          "parentClasses" : [ ],
+          "attributes" : { }
+        } ],
+        "attributes" : { }
+      } ],
+      "attributes" : { }
+    } ],
+    "attributes" : {
+      "uprn" : "100060720611",
+      "house_num" : null,
+      "osmid" : "317717182",
+      "street" : "Oaktree Road",
+      "latitude" : "50.9299533",
+      "longitude" : "-1.375168"
+    }
+  }, {
+    "className" : "Building",
+    "templateName" : null,
+    "name" : "100060720612",
+    "special" : false,
+    "parentClasses" : [ {
+      "className" : "Neighborhood",
+      "templateName" : null,
+      "name" : "Oaktree Road",
+      "special" : false,
+      "parentClasses" : [ {
+        "className" : "Neighborhood",
+        "templateName" : null,
+        "name" : "UNDEFINED",
+        "special" : false,
+        "parentClasses" : [ {
+          "className" : "City",
+          "templateName" : null,
+          "name" : "Southampton",
+          "special" : false,
+          "parentClasses" : [ ],
+          "attributes" : { }
+        } ],
+        "attributes" : { }
+      } ],
+      "attributes" : { }
+    } ],
+    "attributes" : {
+      "uprn" : "100060720612",
+      "house_num" : null,
+      "osmid" : "317717226",
+      "street" : "Oaktree Road",
+      "latitude" : "50.930052",
+      "longitude" : "-1.375124"
+    }
+  }, {
+    "className" : "Building",
+    "templateName" : null,
+    "name" : "100060720614",
+    "special" : false,
+    "parentClasses" : [ {
+      "className" : "Neighborhood",
+      "templateName" : null,
+      "name" : "Oaktree Road",
+      "special" : false,
+      "parentClasses" : [ {
+        "className" : "Neighborhood",
+        "templateName" : null,
+        "name" : "UNDEFINED",
+        "special" : false,
+        "parentClasses" : [ {
+          "className" : "City",
+          "templateName" : null,
+          "name" : "Southampton",
+          "special" : false,
+          "parentClasses" : [ ],
+          "attributes" : { }
+        } ],
+        "attributes" : { }
+      } ],
+      "attributes" : { }
+    } ],
+    "attributes" : {
+      "uprn" : "100060720614",
+      "house_num" : null,
+      "osmid" : "317717287",
+      "street" : "Oaktree Road",
+      "latitude" : "50.9300878",
+      "longitude" : "-1.3750951"
+    }
+  }, {
+    "className" : "Building",
+    "templateName" : null,
+    "name" : "100060720616",
+    "special" : false,
+    "parentClasses" : [ {
+      "className" : "Neighborhood",
+      "templateName" : null,
+      "name" : "Oaktree Road",
+      "special" : false,
+      "parentClasses" : [ {
+        "className" : "Neighborhood",
+        "templateName" : null,
+        "name" : "UNDEFINED",
+        "special" : false,
+        "parentClasses" : [ {
+          "className" : "City",
+          "templateName" : null,
+          "name" : "Southampton",
+          "special" : false,
+          "parentClasses" : [ ],
+          "attributes" : { }
+        } ],
+        "attributes" : { }
+      } ],
+      "attributes" : { }
+    } ],
+    "attributes" : {
+      "uprn" : "100060720616",
+      "house_num" : null,
+      "osmid" : "317717663",
+      "street" : "Oaktree Road",
+      "latitude" : "50.9301688",
+      "longitude" : "-1.375094"
+    }
+  }, {
+    "className" : "Building",
+    "templateName" : null,
+    "name" : "100060720618",
+    "special" : false,
+    "parentClasses" : [ {
+      "className" : "Neighborhood",
+      "templateName" : null,
+      "name" : "Oaktree Road",
+      "special" : false,
+      "parentClasses" : [ {
+        "className" : "Neighborhood",
+        "templateName" : null,
+        "name" : "UNDEFINED",
+        "special" : false,
+        "parentClasses" : [ {
+          "className" : "City",
+          "templateName" : null,
+          "name" : "Southampton",
+          "special" : false,
+          "parentClasses" : [ ],
+          "attributes" : { }
+        } ],
+        "attributes" : { }
+      } ],
+      "attributes" : { }
+    } ],
+    "attributes" : {
+      "uprn" : "100060720618",
+      "house_num" : null,
+      "osmid" : "317718170",
+      "street" : "Oaktree Road",
+      "latitude" : "50.9302313",
+      "longitude" : "-1.375022"
+    }
+  }, {
+    "className" : "Building",
+    "templateName" : null,
+    "name" : "100060720620",
+    "special" : false,
+    "parentClasses" : [ {
+      "className" : "Neighborhood",
+      "templateName" : null,
+      "name" : "Oaktree Road",
+      "special" : false,
+      "parentClasses" : [ {
+        "className" : "Neighborhood",
+        "templateName" : null,
+        "name" : "UNDEFINED",
+        "special" : false,
+        "parentClasses" : [ {
+          "className" : "City",
+          "templateName" : null,
+          "name" : "Southampton",
+          "special" : false,
+          "parentClasses" : [ ],
+          "attributes" : { }
+        } ],
+        "attributes" : { }
+      } ],
+      "attributes" : { }
+    } ],
+    "attributes" : {
+      "uprn" : "100060720620",
+      "house_num" : null,
+      "osmid" : "317718192",
+      "street" : "Oaktree Road",
+      "latitude" : "50.9303031",
+      "longitude" : "-1.3749926"
+    }
+  }, {
+    "className" : "Building",
+    "templateName" : null,
+    "name" : "100060720622",
+    "special" : false,
+    "parentClasses" : [ {
+      "className" : "Neighborhood",
+      "templateName" : null,
+      "name" : "Oaktree Road",
+      "special" : false,
+      "parentClasses" : [ {
+        "className" : "Neighborhood",
+        "templateName" : null,
+        "name" : "UNDEFINED",
+        "special" : false,
+        "parentClasses" : [ {
+          "className" : "City",
+          "templateName" : null,
+          "name" : "Southampton",
+          "special" : false,
+          "parentClasses" : [ ],
+          "attributes" : { }
+        } ],
+        "attributes" : { }
+      } ],
+      "attributes" : { }
+    } ],
+    "attributes" : {
+      "uprn" : "100060720622",
+      "house_num" : null,
+      "osmid" : "317718264",
+      "street" : "Oaktree Road",
+      "latitude" : "50.9303658",
+      "longitude" : "-1.374949"
+    }
+  }, {
+    "className" : "Building",
+    "templateName" : null,
+    "name" : "100060720624",
+    "special" : false,
+    "parentClasses" : [ {
+      "className" : "Neighborhood",
+      "templateName" : null,
+      "name" : "Oaktree Road",
+      "special" : false,
+      "parentClasses" : [ {
+        "className" : "Neighborhood",
+        "templateName" : null,
+        "name" : "UNDEFINED",
+        "special" : false,
+        "parentClasses" : [ {
+          "className" : "City",
+          "templateName" : null,
+          "name" : "Southampton",
+          "special" : false,
+          "parentClasses" : [ ],
+          "attributes" : { }
+        } ],
+        "attributes" : { }
+      } ],
+      "attributes" : { }
+    } ],
+    "attributes" : {
+      "uprn" : "100060720624",
+      "house_num" : null,
+      "osmid" : "317718723",
+      "street" : "Oaktree Road",
+      "latitude" : "50.9304106",
+      "longitude" : "-1.37492"
     }
   } ],
-  "kuwaibaConnectionList" : [ {
-    "connectionClass" : {
-      "className" : "WireContainer",
-      "templateName" : null,
-      "name" : "TRUNK-25efcd4d-b559-45a2-a3d1-d4937b1452c5",
-      "special" : false,
-      "parentClasses" : [ ],
-      "attributes" : {
-        "link_type" : "TRUNK",
-        "geometry" : "{\r\n  \"type\" : \"LineString\",\r\n  \"coordinates\" : [ [ 50.92875290631823, -1.3758812487242778 ], [ 50.92870025007896, -1.3756342120211449 ], [ 50.9288672777294, -1.3755425838621649 ], [ 50.928820283569735, -1.3753180050411349 ], [ 50.9286090923625, -1.3743065020312164 ], [ 50.92834297875211, -1.3730838949295296 ], [ 50.929515565809666, -1.3724559725459302 ], [ 50.929643523786645, -1.3723149370463232 ], [ 50.9297663857607, -1.3720912565405776 ], [ 50.930102131343354, -1.3713366717019173 ], [ 50.92963729575164, -1.3706494605095656 ], [ 50.92960672174967, -1.37061981610519 ], [ 50.92948159460622, -1.3704958485959813 ], [ 50.92931003964974, -1.3704419496789342 ], [ 50.92915830074507, -1.37045632272348 ], [ 50.92901731900571, -1.3705290862614938 ], [ 50.92869232332807, -1.370741088668546 ], [ 50.92873931761702, -1.3714274015456132 ], [ 50.928731957068884, -1.3714732156251033 ] ]\r\n}",
-        "street_name" : null
-      }
-    },
-    "endpointA" : {
-      "className" : "Facility",
-      "templateName" : null,
-      "name" : "EXCHANGE-05af20a4-b7bd-489d-bfe7-f4ddfcecf09a",
-      "special" : false,
-      "parentClasses" : [ {
-        "className" : "City",
-        "templateName" : null,
-        "name" : "Southampton",
-        "special" : false,
-        "parentClasses" : [ {
-          "className" : "State",
-          "templateName" : null,
-          "name" : "Hampshire",
-          "special" : false,
-          "parentClasses" : [ ],
-          "attributes" : { }
-        } ],
-        "attributes" : { }
-      } ],
-      "attributes" : {
-        "latitude" : "50.92822511099817",
-        "longitude" : "-1.3718106180090772"
-      }
-    },
-    "endpointB" : {
-      "className" : "OutdoorsCabinet",
-      "templateName" : null,
-      "name" : "AGGREGATOR-ccef0721-0c08-47dc-858e-5d8f3283fac2",
-      "special" : false,
-      "parentClasses" : [ {
-        "className" : "City",
-        "templateName" : null,
-        "name" : "Southampton",
-        "special" : false,
-        "parentClasses" : [ {
-          "className" : "State",
-          "templateName" : null,
-          "name" : "Hampshire",
-          "special" : false,
-          "parentClasses" : [ ],
-          "attributes" : { }
-        } ],
-        "attributes" : { }
-      } ],
-      "attributes" : {
-        "latitude" : "50.92899439365573",
-        "longitude" : "-1.3761516573133212"
-      }
-    }
-  }, {
-    "connectionClass" : {
-      "className" : "WireContainer",
-      "templateName" : null,
-      "name" : "TRUNK-e3063a14-5417-424e-a1ba-32ed6b1a8fe5",
-      "special" : false,
-      "parentClasses" : [ ],
-      "attributes" : {
-        "link_type" : "TRUNK",
-        "geometry" : "{\r\n  \"type\" : \"LineString\",\r\n  \"coordinates\" : [ [ 50.926963693177555, -1.3680138034659592 ], [ 50.926940478251, -1.368185381685226 ], [ 50.92693085254637, -1.368320128977844 ], [ 50.92691216734928, -1.3685321313848962 ], [ 50.92687762802587, -1.3687306590626864 ], [ 50.92692066062161, -1.3687432354766642 ], [ 50.9269648256127, -1.3687647950434831 ], [ 50.92700729191073, -1.3687917445020068 ], [ 50.92705032438653, -1.368824982167519 ], [ 50.927117704104184, -1.3688815760304185 ], [ 50.92714488245008, -1.3689094238042265 ], [ 50.92720773231413, -1.3689732041893987 ], [ 50.92725812538702, -1.36902800142173 ], [ 50.92730172384425, -1.3690881885457662 ], [ 50.92734192498286, -1.3691528672462225 ], [ 50.927353249241015, -1.3691708335519048 ], [ 50.92738269229924, -1.3692202408925316 ], [ 50.92742855548746, -1.3693100724209435 ], [ 50.92746309440182, -1.3693810393283892 ], [ 50.927497067079464, -1.36946188770396 ], [ 50.92752877488954, -1.36955351586294 ], [ 50.927557651626316, -1.3696505339136251 ], [ 50.92758086624487, -1.3697574334324352 ], [ 50.92759785254379, -1.3698715194735183 ], [ 50.927616537465425, -1.3700134532884092 ], [ 50.9276261630282, -1.3700817252500024 ], [ 50.92769014465948, -1.3705371710990508 ], [ 50.927695806746485, -1.3705847818091093 ], [ 50.92769637295516, -1.3706225110510422 ], [ 50.92769637295516, -1.370680003229226 ], [ 50.92851963306334, -1.370749173506103 ], [ 50.92869232332807, -1.370741088668546 ], [ 50.92873931761702, -1.3714274015456132 ], [ 50.928731957068884, -1.3714732156251033 ] ]\r\n}",
-        "street_name" : null
-      }
-    },
-    "endpointA" : {
-      "className" : "Facility",
-      "templateName" : null,
-      "name" : "EXCHANGE-05af20a4-b7bd-489d-bfe7-f4ddfcecf09a",
-      "special" : false,
-      "parentClasses" : [ {
-        "className" : "City",
-        "templateName" : null,
-        "name" : "Southampton",
-        "special" : false,
-        "parentClasses" : [ {
-          "className" : "State",
-          "templateName" : null,
-          "name" : "Hampshire",
-          "special" : false,
-          "parentClasses" : [ ],
-          "attributes" : { }
-        } ],
-        "attributes" : { }
-      } ],
-      "attributes" : {
-        "latitude" : "50.92822511099817",
-        "longitude" : "-1.3718106180090772"
-      }
-    },
-    "endpointB" : {
-      "className" : "OutdoorsCabinet",
-      "templateName" : null,
-      "name" : "AGGREGATOR-ccef2719-c1f8-4bdc-a4f9-7c1a264cf65f",
-      "special" : false,
-      "parentClasses" : [ {
-        "className" : "City",
-        "templateName" : null,
-        "name" : "Southampton",
-        "special" : false,
-        "parentClasses" : [ {
-          "className" : "State",
-          "templateName" : null,
-          "name" : "Hampshire",
-          "special" : false,
-          "parentClasses" : [ ],
-          "attributes" : { }
-        } ],
-        "attributes" : { }
-      } ],
-      "attributes" : {
-        "latitude" : "50.92725606757119",
-        "longitude" : "-1.3673386205945919"
-      }
-    }
-  }, {
-    "connectionClass" : {
-      "className" : "WireContainer",
-      "templateName" : null,
-      "name" : "TRUNK-762c17c1-91dc-4e91-8cfc-1484bb3b9297",
-      "special" : false,
-      "parentClasses" : [ ],
-      "attributes" : {
-        "link_type" : "TRUNK",
-        "geometry" : "{\r\n  \"type\" : \"LineString\",\r\n  \"coordinates\" : [ [ 50.928731957068884, -1.3714732156251033 ], [ 50.92872799369631, -1.3714947751919222 ], [ 50.92868666136236, -1.3715504707395378 ], [ 50.92824219490221, -1.3718011007038071 ], [ 50.92737986123676, -1.372267326336265 ], [ 50.926585458296856, -1.3726940260962217 ], [ 50.92591901001341, -1.373054250525154 ], [ 50.92562287062649, -1.373214150645727 ], [ 50.92560135373333, -1.3732258287444206 ], [ 50.92556568096748, -1.3732411001042506 ], [ 50.92553906793388, -1.3732482866265237 ], [ 50.92551302112029, -1.37325187988766 ], [ 50.925485275585416, -1.3732491849418076 ], [ 50.9253323917291, -1.3732258287444206 ], [ 50.92528539399825, -1.3732132523304428 ], [ 50.92525368465905, -1.3731952860247605 ], [ 50.92523726374272, -1.3732707445086267 ] ]\r\n}",
-        "street_name" : null
-      }
-    },
-    "endpointA" : {
-      "className" : "Facility",
-      "templateName" : null,
-      "name" : "EXCHANGE-05af20a4-b7bd-489d-bfe7-f4ddfcecf09a",
-      "special" : false,
-      "parentClasses" : [ {
-        "className" : "City",
-        "templateName" : null,
-        "name" : "Southampton",
-        "special" : false,
-        "parentClasses" : [ {
-          "className" : "State",
-          "templateName" : null,
-          "name" : "Hampshire",
-          "special" : false,
-          "parentClasses" : [ ],
-          "attributes" : { }
-        } ],
-        "attributes" : { }
-      } ],
-      "attributes" : {
-        "latitude" : "50.92822511099817",
-        "longitude" : "-1.3718106180090772"
-      }
-    },
-    "endpointB" : {
-      "className" : "OutdoorsCabinet",
-      "templateName" : null,
-      "name" : "AGGREGATOR-3f35964b-4c9b-409c-87ce-9299073ff699",
-      "special" : false,
-      "parentClasses" : [ {
-        "className" : "City",
-        "templateName" : null,
-        "name" : "Southampton",
-        "special" : false,
-        "parentClasses" : [ {
-          "className" : "State",
-          "templateName" : null,
-          "name" : "Hampshire",
-          "special" : false,
-          "parentClasses" : [ ],
-          "attributes" : { }
-        } ],
-        "attributes" : { }
-      } ],
-      "attributes" : {
-        "latitude" : "50.925197605666135",
-        "longitude" : "-1.3734558932734462"
-      }
-    }
-  }, {
-    "connectionClass" : {
-      "className" : "WireContainer",
-      "templateName" : null,
-      "name" : "TRUNK-bd66b994-36c1-4cf8-85bd-5cbf2f1a7e57",
-      "special" : false,
-      "parentClasses" : [ ],
-      "attributes" : {
-        "link_type" : "TRUNK",
-        "geometry" : "{\r\n  \"type\" : \"LineString\",\r\n  \"coordinates\" : [ [ 50.928731957068884, -1.3714732156251033 ], [ 50.92873931761702, -1.3714274015456132 ], [ 50.92869232332807, -1.370741088668546 ], [ 50.928508309089146, -1.369193291434008 ], [ 50.92840526079738, -1.368622861228592 ], [ 50.92831863211173, -1.3682868913123314 ], [ 50.9285405824083, -1.36830845087915 ], [ 50.9285909740373, -1.368312942455571 ], [ 50.92987339431237, -1.3678053943200432 ], [ 50.929915857955145, -1.367779343176804 ], [ 50.929963417189, -1.367697596485949 ], [ 50.930248771571016, -1.3680147017812434 ], [ 50.93045712445845, -1.368246467124546 ], [ 50.93055054324894, -1.3683497733822199 ], [ 50.9305930062735, -1.3683973840922783 ], [ 50.93061055764569, -1.3684171470285287 ], [ 50.930700579095586, -1.3685168600250661 ], [ 50.93071756425528, -1.3685357246460326 ], [ 50.93116313939547, -1.3690315946828666 ], [ 50.93118635221462, -1.3690576458261061 ], [ 50.93126108609032, -1.369140290832245 ], [ 50.93140602417364, -1.3693019875833865 ], [ 50.93129618832382, -1.369567888907486 ] ]\r\n}",
-        "street_name" : null
-      }
-    },
-    "endpointA" : {
-      "className" : "Facility",
-      "templateName" : null,
-      "name" : "EXCHANGE-05af20a4-b7bd-489d-bfe7-f4ddfcecf09a",
-      "special" : false,
-      "parentClasses" : [ {
-        "className" : "City",
-        "templateName" : null,
-        "name" : "Southampton",
-        "special" : false,
-        "parentClasses" : [ {
-          "className" : "State",
-          "templateName" : null,
-          "name" : "Hampshire",
-          "special" : false,
-          "parentClasses" : [ ],
-          "attributes" : { }
-        } ],
-        "attributes" : { }
-      } ],
-      "attributes" : {
-        "latitude" : "50.92822511099817",
-        "longitude" : "-1.3718106180090772"
-      }
-    },
-    "endpointB" : {
-      "className" : "OutdoorsCabinet",
-      "templateName" : null,
-      "name" : "AGGREGATOR-db815997-8d21-48aa-a516-e051803685d8",
-      "special" : false,
-      "parentClasses" : [ {
-        "className" : "City",
-        "templateName" : null,
-        "name" : "Southampton",
-        "special" : false,
-        "parentClasses" : [ {
-          "className" : "State",
-          "templateName" : null,
-          "name" : "Hampshire",
-          "special" : false,
-          "parentClasses" : [ ],
-          "attributes" : { }
-        } ],
-        "attributes" : { }
-      } ],
-      "attributes" : {
-        "latitude" : "50.93129599926152",
-        "longitude" : "-1.3695676"
-      }
-    }
-  }, {
-    "connectionClass" : {
-      "className" : "WireContainer",
-      "templateName" : null,
-      "name" : "DISTRIBUTION-5e17d773-e841-4232-8693-3cd33d49fd8c",
-      "special" : false,
-      "parentClasses" : [ ],
-      "attributes" : {
-        "link_type" : "DISTRIBUTION",
-        "geometry" : "{\r\n  \"type\" : \"LineString\",\r\n  \"coordinates\" : [ [ 50.92875290631823, -1.3758812487242778 ], [ 50.92870025007896, -1.3756342120211449 ], [ 50.9288672777294, -1.3755425838621649 ], [ 50.928820283569735, -1.3753180050411349 ], [ 50.9286090923625, -1.3743065020312164 ] ]\r\n}",
-        "street_name" : null
-      }
-    },
-    "endpointA" : {
-      "className" : "OutdoorsCabinet",
-      "templateName" : null,
-      "name" : "AGGREGATOR-ccef0721-0c08-47dc-858e-5d8f3283fac2",
-      "special" : false,
-      "parentClasses" : [ {
-        "className" : "City",
-        "templateName" : null,
-        "name" : "Southampton",
-        "special" : false,
-        "parentClasses" : [ {
-          "className" : "State",
-          "templateName" : null,
-          "name" : "Hampshire",
-          "special" : false,
-          "parentClasses" : [ ],
-          "attributes" : { }
-        } ],
-        "attributes" : { }
-      } ],
-      "attributes" : {
-        "latitude" : "50.92899439365573",
-        "longitude" : "-1.3761516573133212"
-      }
-    },
-    "endpointB" : {
-      "className" : "OutdoorsCabinet",
-      "templateName" : null,
-      "name" : "CABINET-13b13b7a-3ae0-4ffa-a3fd-a4f544ee510c",
-      "special" : false,
-      "parentClasses" : [ {
-        "className" : "City",
-        "templateName" : null,
-        "name" : "Southampton",
-        "special" : false,
-        "parentClasses" : [ {
-          "className" : "State",
-          "templateName" : null,
-          "name" : "Hampshire",
-          "special" : false,
-          "parentClasses" : [ ],
-          "attributes" : { }
-        } ],
-        "attributes" : { }
-      } ],
-      "attributes" : {
-        "latitude" : "50.92807023971654",
-        "longitude" : "-1.374597270619378"
-      }
-    }
-  }, {
-    "connectionClass" : {
-      "className" : "WireContainer",
-      "templateName" : null,
-      "name" : "DISTRIBUTION-c4b54f46-7655-44e5-b58b-c3988c1c6faa",
-      "special" : false,
-      "parentClasses" : [ ],
-      "attributes" : {
-        "link_type" : "DISTRIBUTION",
-        "geometry" : "{\r\n  \"type\" : \"LineString\",\r\n  \"coordinates\" : [ [ 50.92696256074238, -1.3698337902315854 ], [ 50.92691103491286, -1.369831993601017 ], [ 50.92688555508599, -1.3698346885468695 ], [ 50.92685894280743, -1.3698445700149946 ], [ 50.92684195623869, -1.3698589430595405 ], [ 50.92682553588303, -1.3698652312665296 ], [ 50.92645239589349, -1.3698571464289724 ], [ 50.92644220386393, -1.3698607396901088 ], [ 50.9264382402963, -1.369876909365223 ], [ 50.92643710784833, -1.3699344015434065 ], [ 50.92641445888326, -1.3703377451059764 ], [ 50.92640879664025, -1.370411406959274 ], [ 50.926404266845374, -1.3704509328317753 ], [ 50.926396339703274, -1.370493153650129 ], [ 50.926393508580745, -1.3705210014239368 ], [ 50.926391809907145, -1.3705659171881426 ], [ 50.925551525100445, -1.3704904587042768 ], [ 50.92555492250891, -1.3703862541313188 ], [ 50.925573042016644, -1.370071843781877 ], [ 50.92557757189246, -1.3700062667661361 ], [ 50.925580403064636, -1.369959554371362 ], [ 50.92559625762559, -1.369840078438574 ], [ 50.925618906989044, -1.3697215008210704 ], [ 50.925634195303104, -1.3696523305441932 ], [ 50.9256421225751, -1.3696146013022603 ], [ 50.925677229049114, -1.369500515261177 ], [ 50.92571629912612, -1.3694133786786173 ], [ 50.92572649131472, -1.369396310688219 ], [ 50.92576386265383, -1.3693343269336147 ], [ 50.925815955985556, -1.3692633600261694 ], [ 50.925875976491085, -1.3691959863798606 ], [ 50.92592976838776, -1.3691546638767909 ], [ 50.92602942478991, -1.3690774087623567 ], [ 50.92612002133388, -1.3690127300619002 ], [ 50.92623779657727, -1.3689273901099086 ], [ 50.92633235629244, -1.3688663046705885 ], [ 50.926411627761844, -1.3688222872216667 ], [ 50.926417856228724, -1.3688186939605302 ], [ 50.92648863420278, -1.368789049556154 ], [ 50.92654582272715, -1.3687692866199037 ], [ 50.92660980584438, -1.3687549135753578 ], [ 50.92662622627619, -1.3687522186295056 ], [ 50.926686245736285, -1.3687432354766642 ], [ 50.926758721962244, -1.3687297607474025 ], [ 50.926832330513655, -1.36872706580155 ], [ 50.92687762802587, -1.3687306590626864 ], [ 50.92691216734928, -1.3685321313848962 ], [ 50.92693085254637, -1.368320128977844 ], [ 50.926940478251, -1.368185381685226 ], [ 50.926963693177555, -1.3680138034659592 ] ]\r\n}",
-        "street_name" : null
-      }
-    },
-    "endpointA" : {
-      "className" : "OutdoorsCabinet",
-      "templateName" : null,
-      "name" : "AGGREGATOR-ccef2719-c1f8-4bdc-a4f9-7c1a264cf65f",
-      "special" : false,
-      "parentClasses" : [ {
-        "className" : "City",
-        "templateName" : null,
-        "name" : "Southampton",
-        "special" : false,
-        "parentClasses" : [ {
-          "className" : "State",
-          "templateName" : null,
-          "name" : "Hampshire",
-          "special" : false,
-          "parentClasses" : [ ],
-          "attributes" : { }
-        } ],
-        "attributes" : { }
-      } ],
-      "attributes" : {
-        "latitude" : "50.92725606757119",
-        "longitude" : "-1.3673386205945919"
-      }
-    },
-    "endpointB" : {
-      "className" : "OutdoorsCabinet",
-      "templateName" : null,
-      "name" : "CABINET-cf3ceaca-d94b-4257-9138-e1ed4398d4b8",
-      "special" : false,
-      "parentClasses" : [ {
-        "className" : "City",
-        "templateName" : null,
-        "name" : "Southampton",
-        "special" : false,
-        "parentClasses" : [ {
-          "className" : "State",
-          "templateName" : null,
-          "name" : "Hampshire",
-          "special" : false,
-          "parentClasses" : [ ],
-          "attributes" : { }
-        } ],
-        "attributes" : { }
-      } ],
-      "attributes" : {
-        "latitude" : "50.92696269926226",
-        "longitude" : "-1.3698335"
-      }
-    }
-  }, {
-    "connectionClass" : {
-      "className" : "WireContainer",
-      "templateName" : null,
-      "name" : "DISTRIBUTION-127fe2e5-a8cc-4c4f-8e00-96b176c6fe40",
-      "special" : false,
-      "parentClasses" : [ ],
-      "attributes" : {
-        "link_type" : "DISTRIBUTION",
-        "geometry" : "{\r\n  \"type\" : \"LineString\",\r\n  \"coordinates\" : [ [ 50.92890577893327, -1.3716070646024372 ], [ 50.928731957068884, -1.3714732156251033 ], [ 50.92873931761702, -1.3714274015456132 ], [ 50.92869232332807, -1.370741088668546 ], [ 50.928508309089146, -1.369193291434008 ], [ 50.92840526079738, -1.368622861228592 ], [ 50.92831863211173, -1.3682868913123314 ], [ 50.9285405824083, -1.36830845087915 ], [ 50.9285909740373, -1.368312942455571 ], [ 50.92987339431237, -1.3678053943200432 ], [ 50.929915857955145, -1.367779343176804 ], [ 50.929963417189, -1.367697596485949 ], [ 50.930248771571016, -1.3680147017812434 ], [ 50.93045712445845, -1.368246467124546 ], [ 50.93055054324894, -1.3683497733822199 ], [ 50.9305930062735, -1.3683973840922783 ], [ 50.93061055764569, -1.3684171470285287 ], [ 50.930700579095586, -1.3685168600250661 ], [ 50.93071756425528, -1.3685357246460326 ], [ 50.93116313939547, -1.3690315946828666 ], [ 50.93118635221462, -1.3690576458261061 ], [ 50.93126108609032, -1.369140290832245 ], [ 50.93140602417364, -1.3693019875833865 ], [ 50.93129618832382, -1.369567888907486 ] ]\r\n}",
-        "street_name" : null
-      }
-    },
-    "endpointA" : {
-      "className" : "OutdoorsCabinet",
-      "templateName" : null,
-      "name" : "AGGREGATOR-db815997-8d21-48aa-a516-e051803685d8",
-      "special" : false,
-      "parentClasses" : [ {
-        "className" : "City",
-        "templateName" : null,
-        "name" : "Southampton",
-        "special" : false,
-        "parentClasses" : [ {
-          "className" : "State",
-          "templateName" : null,
-          "name" : "Hampshire",
-          "special" : false,
-          "parentClasses" : [ ],
-          "attributes" : { }
-        } ],
-        "attributes" : { }
-      } ],
-      "attributes" : {
-        "latitude" : "50.93129599926152",
-        "longitude" : "-1.3695676"
-      }
-    },
-    "endpointB" : {
-      "className" : "OutdoorsCabinet",
-      "templateName" : null,
-      "name" : "CABINET-44f2c9f1-72fa-4c96-b60f-263262afdd29",
-      "special" : false,
-      "parentClasses" : [ {
-        "className" : "City",
-        "templateName" : null,
-        "name" : "Southampton",
-        "special" : false,
-        "parentClasses" : [ {
-          "className" : "State",
-          "templateName" : null,
-          "name" : "Hampshire",
-          "special" : false,
-          "parentClasses" : [ ],
-          "attributes" : { }
-        } ],
-        "attributes" : { }
-      } ],
-      "attributes" : {
-        "latitude" : "50.92890579926195",
-        "longitude" : "-1.3716068"
-      }
-    }
-  }, {
-    "connectionClass" : {
-      "className" : "WireContainer",
-      "templateName" : null,
-      "name" : "DISTRIBUTION-06f8fffd-46b8-411a-ab48-e8092c53763f",
-      "special" : false,
-      "parentClasses" : [ ],
-      "attributes" : {
-        "link_type" : "DISTRIBUTION",
-        "geometry" : "{\r\n  \"type\" : \"LineString\",\r\n  \"coordinates\" : [ [ 50.926963693177555, -1.3680138034659592 ], [ 50.926940478251, -1.368185381685226 ], [ 50.92693085254637, -1.368320128977844 ], [ 50.92691216734928, -1.3685321313848962 ], [ 50.92687762802587, -1.3687306590626864 ], [ 50.92692066062161, -1.3687432354766642 ], [ 50.9269648256127, -1.3687647950434831 ], [ 50.92700729191073, -1.3687917445020068 ], [ 50.92705032438653, -1.368824982167519 ], [ 50.927117704104184, -1.3688815760304185 ], [ 50.92714488245008, -1.3689094238042265 ], [ 50.92720773231413, -1.3689732041893987 ], [ 50.92725812538702, -1.36902800142173 ], [ 50.92730172384425, -1.3690881885457662 ], [ 50.92734192498286, -1.3691528672462225 ], [ 50.927353249241015, -1.3691708335519048 ], [ 50.92738269229924, -1.3692202408925316 ], [ 50.92742855548746, -1.3693100724209435 ], [ 50.92746309440182, -1.3693810393283892 ], [ 50.927497067079464, -1.36946188770396 ], [ 50.92752877488954, -1.36955351586294 ], [ 50.927557651626316, -1.3696505339136251 ], [ 50.92758086624487, -1.3697574334324352 ], [ 50.92759785254379, -1.3698715194735183 ], [ 50.927616537465425, -1.3700134532884092 ], [ 50.9276261630282, -1.3700817252500024 ], [ 50.92769014465948, -1.3705371710990508 ], [ 50.927695806746485, -1.3705847818091093 ], [ 50.92769637295516, -1.3706225110510422 ], [ 50.92769637295516, -1.370680003229226 ], [ 50.92851963306334, -1.370749173506103 ], [ 50.92869232332807, -1.370741088668546 ], [ 50.928508309089146, -1.369193291434008 ], [ 50.92840526079738, -1.368622861228592 ], [ 50.92831863211173, -1.3682868913123314 ], [ 50.9281283881575, -1.3681171097236329 ] ]\r\n}",
-        "street_name" : null
-      }
-    },
-    "endpointA" : {
-      "className" : "OutdoorsCabinet",
-      "templateName" : null,
-      "name" : "AGGREGATOR-ccef2719-c1f8-4bdc-a4f9-7c1a264cf65f",
-      "special" : false,
-      "parentClasses" : [ {
-        "className" : "City",
-        "templateName" : null,
-        "name" : "Southampton",
-        "special" : false,
-        "parentClasses" : [ {
-          "className" : "State",
-          "templateName" : null,
-          "name" : "Hampshire",
-          "special" : false,
-          "parentClasses" : [ ],
-          "attributes" : { }
-        } ],
-        "attributes" : { }
-      } ],
-      "attributes" : {
-        "latitude" : "50.92725606757119",
-        "longitude" : "-1.3673386205945919"
-      }
-    },
-    "endpointB" : {
-      "className" : "OutdoorsCabinet",
-      "templateName" : null,
-      "name" : "CABINET-0ba751e4-ae8d-4689-a878-bf4c594f7e27",
-      "special" : false,
-      "parentClasses" : [ {
-        "className" : "City",
-        "templateName" : null,
-        "name" : "Southampton",
-        "special" : false,
-        "parentClasses" : [ {
-          "className" : "State",
-          "templateName" : null,
-          "name" : "Hampshire",
-          "special" : false,
-          "parentClasses" : [ ],
-          "attributes" : { }
-        } ],
-        "attributes" : { }
-      } ],
-      "attributes" : {
-        "latitude" : "50.927878673268104",
-        "longitude" : "-1.367894177633129"
-      }
-    }
-  }, {
-    "connectionClass" : {
-      "className" : "WireContainer",
-      "templateName" : null,
-      "name" : "DISTRIBUTION-864f934d-5b4e-419c-adee-b0030063100d",
-      "special" : false,
-      "parentClasses" : [ ],
-      "attributes" : {
-        "link_type" : "DISTRIBUTION",
-        "geometry" : "{\r\n  \"type\" : \"LineString\",\r\n  \"coordinates\" : [ [ 50.93077644609417, -1.3671190814429761 ], [ 50.93073228472196, -1.3670822505163271 ], [ 50.93064622654289, -1.3670023004560405 ], [ 50.93032803636645, -1.3667337041860887 ], [ 50.930268587782535, -1.366683398530178 ], [ 50.9302017788071, -1.3666268046672787 ], [ 50.9301298741246, -1.3665648209126744 ], [ 50.93004211629062, -1.3664893624288081 ], [ 50.929925483042105, -1.3663878528017028 ], [ 50.92983036444816, -1.366292631381586 ], [ 50.92977374614513, -1.3662288509964136 ], [ 50.92964408997159, -1.3665369731388666 ], [ 50.929421012565136, -1.3670651825259288 ], [ 50.92947253561443, -1.3671244713346808 ], [ 50.92957331679862, -1.3672421506369006 ], [ 50.929797525840826, -1.3675044586998633 ], [ 50.92991359322851, -1.3676401043077653 ], [ 50.929931144857036, -1.3676607655593003 ], [ 50.929963417189, -1.367697596485949 ], [ 50.930248771571016, -1.3680147017812434 ], [ 50.93045712445845, -1.368246467124546 ], [ 50.93055054324894, -1.3683497733822199 ], [ 50.9305930062735, -1.3683973840922783 ], [ 50.93061055764569, -1.3684171470285287 ], [ 50.930700579095586, -1.3685168600250661 ], [ 50.93071756425528, -1.3685357246460326 ], [ 50.93116313939547, -1.3690315946828666 ], [ 50.93118635221462, -1.3690576458261061 ], [ 50.93126108609032, -1.369140290832245 ], [ 50.93140602417364, -1.3693019875833865 ], [ 50.93129618832382, -1.369567888907486 ] ]\r\n}",
-        "street_name" : null
-      }
-    },
-    "endpointA" : {
-      "className" : "OutdoorsCabinet",
-      "templateName" : null,
-      "name" : "AGGREGATOR-db815997-8d21-48aa-a516-e051803685d8",
-      "special" : false,
-      "parentClasses" : [ {
-        "className" : "City",
-        "templateName" : null,
-        "name" : "Southampton",
-        "special" : false,
-        "parentClasses" : [ {
-          "className" : "State",
-          "templateName" : null,
-          "name" : "Hampshire",
-          "special" : false,
-          "parentClasses" : [ ],
-          "attributes" : { }
-        } ],
-        "attributes" : { }
-      } ],
-      "attributes" : {
-        "latitude" : "50.93129599926152",
-        "longitude" : "-1.3695676"
-      }
-    },
-    "endpointB" : {
-      "className" : "OutdoorsCabinet",
-      "templateName" : null,
-      "name" : "CABINET-0fdb2845-1186-436f-a2bc-15a3779fd157",
-      "special" : false,
-      "parentClasses" : [ {
-        "className" : "City",
-        "templateName" : null,
-        "name" : "Southampton",
-        "special" : false,
-        "parentClasses" : [ {
-          "className" : "State",
-          "templateName" : null,
-          "name" : "Hampshire",
-          "special" : false,
-          "parentClasses" : [ ],
-          "attributes" : { }
-        } ],
-        "attributes" : { }
-      } ],
-      "attributes" : {
-        "latitude" : "50.93075773327691",
-        "longitude" : "-1.367172664732239"
-      }
-    }
-  }, {
-    "connectionClass" : {
-      "className" : "WireContainer",
-      "templateName" : null,
-      "name" : "DISTRIBUTION-23bf3639-e0a9-4fe1-93c1-2ef338922147",
-      "special" : false,
-      "parentClasses" : [ ],
-      "attributes" : {
-        "link_type" : "DISTRIBUTION",
-        "geometry" : "{\r\n  \"type\" : \"LineString\",\r\n  \"coordinates\" : [ [ 50.92523726374272, -1.3732707445086267 ], [ 50.925146099239925, -1.3736902577463104 ], [ 50.92513873812321, -1.3737279869882435 ], [ 50.92513307572494, -1.37376212296904 ], [ 50.92513024452554, -1.3737953606345525 ], [ 50.92512911204574, -1.373824106723644 ], [ 50.92513873812321, -1.3743999268207647 ], [ 50.92514156932207, -1.3744789785657674 ], [ 50.924519267666085, -1.3745930646068505 ], [ 50.92422425187056, -1.3746451668933295 ], [ 50.92418574679187, -1.3746523534156023 ], [ 50.9241370491467, -1.3746586416225912 ], [ 50.92407702639764, -1.374663133199012 ], [ 50.92400624475442, -1.3746694214060007 ], [ 50.92395981193797, -1.374673014667137 ], [ 50.923894692666124, -1.3746721163518532 ], [ 50.92371802079119, -1.3746667264601484 ], [ 50.923396385655366, -1.3746613365684435 ], [ 50.92332843428583, -1.3746586416225912 ], [ 50.92332843428583, -1.3746191157500898 ], [ 50.92333183185665, -1.3745912679762824 ], [ 50.92334372335264, -1.3745562336802015 ], [ 50.923574191269374, -1.3740657535350724 ], [ 50.92364270853798, -1.373921124774329 ] ]\r\n}",
-        "street_name" : null
-      }
-    },
-    "endpointA" : {
-      "className" : "OutdoorsCabinet",
-      "templateName" : null,
-      "name" : "AGGREGATOR-3f35964b-4c9b-409c-87ce-9299073ff699",
-      "special" : false,
-      "parentClasses" : [ {
-        "className" : "City",
-        "templateName" : null,
-        "name" : "Southampton",
-        "special" : false,
-        "parentClasses" : [ {
-          "className" : "State",
-          "templateName" : null,
-          "name" : "Hampshire",
-          "special" : false,
-          "parentClasses" : [ ],
-          "attributes" : { }
-        } ],
-        "attributes" : { }
-      } ],
-      "attributes" : {
-        "latitude" : "50.925197605666135",
-        "longitude" : "-1.3734558932734462"
-      }
-    },
-    "endpointB" : {
-      "className" : "OutdoorsCabinet",
-      "templateName" : null,
-      "name" : "CABINET-de8e1f75-49fb-4fa7-b5ba-c075b49ec47f",
-      "special" : false,
-      "parentClasses" : [ {
-        "className" : "City",
-        "templateName" : null,
-        "name" : "Southampton",
-        "special" : false,
-        "parentClasses" : [ {
-          "className" : "State",
-          "templateName" : null,
-          "name" : "Hampshire",
-          "special" : false,
-          "parentClasses" : [ ],
-          "attributes" : { }
-        } ],
-        "attributes" : { }
-      } ],
-      "attributes" : {
-        "latitude" : "50.92352663213833",
-        "longitude" : "-1.3741677677637694"
-      }
-    }
-  }, {
-    "connectionClass" : {
-      "className" : "WireContainer",
-      "templateName" : null,
-      "name" : "DISTRIBUTION-c3ac6ed9-e99c-496b-b228-bda7025c77d6",
-      "special" : false,
-      "parentClasses" : [ ],
-      "attributes" : {
-        "link_type" : "DISTRIBUTION",
-        "geometry" : "{\r\n  \"type\" : \"LineString\",\r\n  \"coordinates\" : [ [ 50.92442583676244, -1.3684503846940412 ], [ 50.924237275639975, -1.3684306217577904 ], [ 50.924245769400684, -1.3681746019018164 ], [ 50.92465573307302, -1.3680461428161874 ], [ 50.92473670613351, -1.368020989988232 ], [ 50.92481598032198, -1.3679967354755609 ], [ 50.92489412188982, -1.3679724809628895 ], [ 50.92500850278869, -1.3679185820458424 ], [ 50.925137039403786, -1.367831445463283 ], [ 50.92519592830706, -1.3678000044283387 ], [ 50.92526840685493, -1.36793115845982 ], [ 50.92541959221243, -1.3682051446214765 ], [ 50.925549260161304, -1.3684396049106318 ], [ 50.92589296341254, -1.3690603407719584 ], [ 50.92590881786698, -1.3690917818069026 ], [ 50.92592976838776, -1.3691546638767909 ], [ 50.92602942478991, -1.3690774087623567 ], [ 50.92612002133388, -1.3690127300619002 ], [ 50.92623779657727, -1.3689273901099086 ], [ 50.92633235629244, -1.3688663046705885 ], [ 50.926411627761844, -1.3688222872216667 ], [ 50.926417856228724, -1.3688186939605302 ], [ 50.92648863420278, -1.368789049556154 ], [ 50.92654582272715, -1.3687692866199037 ], [ 50.92660980584438, -1.3687549135753578 ], [ 50.92662622627619, -1.3687522186295056 ], [ 50.926686245736285, -1.3687432354766642 ], [ 50.926758721962244, -1.3687297607474025 ], [ 50.926832330513655, -1.36872706580155 ], [ 50.92687762802587, -1.3687306590626864 ], [ 50.92691216734928, -1.3685321313848962 ], [ 50.92693085254637, -1.368320128977844 ], [ 50.926940478251, -1.368185381685226 ], [ 50.926963693177555, -1.3680138034659592 ] ]\r\n}",
-        "street_name" : null
-      }
-    },
-    "endpointA" : {
-      "className" : "OutdoorsCabinet",
-      "templateName" : null,
-      "name" : "AGGREGATOR-ccef2719-c1f8-4bdc-a4f9-7c1a264cf65f",
-      "special" : false,
-      "parentClasses" : [ {
-        "className" : "City",
-        "templateName" : null,
-        "name" : "Southampton",
-        "special" : false,
-        "parentClasses" : [ {
-          "className" : "State",
-          "templateName" : null,
-          "name" : "Hampshire",
-          "special" : false,
-          "parentClasses" : [ ],
-          "attributes" : { }
-        } ],
-        "attributes" : { }
-      } ],
-      "attributes" : {
-        "latitude" : "50.92725606757119",
-        "longitude" : "-1.3673386205945919"
-      }
-    },
-    "endpointB" : {
-      "className" : "OutdoorsCabinet",
-      "templateName" : null,
-      "name" : "CABINET-a13f2bc5-9cfa-4c73-bf88-ea22b9dd7f5c",
-      "special" : false,
-      "parentClasses" : [ {
-        "className" : "City",
-        "templateName" : null,
-        "name" : "Southampton",
-        "special" : false,
-        "parentClasses" : [ {
-          "className" : "State",
-          "templateName" : null,
-          "name" : "Hampshire",
-          "special" : false,
-          "parentClasses" : [ ],
-          "attributes" : { }
-        } ],
-        "attributes" : { }
-      } ],
-      "attributes" : {
-        "latitude" : "50.92442589926273",
-        "longitude" : "-1.3684501"
-      }
-    }
-  }, {
-    "connectionClass" : {
-      "className" : "WireContainer",
-      "templateName" : null,
-      "name" : "DISTRIBUTION-9cabc956-78fc-45ca-b1e6-dcb7f75cba30",
-      "special" : false,
-      "parentClasses" : [ ],
-      "attributes" : {
-        "link_type" : "DISTRIBUTION",
-        "geometry" : "{\r\n  \"type\" : \"LineString\",\r\n  \"coordinates\" : [ [ 50.92957331679862, -1.3672421506369006 ], [ 50.929797525840826, -1.3675044586998633 ], [ 50.92991359322851, -1.3676401043077653 ], [ 50.929931144857036, -1.3676607655593003 ], [ 50.929963417189, -1.367697596485949 ], [ 50.930248771571016, -1.3680147017812434 ], [ 50.93045712445845, -1.368246467124546 ], [ 50.93055054324894, -1.3683497733822199 ], [ 50.9305930062735, -1.3683973840922783 ], [ 50.93061055764569, -1.3684171470285287 ], [ 50.930700579095586, -1.3685168600250661 ], [ 50.93071756425528, -1.3685357246460326 ], [ 50.93116313939547, -1.3690315946828666 ], [ 50.93118635221462, -1.3690576458261061 ], [ 50.93126108609032, -1.369140290832245 ], [ 50.93140602417364, -1.3693019875833865 ], [ 50.93129618832382, -1.369567888907486 ] ]\r\n}",
-        "street_name" : null
-      }
-    },
-    "endpointA" : {
-      "className" : "OutdoorsCabinet",
-      "templateName" : null,
-      "name" : "AGGREGATOR-db815997-8d21-48aa-a516-e051803685d8",
-      "special" : false,
-      "parentClasses" : [ {
-        "className" : "City",
-        "templateName" : null,
-        "name" : "Southampton",
-        "special" : false,
-        "parentClasses" : [ {
-          "className" : "State",
-          "templateName" : null,
-          "name" : "Hampshire",
-          "special" : false,
-          "parentClasses" : [ ],
-          "attributes" : { }
-        } ],
-        "attributes" : { }
-      } ],
-      "attributes" : {
-        "latitude" : "50.93129599926152",
-        "longitude" : "-1.3695676"
-      }
-    },
-    "endpointB" : {
-      "className" : "OutdoorsCabinet",
-      "templateName" : null,
-      "name" : "CABINET-85544dd6-b487-48e2-9338-8ff62e8cc30a",
-      "special" : false,
-      "parentClasses" : [ {
-        "className" : "City",
-        "templateName" : null,
-        "name" : "Southampton",
-        "special" : false,
-        "parentClasses" : [ {
-          "className" : "State",
-          "templateName" : null,
-          "name" : "Hampshire",
-          "special" : false,
-          "parentClasses" : [ ],
-          "attributes" : { }
-        } ],
-        "attributes" : { }
-      } ],
-      "attributes" : {
-        "latitude" : "50.92955541575825",
-        "longitude" : "-1.3672215750764278"
-      }
-    }
-  }, {
-    "connectionClass" : {
-      "className" : "WireContainer",
-      "templateName" : null,
-      "name" : "DISTRIBUTION-2a3824d1-a110-4c90-8c88-f45f936b9f37",
-      "special" : false,
-      "parentClasses" : [ ],
-      "attributes" : {
-        "link_type" : "DISTRIBUTION",
-        "geometry" : "{\r\n  \"type\" : \"LineString\",\r\n  \"coordinates\" : [ [ 50.926585458296856, -1.3726940260962217 ], [ 50.92591901001341, -1.373054250525154 ], [ 50.92562287062649, -1.373214150645727 ], [ 50.92560135373333, -1.3732258287444206 ], [ 50.92556568096748, -1.3732411001042506 ], [ 50.92553906793388, -1.3732482866265237 ], [ 50.92551302112029, -1.37325187988766 ], [ 50.925485275585416, -1.3732491849418076 ], [ 50.9253323917291, -1.3732258287444206 ], [ 50.92528539399825, -1.3732132523304428 ], [ 50.92525368465905, -1.3731952860247605 ], [ 50.92523726374272, -1.3732707445086267 ] ]\r\n}",
-        "street_name" : null
-      }
-    },
-    "endpointA" : {
-      "className" : "OutdoorsCabinet",
-      "templateName" : null,
-      "name" : "AGGREGATOR-3f35964b-4c9b-409c-87ce-9299073ff699",
-      "special" : false,
-      "parentClasses" : [ {
-        "className" : "City",
-        "templateName" : null,
-        "name" : "Southampton",
-        "special" : false,
-        "parentClasses" : [ {
-          "className" : "State",
-          "templateName" : null,
-          "name" : "Hampshire",
-          "special" : false,
-          "parentClasses" : [ ],
-          "attributes" : { }
-        } ],
-        "attributes" : { }
-      } ],
-      "attributes" : {
-        "latitude" : "50.925197605666135",
-        "longitude" : "-1.3734558932734462"
-      }
-    },
-    "endpointB" : {
-      "className" : "OutdoorsCabinet",
-      "templateName" : null,
-      "name" : "CABINET-172eed50-3ec6-4f48-b59f-67f58f4a6f89",
-      "special" : false,
-      "parentClasses" : [ {
-        "className" : "City",
-        "templateName" : null,
-        "name" : "Southampton",
-        "special" : false,
-        "parentClasses" : [ {
-          "className" : "State",
-          "templateName" : null,
-          "name" : "Hampshire",
-          "special" : false,
-          "parentClasses" : [ ],
-          "attributes" : { }
-        } ],
-        "attributes" : { }
-      } ],
-      "attributes" : {
-        "latitude" : "50.92691827116032",
-        "longitude" : "-1.3725155632366626"
-      }
-    }
-  }, {
-    "connectionClass" : {
-      "className" : "WireContainer",
-      "templateName" : null,
-      "name" : "DISTRIBUTION-44d5cc06-2103-43a8-815f-af7a6a2752b1",
-      "special" : false,
-      "parentClasses" : [ ],
-      "attributes" : {
-        "link_type" : "DISTRIBUTION",
-        "geometry" : "{\r\n  \"type\" : \"LineString\",\r\n  \"coordinates\" : [ [ 50.92523726374272, -1.3732707445086267 ], [ 50.92525368465905, -1.3731952860247605 ], [ 50.92540260511811, -1.372523346192239 ], [ 50.92543148317474, -1.3723787174314959 ], [ 50.925458096269885, -1.3722466650847305 ], [ 50.92546942098662, -1.3721747998620009 ], [ 50.925475649579624, -1.37209395148643 ], [ 50.92548017946496, -1.3719699839772215 ], [ 50.92552264711829, -1.3710249562983279 ], [ 50.92552547829383, -1.3709845321105425 ], [ 50.92554473028271, -1.370687189751499 ], [ 50.925550392630875, -1.3705623239270062 ], [ 50.925551525100445, -1.3704904587042768 ], [ 50.92507305426092, -1.3704473395706387 ], [ 50.9241749880142, -1.3703655928797838 ], [ 50.924164229234044, -1.3706817998597942 ], [ 50.92415913296886, -1.3709342264546316 ], [ 50.92414101291043, -1.3713510447464632 ], [ 50.92412912161826, -1.371598081449596 ] ]\r\n}",
-        "street_name" : null
-      }
-    },
-    "endpointA" : {
-      "className" : "OutdoorsCabinet",
-      "templateName" : null,
-      "name" : "AGGREGATOR-3f35964b-4c9b-409c-87ce-9299073ff699",
-      "special" : false,
-      "parentClasses" : [ {
-        "className" : "City",
-        "templateName" : null,
-        "name" : "Southampton",
-        "special" : false,
-        "parentClasses" : [ {
-          "className" : "State",
-          "templateName" : null,
-          "name" : "Hampshire",
-          "special" : false,
-          "parentClasses" : [ ],
-          "attributes" : { }
-        } ],
-        "attributes" : { }
-      } ],
-      "attributes" : {
-        "latitude" : "50.925197605666135",
-        "longitude" : "-1.3734558932734462"
-      }
-    },
-    "endpointB" : {
-      "className" : "OutdoorsCabinet",
-      "templateName" : null,
-      "name" : "CABINET-060600fa-d7bb-4548-ada0-fa5493d71995",
-      "special" : false,
-      "parentClasses" : [ {
-        "className" : "City",
-        "templateName" : null,
-        "name" : "Southampton",
-        "special" : false,
-        "parentClasses" : [ {
-          "className" : "State",
-          "templateName" : null,
-          "name" : "Hampshire",
-          "special" : false,
-          "parentClasses" : [ ],
-          "attributes" : { }
-        } ],
-        "attributes" : { }
-      } ],
-      "attributes" : {
-        "latitude" : "50.92411548051721",
-        "longitude" : "-1.3718265381958803"
-      }
-    }
-  }, {
-    "connectionClass" : {
-      "className" : "WireContainer",
-      "templateName" : null,
-      "name" : "DISTRIBUTION-2a7158ef-0098-4804-aee4-340e8c8a8053",
-      "special" : false,
-      "parentClasses" : [ ],
-      "attributes" : {
-        "link_type" : "DISTRIBUTION",
-        "geometry" : "{\r\n  \"type\" : \"LineString\",\r\n  \"coordinates\" : [ [ 50.9253663659628, -1.3738474629210313 ], [ 50.92513024452554, -1.3737953606345525 ], [ 50.92513307572494, -1.37376212296904 ], [ 50.92513873812321, -1.3737279869882435 ], [ 50.925146099239925, -1.3736902577463104 ], [ 50.92523726374272, -1.3732707445086267 ] ]\r\n}",
-        "street_name" : null
-      }
-    },
-    "endpointA" : {
-      "className" : "OutdoorsCabinet",
-      "templateName" : null,
-      "name" : "AGGREGATOR-3f35964b-4c9b-409c-87ce-9299073ff699",
-      "special" : false,
-      "parentClasses" : [ {
-        "className" : "City",
-        "templateName" : null,
-        "name" : "Southampton",
-        "special" : false,
-        "parentClasses" : [ {
-          "className" : "State",
-          "templateName" : null,
-          "name" : "Hampshire",
-          "special" : false,
-          "parentClasses" : [ ],
-          "attributes" : { }
-        } ],
-        "attributes" : { }
-      } ],
-      "attributes" : {
-        "latitude" : "50.925197605666135",
-        "longitude" : "-1.3734558932734462"
-      }
-    },
-    "endpointB" : {
-      "className" : "OutdoorsCabinet",
-      "templateName" : null,
-      "name" : "CABINET-1cfcb265-598a-4067-aaef-c07653826e7d",
-      "special" : false,
-      "parentClasses" : [ {
-        "className" : "City",
-        "templateName" : null,
-        "name" : "Southampton",
-        "special" : false,
-        "parentClasses" : [ {
-          "className" : "State",
-          "templateName" : null,
-          "name" : "Hampshire",
-          "special" : false,
-          "parentClasses" : [ ],
-          "attributes" : { }
-        } ],
-        "attributes" : { }
-      } ],
-      "attributes" : {
-        "latitude" : "50.9252589475385",
-        "longitude" : "-1.3738241094970378"
-      }
-    }
-  }, {
-    "connectionClass" : {
-      "className" : "WireContainer",
-      "templateName" : null,
-      "name" : "DISTRIBUTION-163b0578-19fa-48b0-b215-64782524708d",
-      "special" : false,
-      "parentClasses" : [ ],
-      "attributes" : {
-        "link_type" : "DISTRIBUTION",
-        "geometry" : "{\r\n  \"type\" : \"LineString\",\r\n  \"coordinates\" : [ [ 50.931861783562844, -1.368901338966669 ], [ 50.93188216524488, -1.3688159990146778 ], [ 50.93190084844555, -1.3686408275342745 ], [ 50.93192236242492, -1.3684997920346678 ], [ 50.93203049832832, -1.3682186193507384 ], [ 50.93257796786558, -1.3687198792792772 ], [ 50.93266911780391, -1.3688034226007002 ], [ 50.93274781232746, -1.3688770844539981 ], [ 50.93280216242426, -1.3689327800016131 ], [ 50.93283726349472, -1.3689767974505354 ], [ 50.93286896766458, -1.3690306963675825 ], [ 50.93289274577781, -1.3690836969693454 ], [ 50.93290746555609, -1.3691456807239497 ], [ 50.932915957733755, -1.3692076644785538 ], [ 50.93292161918465, -1.3692930044305454 ], [ 50.932922751474756, -1.3693954123729348 ], [ 50.9329210530396, -1.369508600098734 ], [ 50.93291652387887, -1.3695651939616338 ], [ 50.93290237024874, -1.3697457553337413 ], [ 50.93289897337687, -1.3697888744673792 ], [ 50.93288142286826, -1.3700116566578409 ], [ 50.932844057247195, -1.3705174081628002 ], [ 50.93280782388904, -1.3705129165863796 ], [ 50.93277328894325, -1.3705201031086525 ], [ 50.932670816248276, -1.370591968331382 ], [ 50.93263175201229, -1.3705587306658695 ], [ 50.93239566745303, -1.3703700844562046 ], [ 50.93226771704727, -1.3702676765138149 ], [ 50.93222921862621, -1.3702245573801775 ], [ 50.931949537963554, -1.369906553769599 ], [ 50.931522653709635, -1.3694322432995838 ], [ 50.93140602417364, -1.3693019875833865 ], [ 50.93129618832382, -1.369567888907486 ] ]\r\n}",
-        "street_name" : null
-      }
-    },
-    "endpointA" : {
-      "className" : "OutdoorsCabinet",
-      "templateName" : null,
-      "name" : "AGGREGATOR-db815997-8d21-48aa-a516-e051803685d8",
-      "special" : false,
-      "parentClasses" : [ {
-        "className" : "City",
-        "templateName" : null,
-        "name" : "Southampton",
-        "special" : false,
-        "parentClasses" : [ {
-          "className" : "State",
-          "templateName" : null,
-          "name" : "Hampshire",
-          "special" : false,
-          "parentClasses" : [ ],
-          "attributes" : { }
-        } ],
-        "attributes" : { }
-      } ],
-      "attributes" : {
-        "latitude" : "50.93129599926152",
-        "longitude" : "-1.3695676"
-      }
-    },
-    "endpointB" : {
-      "className" : "OutdoorsCabinet",
-      "templateName" : null,
-      "name" : "CABINET-2ac32f0f-c24c-4b0b-b681-a13d986d13df",
-      "special" : false,
-      "parentClasses" : [ {
-        "className" : "City",
-        "templateName" : null,
-        "name" : "Southampton",
-        "special" : false,
-        "parentClasses" : [ {
-          "className" : "State",
-          "templateName" : null,
-          "name" : "Hampshire",
-          "special" : false,
-          "parentClasses" : [ ],
-          "attributes" : { }
-        } ],
-        "attributes" : { }
-      } ],
-      "attributes" : {
-        "latitude" : "50.93186199926142",
-        "longitude" : "-1.3689017"
-      }
-    }
-  }, {
-    "connectionClass" : {
-      "className" : "WireContainer",
-      "templateName" : null,
-      "name" : "DISTRIBUTION-f452d100-0d4d-422c-b609-2cf1d531efa1",
-      "special" : false,
-      "parentClasses" : [ ],
-      "attributes" : {
-        "link_type" : "DISTRIBUTION",
-        "geometry" : "{\r\n  \"type\" : \"LineString\",\r\n  \"coordinates\" : [ [ 50.92875290631823, -1.3758812487242778 ], [ 50.92870025007896, -1.3756342120211449 ], [ 50.9288672777294, -1.3755425838621649 ], [ 50.92900373038175, -1.375468922008867 ], [ 50.92920246361168, -1.3753593275442046 ], [ 50.92936156282198, -1.375273089276929 ], [ 50.92952972047045, -1.3751796644873808 ] ]\r\n}",
-        "street_name" : null
-      }
-    },
-    "endpointA" : {
-      "className" : "OutdoorsCabinet",
-      "templateName" : null,
-      "name" : "AGGREGATOR-ccef0721-0c08-47dc-858e-5d8f3283fac2",
-      "special" : false,
-      "parentClasses" : [ {
-        "className" : "City",
-        "templateName" : null,
-        "name" : "Southampton",
-        "special" : false,
-        "parentClasses" : [ {
-          "className" : "State",
-          "templateName" : null,
-          "name" : "Hampshire",
-          "special" : false,
-          "parentClasses" : [ ],
-          "attributes" : { }
-        } ],
-        "attributes" : { }
-      } ],
-      "attributes" : {
-        "latitude" : "50.92899439365573",
-        "longitude" : "-1.3761516573133212"
-      }
-    },
-    "endpointB" : {
-      "className" : "OutdoorsCabinet",
-      "templateName" : null,
-      "name" : "CABINET-5f1bb50d-ed68-43e7-91d6-a891243d9af6",
-      "special" : false,
-      "parentClasses" : [ {
-        "className" : "City",
-        "templateName" : null,
-        "name" : "Southampton",
-        "special" : false,
-        "parentClasses" : [ {
-          "className" : "State",
-          "templateName" : null,
-          "name" : "Hampshire",
-          "special" : false,
-          "parentClasses" : [ ],
-          "attributes" : { }
-        } ],
-        "attributes" : { }
-      } ],
-      "attributes" : {
-        "latitude" : "50.92941266501363",
-        "longitude" : "-1.375243744845451"
-      }
-    }
-  }, {
-    "connectionClass" : {
-      "className" : "WireContainer",
-      "templateName" : null,
-      "name" : "DISTRIBUTION-1d78d45a-ef1d-44da-aae3-e877fa6a6e9e",
-      "special" : false,
-      "parentClasses" : [ ],
-      "attributes" : {
-        "link_type" : "DISTRIBUTION",
-        "geometry" : "{\r\n  \"type\" : \"LineString\",\r\n  \"coordinates\" : [ [ 50.92734758711229, -1.376881073635503 ], [ 50.92734928575097, -1.3767921404223753 ], [ 50.927353249241015, -1.3765558835026517 ], [ 50.92735664651791, -1.3763510676178725 ], [ 50.92735947758182, -1.3763070501689507 ], [ 50.92736627213445, -1.3762540495671873 ], [ 50.92743421760635, -1.3762657276658812 ], [ 50.92752594383593, -1.3762531512519036 ], [ 50.927596153914166, -1.376234286630937 ], [ 50.927724683379594, -1.376167811299912 ], [ 50.92811763029161, -1.3759531139470074 ], [ 50.928183309855136, -1.3759162830203586 ], [ 50.92828975584736, -1.3758587908421747 ], [ 50.92831013909466, -1.3758471127434813 ], [ 50.92870025007896, -1.3756342120211449 ], [ 50.92875290631823, -1.3758812487242778 ] ]\r\n}",
-        "street_name" : null
-      }
-    },
-    "endpointA" : {
-      "className" : "OutdoorsCabinet",
-      "templateName" : null,
-      "name" : "AGGREGATOR-ccef0721-0c08-47dc-858e-5d8f3283fac2",
-      "special" : false,
-      "parentClasses" : [ {
-        "className" : "City",
-        "templateName" : null,
-        "name" : "Southampton",
-        "special" : false,
-        "parentClasses" : [ {
-          "className" : "State",
-          "templateName" : null,
-          "name" : "Hampshire",
-          "special" : false,
-          "parentClasses" : [ ],
-          "attributes" : { }
-        } ],
-        "attributes" : { }
-      } ],
-      "attributes" : {
-        "latitude" : "50.92899439365573",
-        "longitude" : "-1.3761516573133212"
-      }
-    },
-    "endpointB" : {
-      "className" : "OutdoorsCabinet",
-      "templateName" : null,
-      "name" : "CABINET-d7f9652b-6cfb-4a67-a881-996f1c6c7da6",
-      "special" : false,
-      "parentClasses" : [ {
-        "className" : "City",
-        "templateName" : null,
-        "name" : "Southampton",
-        "special" : false,
-        "parentClasses" : [ {
-          "className" : "State",
-          "templateName" : null,
-          "name" : "Hampshire",
-          "special" : false,
-          "parentClasses" : [ ],
-          "attributes" : { }
-        } ],
-        "attributes" : { }
-      } ],
-      "attributes" : {
-        "latitude" : "50.92734047499498",
-        "longitude" : "-1.3772255792789563"
-      }
-    }
-  }, {
-    "connectionClass" : {
-      "className" : "WireContainer",
-      "templateName" : null,
-      "name" : "DISTRIBUTION-a88b0fa4-d444-4763-baec-a71a361a8e4c",
-      "special" : false,
-      "parentClasses" : [ ],
-      "attributes" : {
-        "link_type" : "DISTRIBUTION",
-        "geometry" : "{\r\n  \"type\" : \"LineString\",\r\n  \"coordinates\" : [ [ 50.93129618832382, -1.369567888907486 ], [ 50.93140602417364, -1.3693019875833865 ], [ 50.931522653709635, -1.3694322432995838 ], [ 50.931949537963554, -1.369906553769599 ], [ 50.93222921862621, -1.3702245573801775 ], [ 50.93226771704727, -1.3702676765138149 ], [ 50.93239566745303, -1.3703700844562046 ], [ 50.93263175201229, -1.3705587306658695 ], [ 50.932670816248276, -1.370591968331382 ], [ 50.93249927305466, -1.3707590549742286 ], [ 50.932355470682054, -1.3709018871044034 ], [ 50.93230678158902, -1.3709773455882694 ], [ 50.93201294749198, -1.371612454494142 ], [ 50.931731567050214, -1.3722233088873432 ] ]\r\n}",
-        "street_name" : null
-      }
-    },
-    "endpointA" : {
-      "className" : "OutdoorsCabinet",
-      "templateName" : null,
-      "name" : "AGGREGATOR-db815997-8d21-48aa-a516-e051803685d8",
-      "special" : false,
-      "parentClasses" : [ {
-        "className" : "City",
-        "templateName" : null,
-        "name" : "Southampton",
-        "special" : false,
-        "parentClasses" : [ {
-          "className" : "State",
-          "templateName" : null,
-          "name" : "Hampshire",
-          "special" : false,
-          "parentClasses" : [ ],
-          "attributes" : { }
-        } ],
-        "attributes" : { }
-      } ],
-      "attributes" : {
-        "latitude" : "50.93129599926152",
-        "longitude" : "-1.3695676"
-      }
-    },
-    "endpointB" : {
-      "className" : "OutdoorsCabinet",
-      "templateName" : null,
-      "name" : "CABINET-a6795133-3b6b-487d-8ebd-4f063dde5d22",
-      "special" : false,
-      "parentClasses" : [ {
-        "className" : "City",
-        "templateName" : null,
-        "name" : "Southampton",
-        "special" : false,
-        "parentClasses" : [ {
-          "className" : "State",
-          "templateName" : null,
-          "name" : "Hampshire",
-          "special" : false,
-          "parentClasses" : [ ],
-          "attributes" : { }
-        } ],
-        "attributes" : { }
-      } ],
-      "attributes" : {
-        "latitude" : "50.9318557284965",
-        "longitude" : "-1.3719530601955137"
-      }
-    }
-  }, {
-    "connectionClass" : {
-      "className" : "WireContainer",
-      "templateName" : null,
-      "name" : "DISTRIBUTION-6534d7ea-65d1-4741-8899-f5f1301334f9",
-      "special" : false,
-      "parentClasses" : [ ],
-      "attributes" : {
-        "link_type" : "DISTRIBUTION",
-        "geometry" : "{\r\n  \"type\" : \"LineString\",\r\n  \"coordinates\" : [ [ 50.9243278756741, -1.3753638191206252 ], [ 50.92423954064298, -1.3753728022734664 ], [ 50.92424746815262, -1.375798603718139 ], [ 50.92424916690454, -1.375889333561835 ], [ 50.924498882757646, -1.3758614857880274 ], [ 50.92458155483093, -1.3758569942116066 ], [ 50.92461722835141, -1.375866875679732 ], [ 50.92466649173952, -1.3758426211670607 ], [ 50.924795595543536, -1.3758282481225148 ], [ 50.92482673895141, -1.3758246548613784 ], [ 50.92507984914754, -1.3757968070875706 ], [ 50.9251913983941, -1.375784230673593 ], [ 50.92518913343742, -1.375724941864841 ], [ 50.925186868480644, -1.375663856425521 ], [ 50.92516705010421, -1.3751446301912997 ], [ 50.925143834281066, -1.3745373690592353 ], [ 50.92514156932207, -1.3744789785657674 ], [ 50.92513873812321, -1.3743999268207647 ], [ 50.92512911204574, -1.373824106723644 ], [ 50.92513024452554, -1.3737953606345525 ], [ 50.92513307572494, -1.37376212296904 ], [ 50.92513873812321, -1.3737279869882435 ], [ 50.925146099239925, -1.3736902577463104 ], [ 50.92523726374272, -1.3732707445086267 ] ]\r\n}",
-        "street_name" : null
-      }
-    },
-    "endpointA" : {
-      "className" : "OutdoorsCabinet",
-      "templateName" : null,
-      "name" : "AGGREGATOR-3f35964b-4c9b-409c-87ce-9299073ff699",
-      "special" : false,
-      "parentClasses" : [ {
-        "className" : "City",
-        "templateName" : null,
-        "name" : "Southampton",
-        "special" : false,
-        "parentClasses" : [ {
-          "className" : "State",
-          "templateName" : null,
-          "name" : "Hampshire",
-          "special" : false,
-          "parentClasses" : [ ],
-          "attributes" : { }
-        } ],
-        "attributes" : { }
-      } ],
-      "attributes" : {
-        "latitude" : "50.925197605666135",
-        "longitude" : "-1.3734558932734462"
-      }
-    },
-    "endpointB" : {
-      "className" : "OutdoorsCabinet",
-      "templateName" : null,
-      "name" : "CABINET-1af6e3f5-07f6-4008-82af-270723e716af",
-      "special" : false,
-      "parentClasses" : [ {
-        "className" : "City",
-        "templateName" : null,
-        "name" : "Southampton",
-        "special" : false,
-        "parentClasses" : [ {
-          "className" : "State",
-          "templateName" : null,
-          "name" : "Hampshire",
-          "special" : false,
-          "parentClasses" : [ ],
-          "attributes" : { }
-        } ],
-        "attributes" : { }
-      } ],
-      "attributes" : {
-        "latitude" : "50.924328099262745",
-        "longitude" : "-1.3753638"
-      }
-    }
-  } ]
+  "kuwaibaConnectionList" : [ ]
 }
