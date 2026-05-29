@@ -63,27 +63,7 @@ public class ProjectConstants {
       } catch (Exception e) {
          e.printStackTrace();
       }
-      
-      // create default undefined street
-      // block to isolate repeat variables
-      try {
-         KuwaibaClass kuwaibaClass1 = new KuwaibaClass();
-         pr.getKuwaibaClassList().add(kuwaibaClass1);
-
-         kuwaibaClass1.setClassName(STREET_CLASS_NAME); // Neighbourhood
-         kuwaibaClass1.setName(UNDEFINED_STREET); // UNDEFINED
-         
-         parentNeighbourhood = kuwaibaClass1;
-
-         KuwaibaClass parent1 = new KuwaibaClass();
-         kuwaibaClass1.getParentClasses().add(parent1);
-         parent1.setName(PARENT_CITY); //hampshire
-         parent1.setClassName("City");
-
-      } catch (Exception e) {
-         e.printStackTrace();
-      }
-      
+           
       return pr;
 
    }
