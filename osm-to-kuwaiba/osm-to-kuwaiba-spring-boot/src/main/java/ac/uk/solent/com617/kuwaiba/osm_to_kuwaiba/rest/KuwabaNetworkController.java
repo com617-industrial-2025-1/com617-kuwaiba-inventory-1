@@ -244,8 +244,6 @@ public class KuwabaNetworkController {
       }
 
 
-
-
       LinkedHashMap<String, KuwaibaClass> kuwaibaStreets = new LinkedHashMap<String,KuwaibaClass>();
       List<KuwaibaClass> kuwaibaBuildings = new ArrayList<KuwaibaClass>();
 
@@ -274,30 +272,30 @@ public class KuwabaNetworkController {
       responseHeaders.set("X-Current-Page", Integer.toString(pageNo));
 
       for (LinkedBuilding lb : linkedBuildings) {
-         KuwaibaClass kc = new KuwaibaClass();
+         KuwaibaClass building = new KuwaibaClass();
 
          if (includeStreets) {
             streetName = (lb.getStreetName() != null) ? lb.getStreetName() : "UNDEFINED";
             KuwaibaClass streetClass = addKuwaibaStreetClass(streetName);
             if (! kuwaibaStreets.containsKey(streetName)) kuwaibaStreets.put(streetName,streetClass);
-            kc.getParentClasses().add(kuwaibaStreets.get(streetName));
+            building.getParentClasses().add(kuwaibaStreets.get(streetName));
          } else {
-            kc.getParentClasses().add(ProjectConstants.parentNeighbourhood);
+            building.getParentClasses().add(ProjectConstants.parentNeighbourhood);
          }
 
-         kc.setName(lb.getBuildingName());
-         kc.setClassName("Building");
-//         kc.getAttributes().put("osmid", lb.getOsmId().toString());
-//         kc.getAttributes().put("uprn", lb.getUprn().toString());
-//         kc.getAttributes().put("house_num", lb.getHouseNum());
-//         kc.getAttributes().put("street", lb.getStreetName());
-         
-         // Combine key attributes into a single "address" attribute since not a filed in kuwaiba
-         kc.getAttributes().put("address",  "osmid: "+ lb.getOsmId()+", uprn: "+ lb.getUprn()+", "+lb.getHouseNum()+" streetName: "+lb.getStreetName());
-         
-         if (lb.getLat()!=null) kc.getAttributes().put("latitude",  lb.getLat().toString());
-         if (lb.getLon()!=null) kc.getAttributes().put("longitude",  lb.getLon().toString());
-         kuwaibaBuildings.add(kc);
+         building.setName(lb.getBuildingName());
+         building.setClassName("Building");
+         //         kc.getAttributes().put("osmid", lb.getOsmId().toString());
+         //         kc.getAttributes().put("uprn", lb.getUprn().toString());
+         //         kc.getAttributes().put("house_num", lb.getHouseNum());
+         //         kc.getAttributes().put("street", lb.getStreetName());
+
+         // Combine key attributes into a single "address" attribute since not a field in kuwaiba
+         building.getAttributes().put("address",  "osmid: "+ lb.getOsmId()+", uprn: "+ lb.getUprn()+", "+lb.getHouseNum()+" streetName: "+lb.getStreetName());
+
+         if (lb.getLat()!=null) building.getAttributes().put("latitude",  lb.getLat().toString());
+         if (lb.getLon()!=null) building.getAttributes().put("longitude",  lb.getLon().toString());
+         kuwaibaBuildings.add(building);
       }
 
       if (includeStreets) pr.getKuwaibaClassList().addAll(kuwaibaStreets.values());
@@ -331,8 +329,13 @@ public class KuwabaNetworkController {
             @RequestParam(defaultValue = "true") boolean includeStaticTemplates,
             @RequestParam(defaultValue = "true") boolean includeStaticObjects,
             @RequestParam(defaultValue = "true") boolean includeConnectionBuildings,
-            @RequestParam(defaultValue = "true") boolean includeConnections            
+            @RequestParam(defaultValue = "true") boolean includeConnections,
+            @RequestParam(defaultValue = "true") boolean includeStreets
             ) throws Exception {
+
+      LinkedHashMap<String, KuwaibaClass> kuwaibaStreets = new LinkedHashMap<String,KuwaibaClass>();
+      List<KuwaibaClass> kuwaibaBuildings = new ArrayList<KuwaibaClass>();
+
       String sortBy = "id";
       String sortDirection = "ASC";
 
@@ -406,17 +409,33 @@ public class KuwabaNetworkController {
             Optional<LinkedBuilding> linked = linkedBuildingRepository.findById(conn.getOsmId());
             if (linked.isPresent()) {
                LinkedBuilding lb = linked.get();
+
                KuwaibaClass building = new KuwaibaClass();
+
+               if (includeStreets) {
+                  String streetName = (lb.getStreetName() != null) ? lb.getStreetName() : "UNDEFINED";
+                  KuwaibaClass streetClass = addKuwaibaStreetClass(streetName);
+                  if (! kuwaibaStreets.containsKey(streetName)) kuwaibaStreets.put(streetName,streetClass);
+                  building.getParentClasses().add(kuwaibaStreets.get(streetName));
+               } else {
+                  building.getParentClasses().add(ProjectConstants.parentNeighbourhood);
+               }
+
+               building.setName(lb.getBuildingName());
                building.setClassName("Building");
-               building.setName(lb.getUprn() != null ? lb.getUprn().toString() : lb.getBuildingName());
-               building.getParentClasses().add(ProjectConstants.parentNeighbourhood);
-//               if (lb.getOsmId() != null)building.getAttributes().put("osmid", lb.getOsmId().toString());
-//               if (lb.getUprn() != null) building.getAttributes().put("uprn", lb.getUprn().toString());
-//               if (lb.getStreetName() != null) building.getAttributes().put("street", lb.getStreetName());
-               
-               // Combine key attributes into a single "address" attribute since not a filed in kuwaiba
+
+
+               //               KuwaibaClass building = new KuwaibaClass();
+               //               building.setClassName("Building");
+               //               building.setName(lb.getUprn() != null ? lb.getUprn().toString() : lb.getBuildingName());
+               //               building.getParentClasses().add(ProjectConstants.parentNeighbourhood);
+               //               if (lb.getOsmId() != null)building.getAttributes().put("osmid", lb.getOsmId().toString());
+               //               if (lb.getUprn() != null) building.getAttributes().put("uprn", lb.getUprn().toString());
+               //               if (lb.getStreetName() != null) building.getAttributes().put("street", lb.getStreetName());
+
+               // Combine key attributes into a single "address" attribute since not a field in kuwaiba
                building.getAttributes().put("address",  "osmid: "+ lb.getOsmId()+", uprn: "+ lb.getUprn()+", "+lb.getHouseNum()+" streetName: "+lb.getStreetName());
-               
+
                if (lb.getLat()!=null) building.getAttributes().put("latitude",  lb.getLat().toString());
                if (lb.getLon()!=null) building.getAttributes().put("longitude",  lb.getLon().toString());
 
@@ -425,12 +444,28 @@ public class KuwabaNetworkController {
                kuwaibaConnection.setEndpointB(building);
             } else {
                cleanedBuildingRepository.findById(conn.getOsmId()).ifPresent(cb -> {
+
                   KuwaibaClass building = new KuwaibaClass();
-                  building.setClassName("Building");
+
+                  if (includeStreets) {
+                     String streetName = (cb.getStreetName() != null) ? cb.getStreetName() : "UNDEFINED";
+                     KuwaibaClass streetClass = addKuwaibaStreetClass(streetName);
+                     if (! kuwaibaStreets.containsKey(streetName)) kuwaibaStreets.put(streetName,streetClass);
+                     building.getParentClasses().add(kuwaibaStreets.get(streetName));
+                  } else {
+                     building.getParentClasses().add(ProjectConstants.parentNeighbourhood);
+                  }
+
                   building.setName(cb.getBuildingName());
-                  building.getParentClasses().add(ProjectConstants.parentNeighbourhood);
+                  building.setClassName("Building");
+
+
+                  // building.setClassName("Building");
+                  // building.setName(cb.getBuildingName());
+                  // building.getParentClasses().add(ProjectConstants.parentNeighbourhood);
                   //if (cb.getStreetName() != null) building.getAttributes().put("street", cb.getStreetName());
-                  // Combine key attributes into a single "address" attribute since not a filed in kuwaiba
+
+                  // Combine key attributes into a single "address" attribute since not a field in kuwaiba
                   building.getAttributes().put("address",  "streetName: "+cb.getStreetName());
 
                   if (includeConnectionBuildings) pr.getKuwaibaClassList().add(building);
