@@ -56,7 +56,7 @@ public interface NetworkConnectionRepository extends JpaRepository<NetworkConnec
    @Modifying
    @Transactional
    @Query(nativeQuery = true, value = """
-                INSERT INTO network_connections (start_id, end_id, link_type, geom, external_id)
+             INSERT INTO network_connections (start_id, end_id, link_type, geom, external_id)
              SELECT
                  cabinet.id,
                  pole.id,
@@ -99,7 +99,7 @@ public interface NetworkConnectionRepository extends JpaRepository<NetworkConnec
    @Modifying
    @Transactional
    @Query(nativeQuery = true, value = """
-                INSERT INTO network_connections (start_id, end_id, link_type, geom, external_id)
+             INSERT INTO network_connections (start_id, end_id, link_type, geom, external_id)
              SELECT
                  aggregator.id,
                  cabinet.id,
@@ -142,7 +142,7 @@ public interface NetworkConnectionRepository extends JpaRepository<NetworkConnec
    @Modifying
    @Transactional
    @Query(nativeQuery = true, value = """
-                INSERT INTO network_connections (start_id, end_id, link_type, geom, external_id)
+             INSERT INTO network_connections (start_id, end_id, link_type, geom, external_id)
              SELECT
                  exchange.id,
                  aggregator.id,

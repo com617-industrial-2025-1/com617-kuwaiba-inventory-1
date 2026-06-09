@@ -122,7 +122,7 @@ public interface NetworkPointRepository extends JpaRepository<NetworkPoint, Long
 
     // Linking children to parents
     // Note that this may change the ratio of children to parents in cases
-    // That should be TODO in the next iterative develompment process.
+    // That should be TODO in the next iterative development process.
 
     @Modifying
     @Transactional
