@@ -21,9 +21,12 @@ public class LineStringSerializer extends StdSerializer<LineString> {
         gen.writeArrayFieldStart("coordinates");
         for (int i = 0; i < line.getNumPoints(); i++) {
             Point p = line.getPointN(i);
+            
+            double[] latLon = CoordinateTranslator.metersToLatLon(p.getX(), p.getY());
+
             gen.writeStartArray();
-            gen.writeNumber(p.getX());
-            gen.writeNumber(p.getY());
+            gen.writeNumber(latLon[0]); // Latitude
+            gen.writeNumber(latLon[1]); // Longitude
             gen.writeEndArray();
         }
         gen.writeEndArray();

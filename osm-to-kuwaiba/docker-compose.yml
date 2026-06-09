@@ -56,27 +56,27 @@ services:
       - pgadmin_data:/var/lib/pgadmin
       - ./container-fs/pgadmin/:/pgadmin
 
-  app:
-    build:
-      context: ./osm-to-kuwaiba-spring-boot
-      dockerfile: Dockerfile
-    container_name: app
-    restart: on-failure
-    ports:
-      - "8080:8080"
-    depends_on:
-      db:
-        condition: service_healthy
-      importer:
-        condition: service_completed_successfully
-    environment:
-      SPRING_DATASOURCE_URL: jdbc:postgresql://db:5432/osm
-      SPRING_DATASOURCE_USERNAME: osmuser
-      SPRING_DATASOURCE_PASSWORD: osmpass
-        # Overiding csv path
-      UPRN_CSV_PATH: /data/uprns.csv
-    volumes:
-      - ./container-fs/data:/data
+#  app:
+#    build:
+#      context: ./osm-to-kuwaiba-spring-boot
+#      dockerfile: Dockerfile
+#    container_name: app
+#    restart: on-failure
+#    ports:
+#      - "8080:8080"
+#    depends_on:
+#      db:
+#        condition: service_healthy
+#      importer:
+#        condition: service_completed_successfully
+#    environment:
+#      SPRING_DATASOURCE_URL: jdbc:postgresql://db:5432/osm
+#      SPRING_DATASOURCE_USERNAME: osmuser
+#      SPRING_DATASOURCE_PASSWORD: osmpass
+#        # Overiding csv path
+#      UPRN_CSV_PATH: /data/uprns.csv
+#    volumes:
+#      - ./container-fs/data:/data
 
   kuwaiba:
     #    image: ${DOCKER_REGISTRY:-docker.io}/neotropic/kuwaiba:${KUWAIBA_VERSION:-v2.1-nightly}

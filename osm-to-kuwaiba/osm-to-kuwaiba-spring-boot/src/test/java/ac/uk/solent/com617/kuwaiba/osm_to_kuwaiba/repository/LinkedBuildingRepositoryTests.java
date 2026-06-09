@@ -31,10 +31,10 @@ public class LinkedBuildingRepositoryTests {
     void setup() {
         jdbcTemplate.execute("DELETE FROM linked_buildings");
         jdbcTemplate.execute("""
-            INSERT INTO linked_buildings (osm_id, building_name, house_num, street_name, floors, uprn)
+            INSERT INTO linked_buildings (osm_id, building_name, house_num, street_name, floors, uprn, lat, lon)
             VALUES
-                (1, 'Building A', '1', 'Test Street', '2', 100000001),
-                (2, 'Building B', '2', 'Test Street', '1', 100000002)
+                (1, 'Building A', '1', 'Test Street', '2', 100000001, 51.5074, -0.1278),
+                (2, 'Building B', '2', 'Test Street', '1', 100000002, 51.5075, -0.1279)
         """);
     }
 

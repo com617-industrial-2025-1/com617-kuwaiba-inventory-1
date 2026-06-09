@@ -19,6 +19,9 @@ public class ProjectConstants {
    public static final String PARENT_LOCATION_CLASS_NAME = "Neighborhood";
    public static final String PARENT_LOCATION_VALUE = "BitternePk";
    
+   public static final String STREET_CLASS_NAME = "Neighborhood";
+   public static final String UNDEFINED_STREET = "UNDEFINED";
+   
    public static  KuwaibaClass parentNeighbourhood =null;
    
    public static KuwaibaProvisioningRequisition  addStaticObjectsToProvisioningRequisition(KuwaibaProvisioningRequisition pr) {
@@ -31,8 +34,6 @@ public class ProjectConstants {
 
          kuwaibaClass1.setName(PARENT_CITY); // southampton
          kuwaibaClass1.setClassName("City");
-         
-         parentNeighbourhood = kuwaibaClass1;
 
          KuwaibaClass parent1 = new KuwaibaClass();
          kuwaibaClass1.getParentClasses().add(parent1);
@@ -51,6 +52,8 @@ public class ProjectConstants {
 
          kuwaibaClass1.setClassName(PARENT_LOCATION_CLASS_NAME); // Neighborhood
          kuwaibaClass1.setName(PARENT_LOCATION_VALUE); // bitterne pk
+         
+         parentNeighbourhood = kuwaibaClass1;
 
          KuwaibaClass parent1 = new KuwaibaClass();
          kuwaibaClass1.getParentClasses().add(parent1);
@@ -60,7 +63,7 @@ public class ProjectConstants {
       } catch (Exception e) {
          e.printStackTrace();
       }
-      
+           
       return pr;
 
    }

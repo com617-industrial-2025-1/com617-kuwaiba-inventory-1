@@ -25,9 +25,12 @@ public class MultiLineStringSerializer extends StdSerializer<MultiLineString> {
             gen.writeStartArray();
             for (int j = 0; j < line.getNumPoints(); j++) {
                 Point p = line.getPointN(j);
+                
+                double[] latLon = CoordinateTranslator.metersToLatLon(p.getX(), p.getY());
+
                 gen.writeStartArray();
-                gen.writeNumber(p.getX());
-                gen.writeNumber(p.getY());
+                gen.writeNumber(latLon[0]); // Latitude
+                gen.writeNumber(latLon[1]); // Longitude
                 gen.writeEndArray();
             }
             gen.writeEndArray();

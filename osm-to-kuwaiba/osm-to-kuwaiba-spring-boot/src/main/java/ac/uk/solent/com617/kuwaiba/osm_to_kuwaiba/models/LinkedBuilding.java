@@ -27,6 +27,12 @@ public class LinkedBuilding {
 	@Column(name = "uprn")
 	private Long uprn;
 	
+	@Column(name = "lat")
+	private Double lat;
+	
+	@Column(name = "lon")
+	private Double lon;
+	
 	// getters and setters
 	public Long getOsmId() { return osmId; }
 	public String getBuildingName() { return buildingName; }
@@ -34,6 +40,8 @@ public class LinkedBuilding {
 	public String getStreetName() { return streetName; }
 	public String getFloors() { return floors; }
 	public Long getUprn() { return uprn; }
+	public Double getLat() { return lat; }
+	public Double getLon() { return lon; }
 	
 	public void setOsmId(Long id) { osmId = id; }
 	public void setBuildingName(String name) { buildingName = name; }
@@ -41,6 +49,8 @@ public class LinkedBuilding {
 	public void setStreetName(String name) { streetName = name; }
 	public void setFloors(String floors_) { floors = floors_; }
 	public void setUprn(Long input) { uprn = input; }
+	public void setLat(Double lat_) { lat = lat_; }
+	public void setLon(Double lon_) { lon = lon_; }
 	
 	
 }

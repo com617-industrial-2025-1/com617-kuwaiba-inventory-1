@@ -67,7 +67,7 @@ traces all cable connections.
 
 ## REST API
 
-Full interactive documentation is at `http:localhost:8080/swagger-ui/index.html`
+Full interactive documentation is at `http://localhost:8080/swagger-ui/index.html`
 
 ### Prediction Endpoints
 
