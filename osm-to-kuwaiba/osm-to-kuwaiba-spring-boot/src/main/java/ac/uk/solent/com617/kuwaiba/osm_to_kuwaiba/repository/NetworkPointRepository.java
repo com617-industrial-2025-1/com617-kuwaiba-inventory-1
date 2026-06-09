@@ -39,11 +39,12 @@ public interface NetworkPointRepository extends JpaRepository<NetworkPoint, Long
     @Modifying
     @Transactional
     @Query(nativeQuery = true, value = """
-        INSERT INTO network_points(type, geom, external_id)
+        INSERT INTO network_points(type, geom, external_id, related_road_name)
         SELECT 
             'CABINET',
             ST_ClosestPoint(r.geom, c.centroid),
-            'CABINET-' || gen_random_uuid()
+            'CABINET-' || gen_random_uuid(),
+            r.street_name
         FROM (
             SELECT ST_Centroid(ST_Collect(geom)) AS centroid
             FROM (
@@ -57,7 +58,7 @@ public interface NetworkPointRepository extends JpaRepository<NetworkPoint, Long
         GROUP BY cluster_id
         ) c
         CROSS JOIN LATERAL (
-    		SELECT geom FROM cleaned_roads
+    		SELECT geom, street_name FROM cleaned_roads
     		ORDER BY c.centroid <-> geom
     		LIMIT 1
     	) r
@@ -67,11 +68,12 @@ public interface NetworkPointRepository extends JpaRepository<NetworkPoint, Long
     @Modifying
     @Transactional
     @Query(nativeQuery = true, value = """
-        INSERT INTO network_points(type, geom, external_id)
+        INSERT INTO network_points(type, geom, external_id, related_road_name)
         SELECT
             'AGGREGATOR',
             ST_ClosestPoint(r.geom, c.centroid),
-            'AGGREGATOR-' || gen_random_uuid()
+            'AGGREGATOR-' || gen_random_uuid(),
+            r.street_name
         FROM (
     		SELECT ST_Centroid(ST_Collect(geom)) AS centroid
     		FROM (
@@ -85,7 +87,7 @@ public interface NetworkPointRepository extends JpaRepository<NetworkPoint, Long
         GROUP BY cluster_id
         ) c
         CROSS JOIN LATERAL (
-            SELECT geom FROM cleaned_roads
+            SELECT geom, street_name FROM cleaned_roads
             ORDER BY c.centroid <-> geom
             LIMIT 1
         ) r
@@ -95,11 +97,12 @@ public interface NetworkPointRepository extends JpaRepository<NetworkPoint, Long
     @Modifying
     @Transactional
     @Query(nativeQuery = true, value = """
-        INSERT INTO network_points(type, geom, external_id)
+        INSERT INTO network_points(type, geom, external_id, related_road_name)
         SELECT
             'EXCHANGE',
             ST_ClosestPoint(r.geom, c.centroid),
-            'EXCHANGE-' || gen_random_uuid()
+            'EXCHANGE-' || gen_random_uuid(),
+             r.street_name
         FROM (
             SELECT ST_Centroid(ST_Collect(geom)) AS centroid
     		FROM (
@@ -113,7 +116,7 @@ public interface NetworkPointRepository extends JpaRepository<NetworkPoint, Long
         GROUP BY cluster_id
         ) c
         CROSS JOIN LATERAL (
-            SELECT geom FROM cleaned_roads
+            SELECT geom, street_name FROM cleaned_roads
             ORDER BY c.centroid <-> geom
             LIMIT 1
         ) r

@@ -475,7 +475,17 @@ public class KuwabaNetworkController {
             }
          } else {
             pointRepository.findById(conn.getEnd_id()).ifPresent(endPoint -> {
+               
                KuwaibaClass endPointClass = pointToKuwaibaClass(endPoint);
+               
+               if (includeStreets) {
+                  String streetName = (endPoint.getRelatedRoadName() != null) ? endPoint.getRelatedRoadName() : "UNDEFINED";
+                  KuwaibaClass streetClass = addKuwaibaStreetClass(streetName);
+                  if (! kuwaibaStreets.containsKey(streetName)) kuwaibaStreets.put(streetName,streetClass);
+                  endPointClass.getParentClasses().add(kuwaibaStreets.get(streetName));
+               } else {
+                  endPointClass.getParentClasses().add(ProjectConstants.parentNeighbourhood);
+               }
 
                if (includeConnectionBuildings)  pr.getKuwaibaClassList().add(endPointClass);
 
@@ -502,7 +512,7 @@ public class KuwabaNetworkController {
 
    public static  KuwaibaClass pointToKuwaibaClass(NetworkPoint point) {
       KuwaibaClass kc = new KuwaibaClass(); 
-      kc.getParentClasses().add(ProjectConstants.parentNeighbourhood);
+
       kc.setName(point.getExternalId());
 
       try {
