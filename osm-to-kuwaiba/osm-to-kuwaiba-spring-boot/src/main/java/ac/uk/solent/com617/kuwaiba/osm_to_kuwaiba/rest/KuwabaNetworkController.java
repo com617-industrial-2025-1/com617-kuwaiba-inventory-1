@@ -74,7 +74,7 @@ public class KuwabaNetworkController {
    @Autowired
    private CleanedBuildingRepository cleanedBuildingRepository ;
 
-   // Finding all points with pagenation
+
    @GetMapping("/points")
    public ResponseEntity<String> getAllPoints(
             @RequestParam(defaultValue = "0") int pageNo,
