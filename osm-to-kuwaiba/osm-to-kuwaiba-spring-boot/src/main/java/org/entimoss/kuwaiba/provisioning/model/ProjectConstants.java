@@ -270,6 +270,89 @@ public class ProjectConstants {
 
       // wire containers
 
+
+      // BFU_1_2 blown fiber unit 1 cable, 2 cores coloured
+      // block to isolate local variables            
+      try {
+         KuwaibaTemplateDefinition definition1 = new KuwaibaTemplateDefinition();
+         definition1.setTemplateName("BFU_1_2");
+         definition1.setClassName("WireContainer");
+         definition1.setSpecial(false);
+         definition1.setTemplateFunction("ColoredFiberWireContainerFunction");
+
+         HashMap<String, String> attributes1 = new HashMap<String, String>();
+         attributes1.put("numberOfCables", "1");
+         attributes1.put("numberOfFibers", "2");
+         definition1.setTemplateFunctionAttributes(attributes1);
+
+         kuwaibaTemplateDefinitionList.add(definition1);
+
+      } catch (Exception e) {
+         throw new IllegalArgumentException("problem creating definition");
+      }
+
+      // BFU_1_4 blown fiber unit 1 cables, 4 cores  coloured
+      // block to isolate local variables            
+      try {
+         KuwaibaTemplateDefinition definition1 = new KuwaibaTemplateDefinition();
+         definition1.setTemplateName("BFU_1_4");
+         definition1.setClassName("WireContainer");
+         definition1.setSpecial(false);
+         definition1.setTemplateFunction("ColoredFiberWireContainerFunction");
+
+         HashMap<String, String> attributes1 = new HashMap<String, String>();
+         attributes1.put("numberOfCables", "1");
+         attributes1.put("numberOfFibers", "4");
+         definition1.setTemplateFunctionAttributes(attributes1);
+
+         kuwaibaTemplateDefinitionList.add(definition1);
+
+      } catch (Exception e) {
+         throw new IllegalArgumentException("problem creating definition");
+      }
+      
+      // BFU_1_12 blown fiber unit 1 cable, 12 cores  coloured
+      // block to isolate local variables            
+      try {
+         KuwaibaTemplateDefinition definition1 = new KuwaibaTemplateDefinition();
+         definition1.setTemplateName("BFU_1_12");
+         definition1.setClassName("WireContainer");
+         definition1.setSpecial(false);
+         definition1.setTemplateFunction("ColoredFiberWireContainerFunction");
+
+         HashMap<String, String> attributes1 = new HashMap<String, String>();
+         attributes1.put("numberOfCables", "1");
+         attributes1.put("numberOfFibers", "12");
+         definition1.setTemplateFunctionAttributes(attributes1);
+
+         kuwaibaTemplateDefinitionList.add(definition1);
+
+      } catch (Exception e) {
+         throw new IllegalArgumentException("problem creating definition");
+      }
+
+      // BFU_4_12 blown fiber unit 4 cables, 12 cores  coloured
+      // block to isolate local variables            
+      try {
+         KuwaibaTemplateDefinition definition1 = new KuwaibaTemplateDefinition();
+         definition1.setTemplateName("BFU_4_12");
+         definition1.setClassName("WireContainer");
+         definition1.setSpecial(false);
+         definition1.setTemplateFunction("ColoredFiberWireContainerFunction");
+
+         HashMap<String, String> attributes1 = new HashMap<String, String>();
+         attributes1.put("numberOfCables", "4");
+         attributes1.put("numberOfFibers", "12");
+         definition1.setTemplateFunctionAttributes(attributes1);
+
+         kuwaibaTemplateDefinitionList.add(definition1);
+
+      } catch (Exception e) {
+         throw new IllegalArgumentException("problem creating definition");
+      }
+      
+      // Ducts contain cables or blown fiber units defined above.
+      
       // STREET_DUCT_1 street duct (TRUNK)
       // block to isolate local variables            
       try {
@@ -291,6 +374,8 @@ public class ProjectConstants {
          definition1.setTemplateName("STREET_DUCT_2");
          definition1.setClassName("WireContainer");
          definition1.setSpecial(false);
+         
+         //definition1.getChildKuwaibaTemplateDefinitions().add(childDefinition1);
 
          kuwaibaTemplateDefinitionList.add(definition1);
 
@@ -327,65 +412,6 @@ public class ProjectConstants {
       }
       
 
-      // BFU_1_2 blown fiber unit 1 cable, 2 cores coloured
-      // block to isolate local variables            
-      try {
-         KuwaibaTemplateDefinition definition1 = new KuwaibaTemplateDefinition();
-         definition1.setTemplateName("BFU_1_2");
-         definition1.setClassName("WireContainer");
-         definition1.setSpecial(false);
-         definition1.setTemplateFunction("ColoredFiberWireContainerFunction");
-
-         HashMap<String, String> attributes1 = new HashMap<String, String>();
-         attributes1.put("numberOfCables", "1");
-         attributes1.put("numberOfFibers", "2");
-         definition1.setTemplateFunctionAttributes(attributes1);
-
-         kuwaibaTemplateDefinitionList.add(definition1);
-
-      } catch (Exception e) {
-         throw new IllegalArgumentException("problem creating definition");
-      }
-
-      // BFU_1_4 blown fiber unit 1 cables, 4 cores  coloured
-      // block to isolate local variables            
-      try {
-         KuwaibaTemplateDefinition definition1 = new KuwaibaTemplateDefinition();
-         definition1.setTemplateName("BFU_1_4");
-         definition1.setClassName("WireContainer");
-         definition1.setSpecial(false);
-         definition1.setTemplateFunction("ColoredFiberWireContainerFunction");
-
-         HashMap<String, String> attributes1 = new HashMap<String, String>();
-         attributes1.put("numberOfCables", "4");
-         attributes1.put("numberOfFibers", "12");
-         definition1.setTemplateFunctionAttributes(attributes1);
-
-         kuwaibaTemplateDefinitionList.add(definition1);
-
-      } catch (Exception e) {
-         throw new IllegalArgumentException("problem creating definition");
-      }
-
-      // BFU_4_12 blown fiber unit 4 cables, 12 cores  coloured
-      // block to isolate local variables            
-      try {
-         KuwaibaTemplateDefinition definition1 = new KuwaibaTemplateDefinition();
-         definition1.setTemplateName("BFU_4_12");
-         definition1.setClassName("WireContainer");
-         definition1.setSpecial(false);
-         definition1.setTemplateFunction("ColoredFiberWireContainerFunction");
-
-         HashMap<String, String> attributes1 = new HashMap<String, String>();
-         attributes1.put("numberOfCables", "4");
-         attributes1.put("numberOfFibers", "12");
-         definition1.setTemplateFunctionAttributes(attributes1);
-
-         kuwaibaTemplateDefinitionList.add(definition1);
-
-      } catch (Exception e) {
-         throw new IllegalArgumentException("problem creating definition");
-      }
 
       pr.getKuwaibaTemplateList().addAll(kuwaibaTemplateDefinitionList);
 
