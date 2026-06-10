@@ -41,7 +41,7 @@ docker compose up -d
 which uses the default profile in `.env` or use
 
 ```
-docker compose -profile prod up -d
+docker compose --profile prod up -d
 ```
 
 Note override the default profile in `.env` when running local tests e.g.
@@ -49,7 +49,7 @@ Note override the default profile in `.env` when running local tests e.g.
 ```
 # (profile dev overrides profile prod set in .env file
 
-docker compose -profile dev up -d 
+docker compose --profile dev up -d 
 cd osm-to-kuwaiba
 mvn spring-boot:run
 
