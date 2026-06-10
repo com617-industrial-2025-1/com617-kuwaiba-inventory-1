@@ -36,6 +36,10 @@ public interface NetworkConnectionRepository extends JpaRepository<NetworkConnec
    Page<NetworkConnection> findByEndId(Long endId, Pageable pageable);
 
    Page<NetworkConnection> findByStartIdOrEndId(Long startId, Long endId, Pageable pageable);
+   
+   Page<NetworkConnection> findByStreetNameIsNull(Pageable pageable);
+
+   Page<NetworkConnection> findByStreetName(String streetName, Pageable pageable);
 
    @Modifying
    @Transactional
@@ -181,4 +185,6 @@ public interface NetworkConnectionRepository extends JpaRepository<NetworkConnec
              GROUP BY exchange.id, aggregator.id, exchange.geom, aggregator.geom
             """)
    void insertTrunkConnections();
+
+
 }
