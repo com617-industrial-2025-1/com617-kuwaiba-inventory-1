@@ -416,19 +416,19 @@ public class KuwabaNetworkController {
          switch (conn.getLink_type()) {
          case TRUNK:
             kuwaibaConnectionClass.setClassName("WireContainer");
-            kuwaibaConnectionClass.setTemplateName(null);
+            kuwaibaConnectionClass.setTemplateName("STREET_DUCT_1");
             break;
          case DISTRIBUTION:
             kuwaibaConnectionClass.setClassName("WireContainer");
-            kuwaibaConnectionClass.setTemplateName(null);
+            kuwaibaConnectionClass.setTemplateName("STREET_DUCT_2");
             break;
          case FEEDER:
             kuwaibaConnectionClass.setClassName("WireContainer");
-            kuwaibaConnectionClass.setTemplateName(null);
+            kuwaibaConnectionClass.setTemplateName("STREET_DUCT_3");
             break;
          case DROP:
             kuwaibaConnectionClass.setClassName("WireContainer");
-            kuwaibaConnectionClass.setTemplateName(null);
+            kuwaibaConnectionClass.setTemplateName("POLE_WIRE_1");
             break;
          }
 
@@ -605,7 +605,7 @@ public class KuwabaNetworkController {
          break;
       case BUILDING:
          kc.setClassName("Building");
-         kc.setTemplateName(null);
+         kc.setTemplateName("House_01");
          break;
       default:
          kc.setClassName("UNKNOWN_POINT_TYPE");
