@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.LinkedHashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 import java.util.Set;
 
@@ -74,7 +75,7 @@ public class KuwabaNetworkController {
    @Autowired
    private CleanedBuildingRepository cleanedBuildingRepository ;
 
-   // Finding all points with pagenation
+
    @GetMapping("/points")
    public ResponseEntity<String> getAllPoints(
             @RequestParam(defaultValue = "0") int pageNo,
@@ -123,19 +124,39 @@ public class KuwabaNetworkController {
 
    }
 
+   /**
+    * Find all connections with pagenation, and optional filtering by street name
+    * (set findStreetName to UNDEFINED to find connections with no street name, or leave blank/null to find all connections)
+    * @param pageNo
+    * @param pageSize
+    * @param findStreetName
+    * @return
+    * @throws Exception
+    */
    // Finding all connections with pagenation
    @GetMapping("/connections")
    public ResponseEntity<String> getAllConnections(
             @RequestParam(defaultValue = "0") int pageNo,
-            @RequestParam(defaultValue = "10") int pageSize) throws Exception {
+            @RequestParam(defaultValue = "10") int pageSize,
+            @RequestParam(required = false) String findStreetName
+            ) throws Exception {
       String sortBy = "id";
       String sortDirection = "ASC";
 
       Sort sort = Sort.by(Sort.Direction.fromString(sortDirection), sortBy);
       Pageable pageable = PageRequest.of(pageNo, pageSize, sort);
-
-      Page<NetworkConnection> result = connectionRepository.findAll(pageable);
-
+      
+      Page<NetworkConnection> result = null;
+      if(findStreetName !=null ) {
+         if (findStreetName.equals("UNDEFINED")) {
+            result = connectionRepository.findByStreetNameIsNull(pageable);
+         } else {
+            result = connectionRepository.findByStreetName(findStreetName, pageable);
+         }
+      } else {
+         result = connectionRepository.findAll(pageable);
+      }
+      
       List<NetworkConnection> connections = result.getContent();
       HttpHeaders responseHeaders = new HttpHeaders();
       responseHeaders.set("X-Total-Count", Long.toString(result.getTotalElements()));
@@ -180,7 +201,7 @@ public class KuwabaNetworkController {
    }
 
    /**
-    * This is the main method to create a kuwaiba provisioning requisition for the buildings in the network.
+    * This method gets a list of street names in the network.
     * @param pageNo
     * @param pageSize
     * @return
@@ -216,6 +237,11 @@ public class KuwabaNetworkController {
     * This is the main method to create a kuwaiba provisioning requisition for the buildings in the network.
     * @param pageNo
     * @param pageSize
+    * @param includeStaticTemplates
+    * @param includeStaticObjects
+    * @param includeBuildings
+    * @param includeStreets
+    * @param findStreetName   (set UNDEFINED to find buildings with no street name, or leave blank to find all buildings)
     * @return
     * @throws Exception
     */
@@ -227,7 +253,7 @@ public class KuwabaNetworkController {
             @RequestParam(defaultValue = "true") boolean includeStaticObjects,
             @RequestParam(defaultValue = "true") boolean includeBuildings,
             @RequestParam(defaultValue = "true") boolean includeStreets,
-            @RequestParam(required = false) String streetName
+            @RequestParam(required = false) String findStreetName
             ) throws Exception {
 
 
@@ -254,11 +280,11 @@ public class KuwabaNetworkController {
       Pageable pageable = PageRequest.of(pageNo, pageSize, sort);
 
       Page<LinkedBuilding> result = null;
-      if(streetName !=null ) {
-         if (streetName.equals("UNDEFINED")) {
+      if(findStreetName !=null ) {
+         if (findStreetName.equals("UNDEFINED")) {
             result = linkedBuildingRepository.findByStreetNameIsNull(pageable);
          } else {
-            result = linkedBuildingRepository.findByStreetName(streetName, pageable);
+            result = linkedBuildingRepository.findByStreetName(findStreetName, pageable);
          }
       } else {
          result = linkedBuildingRepository.findAll(pageable);
@@ -275,10 +301,10 @@ public class KuwabaNetworkController {
          KuwaibaClass building = new KuwaibaClass();
 
          if (includeStreets) {
-            streetName = (lb.getStreetName() != null) ? lb.getStreetName() : "UNDEFINED";
-            KuwaibaClass streetClass = addKuwaibaStreetClass(streetName);
-            if (! kuwaibaStreets.containsKey(streetName)) kuwaibaStreets.put(streetName,streetClass);
-            building.getParentClasses().add(kuwaibaStreets.get(streetName));
+            findStreetName = (lb.getStreetName() != null) ? lb.getStreetName() : "UNDEFINED";
+            KuwaibaClass streetClass = addKuwaibaStreetClass(findStreetName);
+            if (! kuwaibaStreets.containsKey(findStreetName)) kuwaibaStreets.put(findStreetName,streetClass);
+            building.getParentClasses().add(kuwaibaStreets.get(findStreetName));
          } else {
             building.getParentClasses().add(ProjectConstants.parentNeighbourhood);
          }
@@ -315,9 +341,15 @@ public class KuwabaNetworkController {
    }
 
    /**
-    * This is the main method to create a kuwaiba provisioning requisition for the whole network.
+    * This is the main method to create a kuwaiba provisioning requisition for the connections in the network.
     * @param pageNo
     * @param pageSize
+    * @param includeStaticTemplates
+    * @param includeStaticObjects
+    * @param includeConnectionEndPoints
+    * @param includeConnections
+    * @param includeStreets
+    * @param findStreetName (set UNDEFINED to find connections with no street name, or leave blank/null to find all connections)
     * @return
     * @throws Exception
     */
@@ -328,21 +360,33 @@ public class KuwabaNetworkController {
             @RequestParam(defaultValue = "10") int pageSize,
             @RequestParam(defaultValue = "true") boolean includeStaticTemplates,
             @RequestParam(defaultValue = "true") boolean includeStaticObjects,
-            @RequestParam(defaultValue = "true") boolean includeConnectionBuildings,
+            @RequestParam(defaultValue = "true") boolean includeConnectionEndPoints,
             @RequestParam(defaultValue = "true") boolean includeConnections,
-            @RequestParam(defaultValue = "true") boolean includeStreets
+            @RequestParam(defaultValue = "true") boolean includeStreets,
+            @RequestParam(required = false) String findStreetName
             ) throws Exception {
 
-      LinkedHashMap<String, KuwaibaClass> kuwaibaStreets = new LinkedHashMap<String,KuwaibaClass>();
-      List<KuwaibaClass> kuwaibaBuildings = new ArrayList<KuwaibaClass>();
+      Map<String, KuwaibaClass>      kuwaibaStreets = new LinkedHashMap<String,KuwaibaClass>();
+      Map<String, KuwaibaConnection> kuwaibaConnections = new LinkedHashMap<String,KuwaibaConnection>();
+      List<KuwaibaClass> kuwaibaConnectionEndPoints = new ArrayList<KuwaibaClass>();
 
       String sortBy = "id";
       String sortDirection = "ASC";
 
       Sort sort = Sort.by(Sort.Direction.fromString(sortDirection), sortBy);
       Pageable pageable = PageRequest.of(pageNo, pageSize, sort);
+      
+      Page<NetworkConnection> result = null;
+      if(findStreetName !=null ) {
+         if (findStreetName.equals("UNDEFINED")) {
+            result = connectionRepository.findByStreetNameIsNull(pageable);
+         } else {
+            result = connectionRepository.findByStreetName(findStreetName, pageable);
+         }
+      } else {
+         result = connectionRepository.findAll(pageable);
+      }
 
-      Page<NetworkConnection> result = connectionRepository.findAll(pageable);
 
       List<NetworkConnection> connections = result.getContent();
 
@@ -355,8 +399,6 @@ public class KuwabaNetworkController {
       if (includeStaticObjects) {
          ProjectConstants.addStaticObjectsToProvisioningRequisition(pr);
       }
-
-
 
       for (NetworkConnection conn : connections) {
 
@@ -396,13 +438,24 @@ public class KuwabaNetworkController {
 
          // EndpointA - always a network point
          pointRepository.findById(conn.getStart_id()).ifPresent(point -> {
-            KuwaibaClass kuwaibaClassStart =pointToKuwaibaClass(point);
+            
+            KuwaibaClass endPointClass = pointToKuwaibaClass(point);
+            
+            if (includeStreets) {
+               String streetName = (point.getRelatedRoadName() != null) ? point.getRelatedRoadName() : "UNDEFINED";
+               KuwaibaClass streetClass = addKuwaibaStreetClass(streetName);
+               if (! kuwaibaStreets.containsKey(streetName)) kuwaibaStreets.put(streetName,streetClass);
+               endPointClass.getParentClasses().add(kuwaibaStreets.get(streetName));
+            } else {
+               endPointClass.getParentClasses().add(ProjectConstants.parentNeighbourhood);
+            }
 
-            if (includeConnectionBuildings) pr.getKuwaibaClassList().add(kuwaibaClassStart);
-
-            kuwaibaConnection.setEndpointA(kuwaibaClassStart);
+            kuwaibaConnectionEndPoints.add(endPointClass);
+            
+            kuwaibaConnection.setEndpointA(endPointClass);
          });
 
+         // EndpointB - could be a building or a network point
          // When linking buildings, pull UPRN metadata
          // EndpointB - DROP connections reference buildings, others reference network_points
          if (conn.getLink_type() == LinkType.DROP && conn.getOsmId() != null) {
@@ -439,7 +492,7 @@ public class KuwabaNetworkController {
                if (lb.getLat()!=null) building.getAttributes().put("latitude",  lb.getLat().toString());
                if (lb.getLon()!=null) building.getAttributes().put("longitude",  lb.getLon().toString());
 
-               if (includeConnectionBuildings)  pr.getKuwaibaClassList().add(building);
+               kuwaibaConnectionEndPoints.add(building);
 
                kuwaibaConnection.setEndpointB(building);
             } else {
@@ -468,27 +521,45 @@ public class KuwabaNetworkController {
                   // Combine key attributes into a single "address" attribute since not a field in kuwaiba
                   building.getAttributes().put("address",  "streetName: "+cb.getStreetName());
 
-                  if (includeConnectionBuildings) pr.getKuwaibaClassList().add(building);
+                  kuwaibaConnectionEndPoints.add(building);
 
                   kuwaibaConnection.setEndpointB(building);
                });
             }
          } else {
             pointRepository.findById(conn.getEnd_id()).ifPresent(endPoint -> {
+               
                KuwaibaClass endPointClass = pointToKuwaibaClass(endPoint);
+               
+               if (includeStreets) {
+                  String streetName = (endPoint.getRelatedRoadName() != null) ? endPoint.getRelatedRoadName() : "UNDEFINED";
+                  KuwaibaClass streetClass = addKuwaibaStreetClass(streetName);
+                  if (! kuwaibaStreets.containsKey(streetName)) kuwaibaStreets.put(streetName,streetClass);
+                  endPointClass.getParentClasses().add(kuwaibaStreets.get(streetName));
+               } else {
+                  endPointClass.getParentClasses().add(ProjectConstants.parentNeighbourhood);
+               }
 
-               if (includeConnectionBuildings)  pr.getKuwaibaClassList().add(endPointClass);
+               kuwaibaConnectionEndPoints.add(endPointClass);
 
                kuwaibaConnection.setEndpointB(endPointClass);
             });
          }
 
-         // Add the connection to the provisioning requisition
-         if (includeConnections) pr.getKuwaibaConnectionList().add(kuwaibaConnection);
+         kuwaibaConnections.put(kuwaibaConnection.getConnectionClass().getName(), kuwaibaConnection);
+         
 
       }
 
-
+      // Add the streets to the provisioning requisition
+      if (includeStreets) pr.getKuwaibaClassList().addAll(kuwaibaStreets.values());
+      
+      // Add the endpoints to the provisioning requisition
+      if (includeConnectionEndPoints) pr.getKuwaibaClassList().addAll(kuwaibaConnectionEndPoints);
+      
+      // Add the connections to the provisioning requisition
+      if (includeConnections) pr.getKuwaibaConnectionList().addAll(kuwaibaConnections.values());
+      
       HttpHeaders responseHeaders = new HttpHeaders();
       responseHeaders.set("X-Total-Count", Long.toString(result.getTotalElements()));
       responseHeaders.set("X-Total-Pages", Long.toString(result.getTotalPages()));
@@ -502,7 +573,7 @@ public class KuwabaNetworkController {
 
    public static  KuwaibaClass pointToKuwaibaClass(NetworkPoint point) {
       KuwaibaClass kc = new KuwaibaClass(); 
-      kc.getParentClasses().add(ProjectConstants.parentNeighbourhood);
+
       kc.setName(point.getExternalId());
 
       try {

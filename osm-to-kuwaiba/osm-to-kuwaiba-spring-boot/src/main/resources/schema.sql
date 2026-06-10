@@ -45,7 +45,8 @@ CREATE TABLE IF NOT EXISTS network_points (
     external_id 	TEXT,
     parent_id   	BIGINT,
     type        	TEXT,
-    geom        	geometry(Point, 3857)
+    geom        	geometry(Point, 3857),
+    related_road_name TEXT
 );
 
 CREATE INDEX IF NOT EXISTS idx_network_points_geom ON network_points USING GIST (geom);

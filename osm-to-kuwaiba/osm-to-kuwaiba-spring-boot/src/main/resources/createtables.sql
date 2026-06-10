@@ -18,7 +18,7 @@ SELECT
     osm_id,
     ST_SimplifyPreserveTopology(way, 0.5)::geometry(LineString, 3857),
     highway,
-    tags->'name'
+    name
 FROM planet_osm_line
 WHERE highway IN (
     'trunk',

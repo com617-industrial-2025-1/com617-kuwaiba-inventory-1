@@ -44,7 +44,7 @@ public class UprnImportService {
 
             try (FileReader reader = new FileReader(uprnCsvPath)) { // uprnCsvPath might need to be changed when spring boot
             														// application gets containerised.
-            														// How it can be overriden in docker compose
+            														// How it can be overridden in docker compose
             														// environment:
             	  													//	- UPRN_CSV_PATH=/data/uprns.csv
                 copyManager.copyIn("COPY raw_uprns FROM STDIN WITH CSV HEADER", reader);
