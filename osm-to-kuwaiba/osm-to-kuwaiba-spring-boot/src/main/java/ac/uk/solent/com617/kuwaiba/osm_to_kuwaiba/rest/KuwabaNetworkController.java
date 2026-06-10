@@ -396,13 +396,24 @@ public class KuwabaNetworkController {
 
          // EndpointA - always a network point
          pointRepository.findById(conn.getStart_id()).ifPresent(point -> {
-            KuwaibaClass kuwaibaClassStart =pointToKuwaibaClass(point);
+            
+            KuwaibaClass endPointClass = pointToKuwaibaClass(point);
+            
+            if (includeStreets) {
+               String streetName = (point.getRelatedRoadName() != null) ? point.getRelatedRoadName() : "UNDEFINED";
+               KuwaibaClass streetClass = addKuwaibaStreetClass(streetName);
+               if (! kuwaibaStreets.containsKey(streetName)) kuwaibaStreets.put(streetName,streetClass);
+               endPointClass.getParentClasses().add(kuwaibaStreets.get(streetName));
+            } else {
+               endPointClass.getParentClasses().add(ProjectConstants.parentNeighbourhood);
+            }
 
-            if (includeConnectionBuildings) pr.getKuwaibaClassList().add(kuwaibaClassStart);
-
-            kuwaibaConnection.setEndpointA(kuwaibaClassStart);
+            if (includeConnectionBuildings)  pr.getKuwaibaClassList().add(endPointClass);
+            
+            kuwaibaConnection.setEndpointA(endPointClass);
          });
 
+         // EndpointB - could be a building or a network point
          // When linking buildings, pull UPRN metadata
          // EndpointB - DROP connections reference buildings, others reference network_points
          if (conn.getLink_type() == LinkType.DROP && conn.getOsmId() != null) {
