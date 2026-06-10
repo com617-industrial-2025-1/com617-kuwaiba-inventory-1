@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.LinkedHashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 import java.util.Set;
 
@@ -328,13 +329,14 @@ public class KuwabaNetworkController {
             @RequestParam(defaultValue = "10") int pageSize,
             @RequestParam(defaultValue = "true") boolean includeStaticTemplates,
             @RequestParam(defaultValue = "true") boolean includeStaticObjects,
-            @RequestParam(defaultValue = "true") boolean includeConnectionBuildings,
+            @RequestParam(defaultValue = "true") boolean includeConnectionEndPoints,
             @RequestParam(defaultValue = "true") boolean includeConnections,
             @RequestParam(defaultValue = "true") boolean includeStreets
             ) throws Exception {
 
-      LinkedHashMap<String, KuwaibaClass> kuwaibaStreets = new LinkedHashMap<String,KuwaibaClass>();
-      List<KuwaibaClass> kuwaibaBuildings = new ArrayList<KuwaibaClass>();
+      Map<String, KuwaibaClass>      kuwaibaStreets = new LinkedHashMap<String,KuwaibaClass>();
+      Map<String, KuwaibaConnection> kuwaibaConnections = new LinkedHashMap<String,KuwaibaConnection>();
+      List<KuwaibaClass> kuwaibaConnectionEndPoints = new ArrayList<KuwaibaClass>();
 
       String sortBy = "id";
       String sortDirection = "ASC";
@@ -355,8 +357,6 @@ public class KuwabaNetworkController {
       if (includeStaticObjects) {
          ProjectConstants.addStaticObjectsToProvisioningRequisition(pr);
       }
-
-
 
       for (NetworkConnection conn : connections) {
 
@@ -408,7 +408,7 @@ public class KuwabaNetworkController {
                endPointClass.getParentClasses().add(ProjectConstants.parentNeighbourhood);
             }
 
-            if (includeConnectionBuildings)  pr.getKuwaibaClassList().add(endPointClass);
+            kuwaibaConnectionEndPoints.add(endPointClass);
             
             kuwaibaConnection.setEndpointA(endPointClass);
          });
@@ -450,7 +450,7 @@ public class KuwabaNetworkController {
                if (lb.getLat()!=null) building.getAttributes().put("latitude",  lb.getLat().toString());
                if (lb.getLon()!=null) building.getAttributes().put("longitude",  lb.getLon().toString());
 
-               if (includeConnectionBuildings)  pr.getKuwaibaClassList().add(building);
+               kuwaibaConnectionEndPoints.add(building);
 
                kuwaibaConnection.setEndpointB(building);
             } else {
@@ -479,7 +479,7 @@ public class KuwabaNetworkController {
                   // Combine key attributes into a single "address" attribute since not a field in kuwaiba
                   building.getAttributes().put("address",  "streetName: "+cb.getStreetName());
 
-                  if (includeConnectionBuildings) pr.getKuwaibaClassList().add(building);
+                  kuwaibaConnectionEndPoints.add(building);
 
                   kuwaibaConnection.setEndpointB(building);
                });
@@ -498,18 +498,26 @@ public class KuwabaNetworkController {
                   endPointClass.getParentClasses().add(ProjectConstants.parentNeighbourhood);
                }
 
-               if (includeConnectionBuildings)  pr.getKuwaibaClassList().add(endPointClass);
+               kuwaibaConnectionEndPoints.add(endPointClass);
 
                kuwaibaConnection.setEndpointB(endPointClass);
             });
          }
 
-         // Add the connection to the provisioning requisition
-         if (includeConnections) pr.getKuwaibaConnectionList().add(kuwaibaConnection);
+         kuwaibaConnections.put(kuwaibaConnection.getConnectionClass().getName(), kuwaibaConnection);
+         
 
       }
 
-
+      // Add the streets to the provisioning requisition
+      if (includeStreets) pr.getKuwaibaClassList().addAll(kuwaibaStreets.values());
+      
+      // Add the endpoints to the provisioning requisition
+      if (includeConnectionEndPoints) pr.getKuwaibaClassList().addAll(kuwaibaConnectionEndPoints);
+      
+      // Add the connections to the provisioning requisition
+      if (includeConnections) pr.getKuwaibaConnectionList().addAll(kuwaibaConnections.values());
+      
       HttpHeaders responseHeaders = new HttpHeaders();
       responseHeaders.set("X-Total-Count", Long.toString(result.getTotalElements()));
       responseHeaders.set("X-Total-Pages", Long.toString(result.getTotalPages()));
