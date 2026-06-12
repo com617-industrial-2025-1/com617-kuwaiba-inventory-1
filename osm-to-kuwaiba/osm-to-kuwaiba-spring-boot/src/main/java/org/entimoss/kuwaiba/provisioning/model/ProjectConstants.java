@@ -89,37 +89,37 @@ public class ProjectConstants {
          definition1.setClassName("House");
          definition1.setSpecial(false);
 
-         //         // ONT
-         //         KuwaibaTemplateDefinition childDefinition1 = new KuwaibaTemplateDefinition();
-         //         childDefinition1.setTemplateElementName("ONT_NOKIA_01");
-         //         childDefinition1.setClassName("OpticalNetworkTerminal");
-         //         childDefinition1.setSpecial(false);
-         //         definition1.getChildKuwaibaTemplateDefinitions().add(childDefinition1);
-         //
-         //         KuwaibaTemplateDefinition childDefinition1_1 = new KuwaibaTemplateDefinition();
-         //         childDefinition1_1.setTemplateElementName("IN-01");
-         //         childDefinition1_1.setClassName("OpticalPort");
-         //         childDefinition1_1.setSpecial(false);
-         //         childDefinition1.getChildKuwaibaTemplateDefinitions().add(childDefinition1_1);
-         //
-         //         KuwaibaTemplateDefinition childDefinition1_2 = new KuwaibaTemplateDefinition();
-         //         childDefinition1_2.setTemplateElementName("eth0");
-         //         childDefinition1_2.setClassName("ElectricalPort");
-         //         childDefinition1_2.setSpecial(false);
-         //         childDefinition1.getChildKuwaibaTemplateDefinitions().add(childDefinition1_2);
-         //
-         //         // CSP
-         //         KuwaibaTemplateDefinition childDefinition2 = new KuwaibaTemplateDefinition();
-         //         childDefinition2.setTemplateElementName("CSP_BFU_1_2_01");
-         //         childDefinition2.setClassName("SpliceBox");
-         //         childDefinition2.setSpecial(false);
-         //         // build ports using function
-         //         childDefinition2.setTemplateFunction("OpticalSpliceBoxFunction");
-         //         HashMap<String, String> attributes1 = new HashMap<String, String>();
-         //         attributes1.put("numberOfPorts", "2");
-         //         childDefinition2.setTemplateFunctionAttributes(attributes1);
-         //
-         //         definition1.getChildKuwaibaTemplateDefinitions().add(childDefinition2);
+         // ONT
+         KuwaibaTemplateDefinition childDefinition1 = new KuwaibaTemplateDefinition();
+         childDefinition1.setTemplateElementName("ONT_NOKIA_01");
+         childDefinition1.setClassName("OpticalNetworkTerminal");
+         childDefinition1.setSpecial(false);
+         definition1.getChildKuwaibaTemplateDefinitions().add(childDefinition1);
+
+         KuwaibaTemplateDefinition childDefinition1_1 = new KuwaibaTemplateDefinition();
+         childDefinition1_1.setTemplateElementName("IN-01");
+         childDefinition1_1.setClassName("OpticalPort");
+         childDefinition1_1.setSpecial(false);
+         childDefinition1.getChildKuwaibaTemplateDefinitions().add(childDefinition1_1);
+
+         KuwaibaTemplateDefinition childDefinition1_2 = new KuwaibaTemplateDefinition();
+         childDefinition1_2.setTemplateElementName("eth0");
+         childDefinition1_2.setClassName("ElectricalPort");
+         childDefinition1_2.setSpecial(false);
+         childDefinition1.getChildKuwaibaTemplateDefinitions().add(childDefinition1_2);
+
+         // CSP
+         KuwaibaTemplateDefinition childDefinition2 = new KuwaibaTemplateDefinition();
+         childDefinition2.setTemplateElementName("CSP_BFU_1_2_01");
+         childDefinition2.setClassName("SpliceBox");
+         childDefinition2.setSpecial(false);
+         // build ports using function
+         childDefinition2.setTemplateFunction("OpticalSpliceBoxFunction");
+         HashMap<String, String> attributes1 = new HashMap<String, String>();
+         attributes1.put("numberOfPorts", "2");
+         childDefinition2.setTemplateFunctionAttributes(attributes1);
+
+         definition1.getChildKuwaibaTemplateDefinitions().add(childDefinition2);
 
          kuwaibaTemplateDefinitionList.add(definition1);
 
@@ -310,7 +310,7 @@ public class ProjectConstants {
       } catch (Exception e) {
          throw new IllegalArgumentException("problem creating definition");
       }
-      
+
       // BFU_1_12 blown fiber unit 1 cable, 12 cores  coloured
       // block to isolate local variables            
       try {
@@ -350,14 +350,14 @@ public class ProjectConstants {
       } catch (Exception e) {
          throw new IllegalArgumentException("problem creating definition");
       }
-      
+
       // Ducts contain cables or blown fiber units defined above.
-      
-      // STREET_DUCT_1 street duct (TRUNK)
+
+      // STREET_DUCT_1_EMPTY street duct (TRUNK)
       // block to isolate local variables            
       try {
          KuwaibaTemplateDefinition definition1 = new KuwaibaTemplateDefinition();
-         definition1.setTemplateName("STREET_DUCT_1");
+         definition1.setTemplateName("STREET_DUCT_1_EMPTY");
          definition1.setClassName("WireContainer");
          definition1.setSpecial(false);
 
@@ -366,15 +366,15 @@ public class ProjectConstants {
       } catch (Exception e) {
          throw new IllegalArgumentException("problem creating definition");
       }
-      
-      // STREET_DUCT_2 street duct (DISTRIBUTION)
+
+      // STREET_DUCT_2_EMPTY street duct (DISTRIBUTION)
       // block to isolate local variables            
       try {
          KuwaibaTemplateDefinition definition1 = new KuwaibaTemplateDefinition();
-         definition1.setTemplateName("STREET_DUCT_2");
+         definition1.setTemplateName("STREET_DUCT_2_EMPTY");
          definition1.setClassName("WireContainer");
          definition1.setSpecial(false);
-         
+
          //definition1.getChildKuwaibaTemplateDefinitions().add(childDefinition1);
 
          kuwaibaTemplateDefinitionList.add(definition1);
@@ -382,12 +382,12 @@ public class ProjectConstants {
       } catch (Exception e) {
          throw new IllegalArgumentException("problem creating definition");
       }
-      
-      // STREET_DUCT_3 street duct (FEEDER)
+
+      // STREET_DUCT_3_EMPTY street duct (FEEDER)
       // block to isolate local variables            
       try {
          KuwaibaTemplateDefinition definition1 = new KuwaibaTemplateDefinition();
-         definition1.setTemplateName("STREET_DUCT_3");
+         definition1.setTemplateName("STREET_DUCT_3_EMPTY");
          definition1.setClassName("WireContainer");
          definition1.setSpecial(false);
 
@@ -396,8 +396,107 @@ public class ProjectConstants {
       } catch (Exception e) {
          throw new IllegalArgumentException("problem creating definition");
       }
-      
-      // POLE_WIRE_1 street duct (DROP)
+
+      // POLE_WIRE_1_EMPTY street duct (DROP)
+      // block to isolate local variables            
+      try {
+         KuwaibaTemplateDefinition definition1 = new KuwaibaTemplateDefinition();
+         definition1.setTemplateName("POLE_WIRE_1_EMPTY");
+         definition1.setClassName("WireContainer");
+         definition1.setSpecial(false);
+
+         kuwaibaTemplateDefinitionList.add(definition1);
+
+      } catch (Exception e) {
+         throw new IllegalArgumentException("problem creating definition");
+      }
+
+      // STREET_DUCT_1__4xBFU_4_12 street duct (TRUNK)
+      // block to isolate local variables            
+      try {
+         KuwaibaTemplateDefinition definition1 = new KuwaibaTemplateDefinition();
+         definition1.setTemplateName("STREET_DUCT_1_4xBFU_4_12");
+         definition1.setClassName("WireContainer");
+         definition1.setSpecial(false);
+
+         // 4 blown fiber units per street duct
+         for (int bfuNo = 1;  bfuNo <= 4;  bfuNo++) {
+            KuwaibaTemplateDefinition childDefinition1 = new KuwaibaTemplateDefinition();
+            childDefinition1.setTemplateElementName("BFU_1_12_" + bfuNo);
+            childDefinition1.setClassName("WireContainer");
+            childDefinition1.setSpecial(false);
+            childDefinition1.setTemplateFunction("ColoredFiberWireContainerFunction");
+            HashMap<String, String> attributes1 = new HashMap<String, String>();
+            attributes1.put("numberOfCables", "1");
+            attributes1.put("numberOfFibers", "12");
+            definition1.setTemplateFunctionAttributes(attributes1);
+            definition1.getChildKuwaibaTemplateDefinitions().add(childDefinition1);
+         }
+
+         kuwaibaTemplateDefinitionList.add(definition1);
+
+
+      } catch (Exception e) {
+         throw new IllegalArgumentException("problem creating definition");
+      }
+
+      // STREET_DUCT_2__4xBFU_4_12 street duct (DISTRIBUTION)
+      // block to isolate local variables            
+      try {
+         KuwaibaTemplateDefinition definition1 = new KuwaibaTemplateDefinition();
+         definition1.setTemplateName("STREET_DUCT_2_4xBFU_4_12");
+         definition1.setClassName("WireContainer");
+         definition1.setSpecial(false);
+
+         // 4 blown fiber units per street duct
+         for (int bfuNo = 1;  bfuNo <= 4;  bfuNo++) {
+            KuwaibaTemplateDefinition childDefinition1 = new KuwaibaTemplateDefinition();
+            childDefinition1.setTemplateElementName("BFU_4_12_" + bfuNo);
+            childDefinition1.setClassName("WireContainer");
+            childDefinition1.setSpecial(false);
+            childDefinition1.setTemplateFunction("ColoredFiberWireContainerFunction");
+            HashMap<String, String> attributes1 = new HashMap<String, String>();
+            attributes1.put("numberOfCables", "4");
+            attributes1.put("numberOfFibers", "12");
+            definition1.setTemplateFunctionAttributes(attributes1);
+            definition1.getChildKuwaibaTemplateDefinitions().add(childDefinition1);
+         }
+
+         kuwaibaTemplateDefinitionList.add(definition1);
+
+      } catch (Exception e) {
+         throw new IllegalArgumentException("problem creating definition");
+      }
+
+      // STREET_DUCT_3_4xBFU_4_12 street duct (FEEDER)
+      // block to isolate local variables            
+      try {
+         KuwaibaTemplateDefinition definition1 = new KuwaibaTemplateDefinition();
+         definition1.setTemplateName("STREET_DUCT_3_4xBFU_4_12");
+         definition1.setClassName("WireContainer");
+         definition1.setSpecial(false);
+
+         // 4 blown fiber units per street duct
+         for (int bfuNo = 1;  bfuNo <= 4;  bfuNo++) {
+            KuwaibaTemplateDefinition childDefinition1 = new KuwaibaTemplateDefinition();
+            childDefinition1.setTemplateElementName("BFU_4_12_" + bfuNo);
+            childDefinition1.setClassName("WireContainer");
+            childDefinition1.setSpecial(false);
+            childDefinition1.setTemplateFunction("ColoredFiberWireContainerFunction");
+            HashMap<String, String> attributes1 = new HashMap<String, String>();
+            attributes1.put("numberOfCables", "4");
+            attributes1.put("numberOfFibers", "12");
+            definition1.setTemplateFunctionAttributes(attributes1);
+            definition1.getChildKuwaibaTemplateDefinitions().add(childDefinition1);
+         }
+
+         kuwaibaTemplateDefinitionList.add(definition1);
+
+      } catch (Exception e) {
+         throw new IllegalArgumentException("problem creating definition");
+      }
+
+      // POLE_WIRE_1_1xBFU_1_2 street duct (DROP)
       // block to isolate local variables            
       try {
          KuwaibaTemplateDefinition definition1 = new KuwaibaTemplateDefinition();
@@ -405,13 +504,25 @@ public class ProjectConstants {
          definition1.setClassName("WireContainer");
          definition1.setSpecial(false);
 
+         // 1 fiber BFU_1_2 per overhead wire
+         for (int bfuNo = 1;  bfuNo <= 1;  bfuNo++) {
+            KuwaibaTemplateDefinition childDefinition1 = new KuwaibaTemplateDefinition();
+            childDefinition1.setTemplateElementName("BFU_1_2_" + bfuNo);
+            childDefinition1.setClassName("WireContainer");
+            childDefinition1.setSpecial(false);
+            childDefinition1.setTemplateFunction("ColoredFiberWireContainerFunction");
+
+            HashMap<String, String> attributes1 = new HashMap<String, String>();
+            attributes1.put("numberOfCables", "1");
+            attributes1.put("numberOfFibers", "2");
+            definition1.getChildKuwaibaTemplateDefinitions().add(childDefinition1);
+         }
+
          kuwaibaTemplateDefinitionList.add(definition1);
 
       } catch (Exception e) {
          throw new IllegalArgumentException("problem creating definition");
       }
-      
-
 
       pr.getKuwaibaTemplateList().addAll(kuwaibaTemplateDefinitionList);
 
