@@ -5,19 +5,29 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 /**
- * Root context redirection to OpenAPI API Specification (OAS) documentation.
+ * Web UI controller for the Overpass importer map interface.
  */
 @Controller
 public class WebController {
 
     /**
-     * Sets the index page mapping to point to the Swagger UI.
+     * Serves the interactive map UI for bbox-based Overpass import.
      *
-     * @return A redirect to the Swagger UI.
+     * @return Redirect to the map HTML file.
      */
     @RequestMapping("/")
     public String index() {
-        return "redirect:swagger-ui.html";
+        return "redirect:/map.html";
+    }
+
+    /**
+     * Redirect to Swagger API documentation for reference.
+     *
+     * @return Redirect to Swagger UI.
+     */
+    @RequestMapping("/api-docs")
+    public String apiDocs() {
+        return "redirect:/swagger-ui.html";
     }
 
 }
