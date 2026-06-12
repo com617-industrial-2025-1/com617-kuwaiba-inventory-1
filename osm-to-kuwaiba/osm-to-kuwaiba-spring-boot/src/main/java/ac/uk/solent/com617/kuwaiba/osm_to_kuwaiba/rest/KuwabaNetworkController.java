@@ -403,7 +403,7 @@ public class KuwabaNetworkController {
       for (NetworkConnection conn : connections) {
 
          KuwaibaClass kuwaibaConnectionClass = new KuwaibaClass();
-         kuwaibaConnectionClass.setName(conn.getExternal_id());
+
          kuwaibaConnectionClass.getAttributes().put("link_type", conn.getLink_type().toString());
          kuwaibaConnectionClass.getAttributes().put("geometry", createGeometryMapper().writeValueAsString(conn.getGeom()));
          kuwaibaConnectionClass.getAttributes().put("street_name", conn.getStreetName());
@@ -416,21 +416,27 @@ public class KuwabaNetworkController {
          switch (conn.getLink_type()) {
          case TRUNK:
             kuwaibaConnectionClass.setClassName("WireContainer");
-            kuwaibaConnectionClass.setTemplateName("STREET_DUCT_1");
+            kuwaibaConnectionClass.setTemplateName(ProjectConstants.BFU_4_12);
             break;
          case DISTRIBUTION:
             kuwaibaConnectionClass.setClassName("WireContainer");
-            kuwaibaConnectionClass.setTemplateName("STREET_DUCT_2");
+            kuwaibaConnectionClass.setTemplateName(ProjectConstants.BFU_4_12);
             break;
          case FEEDER:
             kuwaibaConnectionClass.setClassName("WireContainer");
-            kuwaibaConnectionClass.setTemplateName("STREET_DUCT_3");
+            kuwaibaConnectionClass.setTemplateName(ProjectConstants.BFU_4_12);
             break;
          case DROP:
             kuwaibaConnectionClass.setClassName("WireContainer");
-            kuwaibaConnectionClass.setTemplateName("POLE_WIRE_1");
+            kuwaibaConnectionClass.setTemplateName(ProjectConstants.BFU_1_2);
+            break;
+         default:
+            kuwaibaConnectionClass.setClassName("WireContainer");
+            kuwaibaConnectionClass.setTemplateName(ProjectConstants.STREET_DUCT_1_EMPTY);
             break;
          }
+         
+         kuwaibaConnectionClass.setName(conn.getExternal_id()+"_"+kuwaibaConnectionClass.getTemplateName());
 
          KuwaibaConnection kuwaibaConnection = new KuwaibaConnection();
 
@@ -605,7 +611,7 @@ public class KuwabaNetworkController {
          break;
       case BUILDING:
          kc.setClassName("Building");
-         kc.setTemplateName("House_01");
+         kc.setTemplateName(ProjectConstants.House_01);
          break;
       default:
          kc.setClassName("UNKNOWN_POINT_TYPE");
