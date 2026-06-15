@@ -40,7 +40,7 @@ services:
        osm2pgsql --create --slim --hstore $$FILE"
 
   pgadmin:
-    image: dpage/pgadmin4:9.13.0
+    image: dpage/pgadmin4:9.15.0
     container_name: pgadmin
     restart: unless-stopped
     ports:

@@ -1,5 +1,6 @@
 package ac.uk.solent.com617.kuwaiba.osm_to_kuwaiba.services;
 
+import org.entimoss.kuwaiba.provisioning.model.ProjectConstants;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -12,6 +13,8 @@ import ac.uk.solent.com617.kuwaiba.osm_to_kuwaiba.repository.NetworkPointReposit
 
 @Service
 public class ClusteringService {
+   
+   private String networkRegion = ProjectConstants.PARENT_LOCATION_VALUE;
 
     @Autowired
     private BuildingDropPointRepository dropPointRepository;
@@ -43,22 +46,22 @@ public class ClusteringService {
     }
 
     public void predictPoles() {
-        dropPointRepository.insertPoleClusters();
+        dropPointRepository.insertPoleClusters(networkRegion);
         dropPointRepository.updateBuildingParents();
     }
 
     public void predictCabinets() {
-        pointRepository.insertCabinetClusters();
+        pointRepository.insertCabinetClusters(networkRegion);
         pointRepository.updatePoleParents();
     }
 
     public void predictAggregators() {
-        pointRepository.insertAggregatorClusters();
+        pointRepository.insertAggregatorClusters(networkRegion);
         pointRepository.updateCabinetParents();
     }
 
     public void predictExchanges() {
-        pointRepository.insertExchangeClusters();
+        pointRepository.insertExchangeClusters(networkRegion);
         pointRepository.updateAggregatorParents();
     }
 }

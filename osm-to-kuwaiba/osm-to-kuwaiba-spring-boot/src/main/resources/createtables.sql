@@ -4,7 +4,7 @@ INSERT INTO cleaned_buildings (osm_id, geom, building_name, house_num, street_na
 SELECT 
     osm_id,
     ST_CollectionExtract(ST_MakeValid(ST_Multi(way)), 3)::geometry(MultiPolygon, 3857),
-    COALESCE(tags->'name', 'Building ' || osm_id),
+    COALESCE(tags->'name', 'UPRN_' || osm_id), -- changed from Building 
         tags->'addr:housenumber',
         tags->'addr:street',
         tags->'building:levels'

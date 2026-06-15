@@ -64,7 +64,8 @@ public class BuildingDropPointTests {
 	
 	@Test
 	void insertPoleClusters_createsPoleForEachCluster() {
-		dropPointRepository.insertPoleClusters();
+	   String network_region="test_region"; 
+		dropPointRepository.insertPoleClusters(network_region);
 		
 		int poleCount = jdbcTemplate.queryForObject(
 			"SELECT COUNT(*) FROM network_points WHERE type = 'POLE'",
@@ -75,7 +76,8 @@ public class BuildingDropPointTests {
 	
 	@Test
 	void insertPoleClusters_onlyCreatesPoles() {
-		dropPointRepository.insertPoleClusters();
+	   String network_region="test_region"; 
+		dropPointRepository.insertPoleClusters(network_region);
 		
 		int nonPoleCount = jdbcTemplate.queryForObject(
 			"SELECT COUNT(*) FROM network_points WHERE type != 'POLE'",
@@ -91,7 +93,8 @@ public class BuildingDropPointTests {
 		);
 		
 		// should insert no rows and not throw error
-		assertDoesNotThrow(() -> dropPointRepository.insertPoleClusters());
+	   String network_region="test_region"; 
+		assertDoesNotThrow(() -> dropPointRepository.insertPoleClusters(network_region));
 		
 		int poleCount = jdbcTemplate.queryForObject(
 			"SELECT COUNT(*) FROM network_points WHERE type = 'POLE'",
@@ -109,7 +112,8 @@ public class BuildingDropPointTests {
 	
 	@Test
 	void updateBuildingParents_setParentIdOnEveryBuilding() {
-		dropPointRepository.insertPoleClusters();
+	   String network_region="test_region"; 
+		dropPointRepository.insertPoleClusters(network_region);
 		
 		dropPointRepository.updateBuildingParents();
 		
@@ -123,7 +127,8 @@ public class BuildingDropPointTests {
 	
 	@Test
 	void updateBuildingParents_bdpParentIdLinksToPole() {
-		dropPointRepository.insertPoleClusters();
+	   String network_region="test_region"; 
+		dropPointRepository.insertPoleClusters(network_region);
 		
 		dropPointRepository.updateBuildingParents();
 		

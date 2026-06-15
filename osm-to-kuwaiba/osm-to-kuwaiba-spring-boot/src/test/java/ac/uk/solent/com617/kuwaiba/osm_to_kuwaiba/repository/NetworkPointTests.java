@@ -121,7 +121,8 @@ public class NetworkPointTests {
 	
 	@Test
 	void insertCabinetClusters_createsCabinetForEachCluster() {
-		networkPointRepository.insertCabinetClusters();
+		String network_region="test_region"; 
+      networkPointRepository.insertCabinetClusters(network_region);
 		
 		int cabinetCount = jdbcTemplate.queryForObject(
 			"SELECT COUNT(*) FROM network_points WHERE type = 'CABINET'",
@@ -133,7 +134,8 @@ public class NetworkPointTests {
 	
 	@Test
 	void insertCabinetClusters_doesNotAffectExistingPoles() {
-		networkPointRepository.insertCabinetClusters();
+	   String network_region="test_region"; 
+		networkPointRepository.insertCabinetClusters(network_region);
 		
 		int poleCount = jdbcTemplate.queryForObject(
 			"SELECT COUNT(*) FROM network_points WHERE type = 'POLE'",
@@ -149,8 +151,9 @@ public class NetworkPointTests {
 	
 	@Test
 	void insertAggregatorClusters_createAggregatorForEachCluster() {
-		networkPointRepository.insertCabinetClusters();
-		networkPointRepository.insertAggregatorClusters();
+	   String network_region="test_region"; 
+		networkPointRepository.insertCabinetClusters(network_region);
+		networkPointRepository.insertAggregatorClusters(network_region);
 		
 		int aggregatorCount = jdbcTemplate.queryForObject(
 			"SELECT COUNT(*) FROM network_points WHERE type = 'AGGREGATOR'",
@@ -166,9 +169,10 @@ public class NetworkPointTests {
 	
 	@Test
 	void insertExchangeClusters_createExchangeForEachCluster() {
-		networkPointRepository.insertCabinetClusters();
-		networkPointRepository.insertAggregatorClusters();
-		networkPointRepository.insertExchangeClusters();
+	   String network_region="test_region"; 
+		networkPointRepository.insertCabinetClusters(network_region);
+		networkPointRepository.insertAggregatorClusters(network_region);
+		networkPointRepository.insertExchangeClusters(network_region);
 		
 		int exchangeCount = jdbcTemplate.queryForObject(
 				"SELECT COUNT(*) FROM network_points WHERE type = 'EXCHANGE'",
@@ -184,7 +188,8 @@ public class NetworkPointTests {
 	
 	@Test
 	void updatePoleParents_setsParentIdOnEveryPole() {
-		networkPointRepository.insertCabinetClusters();
+	   String network_region="test_region"; 
+		networkPointRepository.insertCabinetClusters(network_region);
 		networkPointRepository.updatePoleParents();
 		
 		int unlinkedPoles = jdbcTemplate.queryForObject(
@@ -197,7 +202,8 @@ public class NetworkPointTests {
 	
 	@Test
 	void updatePoleParents_linksToExistingCabinet() {
-		networkPointRepository.insertCabinetClusters();
+	   String network_region="test_region"; 
+		networkPointRepository.insertCabinetClusters(network_region);
 		networkPointRepository.updatePoleParents();
 		
 		int invalidParentCount = jdbcTemplate.queryForObject("""
@@ -221,8 +227,9 @@ public class NetworkPointTests {
 	
 	@Test
 	void updateCabinetParents_setsParentIdOnEveryCabinet() {
-        networkPointRepository.insertCabinetClusters();
-        networkPointRepository.insertAggregatorClusters();
+	     String network_region="test_region"; 
+        networkPointRepository.insertCabinetClusters(network_region);
+        networkPointRepository.insertAggregatorClusters(network_region);
         networkPointRepository.updateCabinetParents();
         
         int unlinkedCabinets = jdbcTemplate.queryForObject(
@@ -235,8 +242,9 @@ public class NetworkPointTests {
 	
 	@Test
 	void updateCabinetParents_linksToExistingAggregator() {
-        networkPointRepository.insertCabinetClusters();
-        networkPointRepository.insertAggregatorClusters();
+	     String network_region="test_region"; 
+        networkPointRepository.insertCabinetClusters(network_region);
+        networkPointRepository.insertAggregatorClusters(network_region);
         networkPointRepository.updateCabinetParents();
         
         int invalidParentCount = jdbcTemplate.queryForObject("""
@@ -260,9 +268,10 @@ public class NetworkPointTests {
 	
 	@Test
 	void updateAggregatorParents_setsParentIdOnEveryAggregator() {
-		networkPointRepository.insertCabinetClusters();
-        networkPointRepository.insertAggregatorClusters();
-        networkPointRepository.insertExchangeClusters();
+	     String network_region="test_region"; 
+		  networkPointRepository.insertCabinetClusters(network_region);
+        networkPointRepository.insertAggregatorClusters(network_region);
+        networkPointRepository.insertExchangeClusters(network_region);
         networkPointRepository.updateAggregatorParents();
         
         int unlinkedAggregators = jdbcTemplate.queryForObject(
