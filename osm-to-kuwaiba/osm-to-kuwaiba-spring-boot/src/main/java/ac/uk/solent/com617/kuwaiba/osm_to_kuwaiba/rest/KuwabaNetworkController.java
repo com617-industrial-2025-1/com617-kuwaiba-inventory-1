@@ -311,6 +311,8 @@ public class KuwabaNetworkController {
 
          building.setName(lb.getBuildingName());
          building.setClassName("House");
+         building.setTemplateName(ProjectConstants.House_01);
+         
          //         kc.getAttributes().put("osmid", lb.getOsmId().toString());
          //         kc.getAttributes().put("uprn", lb.getUprn().toString());
          //         kc.getAttributes().put("house_num", lb.getHouseNum());

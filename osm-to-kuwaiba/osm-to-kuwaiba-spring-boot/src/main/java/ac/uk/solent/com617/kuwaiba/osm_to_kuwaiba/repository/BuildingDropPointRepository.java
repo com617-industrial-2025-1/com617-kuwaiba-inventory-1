@@ -20,7 +20,7 @@ public interface BuildingDropPointRepository extends JpaRepository<BuildingDropP
         SELECT 
             'POLE',
             ST_ClosestPoint(r.geom, c.centroid),
-            'POLE_' || :network_region || '_'  || to_char(c.cluster_id , 'fm00000')
+            'POLE_' || :network_region || '_'  || REPLACE(FORMAT('%5s', c.cluster_id), ' ', '0')
         FROM (
             SELECT ST_Centroid(ST_Collect(geom)) AS centroid, cluster_id
             FROM ( 
