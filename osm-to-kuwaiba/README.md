@@ -44,6 +44,15 @@ which uses the default profile in `.env` or use
 docker compose --profile prod up -d
 ```
 
+Once the stack is running, open the interactive Overpass importer map at:
+
+```text
+http://localhost:8080/
+```
+
+Draw a bounding box around the area to import, then click **Import** to load
+that OSM area into the system for use by the prediction pipeline.
+
 Note override the default profile in `.env` when running local tests e.g.
 
 ```
@@ -53,7 +62,8 @@ docker compose --profile dev up -d
 cd osm-to-kuwaiba
 mvn spring-boot:run
 
-```
+```docker compose exec db psql -U osmuser -d osm -c "SELECT COUNT(*) FROM noded_streets;"
+docker compose exec db psql -U osmuser -d osm -c "SELECT COUNT(*) FROM noded_streets_vertices_pgr;"
 
 This will:
 1. Start the PostGIS/pgRouting database
@@ -81,6 +91,9 @@ http://localhost:8080/swagger-ui/index.html
 ```
 Call `POST /predict/all` to run the full pipeline. This places all infrastructure points and then
 traces all cable connections.
+
+If you used the map to import an Overpass bounding box first, the prediction will run over
+that imported area.
 
 ## REST API
 

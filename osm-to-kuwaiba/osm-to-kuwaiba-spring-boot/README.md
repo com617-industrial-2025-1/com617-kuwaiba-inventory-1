@@ -41,6 +41,15 @@ The application is ready when the console shows:
 Tomcat started on port(s): 8080 (http)
 ```
 
+Open the interactive Overpass importer map in the browser at:
+
+```text
+http://localhost:8080/
+```
+
+Draw a rectangle to define your area, then click Import to load the selected OSM data
+from Overpass into the database.
+
 On startup the application automatically:
 - Creates the database schema (tables and indexes)
 - Imports the UPRN CSV into `raw_uprns`
