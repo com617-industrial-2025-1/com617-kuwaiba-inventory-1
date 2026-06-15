@@ -28,6 +28,9 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 
 import ac.uk.solent.com617.kuwaiba.osm_to_kuwaiba.models.OverpassBoundingBox;
 import ac.uk.solent.com617.kuwaiba.osm_to_kuwaiba.models.OverpassImportResult;
+import ac.uk.solent.com617.kuwaiba.osm_to_kuwaiba.startup.SchemaInitialization;
+import ac.uk.solent.com617.kuwaiba.osm_to_kuwaiba.services.UprnImportService;
+import ac.uk.solent.com617.kuwaiba.osm_to_kuwaiba.services.UprnService;
 
 @Service
 public class OverpassImportService {
@@ -43,7 +46,7 @@ public class OverpassImportService {
 
     private static final String INSERT_LINE_SQL = """
         INSERT INTO planet_osm_line (osm_id, highway, name, tags, way)
-        VALUES (?, ?, ?, ?, ?::jsonb,
+        VALUES (?, ?, ?, ?::jsonb,
             ST_Transform(ST_SetSRID(ST_GeomFromGeoJSON(?), 4326), 3857))
         ON CONFLICT (osm_id) DO NOTHING
         """;
@@ -89,6 +92,15 @@ public class OverpassImportService {
                 .connectTimeout(this.timeout)
                 .build();
     }
+
+    @Autowired
+    private SchemaInitialization schemaInitialization;
+
+    @Autowired
+    private UprnImportService uprnImportService;
+
+    @Autowired
+    private UprnService uprnService;
 
     @PostConstruct
     public void ensureRawTablesExist() {
@@ -222,6 +234,33 @@ public class OverpassImportService {
         }
 
         logger.info("Imported {} buildings and {} roads from Overpass.", importedBuildings, importedRoads);
+        // After importing raw OSM, populate derived tables, import/link UPRNs and build topology
+        try {
+            logger.info("Running post-import population and UPRN linking...");
+            // populate cleaned_* and noded_streets from createtables.sql
+            schemaInitialization.populateTables();
+
+            // ensure raw UPRNs are present (importUprns is idempotent)
+            try {
+                uprnImportService.importUprns();
+            } catch (Exception e) {
+                logger.warn("UPRN import after Overpass import failed: {}", e.getMessage());
+            }
+
+            // link UPRNs to buildings
+            try {
+                uprnService.linksUprns();
+            } catch (Exception e) {
+                logger.warn("UPRN linking after Overpass import failed: {}", e.getMessage());
+            }
+
+            // build pgRouting topology
+            schemaInitialization.buildTopology();
+            logger.info("Post-import population and topology finished.");
+        } catch (Exception e) {
+            logger.warn("Post-import tasks encountered an error: {}", e.getMessage());
+        }
+
         return new OverpassImportResult(importedBuildings, importedRoads, 0, 0);
     }
 
