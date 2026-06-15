@@ -35,7 +35,8 @@ CREATE INDEX IF NOT EXISTS idx_noded_streets_geom ON noded_streets USING GIST (g
 CREATE TABLE IF NOT EXISTS building_drop_points (
 	building_id		BIGINT PRIMARY KEY,
 	parent_id		BIGINT,
-	geom			geometry(Point, 3857)
+	geom			geometry(Point, 3857),
+	building_name   TEXT
 );
 
 CREATE INDEX IF NOT EXISTS idx_building_drop_points_geom ON building_drop_points USING GIST (geom);

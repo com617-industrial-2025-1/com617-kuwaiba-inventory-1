@@ -49,7 +49,7 @@ public interface NetworkConnectionRepository extends JpaRepository<NetworkConnec
                     bdp.building_id,
                     'DROP',
                     ST_MakeLine(pole.geom, bdp.geom),
-                    'DROP_' || pole.external_id || '_' || bdp.building_id, -- bdp.external_id is not available,
+                    'DROP_' || pole.external_id || '_' || bdp.building_name,
                     bdp.building_id
                 FROM building_drop_points bdp
                 JOIN network_points pole ON pole.id = bdp.parent_id
