@@ -438,8 +438,6 @@ public class KuwabaNetworkController {
             break;
          }
          
-         kuwaibaConnectionClass.setName(conn.getExternal_id()+"_"+kuwaibaConnectionClass.getTemplateName());
-
          KuwaibaConnection kuwaibaConnection = new KuwaibaConnection();
 
          kuwaibaConnection.setConnectionClass(kuwaibaConnectionClass);
@@ -559,6 +557,11 @@ public class KuwabaNetworkController {
                kuwaibaConnection.setEndpointB(endPointClass);
             });
          }
+         
+         
+         //kuwaibaConnectionClass.setName(conn.getExternal_id()+"_"+kuwaibaConnectionClass.getTemplateName()); // data base names incorrect
+         
+         kuwaibaConnectionClass.setName(conn.getLink_type()+"_"+ kuwaibaConnection.getEndpointA().getName()+"_"+kuwaibaConnection.getEndpointB().getName()+"_"+kuwaibaConnectionClass.getTemplateName());
 
          kuwaibaConnections.put(kuwaibaConnection.getConnectionClass().getName(), kuwaibaConnection);
          
