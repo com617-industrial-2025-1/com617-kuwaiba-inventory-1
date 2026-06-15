@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
+    <meta http-equiv="Pragma" content="no-cache" />
+    <meta http-equiv="Expires" content="0" />
+    <title>Kuwaiba Network Viewer</title>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+    <style>
+        body {
+            margin: 0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            height: 100vh;
+            display: flex;
+        }
+        #map {
+            flex: 1;
+            height: 100vh;
+        }
+        .sidebar {
+            width: 320px;
+            padding: 16px;
+            background: #ffffff;
+            box-shadow: 0 0 18px rgba(0, 0, 0, 0.08);
+            overflow-y: auto;
+        }
+        h1 {
+            font-size: 20px;
+            margin-bottom: 16px;
+            color: #1a237e;
+        }
+        button {
+            width: 100%;
+            margin-top: 8px;
+            padding: 12px;
+            border: none;
+            background: #1a73e8;
+            color: white;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 14px;
+        }
+        button[disabled] {
+            background: #9e9e9e;
+            cursor: not-allowed;
+        }
+        .section {
+            margin-bottom: 16px;
+        }
+        .section label {
+            display: block;
+            margin-bottom: 6px;
+            font-weight: 600;
+        }
+        .section select {
+            width: 100%;
+            padding: 8px;
+            border-radius: 6px;
+            border: 1px solid #ccc;
+            font-size: 14px;
+        }
+        .stats {
+            background: #f5f5f5;
+            padding: 12px;
+            border-radius: 6px;
+            margin-top: 12px;
+            line-height: 1.5;
+        }
+        .stats strong {
+            color: #1a237e;
+        }
+    </style>
+</head>
+<body>
+    <div class="sidebar">
+        <h1>Predicted Network Viewer</h1>
+        <div class="section">
+            <label for="pointType">Point Type</label>
+            <select id="pointType">
+                <option value="ALL">All</option>
+                <option value="POLE">Pole</option>
+                <option value="CABINET">Cabinet</option>
+                <option value="AGGREGATOR">Aggregator</option>
+                <option value="EXCHANGE">Exchange</option>
+            </select>
+        </div>
+        <div class="section">
+            <label for="linkType">Connection Type</label>
+            <select id="linkType">
+                <option value="ALL">All</option>
+                <option value="DROP">Drop</option>
+                <option value="FEEDER">Feeder</option>
+                <option value="DISTRIBUTION">Distribution</option>
+                <option value="TRUNK">Trunk</option>
+            </select>
+        </div>
+        <button id="loadButton">Load Network</button>
+        <button id="clearButton">Clear Map</button>
+        <div class="stats" id="stats">
+            <div><strong>Points:</strong> <span id="pointCount">0</span></div>
+            <div><strong>Connections:</strong> <span id="connectionCount">0</span></div>
+            <div><strong>Status:</strong> <span id="statusText">Idle</span></div>
+        </div>
+    </div>
+    <div id="map"></div>
+
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+    <script>
+        const appBase = '/api';
+        const pointColors = {
+            POLE: '#d32f2f',
+            CABINET: '#f9a825',
+            AGGREGATOR: '#0288d1',
+            EXCHANGE: '#2e7d32',
+            ALL: '#616161'
+        };
+        const connectionColors = {
+            DROP: '#6a1b9a',
+            FEEDER: '#00796b',
+            DISTRIBUTION: '#ef6c00',
+            TRUNK: '#c62828',
+            ALL: '#424242'
+        };
+
+        const map = L.map('map').setView([51.5, -0.1], 10);
+        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+            maxZoom: 19,
+            attribution: '© OpenStreetMap contributors'
+        }).addTo(map);
+
+        let pointsLayer = L.layerGroup().addTo(map);
+        let connectionsLayer = L.layerGroup().addTo(map);
+
+        const pointTypeSelect = document.getElementById('pointType');
+        const linkTypeSelect = document.getElementById('linkType');
+        const loadButton = document.getElementById('loadButton');
+        const clearButton = document.getElementById('clearButton');
+        const statusText = document.getElementById('statusText');
+        const pointCount = document.getElementById('pointCount');
+        const connectionCount = document.getElementById('connectionCount');
+
+        function createPointFeature(point) {
+            if (!point.geom || !Array.isArray(point.geom.coordinates)) return null;
+            return {
+                id: point.id,
+                type: point.type,
+                coordinates: point.geom.coordinates,
+                relatedRoadName: point.relatedRoadName
+            };
+        }
+
+        function createConnectionPath(conn) {
+            if (!conn.geom || !Array.isArray(conn.geom.coordinates)) return null;
+            if (conn.geom.type === 'LineString') {
+                return conn.geom.coordinates.map(pair => [pair[1], pair[0]]);
+            } else if (conn.geom.type === 'MultiLineString') {
+                return conn.geom.coordinates.map(line => line.map(pair => [pair[1], pair[0]]));
+            }
+            return null;
+        }
+
+        function addPoints(points) {
+            pointsLayer.clearLayers();
+            points.forEach(point => {
+                const feature = createPointFeature(point);
+                if (!feature) return;
+                const color = pointColors[point.type] || pointColors.ALL;
+                const marker = L.circleMarker([feature.coordinates[0], feature.coordinates[1]], {
+                    radius: 6,
+                    color: color,
+                    fillColor: color,
+                    fillOpacity: 0.8,
+                    weight: 1
+                });
+                marker.bindPopup(`Type: ${point.type}<br>ID: ${point.id}<br>Road: ${feature.relatedRoadName || feature.related_road_name || 'N/A'}`);
+                marker.addTo(pointsLayer);
+            });
+        }
+
+        function addConnections(connections) {
+            connectionsLayer.clearLayers();
+            connections.forEach(conn => {
+                const path = createConnectionPath(conn);
+                if (!path) return;
+                const linkType = conn.linkType || conn.link_type;
+                const streetName = conn.streetName || conn.street_name || 'N/A';
+                const color = connectionColors[linkType] || connectionColors.ALL;
+
+                const addLine = segment => {
+                    const line = L.polyline(segment, {
+                        color: color,
+                        weight: 3,
+                        opacity: 0.8
+                    });
+                    line.bindPopup(`Type: ${linkType || 'Unknown'}<br>ID: ${conn.id}<br>Street: ${streetName}`);
+                    line.on('click', e => line.openPopup(e.latlng));
+                    line.addTo(connectionsLayer);
+                };
+
+                if (Array.isArray(path[0]) && typeof path[0][0] === 'number') {
+                    addLine(path);
+                } else {
+                    path.forEach(segment => addLine(segment));
+                }
+            });
+        }
+
+        async function fetchJson(path) {
+            const response = await fetch(`${appBase}${path}`);
+            if (!response.ok) {
+                throw new Error(`Request failed: ${response.status}`);
+            }
+            return response.json();
+        }
+
+        async function loadNetwork() {
+            statusText.textContent = 'Loading...';
+            loadButton.disabled = true;
+
+            try {
+                const pointType = pointTypeSelect.value;
+                const linkType = linkTypeSelect.value;
+
+                const pointsPath = pointType === 'ALL' ? '/network/points' : `/network/points/type?type=${pointType}`;
+                const connectionsPath = linkType === 'ALL' ? '/network/connections' : `/network/connections/type?linkType=${linkType}`;
+
+                const [points, connections] = await Promise.all([
+                    fetchJson(pointsPath),
+                    fetchJson(connectionsPath)
+                ]);
+
+                addPoints(points);
+                addConnections(connections);
+
+                pointCount.textContent = points.length;
+                connectionCount.textContent = connections.length;
+                statusText.textContent = 'Network loaded';
+
+                if (points.length > 0 || connections.length > 0) {
+                    const group = L.featureGroup([pointsLayer, connectionsLayer]);
+                    const bounds = group.getBounds();
+                    if (bounds.isValid()) {
+                        map.fitBounds(bounds, { padding: [24, 24] });
+                    }
+                }
+            } catch (error) {
+                statusText.textContent = 'Failed to load network';
+                alert('Could not load network: ' + error.message);
+            } finally {
+                loadButton.disabled = false;
+            }
+        }
+
+        function clearMap() {
+            pointsLayer.clearLayers();
+            connectionsLayer.clearLayers();
+            pointCount.textContent = '0';
+            connectionCount.textContent = '0';
+            statusText.textContent = 'Idle';
+        }
+
+        loadButton.addEventListener('click', loadNetwork);
+        clearButton.addEventListener('click', clearMap);
+    </script>
+</body>
+</html>
