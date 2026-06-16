@@ -208,9 +208,7 @@ public class KuwabaNetworkController {
     * @throws Exception
     */
    @GetMapping("/streetNames")
-   public ResponseEntity<String> getStreetNames(     
-            ) throws Exception {
-
+   public ResponseEntity<String> getStreetNames() throws Exception {
 
       HttpHeaders responseHeaders = new HttpHeaders();
 
@@ -557,8 +555,7 @@ public class KuwabaNetworkController {
                kuwaibaConnection.setEndpointB(endPointClass);
             });
          }
-         
-         
+
          //kuwaibaConnectionClass.setName(conn.getExternal_id()+"_"+kuwaibaConnectionClass.getTemplateName()); // data base names incorrect
          
          kuwaibaConnectionClass.setName(conn.getLink_type()+"_"+ kuwaibaConnection.getEndpointA().getName()+"_"+kuwaibaConnection.getEndpointB().getName()+"_"+kuwaibaConnectionClass.getTemplateName());
@@ -606,19 +603,19 @@ public class KuwabaNetworkController {
       switch (point.getType()) { 
       case EXCHANGE:
          kc.setClassName("Facility");
-         kc.setTemplateName(null);
-         break;
-      case CABINET:
-         kc.setClassName("OutdoorsCabinet");
-         kc.setTemplateName(null);
-         break;
-      case POLE:
-         kc.setClassName("Pole");
-         kc.setTemplateName(null);
+         kc.setTemplateName(ProjectConstants.FEX_FACILITY_001);
          break;
       case AGGREGATOR:
          kc.setClassName("OutdoorsCabinet");
-         kc.setTemplateName(null);
+         kc.setTemplateName(ProjectConstants.CAB_10SPL8);
+         break;
+      case CABINET:
+         kc.setClassName("OutdoorsCabinet");
+         kc.setTemplateName(ProjectConstants.CAB_10SPL16);
+         break;
+      case POLE:
+         kc.setClassName("Pole");
+         kc.setTemplateName(ProjectConstants.POLE_2_16drop);
          break;
       case BUILDING:
          kc.setClassName("House");
