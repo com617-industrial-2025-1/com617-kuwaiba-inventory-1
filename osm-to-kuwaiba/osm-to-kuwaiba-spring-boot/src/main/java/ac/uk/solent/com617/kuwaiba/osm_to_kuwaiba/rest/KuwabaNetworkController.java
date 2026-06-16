@@ -403,16 +403,16 @@ public class KuwabaNetworkController {
       for (NetworkConnection conn : connections) {
 
          KuwaibaClass kuwaibaConnectionClass = new KuwaibaClass();
-
+         
          kuwaibaConnectionClass.getAttributes().put("link_type", conn.getLink_type().toString());
          kuwaibaConnectionClass.getAttributes().put("geometry", createGeometryMapper().writeValueAsString(conn.getGeom()));
          kuwaibaConnectionClass.getAttributes().put("street_name", conn.getStreetName());
-
+         
          // Map the KeyValuePair map to the attributes of the KuwaibaClass
          if (conn.getKeyValuePairMap() != null) {
             conn.getKeyValuePairMap().forEach((k, v) -> kuwaibaConnectionClass.getAttributes().put(k, v.getValue()));
          }
-
+         
          switch (conn.getLink_type()) {
          case TRUNK:
             kuwaibaConnectionClass.setClassName("WireContainer");
@@ -558,7 +558,10 @@ public class KuwabaNetworkController {
 
          //kuwaibaConnectionClass.setName(conn.getExternal_id()+"_"+kuwaibaConnectionClass.getTemplateName()); // data base names incorrect
          
-         kuwaibaConnectionClass.setName(conn.getLink_type()+"_"+ kuwaibaConnection.getEndpointA().getName()+"_"+kuwaibaConnection.getEndpointB().getName()+"_"+kuwaibaConnectionClass.getTemplateName());
+         String connectionBaseName = conn.getLink_type()+"_"+ kuwaibaConnection.getEndpointA().getName()+"_"+kuwaibaConnection.getEndpointB().getName();
+         String connectionClassName = connectionBaseName+"_"+kuwaibaConnectionClass.getTemplateName();
+         
+         kuwaibaConnectionClass.setName(connectionClassName);
 
          kuwaibaConnections.put(kuwaibaConnection.getConnectionClass().getName(), kuwaibaConnection);
          
