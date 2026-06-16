@@ -334,7 +334,7 @@ public class ProjectConstants {
                // OLT management port
                KuwaibaTemplateDefinition childDefinition1_2 = new KuwaibaTemplateDefinition();
                childDefinition1_2.setTemplateElementName("management");
-               childDefinition1_2.setClassName("OpticalPort");
+               childDefinition1_2.setClassName("ElectricalPort");
                childDefinition1_2.setSpecial(false);
 
                HashMap<String, String> childDefinition1_2_Attributes = new HashMap<String, String>();
