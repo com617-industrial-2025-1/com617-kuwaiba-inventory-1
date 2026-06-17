@@ -20,9 +20,9 @@ public interface BuildingDropPointRepository extends JpaRepository<BuildingDropP
         SELECT 
             'POLE',
             ST_ClosestPoint(r.geom, c.centroid),
-            'POLE-' || gen_random_uuid()
+            'POLE_' || :network_region || '_'  || REPLACE(FORMAT('%5s', c.cluster_id), ' ', '0')
         FROM (
-            SELECT ST_Centroid(ST_Collect(geom)) AS centroid
+            SELECT ST_Centroid(ST_Collect(geom)) AS centroid, cluster_id
             FROM ( 
     		    SELECT ST_ClusterKMeans(geom,
                     CAST(CEIL((SELECT COUNT(*) FROM building_drop_points) / 12.0) AS INTEGER)
@@ -38,7 +38,8 @@ public interface BuildingDropPointRepository extends JpaRepository<BuildingDropP
     		LIMIT 1
     	) r
     """)
-    void insertPoleClusters();
+    void insertPoleClusters(String network_region);
+
 
     @Modifying
     @Transactional

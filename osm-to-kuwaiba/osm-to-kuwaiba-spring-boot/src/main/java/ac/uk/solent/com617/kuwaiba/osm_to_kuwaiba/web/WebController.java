@@ -9,14 +9,24 @@ import org.springframework.web.bind.annotation.RequestMapping;
  */
 @Controller
 public class WebController {
+   
+   /**
+    * Serves the interactive map UI for bbox-based Overpass import.
+    *
+    * @return Redirect to the map HTML file.
+    */
+   @RequestMapping("/")
+   public String index() {
+       return "redirect:/index.html";
+   }
 
     /**
      * Serves the interactive map UI for bbox-based Overpass import.
      *
      * @return Redirect to the map HTML file.
      */
-    @RequestMapping("/")
-    public String index() {
+    @RequestMapping("/overpass")
+    public String overpass() {
         return "redirect:/map.html";
     }
 

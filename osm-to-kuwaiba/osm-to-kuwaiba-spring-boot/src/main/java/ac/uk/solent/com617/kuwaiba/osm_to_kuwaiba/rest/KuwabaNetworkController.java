@@ -208,9 +208,7 @@ public class KuwabaNetworkController {
     * @throws Exception
     */
    @GetMapping("/streetNames")
-   public ResponseEntity<String> getStreetNames(     
-            ) throws Exception {
-
+   public ResponseEntity<String> getStreetNames() throws Exception {
 
       HttpHeaders responseHeaders = new HttpHeaders();
 
@@ -310,7 +308,9 @@ public class KuwabaNetworkController {
          }
 
          building.setName(lb.getBuildingName());
-         building.setClassName("Building");
+         building.setClassName("House");
+         building.setTemplateName(ProjectConstants.House_01);
+         
          //         kc.getAttributes().put("osmid", lb.getOsmId().toString());
          //         kc.getAttributes().put("uprn", lb.getUprn().toString());
          //         kc.getAttributes().put("house_num", lb.getHouseNum());
@@ -368,7 +368,7 @@ public class KuwabaNetworkController {
 
       Map<String, KuwaibaClass>      kuwaibaStreets = new LinkedHashMap<String,KuwaibaClass>();
       Map<String, KuwaibaConnection> kuwaibaConnections = new LinkedHashMap<String,KuwaibaConnection>();
-      List<KuwaibaClass> kuwaibaConnectionEndPoints = new ArrayList<KuwaibaClass>();
+      Map<String,KuwaibaClass> kuwaibaConnectionEndPoints = new LinkedHashMap<String,KuwaibaClass>();
 
       String sortBy = "id";
       String sortDirection = "ASC";
@@ -403,35 +403,39 @@ public class KuwabaNetworkController {
       for (NetworkConnection conn : connections) {
 
          KuwaibaClass kuwaibaConnectionClass = new KuwaibaClass();
-         kuwaibaConnectionClass.setName(conn.getExternal_id());
+         
          kuwaibaConnectionClass.getAttributes().put("link_type", conn.getLink_type().toString());
          kuwaibaConnectionClass.getAttributes().put("geometry", createGeometryMapper().writeValueAsString(conn.getGeom()));
          kuwaibaConnectionClass.getAttributes().put("street_name", conn.getStreetName());
-
+         
          // Map the KeyValuePair map to the attributes of the KuwaibaClass
          if (conn.getKeyValuePairMap() != null) {
             conn.getKeyValuePairMap().forEach((k, v) -> kuwaibaConnectionClass.getAttributes().put(k, v.getValue()));
          }
-
+         
          switch (conn.getLink_type()) {
          case TRUNK:
             kuwaibaConnectionClass.setClassName("WireContainer");
-            kuwaibaConnectionClass.setTemplateName(null);
+            kuwaibaConnectionClass.setTemplateName(ProjectConstants.BFU_4_12);
             break;
          case DISTRIBUTION:
             kuwaibaConnectionClass.setClassName("WireContainer");
-            kuwaibaConnectionClass.setTemplateName(null);
+            kuwaibaConnectionClass.setTemplateName(ProjectConstants.BFU_4_12);
             break;
          case FEEDER:
             kuwaibaConnectionClass.setClassName("WireContainer");
-            kuwaibaConnectionClass.setTemplateName(null);
+            kuwaibaConnectionClass.setTemplateName(ProjectConstants.BFU_4_12);
             break;
          case DROP:
             kuwaibaConnectionClass.setClassName("WireContainer");
-            kuwaibaConnectionClass.setTemplateName(null);
+            kuwaibaConnectionClass.setTemplateName(ProjectConstants.BFU_1_2);
+            break;
+         default:
+            kuwaibaConnectionClass.setClassName("WireContainer");
+            kuwaibaConnectionClass.setTemplateName(ProjectConstants.STREET_DUCT_1_EMPTY);
             break;
          }
-
+         
          KuwaibaConnection kuwaibaConnection = new KuwaibaConnection();
 
          kuwaibaConnection.setConnectionClass(kuwaibaConnectionClass);
@@ -450,15 +454,18 @@ public class KuwabaNetworkController {
                endPointClass.getParentClasses().add(ProjectConstants.parentNeighbourhood);
             }
 
-            kuwaibaConnectionEndPoints.add(endPointClass);
+            if(!kuwaibaConnectionEndPoints.containsKey(endPointClass.getName())) kuwaibaConnectionEndPoints.put(endPointClass.getName(), endPointClass);
             
             kuwaibaConnection.setEndpointA(endPointClass);
          });
 
          // EndpointB - could be a building or a network point
          // When linking buildings, pull UPRN metadata
+         
          // EndpointB - DROP connections reference buildings, others reference network_points
          if (conn.getLink_type() == LinkType.DROP && conn.getOsmId() != null) {
+            
+            // end point is a house building
             Optional<LinkedBuilding> linked = linkedBuildingRepository.findById(conn.getOsmId());
             if (linked.isPresent()) {
                LinkedBuilding lb = linked.get();
@@ -475,7 +482,8 @@ public class KuwabaNetworkController {
                }
 
                building.setName(lb.getBuildingName());
-               building.setClassName("Building");
+               building.setClassName("House");
+               building.setTemplateName(ProjectConstants.House_01);
 
 
                //               KuwaibaClass building = new KuwaibaClass();
@@ -492,7 +500,7 @@ public class KuwabaNetworkController {
                if (lb.getLat()!=null) building.getAttributes().put("latitude",  lb.getLat().toString());
                if (lb.getLon()!=null) building.getAttributes().put("longitude",  lb.getLon().toString());
 
-               kuwaibaConnectionEndPoints.add(building);
+               if(!kuwaibaConnectionEndPoints.containsKey(building.getName())) kuwaibaConnectionEndPoints.put(building.getName(), building);
 
                kuwaibaConnection.setEndpointB(building);
             } else {
@@ -510,7 +518,8 @@ public class KuwabaNetworkController {
                   }
 
                   building.setName(cb.getBuildingName());
-                  building.setClassName("Building");
+                  building.setClassName("House");
+                  building.setTemplateName(ProjectConstants.House_01);
 
 
                   // building.setClassName("Building");
@@ -521,12 +530,13 @@ public class KuwabaNetworkController {
                   // Combine key attributes into a single "address" attribute since not a field in kuwaiba
                   building.getAttributes().put("address",  "streetName: "+cb.getStreetName());
 
-                  kuwaibaConnectionEndPoints.add(building);
-
+                  if(!kuwaibaConnectionEndPoints.containsKey(building.getName())) kuwaibaConnectionEndPoints.put(building.getName(), building);
+                  
                   kuwaibaConnection.setEndpointB(building);
                });
             }
          } else {
+            //end point is a network point
             pointRepository.findById(conn.getEnd_id()).ifPresent(endPoint -> {
                
                KuwaibaClass endPointClass = pointToKuwaibaClass(endPoint);
@@ -540,11 +550,18 @@ public class KuwabaNetworkController {
                   endPointClass.getParentClasses().add(ProjectConstants.parentNeighbourhood);
                }
 
-               kuwaibaConnectionEndPoints.add(endPointClass);
+               if(!kuwaibaConnectionEndPoints.containsKey(endPointClass.getName())) kuwaibaConnectionEndPoints.put(endPointClass.getName(), endPointClass);
 
                kuwaibaConnection.setEndpointB(endPointClass);
             });
          }
+
+         //kuwaibaConnectionClass.setName(conn.getExternal_id()+"_"+kuwaibaConnectionClass.getTemplateName()); // data base names incorrect
+         
+         String connectionBaseName = conn.getLink_type()+"_"+ kuwaibaConnection.getEndpointA().getName()+"_"+kuwaibaConnection.getEndpointB().getName();
+         String connectionClassName = connectionBaseName+"_"+kuwaibaConnectionClass.getTemplateName();
+         
+         kuwaibaConnectionClass.setName(connectionClassName);
 
          kuwaibaConnections.put(kuwaibaConnection.getConnectionClass().getName(), kuwaibaConnection);
          
@@ -555,7 +572,7 @@ public class KuwabaNetworkController {
       if (includeStreets) pr.getKuwaibaClassList().addAll(kuwaibaStreets.values());
       
       // Add the endpoints to the provisioning requisition
-      if (includeConnectionEndPoints) pr.getKuwaibaClassList().addAll(kuwaibaConnectionEndPoints);
+      if (includeConnectionEndPoints) pr.getKuwaibaClassList().addAll(kuwaibaConnectionEndPoints.values());
       
       // Add the connections to the provisioning requisition
       if (includeConnections) pr.getKuwaibaConnectionList().addAll(kuwaibaConnections.values());
@@ -589,23 +606,23 @@ public class KuwabaNetworkController {
       switch (point.getType()) { 
       case EXCHANGE:
          kc.setClassName("Facility");
-         kc.setTemplateName(null);
-         break;
-      case CABINET:
-         kc.setClassName("OutdoorsCabinet");
-         kc.setTemplateName(null);
-         break;
-      case POLE:
-         kc.setClassName("Pole");
-         kc.setTemplateName(null);
+         kc.setTemplateName(ProjectConstants.FEX_FACILITY_001);
          break;
       case AGGREGATOR:
          kc.setClassName("OutdoorsCabinet");
-         kc.setTemplateName(null);
+         kc.setTemplateName(ProjectConstants.CAB_10SPL8);
+         break;
+      case CABINET:
+         kc.setClassName("OutdoorsCabinet");
+         kc.setTemplateName(ProjectConstants.CAB_10SPL16);
+         break;
+      case POLE:
+         kc.setClassName("Pole");
+         kc.setTemplateName(ProjectConstants.POLE_2_16drop);
          break;
       case BUILDING:
-         kc.setClassName("Building");
-         kc.setTemplateName(null);
+         kc.setClassName("House");
+         kc.setTemplateName(ProjectConstants.House_01);
          break;
       default:
          kc.setClassName("UNKNOWN_POINT_TYPE");

@@ -12,7 +12,6 @@ import org.springframework.transaction.annotation.Transactional;
 
 import ac.uk.solent.com617.kuwaiba.osm_to_kuwaiba.models.LinkType;
 import ac.uk.solent.com617.kuwaiba.osm_to_kuwaiba.models.NetworkConnection;
-import ac.uk.solent.com617.kuwaiba.osm_to_kuwaiba.models.NetworkPoint;
 
 @Repository
 public interface NetworkConnectionRepository extends JpaRepository<NetworkConnection, Long> {
@@ -50,7 +49,7 @@ public interface NetworkConnectionRepository extends JpaRepository<NetworkConnec
                     bdp.building_id,
                     'DROP',
                     ST_MakeLine(pole.geom, bdp.geom),
-                    'DROP-' || gen_random_uuid(),
+                    'DROP_' || pole.external_id || '_' || bdp.building_name,
                     bdp.building_id
                 FROM building_drop_points bdp
                 JOIN network_points pole ON pole.id = bdp.parent_id
@@ -69,7 +68,7 @@ public interface NetworkConnectionRepository extends JpaRepository<NetworkConnec
             		    ST_LineMerge(ST_Collect(ns.geom)),
             		    ST_MakeLine(cabinet.geom, pole.geom)
             		),
-            		'FEEDER-' || gen_random_uuid()
+            		'FEEDER_' || cabinet.external_id || '_' || pole.external_id
              FROM network_points pole
              JOIN network_points cabinet ON cabinet.id = pole.parent_id
              JOIN LATERAL (
@@ -112,7 +111,7 @@ public interface NetworkConnectionRepository extends JpaRepository<NetworkConnec
             		    ST_LineMerge(ST_Collect(ns.geom)),
             		    ST_MakeLine(aggregator.geom, cabinet.geom)
             		),
-            		'DISTRIBUTION-' || gen_random_uuid()
+            		'DISTRIBUTION_' || aggregator.external_id || '_' || cabinet.external_id
              FROM network_points cabinet
              JOIN network_points aggregator ON aggregator.id = cabinet.parent_id
              JOIN LATERAL (
@@ -155,7 +154,7 @@ public interface NetworkConnectionRepository extends JpaRepository<NetworkConnec
             		    ST_LineMerge(ST_Collect(ns.geom)),
             			ST_MakeLine(exchange.geom, aggregator.geom)
             		),
-            		'TRUNK-' || gen_random_uuid()
+            		'TRUNK_' || exchange.external_id || '_' || aggregator.external_id
              FROM network_points aggregator
              JOIN network_points exchange ON exchange.id = aggregator.parent_id
              JOIN LATERAL (

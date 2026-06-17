@@ -20,12 +20,17 @@ public class OverpassImportController {
 
     @PostMapping("/import")
     public ResponseEntity<OverpassImportResult> importBoundingBox(
-            @RequestParam double south,
-            @RequestParam double west,
-            @RequestParam double north,
-            @RequestParam double east) throws Exception {
+            @RequestParam Double south,
+            @RequestParam Double west,
+            @RequestParam Double north,
+            @RequestParam Double east) throws Exception {
 
-        OverpassBoundingBox bbox = new OverpassBoundingBox(south, west, north, east);
+        OverpassBoundingBox bbox = new OverpassBoundingBox();
+        bbox.setNorth(north);
+        bbox.setSouth(south);
+        bbox.setEast(east);
+        bbox.setWest(west);
+        
         OverpassImportResult result = importService.importBoundingBox(bbox);
         return ResponseEntity.ok(result);
     }

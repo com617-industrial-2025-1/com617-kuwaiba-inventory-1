@@ -20,6 +20,9 @@ public class BuildingDropPoint {
 
     @Column(columnDefinition = "geometry(Point, 3857)")
     private Point geom;
+    
+    @Column(name = "building_name", columnDefinition = "TEXT")
+    private String buildingName;
 
     // getters and setters
     public Long getBuildingId() { return buildingId; }
@@ -30,5 +33,8 @@ public class BuildingDropPoint {
     public void setBuildingId(Long id) { buildingId = id; }
     public void setParentId(Long id) { parentId = id; }
     public void setGeom(Point new_geom) { geom = new_geom; }
+    
+    public String getBuildingName() { return buildingName; }
+    public void setBuildingName(String name) { buildingName = name; }
     
 }

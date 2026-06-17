@@ -43,10 +43,10 @@ public interface NetworkPointRepository extends JpaRepository<NetworkPoint, Long
         SELECT 
             'CABINET',
             ST_ClosestPoint(r.geom, c.centroid),
-            'CABINET-' || gen_random_uuid(),
+            'CABINET_' || :network_region || '_'  || REPLACE(FORMAT('%5s', c.cluster_id), ' ', '0'),
             r.street_name
         FROM (
-            SELECT ST_Centroid(ST_Collect(geom)) AS centroid
+            SELECT ST_Centroid(ST_Collect(geom)) AS centroid, cluster_id
             FROM (
     		    SELECT ST_ClusterKMeans(geom,
                     CAST(CEIL((SELECT COUNT(*) FROM network_points WHERE type = 'POLE') / 8.0) AS INTEGER)
@@ -63,7 +63,8 @@ public interface NetworkPointRepository extends JpaRepository<NetworkPoint, Long
     		LIMIT 1
     	) r
     """)
-    void insertCabinetClusters();
+    void insertCabinetClusters(String network_region);
+
 
     @Modifying
     @Transactional
@@ -72,10 +73,10 @@ public interface NetworkPointRepository extends JpaRepository<NetworkPoint, Long
         SELECT
             'AGGREGATOR',
             ST_ClosestPoint(r.geom, c.centroid),
-            'AGGREGATOR-' || gen_random_uuid(),
+            'AGGREGATOR_' || :network_region || '_'  || REPLACE(FORMAT('%5s', c.cluster_id), ' ', '0'),
             r.street_name
         FROM (
-    		SELECT ST_Centroid(ST_Collect(geom)) AS centroid
+    		SELECT ST_Centroid(ST_Collect(geom)) AS centroid, cluster_id
     		FROM (
     		    SELECT ST_ClusterKMeans(geom,
                     CAST(CEIL((SELECT COUNT(*) FROM network_points WHERE type = 'CABINET') / 8.0) AS INTEGER)   
@@ -92,7 +93,8 @@ public interface NetworkPointRepository extends JpaRepository<NetworkPoint, Long
             LIMIT 1
         ) r
     """)
-    void insertAggregatorClusters();
+    void insertAggregatorClusters(String network_region);
+
 
     @Modifying
     @Transactional
@@ -101,10 +103,10 @@ public interface NetworkPointRepository extends JpaRepository<NetworkPoint, Long
         SELECT
             'EXCHANGE',
             ST_ClosestPoint(r.geom, c.centroid),
-            'EXCHANGE-' || gen_random_uuid(),
+            'EXCHANGE_' || :network_region || '_'  || REPLACE(FORMAT('%5s', c.cluster_id), ' ', '0'),
              r.street_name
         FROM (
-            SELECT ST_Centroid(ST_Collect(geom)) AS centroid
+            SELECT ST_Centroid(ST_Collect(geom)) AS centroid, cluster_id
     		FROM (
     		    SELECT ST_ClusterKMeans(geom,
                     CAST(CEIL((SELECT COUNT(*) FROM network_points WHERE type = 'AGGREGATOR') / 8.0) AS INTEGER)   
@@ -121,7 +123,8 @@ public interface NetworkPointRepository extends JpaRepository<NetworkPoint, Long
             LIMIT 1
         ) r
     """)
-    void insertExchangeClusters();
+    void insertExchangeClusters(String network_region);
+
 
     // Linking children to parents
     // Note that this may change the ratio of children to parents in cases
