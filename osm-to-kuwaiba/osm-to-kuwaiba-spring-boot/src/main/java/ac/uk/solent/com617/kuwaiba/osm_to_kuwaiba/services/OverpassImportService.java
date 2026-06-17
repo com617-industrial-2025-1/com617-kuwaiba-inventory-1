@@ -73,6 +73,22 @@ public class OverpassImportService {
             );
             CREATE INDEX IF NOT EXISTS idx_planet_osm_line_way ON planet_osm_line USING GIST (way);
             """;
+   
+   // see https://stackoverflow.com/questions/34601203/how-can-i-convert-an-hstore-column-to-jsonb
+   // https://stackoverflow.com/questions/34255883/why-the-data-type-of-tags-column-in-planet-osm-ways-table-is-not-in-json-format
+   private static final String CONVERT_POLYGON_TAGS_TO_JSONB_SQL = """
+             ALTER TABLE planet_osm_polygon
+               ALTER COLUMN  tags
+               TYPE jsonb
+               USING hstore_to_jsonb(tags);
+            """;
+   
+   private static final String CONVERT_LINE_TAGS_TO_JSONB_SQL = """
+            ALTER TABLE planet_osm_line
+              ALTER COLUMN  tags
+              TYPE jsonb
+              USING hstore_to_jsonb(tags);
+            """;
 
    private final JdbcTemplate jdbcTemplate;
    private final String overpassApiUrl;
@@ -102,31 +118,43 @@ public class OverpassImportService {
    @Autowired
    private UprnService uprnService;
 
-   @PostConstruct
+   @PostConstruct // post construct converts imported href tag values if needed
    public void ensureRawTablesExist() {
       logger.info("Ensuring Overpass raw tables exist...");
       try {
          String polygonTagsType = getColumnUdtName("planet_osm_polygon", "tags");
          if (polygonTagsType != null && !polygonTagsType.equalsIgnoreCase("jsonb")) {
             logger.info("Detected existing planet_osm_polygon.tags of type {} - recreating as jsonb", polygonTagsType);
-            jdbcTemplate.execute("DROP TABLE IF EXISTS planet_osm_polygon CASCADE");
-            jdbcTemplate.execute(RAW_POLYGON_TABLE_SQL);
+            
+            //jdbcTemplate.execute("DROP TABLE IF EXISTS planet_osm_polygon CASCADE");
+            //jdbcTemplate.execute(RAW_POLYGON_TABLE_SQL);
+            
+            jdbcTemplate.execute(CONVERT_POLYGON_TAGS_TO_JSONB_SQL);
          } else {
+            jdbcTemplate.execute("DROP TABLE IF EXISTS planet_osm_polygon CASCADE");
             jdbcTemplate.execute(RAW_POLYGON_TABLE_SQL);
          }
 
          String lineTagsType = getColumnUdtName("planet_osm_line", "tags");
          if (lineTagsType != null && !lineTagsType.equalsIgnoreCase("jsonb")) {
             logger.info("Detected existing planet_osm_line.tags of type {} - recreating as jsonb", lineTagsType);
-            jdbcTemplate.execute("DROP TABLE IF EXISTS planet_osm_line CASCADE");
-            jdbcTemplate.execute(RAW_LINE_TABLE_SQL);
+            
+            //jdbcTemplate.execute("DROP TABLE IF EXISTS planet_osm_line CASCADE");
+            //jdbcTemplate.execute(RAW_LINE_TABLE_SQL);
+            
+            jdbcTemplate.execute(CONVERT_LINE_TAGS_TO_JSONB_SQL);
          } else {
+            jdbcTemplate.execute("DROP TABLE IF EXISTS planet_osm_line CASCADE");
             jdbcTemplate.execute(RAW_LINE_TABLE_SQL);
          }
       } catch (DataAccessException e) {
          // Fallback: try to create tables if detect failed
          logger.warn("Could not detect existing tags column type, attempting to create tables: {}", e.getMessage());
+         
+         jdbcTemplate.execute("DROP TABLE IF EXISTS planet_osm_polygon CASCADE");
          jdbcTemplate.execute(RAW_POLYGON_TABLE_SQL);
+         
+         jdbcTemplate.execute("DROP TABLE IF EXISTS planet_osm_line CASCADE");
          jdbcTemplate.execute(RAW_LINE_TABLE_SQL);
       }
    }
