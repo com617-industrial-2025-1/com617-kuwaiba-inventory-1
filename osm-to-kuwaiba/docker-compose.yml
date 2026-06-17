@@ -2,7 +2,7 @@ services:
   db:
     image: pgrouting/pgrouting:15-3.3-3.4.1
     container_name: db
-    restart: always
+    restart: unless-stopped
     environment:
       - POSTGRES_USER=osmuser
       - POSTGRES_PASSWORD=osmpass
@@ -40,9 +40,9 @@ services:
        osm2pgsql --create --slim --hstore $$FILE"
 
   pgadmin:
-    image: dpage/pgadmin4:9.13.0
+    image: dpage/pgadmin4:9.15.0
     container_name: pgadmin
-    restart: always
+    restart: unless-stopped
     ports:
       - "8888:80"
     environment:
@@ -68,7 +68,7 @@ services:
       context: ./osm-to-kuwaiba-spring-boot
       dockerfile: Dockerfile
     container_name: app
-    restart: on-failure
+    restart: unless-stopped
     ports:
       - "8080:8080"
     depends_on:

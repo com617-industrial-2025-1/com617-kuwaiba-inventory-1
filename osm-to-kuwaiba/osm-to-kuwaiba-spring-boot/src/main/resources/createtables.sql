@@ -4,10 +4,10 @@ INSERT INTO cleaned_buildings (osm_id, geom, building_name, house_num, street_na
 SELECT 
     osm_id,
     ST_CollectionExtract(ST_MakeValid(ST_Multi(way)), 3)::geometry(MultiPolygon, 3857),
-    COALESCE(tags->>'name', 'Building ' || osm_id),
-    tags->>'addr:housenumber',
-    tags->>'addr:street',
-    tags->>'building:levels'
+    COALESCE(tags->'name', 'OSMID_' || osm_id), -- changed from Building 
+        tags->'addr:housenumber',
+        tags->'addr:street',
+        tags->'building:levels'
 FROM planet_osm_polygon
 WHERE building IS NOT NULL
 AND NOT EXISTS (SELECT 1 FROM cleaned_buildings LIMIT 1)
@@ -90,11 +90,12 @@ WHERE highway IN (
 AND NOT EXISTS (SELECT 1 FROM noded_streets LIMIT 1);
 
 
-INSERT INTO building_drop_points (building_id, parent_id, geom)
+INSERT INTO building_drop_points (building_id, parent_id, geom, building_name)
 SELECT 
     b.osm_id,
     NULL::BIGINT,
-    ST_ClosestPoint(ST_ExteriorRing(ST_GeometryN(b.geom, 1)), r.geom)
+    ST_ClosestPoint(ST_ExteriorRing(ST_GeometryN(b.geom, 1)), r.geom),
+    b.building_name
 FROM cleaned_buildings b
 CROSS JOIN LATERAL (
     SELECT geom FROM cleaned_roads 
