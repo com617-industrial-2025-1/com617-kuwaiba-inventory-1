@@ -4,10 +4,10 @@ INSERT INTO cleaned_buildings (osm_id, geom, building_name, house_num, street_na
 SELECT 
     osm_id,
     ST_CollectionExtract(ST_MakeValid(ST_Multi(way)), 3)::geometry(MultiPolygon, 3857),
-    COALESCE(tags->'name', 'OSMID_' || osm_id), -- changed from Building 
-        tags->'addr:housenumber',
-        tags->'addr:street',
-        tags->'building:levels'
+    COALESCE(tags->>'name', 'OSMID_' || osm_id), -- changed from Building 
+        tags->>'addr:housenumber',
+        tags->>'addr:street',
+        tags->>'building:levels'
 FROM planet_osm_polygon
 WHERE building IS NOT NULL
 AND NOT EXISTS (SELECT 1 FROM cleaned_buildings LIMIT 1)

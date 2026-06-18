@@ -1,0 +1,312 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kuwaiba Overpass Importer</title>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+    <link rel="stylesheet" href="https://unpkg.com/leaflet-draw@1.0.4/dist/leaflet.draw.css" />
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: #f5f5f5;
+        }
+        .container {
+            display: flex;
+            height: 100vh;
+        }
+        .map-section {
+            flex: 1;
+            position: relative;
+        }
+        #map {
+            width: 100%;
+            height: 100%;
+        }
+        .sidebar {
+            width: 320px;
+            background: white;
+            box-shadow: -2px 0 8px rgba(0,0,0,0.1);
+            overflow-y: auto;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+        }
+        .sidebar h1 {
+            font-size: 20px;
+            margin-bottom: 20px;
+            color: #333;
+        }
+        .info-panel {
+            margin-bottom: 20px;
+            padding: 12px;
+            background: #f9f9f9;
+            border-radius: 4px;
+            border-left: 4px solid #0066cc;
+        }
+        .info-panel p {
+            font-size: 14px;
+            color: #666;
+            margin-bottom: 8px;
+        }
+        .info-panel .label {
+            font-weight: 600;
+            color: #333;
+        }
+        .bbox-coords {
+            background: #f0f0f0;
+            padding: 10px;
+            border-radius: 4px;
+            font-family: 'Courier New', monospace;
+            font-size: 12px;
+            margin: 10px 0;
+            max-height: 100px;
+            overflow-y: auto;
+        }
+        button {
+            background: #0066cc;
+            color: white;
+            border: none;
+            padding: 10px 16px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 14px;
+            font-weight: 600;
+            margin: 8px 0;
+            transition: background 0.2s;
+        }
+        button:hover {
+            background: #0052a3;
+        }
+        button:disabled {
+            background: #ccc;
+            cursor: not-allowed;
+        }
+        .result-panel {
+            background: #e8f5e9;
+            border-left: 4px solid #4caf50;
+            padding: 12px;
+            border-radius: 4px;
+            margin-top: 12px;
+        }
+        .result-panel.error {
+            background: #ffebee;
+            border-left-color: #f44336;
+        }
+        .result-panel p {
+            font-size: 13px;
+            color: #333;
+            margin: 4px 0;
+        }
+        .loading {
+            display: none;
+            text-align: center;
+            margin-top: 12px;
+        }
+        .spinner {
+            border: 3px solid #f3f3f3;
+            border-top: 3px solid #0066cc;
+            border-radius: 50%;
+            width: 24px;
+            height: 24px;
+            animation: spin 1s linear infinite;
+            margin: 0 auto;
+        }
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+        .instructions {
+            background: #e3f2fd;
+            border-left: 4px solid #2196f3;
+            padding: 12px;
+            border-radius: 4px;
+            margin-bottom: 20px;
+            font-size: 13px;
+            color: #1565c0;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="map-section">
+            <div id="map"></div>
+        </div>
+        <div class="sidebar">
+            <h1>Kuwaiba Importer</h1>
+            
+            <div class="instructions">
+                <strong>Instructions:</strong> Draw a rectangle on the map to define your bounding box, then click Import.
+            </div>
+
+            <div class="info-panel">
+                <p><span class="label">Bounding Box:</span></p>
+                <div class="bbox-coords" id="bboxDisplay">No bbox drawn yet</div>
+            </div>
+
+            <button id="importBtn" onclick="importBbox()" disabled>Import Area</button>
+            <button id="clearBtn" onclick="clearBbox()">Clear</button>
+
+            <div class="loading" id="loading">
+                <p>Importing...</p>
+                <div class="spinner"></div>
+            </div>
+
+            <div id="resultContainer"></div>
+        </div>
+    </div>
+
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+    <script src="https://unpkg.com/leaflet-draw@1.0.4/dist/leaflet.draw.js"></script>
+    <script>
+        let map;
+        let drawnItems;
+        let currentBbox = null;
+
+        // Initialize map
+        function initMap() {
+            map = L.map('map').setView([51.5, -0.1], 10);
+            
+            L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+                attribution: '© OpenStreetMap contributors',
+                maxZoom: 19
+            }).addTo(map);
+
+            drawnItems = new L.FeatureGroup();
+            map.addLayer(drawnItems);
+
+            const drawControl = new L.Control.Draw({
+                draw: {
+                    polygon: false,
+                    polyline: false,
+                    circle: false,
+                    marker: false,
+                    circlemarker: false,
+                    rectangle: true
+                },
+                edit: {
+                    featureGroup: drawnItems,
+                    remove: true
+                }
+            });
+            map.addControl(drawControl);
+
+            map.on('draw:created', onDrawCreated);
+            map.on('draw:deleted', onDrawDeleted);
+            map.on('draw:edited', onDrawEdited);
+        }
+
+        function onDrawCreated(e) {
+            const layer = e.layer;
+            drawnItems.addLayer(layer);
+            extractBbox();
+        }
+
+        function onDrawDeleted() {
+            extractBbox();
+        }
+
+        function onDrawEdited() {
+            extractBbox();
+        }
+
+        function extractBbox() {
+            const layers = drawnItems.getLayers();
+            
+            if (layers.length === 0) {
+                currentBbox = null;
+                document.getElementById('bboxDisplay').textContent = 'No bbox drawn yet';
+                document.getElementById('importBtn').disabled = true;
+                return;
+            }
+
+            const bounds = layers[0].getBounds();
+            currentBbox = {
+                south: bounds.getSouth(),
+                west: bounds.getWest(),
+                north: bounds.getNorth(),
+                east: bounds.getEast()
+            };
+
+            document.getElementById('bboxDisplay').innerHTML = `
+                <strong>South:</strong> ${currentBbox.south.toFixed(4)}<br>
+                <strong>West:</strong> ${currentBbox.west.toFixed(4)}<br>
+                <strong>North:</strong> ${currentBbox.north.toFixed(4)}<br>
+                <strong>East:</strong> ${currentBbox.east.toFixed(4)}
+            `;
+
+            document.getElementById('importBtn').disabled = false;
+        }
+
+        function clearBbox() {
+            drawnItems.clearLayers();
+            currentBbox = null;
+            document.getElementById('bboxDisplay').textContent = 'No bbox drawn yet';
+            document.getElementById('importBtn').disabled = true;
+            document.getElementById('resultContainer').innerHTML = '';
+        }
+
+        async function importBbox() {
+            if (!currentBbox) {
+                alert('Please draw a bounding box first');
+                return;
+            }
+
+            const loading = document.getElementById('loading');
+            const resultContainer = document.getElementById('resultContainer');
+            const importBtn = document.getElementById('importBtn');
+
+            loading.style.display = 'block';
+            importBtn.disabled = true;
+            resultContainer.innerHTML = '';
+
+            try {
+                const params = new URLSearchParams({
+                    south: currentBbox.south,
+                    west: currentBbox.west,
+                    north: currentBbox.north,
+                    east: currentBbox.east
+                });
+
+                const response = await fetch(`/overpass/import?${params}`, {
+                    method: 'POST'
+                });
+
+                if (!response.ok) {
+                    throw new Error(`HTTP error! status: ${response.status}`);
+                }
+
+                const data = await response.json();
+
+                resultContainer.innerHTML = `
+                    <div class="result-panel">
+                        <p><strong>✓ Import Successful</strong></p>
+                        <p>Buildings imported: <strong>${data.importedBuildings}</strong></p>
+                        <p>Roads imported: <strong>${data.importedRoads}</strong></p>
+                        <p>Raw tables cleared: <strong>${data.deletedRawRows}</strong></p>
+                        <p>Derived tables cleared: <strong>${data.deletedDerivedRows}</strong></p>
+                    </div>
+                `;
+            } catch (error) {
+                resultContainer.innerHTML = `
+                    <div class="result-panel error">
+                        <p><strong>✗ Import Failed</strong></p>
+                        <p>${error.message}</p>
+                    </div>
+                `;
+            } finally {
+                loading.style.display = 'none';
+                importBtn.disabled = false;
+            }
+        }
+
+        // Initialize on page load
+        window.addEventListener('load', initMap);
+    </script>
+</body>
+</html>

@@ -57,6 +57,8 @@ services:
       - ./container-fs/pgadmin/:/pgadmin
 
   app:
+    # The Spring Boot app hosts the Overpass importer map at http://localhost:8080
+    # and can import the selected bounding box from Overpass into the prediction database.
     # only use docker compose -profile prod  when running app with docker build, not when running tests using mvn spring-boot:run
     # # override this profile when when running local tests using mvn spring-boot:run
     # e.g docker compose --profile dev up -d  (profile dev overrides profile prod set in .env file
