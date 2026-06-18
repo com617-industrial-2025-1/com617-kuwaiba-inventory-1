@@ -109,6 +109,7 @@ public class ProjectConstants {
       // PARENT CONTINENT
       // create Europe if doesn't exist
       // block to isolate repeat variables
+      //TODO - ADDING A CONTINENT IS NOT CURRENTLY SUPPORTED AS IT IS A ROOT CLASS AND CANNOT HAVE A PARENT
 //      try {
 //         KuwaibaClass kuwaibaClass1 = new KuwaibaClass();
 //         pr.getKuwaibaClassList().add(kuwaibaClass1);
@@ -118,8 +119,9 @@ public class ProjectConstants {
 //
 //         KuwaibaClass parent1 = new KuwaibaClass();
 //         kuwaibaClass1.getParentClasses().add(parent1);
-//         parent1.setName("Navigation Tree Root"); 
-//         parent1.setClassName("Continent");
+//         parent1.setName("DummyRoot"); 
+//         // String org.neotropic.kuwaiba.core.apis.persistence.util.Constants.DUMMY_ROOT : "DummyRoot"
+//         parent1.setClassName("DummyRoot");
 //
 //      } catch (Exception e) {
 //         e.printStackTrace();
