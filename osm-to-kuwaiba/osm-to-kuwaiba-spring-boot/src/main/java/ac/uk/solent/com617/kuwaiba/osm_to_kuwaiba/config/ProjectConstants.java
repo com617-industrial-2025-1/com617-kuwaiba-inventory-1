@@ -1,23 +1,26 @@
-package org.entimoss.kuwaiba.provisioning.model;
+package ac.uk.solent.com617.kuwaiba.osm_to_kuwaiba.config;
 
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
 import org.entimoss.kuwaiba.provisioning.model.KuwaibaClass;
+import org.entimoss.kuwaiba.provisioning.model.KuwaibaProvisioningRequisition;
 import org.entimoss.kuwaiba.provisioning.model.KuwaibaTemplateDefinition;
+import org.springframework.stereotype.Component;
 
-
+@Component
 public class ProjectConstants {
 
-   public static final String PARENT_CONTINENT = "Europe";
-   public static final String PARENT_COUNTRY = "Great Britain";
-   public static final String PARENT_STATE = "Hampshire";
-   public static final String PARENT_CITY = "Southampton";
-   public static final String PARENT_FACILITY = "SOTNOO1"; // fex
+   public static final String DEFAULT_PARENT_CONTINENT = "Europe";
+   public static final String DEFAULT_PARENT_COUNTRY = "Great Britain";
+   public static final String DEFAULT_PARENT_STATE = "Hampshire";
+   public static final String DEFAULT_PARENT_CITY = "Southampton";
+   
+   //public static final String PARENT_FACILITY = "SOTNOO1"; // fex  TODO remove
 
    public static final String PARENT_LOCATION_CLASS_NAME = "Neighborhood";
-   public static final String PARENT_LOCATION_VALUE = "BitternePk";
+   public static final String DEFAULT_PARENT_LOCATION = "BitternePk";
 
    public static final String STREET_CLASS_NAME = "Neighborhood";
    public static final String UNDEFINED_STREET = "UNDEFINED";
@@ -39,35 +42,149 @@ public class ProjectConstants {
    public static final String STREET_DUCT_2_EMPTY = "STREET_DUCT_2_EMPTY";
    public static final String STREET_DUCT_3_EMPTY = "STREET_DUCT_3_EMPTY";
 
-
+   // TODO TEMPLATES WHICH CAN CONTAIN FUNCTIONS NOT CURRENTLY SUPPORTED
    //   public static final String STREET_DUCT_1_4xBFU_4_12 = "STREET_DUCT_1_4xBFU_4_12";
    //   public static final String STREET_DUCT_2_4xBFU_4_12 = "STREET_DUCT_2_4xBFU_4_12";
    //   public static final String STREET_DUCT_3_4xBFU_4_12 = "STREET_DUCT_3_4xBFU_4_12";
    //   public static final String POLE_WIRE_1_1xBFU_1_2 = "POLE_WIRE_1_1xBFU_1_2";
 
+   // names for generating objects in provisioning requisition
+   private String parentContinentName = DEFAULT_PARENT_CONTINENT;
+   private String parentCountryName =  DEFAULT_PARENT_COUNTRY;
+   private String parentStateName = DEFAULT_PARENT_STATE;
+   private String parentCityName =  DEFAULT_PARENT_CITY;
+   private String parentLocationName = DEFAULT_PARENT_LOCATION;
+   
+   // will be populated when addStaticObjectsToProvisioningRequisition is called
+   private  KuwaibaClass parentNeighbourhoodKuwaibaClass =null;
 
-   public static  KuwaibaClass parentNeighbourhood =null;
+   public String getParentContinentName() {
+      return parentContinentName;
+   }
 
-   public static KuwaibaProvisioningRequisition  addStaticObjectsToProvisioningRequisition(KuwaibaProvisioningRequisition pr) {
+   public void setParentContinentName(String parentContinentName) {
+      this.parentContinentName = parentContinentName;
+   }
 
+   public String getParentCountryName() {
+      return parentCountryName;
+   }
+
+   public void setParentCountryName(String parentCountryName) {
+      this.parentCountryName = parentCountryName;
+   }
+
+   public String getParentStateName() {
+      return parentStateName;
+   }
+
+   public void setParentStateName(String parentStateName) {
+      this.parentStateName = parentStateName;
+   }
+
+   public String getParentCityName() {
+      return parentCityName;
+   }
+
+   public void setParentCityName(String parentCityName) {
+      this.parentCityName = parentCityName;
+   }
+
+   public String getParentLocationName() {
+      return parentLocationName;
+   }
+
+   public void setParentLocationName(String parentLocationName) {
+      this.parentLocationName = parentLocationName;
+   }
+
+   public KuwaibaClass getParentNeighbourhoodKuwaibaClass() {
+      return parentNeighbourhoodKuwaibaClass;
+   }
+
+   public KuwaibaProvisioningRequisition  addStaticObjectsToProvisioningRequisition(KuwaibaProvisioningRequisition pr) {
+
+      // TODO add continent and country if doesn't exist
+      
+      // PARENT CONTINENT
+      // create Europe if doesn't exist
+      // block to isolate repeat variables
+      //TODO - ADDING A CONTINENT IS NOT CURRENTLY SUPPORTED AS IT IS A ROOT CLASS AND CANNOT HAVE A PARENT
+//      try {
+//         KuwaibaClass kuwaibaClass1 = new KuwaibaClass();
+//         pr.getKuwaibaClassList().add(kuwaibaClass1);
+//
+//         kuwaibaClass1.setName(parentContinentName); //E
+//         kuwaibaClass1.setClassName("Continent");
+//
+//         KuwaibaClass parent1 = new KuwaibaClass();
+//         kuwaibaClass1.getParentClasses().add(parent1);
+//         parent1.setName("DummyRoot"); 
+//         // String org.neotropic.kuwaiba.core.apis.persistence.util.Constants.DUMMY_ROOT : "DummyRoot"
+//         parent1.setClassName("DummyRoot");
+//
+//      } catch (Exception e) {
+//         e.printStackTrace();
+//      }
+      
+      // PARENT COUNTRY
+      // create Great Britain if doesn't exist
+      // block to isolate repeat variables
+      try {
+         KuwaibaClass kuwaibaClass1 = new KuwaibaClass();
+         pr.getKuwaibaClassList().add(kuwaibaClass1);
+
+         kuwaibaClass1.setName(parentCountryName); //Great Britain
+         kuwaibaClass1.setClassName("Country");
+
+         KuwaibaClass parent1 = new KuwaibaClass();
+         kuwaibaClass1.getParentClasses().add(parent1);
+         parent1.setName(parentContinentName); 
+         parent1.setClassName("Continent");
+
+      } catch (Exception e) {
+         e.printStackTrace();
+      }
+      
+      // PARENT STATE (or county)
+      // create Hampshire if doesn't exist
+      // block to isolate repeat variables
+      try {
+         KuwaibaClass kuwaibaClass1 = new KuwaibaClass();
+         pr.getKuwaibaClassList().add(kuwaibaClass1);
+
+         kuwaibaClass1.setName(parentStateName); //hampshire
+         kuwaibaClass1.setClassName("State");
+
+         KuwaibaClass parent1 = new KuwaibaClass();
+         kuwaibaClass1.getParentClasses().add(parent1);
+         parent1.setName(parentCountryName); 
+         parent1.setClassName("Country");
+
+      } catch (Exception e) {
+         e.printStackTrace();
+      }
+      
+      // PARENT CITY 
       // create Southampton if doesn't exist
       // block to isolate repeat variables
       try {
          KuwaibaClass kuwaibaClass1 = new KuwaibaClass();
          pr.getKuwaibaClassList().add(kuwaibaClass1);
 
-         kuwaibaClass1.setName(PARENT_CITY); // southampton
+         kuwaibaClass1.setName(parentCityName); // southampton
          kuwaibaClass1.setClassName("City");
 
          KuwaibaClass parent1 = new KuwaibaClass();
          kuwaibaClass1.getParentClasses().add(parent1);
-         parent1.setName(PARENT_STATE); //hampshire
+         parent1.setName(parentStateName); //hampshire
          parent1.setClassName("State");
 
       } catch (Exception e) {
          e.printStackTrace();
       }
 
+      // PARENT NEIGHBORHOOD - gives root name to all objects created in provisioning requisition, e.g. bitterne park
       // create bitterne park neighbourhood  if doesn't exist
       // block to isolate repeat variables
       try {
@@ -75,13 +192,13 @@ public class ProjectConstants {
          pr.getKuwaibaClassList().add(kuwaibaClass1);
 
          kuwaibaClass1.setClassName(PARENT_LOCATION_CLASS_NAME); // Neighborhood
-         kuwaibaClass1.setName(PARENT_LOCATION_VALUE); // bitterne pk
+         kuwaibaClass1.setName(parentLocationName); // bitterne pk
 
-         parentNeighbourhood = kuwaibaClass1;
+         parentNeighbourhoodKuwaibaClass = kuwaibaClass1;
 
          KuwaibaClass parent1 = new KuwaibaClass();
          kuwaibaClass1.getParentClasses().add(parent1);
-         parent1.setName(PARENT_CITY); //hampshire
+         parent1.setName(parentCityName); //hampshire
          parent1.setClassName("City");
 
       } catch (Exception e) {
@@ -92,7 +209,7 @@ public class ProjectConstants {
 
    }
 
-   public static KuwaibaProvisioningRequisition addStaticTemplatesToProvisioningRequisition(KuwaibaProvisioningRequisition pr) {
+   public KuwaibaProvisioningRequisition addStaticTemplatesToProvisioningRequisition(KuwaibaProvisioningRequisition pr) {
 
       List<KuwaibaTemplateDefinition> kuwaibaTemplateDefinitionList = new ArrayList<KuwaibaTemplateDefinition>();
 
@@ -334,7 +451,7 @@ public class ProjectConstants {
                // OLT management port
                KuwaibaTemplateDefinition childDefinition1_2 = new KuwaibaTemplateDefinition();
                childDefinition1_2.setTemplateElementName("management");
-               childDefinition1_2.setClassName("ElectricalPort");
+               childDefinition1_2.setClassName("OpticalPort"); // TODO should be electrical port but cannot be created as child of OLT
                childDefinition1_2.setSpecial(false);
 
                HashMap<String, String> childDefinition1_2_Attributes = new HashMap<String, String>();
