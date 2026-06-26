@@ -27,4 +27,15 @@
 
 ![alt text](./images/importingKuwaiba2.png  "Figure importingKuwaiba2.png")
 
+![alt text](./images/eclipse-kuwaiba-provision.png  "Figure eclipse-kuwaiba-provision.png")
+
+![alt text](./images/export-circuits-provision.png  "Figure export-circuits-provision.png")
+
+![alt text](./images/prediction-controller-provision.png  "Figure eprediction-controller-provision.png")
+
+![alt text](./images/set-parent names-provision.png  "Figure set-parent names-provision.png")
+
+
+
+
 
