@@ -1,10 +1,33 @@
 # Importing data to Kuwaiba
 
-1. predict the locations
+## Predict the locations
+
+![alt text](./images/prediction-controller-provision.png  "Figure prediction-controller-provision.png")
+
+## Add the parent locations
 
 ![alt text](./images/set-parent-names-provision.png  "Figure set-parent-names-provision.png")
 
+## Generate a Kuwaiba Requisition
 
+![alt text](./images/export-circuits-provision.png  "Figure export-circuits-provision.png")
+
+## Copy the generated json into a file which is injected into the Kuwaiba container
+
+![alt text](./images/eclipse-kuwaiba-provision.png  "Figure eclipse-kuwaiba-provision.png")
+
+## 
+
+![alt text](./images/FinishImportingKuwaiba1.png  "Figure FinishImportingKuwaiba1.png")
+
+## 
+
+![alt text](./images/importingKuwaiba1.png  "Figure importingKuwaiba1.png")
+
+![alt text](./images/importingKuwaiba2.png  "Figure importingKuwaiba2.png")
+
+
+#
 
 ![alt text](./images/editconnections1.png  "Figure editconnections1.png")
 
@@ -20,7 +43,7 @@
 
 ![alt text](./images/editconnections6-treeview.png  "Figure editconnections6-treeview.png")
 
-![alt text](./images/FinishImportingKuwaiba1.png  "Figure FinishImportingKuwaiba1.png")
+
 
 ![alt text](./images/KuwaibaInventoryObjects.png  "Figure KuwaibaInventoryObjects.png")
 
@@ -30,15 +53,7 @@
 
 ![alt text](./images/KuwaibaTemplateHouse1.png  "Figure KuwaibaTemplateHouse1.png")
 
-![alt text](./images/importingKuwaiba1.png  "Figure importingKuwaiba1.png")
 
-![alt text](./images/importingKuwaiba2.png  "Figure importingKuwaiba2.png")
-
-![alt text](./images/eclipse-kuwaiba-provision.png  "Figure eclipse-kuwaiba-provision.png")
-
-![alt text](./images/export-circuits-provision.png  "Figure export-circuits-provision.png")
-
-![alt text](./images/prediction-controller-provision.png  "Figure prediction-controller-provision.png")
 
 
 
