@@ -28,17 +28,29 @@ Select the area then press `Import Area`
 
 ![alt text](./images/prediction-controller-provision.png  "Figure prediction-controller-provision.png")
 
-The prediction can be visualised using the QGIS desktop applciation connected to the Postgis database
+The prediction can be visualised using the QGIS desktop applciation connected to the Postgis database.
+This visualiation can show where the model predicts the infrastructure should be.
+
+![alt text](./images/qgis-visualisation.png  "Figure qgis-visualisation.png")
 
 ## Add the parent locations
+In order to export data to Kuwaiba, we need to add data which identifies where in the world this extracted map is located. 
+This is characterised as Continent, Country, City, Neighborhood location.
 
 ![alt text](./images/set-parent-names-provision.png  "Figure set-parent-names-provision.png")
 
 ## Generate a Kuwaiba Requisition
+The kuwaiba requisition file contains a json model which can be imported into Kuwaiba.
+The model consists of templates, some static parent objects (country, areas, street names etc), objects which represent fixed infrastructure points 
+(Exchanges, Cabinets Poles, Houses etc) and finally circuit definitions which define the fiber ducts and fibers between the fixed points. 
+The generated model provides the base network on top of which customer circuits can be provisioned later.
 
 ![alt text](./images/export-circuits-provision.png  "Figure export-circuits-provision.png")
 
 ## Copy the generated json into a file which is injected into the Kuwaiba container
+The script could be extened to use a ReST call to generate and import the json model directly. 
+However at this point, we are simply loading the file from a known location injected within the Kuwaiba container.
+Having generated the Json, we need to copy and paste it into the file which will be imported 
 
 ![alt text](./images/eclipse-kuwaiba-provision.png  "Figure eclipse-kuwaiba-provision.png")
 
@@ -56,8 +68,8 @@ Look at the logs to check the script completes
 ![alt text](./images/FinishImportingKuwaiba1.png  "Figure FinishImportingKuwaiba1.png")
 
 
-
 # Manually adding end to end GPON circuits over the generated fiber containers
+Having imported the fiber containers and the templates for the Fiber Exchanges, cabinates, poles and fiber cables, we can now manually add end to end circuits on top of the model using the tools provided natively by Kuwaiba.
 
 ![alt text](./images/editconnections1.png  "Figure editconnections1.png")
 
