@@ -9,11 +9,26 @@ Central to Kuwaiba is the concept of an extensable physical and logical object m
 These can be assembled and specialised using templates which allow repeatable configurations of telecoms equipment to be applied in different parts of the network. 
 In this proof of concept, we are using Open Streetmap data to generate a realistic example network with templates for fiber exchanges, street cabinates and fiber cables.
 
+Kuwaiba also provides the ability to extend the internal code using groovy scripts. 
+The model importing mechanism we use in this POC is written as a groovy script which runs with in a standard kuwaiba release.
+
+![alt text](./images/importingKuwaiba1.png  "Figure importingKuwaiba1.png")
+
 The following steps can be used to generate and install a configuration in the kuwaiba system.
 
-## Predict the locations
+## Select the area geographic you want to generate a model for
+
+A pre-imported model of Bitterne Park is provided which can be used to run the prediction. 
+However this can be overridden by selecting a new area to import.
+Select the area then press `Import Area`
+
+![alt text](./images/select-area-to-provision.png  "Figure select-area-to-provision.png")
+
+## Use the imported Open Steet Map data generate predicted infrastructure and fiber ducting.
 
 ![alt text](./images/prediction-controller-provision.png  "Figure prediction-controller-provision.png")
+
+The prediction can be visualised using the QGIS desktop applciation connected to the Postgis database
 
 ## Add the parent locations
 
@@ -40,9 +55,7 @@ Look at the logs to check the script completes
 
 ![alt text](./images/FinishImportingKuwaiba1.png  "Figure FinishImportingKuwaiba1.png")
 
-## 
 
-![alt text](./images/importingKuwaiba1.png  "Figure importingKuwaiba1.png")
 
 # Manually adding end to end GPON circuits over the generated fiber containers
 
