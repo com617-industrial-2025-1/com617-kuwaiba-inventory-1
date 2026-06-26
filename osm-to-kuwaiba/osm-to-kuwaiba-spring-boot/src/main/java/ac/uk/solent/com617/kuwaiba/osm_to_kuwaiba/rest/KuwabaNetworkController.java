@@ -37,11 +37,12 @@ import ac.uk.solent.com617.kuwaiba.osm_to_kuwaiba.models.LinkType;
 import ac.uk.solent.com617.kuwaiba.osm_to_kuwaiba.models.LinkedBuilding;
 import ac.uk.solent.com617.kuwaiba.osm_to_kuwaiba.models.NetworkConnection;
 import ac.uk.solent.com617.kuwaiba.osm_to_kuwaiba.models.NetworkPoint;
-import ac.uk.solent.com617.kuwaiba.osm_to_kuwaiba.models.PointType;
 import ac.uk.solent.com617.kuwaiba.osm_to_kuwaiba.repository.CleanedBuildingRepository;
 import ac.uk.solent.com617.kuwaiba.osm_to_kuwaiba.repository.LinkedBuildingRepository;
 import ac.uk.solent.com617.kuwaiba.osm_to_kuwaiba.repository.NetworkConnectionRepository;
 import ac.uk.solent.com617.kuwaiba.osm_to_kuwaiba.repository.NetworkPointRepository;
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.Parameter;
 import ac.uk.solent.com617.kuwaiba.osm_to_kuwaiba.config.PointSerializer;
 import ac.uk.solent.com617.kuwaiba.osm_to_kuwaiba.config.ProjectConstants;
 import ac.uk.solent.com617.kuwaiba.osm_to_kuwaiba.config.CoordinateTranslator;
@@ -80,128 +81,6 @@ public class KuwabaNetworkController {
    @Autowired
    private ProjectConstants projectConstantValues;
 
-   @GetMapping("/points")
-   public ResponseEntity<String> getAllPoints(
-            @RequestParam(defaultValue = "0") int pageNo,
-            @RequestParam(defaultValue = "10") int pageSize) throws Exception {
-
-      String sortBy = "id";
-      String sortDirection = "ASC";
-
-      Sort sort = Sort.by(Sort.Direction.fromString(sortDirection), sortBy);
-      Pageable pageable = PageRequest.of(pageNo, pageSize, sort);
-
-      Page<NetworkPoint> result = pointRepository.findAll(pageable);
-
-      List<NetworkPoint> points = result.getContent();
-
-      HttpHeaders responseHeaders = new HttpHeaders();
-      responseHeaders.set("X-Total-Count", Long.toString(result.getTotalElements()));
-      responseHeaders.set("X-Total-Pages", Long.toString(result.getTotalPages()));
-      responseHeaders.set("X-Page-Size", Integer.toString(pageSize));
-      responseHeaders.set("X-Current-Page", Integer.toString(pageNo));
-      return new ResponseEntity<String>(createGeometryMapper().writeValueAsString(points), responseHeaders, HttpStatus.OK);
-
-   }
-
-   // Finding all points by type with pagenation
-   @GetMapping("/points/type")
-   public ResponseEntity<String> getPointsByType(@RequestParam PointType type,
-            @RequestParam(defaultValue = "0") int pageNo,
-            @RequestParam(defaultValue = "10") int pageSize) throws Exception {
-
-      String sortBy = "id";
-      String sortDirection = "ASC";
-
-      Sort sort = Sort.by(Sort.Direction.fromString(sortDirection), sortBy);
-      Pageable pageable = PageRequest.of(pageNo, pageSize, sort);
-
-      Page<NetworkPoint> result = pointRepository.findByType(type, pageable);
-      List<NetworkPoint> points = result.getContent();
-
-      HttpHeaders responseHeaders = new HttpHeaders();
-      responseHeaders.set("X-Total-Count", Long.toString(result.getTotalElements()));
-      responseHeaders.set("X-Total-Pages", Long.toString(result.getTotalPages()));
-      responseHeaders.set("X-Page-Size", Integer.toString(pageSize));
-      responseHeaders.set("X-Current-Page", Integer.toString(pageNo));
-      return new ResponseEntity<String>(createGeometryMapper().writeValueAsString(points), responseHeaders, HttpStatus.OK);
-
-   }
-
-   /**
-    * Find all connections with pagenation, and optional filtering by street name
-    * (set findStreetName to UNDEFINED (ProjectConstants.UNDEFINED_STREET) to find connections with no street name, or leave blank/null to find all connections)
-    * @param pageNo
-    * @param pageSize
-    * @param findStreetName
-    * @return
-    * @throws Exception
-    */
-   // Finding all connections with pagenation
-   @GetMapping("/connections")
-   public ResponseEntity<String> getAllConnections(
-            @RequestParam(defaultValue = "0") int pageNo,
-            @RequestParam(defaultValue = "10") int pageSize,
-            @RequestParam(required = false) String findStreetName) throws Exception {
-      String sortBy = "id";
-      String sortDirection = "ASC";
-
-      Sort sort = Sort.by(Sort.Direction.fromString(sortDirection), sortBy);
-      Pageable pageable = PageRequest.of(pageNo, pageSize, sort);
-
-      Page<NetworkConnection> result = null;
-      if (findStreetName != null) {
-         if (findStreetName.equals(ProjectConstants.UNDEFINED_STREET)) {
-            result = connectionRepository.findByStreetNameIsNull(pageable);
-         } else {
-            result = connectionRepository.findByStreetName(findStreetName, pageable);
-         }
-      } else {
-         result = connectionRepository.findAll(pageable);
-      }
-
-      List<NetworkConnection> connections = result.getContent();
-      HttpHeaders responseHeaders = new HttpHeaders();
-      responseHeaders.set("X-Total-Count", Long.toString(result.getTotalElements()));
-      responseHeaders.set("X-Total-Pages", Long.toString(result.getTotalPages()));
-      responseHeaders.set("X-Page-Size", Integer.toString(pageSize));
-      responseHeaders.set("X-Current-Page", Integer.toString(pageNo));
-      return new ResponseEntity<String>(createGeometryMapper().writeValueAsString(connections),
-               responseHeaders, HttpStatus.OK);
-
-   }
-
-   /**
-    *  Find all connections by type with pagenation
-    * @param linkType
-    * @param pageNo
-    * @param pageSize
-    * @return
-    * @throws Exception
-    */
-   @GetMapping("/connections/type")
-   public ResponseEntity<String> getConnectionsByType(@RequestParam LinkType linkType,
-            @RequestParam(defaultValue = "0") int pageNo,
-            @RequestParam(defaultValue = "10") int pageSize) throws Exception {
-
-      String sortBy = "id";
-      String sortDirection = "ASC";
-
-      Sort sort = Sort.by(Sort.Direction.fromString(sortDirection), sortBy);
-      Pageable pageable = PageRequest.of(pageNo, pageSize, sort);
-
-      Page<NetworkConnection> result = connectionRepository.findByLinkType(linkType, pageable);
-      List<NetworkConnection> connections = result.getContent();
-
-      HttpHeaders responseHeaders = new HttpHeaders();
-      responseHeaders.set("X-Total-Count", Long.toString(result.getTotalElements()));
-      responseHeaders.set("X-Total-Pages", Long.toString(result.getTotalPages()));
-      responseHeaders.set("X-Page-Size", Integer.toString(pageSize));
-      responseHeaders.set("X-Current-Page", Integer.toString(pageNo));
-      return new ResponseEntity<String>(createGeometryMapper().writeValueAsString(connections),
-               responseHeaders, HttpStatus.OK);
-
-   }
 
    /**
     * This method sets the project constant values for the network.
@@ -213,6 +92,7 @@ public class KuwabaNetworkController {
     * @return JsonObject containing the current project constant values
     * @throws Exception
     */
+   @Operation(summary = "Set project constant values for the network. These are used to create the containing parent classes for the kuwaiba provisioning requisition. e.g. Continent, Country, State, City, Location")
    @PostMapping("/projectConstants")
    public ResponseEntity<String> setProjectConstants(
             @RequestParam(defaultValue = ProjectConstants.DEFAULT_PARENT_CONTINENT) String parentContinentName,
@@ -243,6 +123,7 @@ public class KuwabaNetworkController {
     * @return JsonObject containing the current project constant values
     * @throws Exception
     */
+   @Operation(summary = "Get current project constant values for the network.")
    @GetMapping("/projectConstants")
    public ResponseEntity<String> getProjectConstants() throws Exception {
 
@@ -264,6 +145,7 @@ public class KuwabaNetworkController {
     * @return
     * @throws Exception
     */
+   @Operation(summary = "Get a list of street names in the network.")
    @GetMapping("/streetNames")
    public ResponseEntity<String> getStreetNames() throws Exception {
 
@@ -300,13 +182,22 @@ public class KuwabaNetworkController {
     * @return
     * @throws Exception
     */
+   @Operation(summary = "Create a kuwaiba provisioning requisition for the buildings in the network. Optional filtering by street name (set findStreetName to UNDEFINED (ProjectConstants.UNDEFINED_STREET) to find buildings with no street name, or leave blank/null to find all buildings)")
    @GetMapping("/kuwaibaRequisitionBuildings")
    public ResponseEntity<String> getKuwaibaRequisitionBuildings(
             @RequestParam(defaultValue = "0") int pageNo,
             @RequestParam(defaultValue = "10") int pageSize,
+            
+            @Parameter(description = "Includes static kuwaiba template definitions in the requistion. These should be used for the first page but will not be needs for subsequent pages. Default is true.")
             @RequestParam(defaultValue = "true") boolean includeStaticTemplates,
+            
+            @Parameter(description = "Includes static kuwaiba object definitions in the requistion. These should be used for the first page but will not be needs for subsequent pages. Default is true.")
             @RequestParam(defaultValue = "true") boolean includeStaticObjects,
+            
+            @Parameter(description = "Include building definitions for either end of the connections. Default is true.")
             @RequestParam(defaultValue = "true") boolean includeBuildings,
+            
+            @Parameter(description = "Include street definitions for either end of the connections. Default is true.")
             @RequestParam(defaultValue = "true") boolean includeStreets,
             @RequestParam(required = false) String findStreetName) throws Exception {
 
@@ -412,7 +303,7 @@ public class KuwabaNetworkController {
     * @return
     * @throws Exception
     */
-   // Finding all connections
+   @Operation( summary = "Create a kuwaiba provisioning requisition for the connections in the network. Optional filtering by street name (set findStreetName to UNDEFINED (ProjectConstants.UNDEFINED_STREET) to find connections with no street name, or leave blank/null to find all connections)")
    @GetMapping("/kuwaibaRequisitionConnections")
    public ResponseEntity<String> getKuwaibaRequisition(
             @RequestParam(defaultValue = "0") int pageNo,

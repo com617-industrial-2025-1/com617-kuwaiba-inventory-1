@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RestController;
 import ac.uk.solent.com617.kuwaiba.osm_to_kuwaiba.models.OverpassBoundingBox;
 import ac.uk.solent.com617.kuwaiba.osm_to_kuwaiba.models.OverpassImportResult;
 import ac.uk.solent.com617.kuwaiba.osm_to_kuwaiba.services.OverpassImportService;
+import io.swagger.v3.oas.annotations.Operation;
 
 @RestController
 @RequestMapping("/overpass")
@@ -18,6 +19,7 @@ public class OverpassImportController {
     @Autowired
     private OverpassImportService importService;
 
+    @Operation(summary = "Import OSM data from Overpass API for a given bounding box. Used by bounding box page to import data for the selected area.")
     @PostMapping("/import")
     public ResponseEntity<OverpassImportResult> importBoundingBox(
             @RequestParam Double south,
