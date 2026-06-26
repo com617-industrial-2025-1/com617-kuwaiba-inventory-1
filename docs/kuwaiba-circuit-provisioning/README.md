@@ -1,5 +1,16 @@
 # Importing data to Kuwaiba
 
+## Core Kuwaiba concepts (Objects and Templates)
+Kuwaiba is a telecoms inventory system which is able to model physical and logical infrastructure deloyed at city scales.
+Central to Kuwaiba is the concept of an extensable physical and logical object model. 
+
+![alt text](./images/KuwaibaInventoryObjects.png  "Figure KuwaibaInventoryObjects.png")
+
+These can be assembled and specialised using templates which allow repeatable configurations of telecoms equipment to be applied in different parts of the network. 
+In this proof of concept, we are using Open Streetmap data to generate a realistic example network with templates for fiber exchanges, street cabinates and fiber cables.
+
+The following steps can be used to generate and install a configuration in the kuwaiba system.
+
 ## Predict the locations
 
 ![alt text](./images/prediction-controller-provision.png  "Figure prediction-controller-provision.png")
@@ -49,9 +60,7 @@ Look at the logs to check the script completes
 
 ![alt text](./images/editconnections6-treeview.png  "Figure editconnections6-treeview.png")
 
-## Kuwaiba Inventory Objects
 
-![alt text](./images/KuwaibaInventoryObjects.png  "Figure KuwaibaInventoryObjects.png")
 
 ## Generated Kuwaiba Templates
 
