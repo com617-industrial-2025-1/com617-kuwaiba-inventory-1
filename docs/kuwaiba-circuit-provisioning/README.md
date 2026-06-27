@@ -76,9 +76,10 @@ Look at the logs to check the script completes
 We now have a complete network imported into the system.
 You can navigate through the network to identify the components, in this case organised by streets generated under `Europe/United Kingdom/Southampton/BitternePark`
 
+![alt text](./images/kuwaibanavigation1.png  "Figure kuwaibanavigation1.png")
 
 # Manually adding end to end GPON circuits over the generated fiber containers
-Having imported the fiber containers and the templates for the Fiber Exchanges, cabinates, poles and fiber cables, we can now manually add end to end circuits on top of the model using the tools provided natively by Kuwaiba.
+Having imported the fiber containers and the templates for the Fiber Exchanges, cabinets, poles and fiber cables, we can now manually add end to end circuits on top of the model using the tools provided natively by Kuwaiba.
 
 ![alt text](./images/editconnections1.png  "Figure editconnections1.png")
 
