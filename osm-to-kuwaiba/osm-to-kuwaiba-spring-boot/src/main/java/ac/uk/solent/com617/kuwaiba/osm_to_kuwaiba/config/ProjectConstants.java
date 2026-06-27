@@ -13,7 +13,7 @@ import org.springframework.stereotype.Component;
 public class ProjectConstants {
 
    public static final String DEFAULT_PARENT_CONTINENT = "Europe";
-   public static final String DEFAULT_PARENT_COUNTRY = "Great Britain";
+   public static final String DEFAULT_PARENT_COUNTRY = "UnitedKingdom";
    public static final String DEFAULT_PARENT_STATE = "Hampshire";
    public static final String DEFAULT_PARENT_CITY = "Southampton";
    
