@@ -12,7 +12,7 @@ In this proof of concept, we are using OpenStreetMap data to generate a realisti
 Some example templates are shown at the bottom of this page.
 
 Kuwaiba also provides the ability to extend the internal code using groovy scripts. 
-The model importing mechanism we use in this POC is written as a groovy script which runs as a `task`with in a standard Kuwaiba release.
+The model importing mechanism we use in this POC is written as a groovy script which runs as a `task` within a standard Kuwaiba release.
 
 ![alt text](./images/importingKuwaiba1.png  "Figure importingKuwaiba1.png")
 
