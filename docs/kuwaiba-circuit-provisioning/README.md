@@ -20,6 +20,17 @@ The model importing mechanism we use in this POC is written as a groovy script w
 In this Proof of concept, we are targeting a GPON model. 
 This is essentially a tree of optical fibers fanning out from a central exchange through first and second level splitters (which we label as Aggregators and Cabinets), and fiber splice points on telephone poles.
 
+To start the simulation navigate to the top of the docker compose project and type
+
+```
+docker compose --profile prod up -d
+```
+If this is the first time you have run the model, you will need to wait which the images are donloaded and / or built.
+After a while you will be able to navigate to the following
+
+* Kuwaiba importer application at [http://localhost:8080/index.html](http://localhost:8080/index.html)
+* Kuwaiba admin terminal at [http://localhost:8085/kuwaiba/](http://localhost:8085/kuwaiba/) (username:admin , password:kuwaiba)
+
 The following steps can be used to generate and install a GPON configuration in the Kuwaiba system.
 
 ### 1. Select the geographic area you want to generate a model for.
