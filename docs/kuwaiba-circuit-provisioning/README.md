@@ -1,7 +1,7 @@
 # Importing data to Kuwaiba
 
 ## Core Kuwaiba concepts (Objects and Templates)
-Kuwaiba is a telecoms inventory system which is able to model physical and logical infrastructure deloyed at city scales.
+Kuwaiba is a telecoms inventory system which is able to model physical and logical infrastructure deloyed at city and country scales.
 Central to Kuwaiba is the concept of an extensible physical and logical object model. 
 
 ![alt text](./images/KuwaibaInventoryObjects.png  "Figure KuwaibaInventoryObjects.png")
