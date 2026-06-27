@@ -26,22 +26,28 @@ To start the simulation navigate to the top of the docker compose project and ty
 docker compose --profile prod up -d
 ```
 If this is the first time you have run the model, you will need to wait which the images are donloaded and / or built.
-After a while you will be able to navigate to the following
+After a while you will be able to navigate to the following pages;
 
 * Kuwaiba importer application at [http://localhost:8080/index.html](http://localhost:8080/index.html)
-* Kuwaiba admin terminal at [http://localhost:8085/kuwaiba/](http://localhost:8085/kuwaiba/) (username:admin , password:kuwaiba)
+* A swagger UI is provided to allow you to easily the run ReST commands which generate the model [http://localhost:8080/swagger-ui/index.html](http://localhost:8080/swagger-ui/index.html)
+  
+* Kuwaiba admin terminal is available at [http://localhost:8085/kuwaiba/](http://localhost:8085/kuwaiba/) (username:admin , password:kuwaiba)
 
 The following steps can be used to generate and install a GPON configuration in the Kuwaiba system.
 
 ### 1. Select the geographic area you want to generate a model for.
 
-A pre-imported model of Bitterne Park is provided which can be used to run the prediction. 
-However this can be overridden by selecting a new area to import.
-Select the area then press `Import Area`
+A pre-imported model of Bitterne Park is provided which can be used to run the prediction following from step 2 below.
+
+Alternatively this can be overridden by selecting a new area to import.
+* Navigate to [http://localhost:8080/map.html](http://localhost:8080/map.html)
+* Select the area you want to process and then press `Import Area`
 
 ![alt text](./images/select-area-to-provision.png  "Figure select-area-to-provision.png")
 
-### 2. Use the imported OpenStreetMap data to generate predicted infrastructure and fiber ducting.
+### 2. Predict the infrastructure.
+
+Use the imported OpenStreetMap data to generate predicted infrastructure and fiber ducting.
 
 ![alt text](./images/prediction-controller-provision.png  "Figure prediction-controller-provision.png")
 
@@ -70,8 +76,10 @@ However at this point, we are simply loading the file from a known location inje
 Having generated the Json, we need to copy and paste it into the file which will be imported 
 
 ![alt text](./images/eclipse-kuwaiba-provision.png  "Figure eclipse-kuwaiba-provision.png")
+ 
+If you change this file, the docker compose project should make the changes available inside the container in orde to run the script.
 
-### 6. Select and run the Kuwaiba Importing Script.
+### 6. Select and run the Kuwaiba Importing Script using the tasks dialogue.
 
 ![alt text](./images/importingKuwaiba2.png  "Figure importingKuwaiba2.png")
 
