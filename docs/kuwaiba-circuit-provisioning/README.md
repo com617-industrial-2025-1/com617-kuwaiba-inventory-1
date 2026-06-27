@@ -37,9 +37,9 @@ The following steps can be used to generate and install a GPON configuration in 
 
 ### 1. Select the geographic area you want to generate a model for.
 
-A pre-imported model of Bitterne Park is provided which can be used to run the prediction following from step 2 below.
+A pre-imported model of Bitterne Park is provided which can be used to run the prediction without importing (following from step 2 below).
 
-Alternatively this can be overridden by selecting a new area to import.
+Alternatively this can be overridden by selecting a new area to import on OpenStreetMap.
 * Navigate to [http://localhost:8080/map.html](http://localhost:8080/map.html)
 * Select the area you want to process and then press `Import Area`
 
