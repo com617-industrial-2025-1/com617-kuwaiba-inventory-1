@@ -8,11 +8,14 @@ An excerpt of the standard built-in model is shown below.
 ![alt text](./images/KuwaibaInventoryObjects.png  "Figure KuwaibaInventoryObjects.png")
 
 These physical and logical model objects can be assembled and specialised using templates which allow repeatable configurations of telecoms equipment to be applied in different parts of the network. 
-In this proof of concept, we are using OpenStreetMap data to generate a realistic example network using templates for fiber exchanges, street cabinets and fiber cables.
+
 Some example templates are shown at the bottom of this page.
 
-Kuwaiba also provides the ability to extend the internal code using groovy scripts. 
-The model importing mechanism we use in this POC is written as a groovy script which runs as a `task` within a standard Kuwaiba release.
+In this proof of concept, we are using OpenStreetMap data to generate a realistic example network using templates for fiber exchanges, street cabinets and fiber cables.
+
+Kuwaiba also provides the ability to extend its internal code using groovy scripts. 
+The model importing mechanism we use in this POC is written as a groovy script (EntimossKuwaibaProvisioningTask_v2.groovy) which runs as a `task` within a standard Kuwaiba release.
+(The base Kuwaiba model included with this docker compose project includes the script)
 
 ![alt text](./images/importingKuwaiba1.png  "Figure importingKuwaiba1.png")
 
@@ -51,12 +54,18 @@ Use the imported OpenStreetMap data to generate predicted infrastructure and fib
 
 ![alt text](./images/prediction-controller-provision.png  "Figure prediction-controller-provision.png")
 
-The prediction can be visualised using the QGIS desktop application connected to the Postgis database.
+The prediction can be visualised using the [QGIS desktop application](https://www.qgis.org/) connected to the Postgis database running on the docker compose project.
+
+![alt text](./images/qgisconnection.jpg  "Figure qgisconnection.jpg")
+
+An example qgis project is also provided which you can load into the qgis desktop application `kuwaiba-export-project.qgs`
+
 This visualiation helps show where the model predicts the infrastructure should be.
 
 ![alt text](./images/qgis-visualisation.png  "Figure qgis-visualisation.png")
 
-### 3. Add the parent locations to situate the model
+
+### 3. Add the parent locations to situate the model in kuwaiba
 In order to export data to Kuwaiba, we need to add data which identifies where in the world this extracted map is located. 
 This is characterised as Continent, Country, City, Neighborhood location.
 
@@ -71,15 +80,19 @@ The generated model provides the base network on top of which individual custome
 ![alt text](./images/export-circuits-provision.png  "Figure export-circuits-provision.png")
 
 ### 5. Copy the generated json into a file which is injected into the Kuwaiba container.
-The script could be extened to use a ReST call to generate and import the json model directly. 
+The Kuwaiba script could be extended to use a ReST call to generate and import the json model directly. 
 However at this point, we are simply loading the file from a known location injected within the Kuwaiba container.
-Having generated the Json, we need to copy and paste it into the file which will be imported 
+Having generated the Json, we need to copy and paste it into the file which will be imported.
+
+`osm-to-kuwaiba/container-fs/kuwaiba/external-data/kuwaibaProvisioningRequisition-data.json`
 
 ![alt text](./images/eclipse-kuwaiba-provision.png  "Figure eclipse-kuwaiba-provision.png")
  
 If you change this file, the docker compose project should make the changes available inside the container in orde to run the script.
 
 ### 6. Select and run the Kuwaiba Importing Script using the tasks dialogue.
+
+Note that you can run the script without changing the database as a test of the data integrity, or you can select to commit the changes. 
 
 ![alt text](./images/importingKuwaiba2.png  "Figure importingKuwaiba2.png")
 
@@ -97,25 +110,48 @@ You can navigate through the network to identify the components, in this case or
 
 ![alt text](./images/kuwaibanavigation1.png  "Figure kuwaibanavigation1.png")
 
-# Manually adding end to end GPON circuits over the generated fiber containers
+## Manually adding end to end GPON circuits over the generated fiber containers
 Having imported the fiber containers and the templates for the Fiber Exchanges, cabinets, poles and fiber cables, we can now manually add end to end circuits on top of the model using the tools provided natively by Kuwaiba.
+In order to connect a circuit end to end, you need to identify each segment and connect the optical terminals, splitters and splice points to the correct fiber in each cable segment. 
+
+It does take a bit of time manually searching for the correct next hop, so it will be useful in future to generate all of these links at the same time as the underlying infrastructure.
+
+Connecting the LTE in the fiber exchange to the first splitter (Aggregator)
 
 ![alt text](./images/editconnections1.png  "Figure editconnections1.png")
 
+Conecting the Aggregator to the street cabinet
+
 ![alt text](./images/editconnections2.png  "Figure editconnections2.png")
+
+Connectign the street cabinet to the pole
 
 ![alt text](./images/editconnections3.png  "Figure editconnections3.png")
 
+Connecting the pole to the customer service point (CSP splice) in the home
+
 ![alt text](./images/editconnections4.png  "Figure editconnections4.png")
+
+Connecting the CSP to the ONT terminal
 
 ![alt text](./images/editconnections5.png  "Figure editconnections5.png")
 
+Once the path has been created, it is possible to visualise it from the LTE port right down to the house,
+
+Select the port you want to visualise and then select the Path or Tree view to trace the gpon from the LTE to the OLT.
+
+Path view
+
 ![alt text](./images/editconnections6-pathview.png  "Figure editconnections6-pathview.png")
+
+Tree View
 
 ![alt text](./images/editconnections6-treeview.png  "Figure editconnections6-treeview.png")
 
 
 ## Generated Kuwaiba Templates
+
+The following templates are created as part of the population. These tempaltes are used to simplify the provisioning requisition.
 
 A template for a fiber exchange rack
 
@@ -125,7 +161,7 @@ A template for a blown fiber containers
 
 ![alt text](./images/KuwaibaTemplateBFU4_12.png  "Figure KuwaibaTemplateBFU4_12.png")
 
-A template for the OLT and Customer service point (splice) in the house
+A template for the OLT and Customer Service Point (splice) in the house
 
 ![alt text](./images/KuwaibaTemplateHouse1.png  "Figure KuwaibaTemplateHouse1.png")
 
