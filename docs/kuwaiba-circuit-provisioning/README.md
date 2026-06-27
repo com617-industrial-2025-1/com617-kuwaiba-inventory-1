@@ -110,7 +110,8 @@ You can navigate through the network to identify the components, in this case or
 ## Manually adding end to end GPON circuits over the generated fiber containers
 Having imported the fiber containers and the templates for the Fiber Exchanges, cabinets, poles and fiber cables, we can now manually add end to end circuits on top of the model using the tools provided natively by Kuwaiba.
 In order to connect a circuit end to end, you need to identify each segment and connect the optical terminals, splitters and splice points to the correct fiber in each cable segment. 
-This does take a bit of time searching for the correct next hop, so it will be useful in future to generate all of these links at the same time as the underlying infrastructure.
+
+It does take a bit of time manually searching for the correct next hop, so it will be useful in future to generate all of these links at the same time as the underlying infrastructure.
 
 Connecting the LTE in the fiber exchange to the first splitter (Aggregator)
 
@@ -134,7 +135,7 @@ Connecting the CSP to the ONT terminal
 
 Once the path has been created, it is possible to visualise it from the LTE port right down to the house,
 
-Select the port you want to visualise and then select the Path or Tree view to trace the gpon from the LTE to the OLD.
+Select the port you want to visualise and then select the Path or Tree view to trace the gpon from the LTE to the OLT.
 
 Path view
 
@@ -157,7 +158,7 @@ A template for a blown fiber containers
 
 ![alt text](./images/KuwaibaTemplateBFU4_12.png  "Figure KuwaibaTemplateBFU4_12.png")
 
-A template for the OLT and Customer service point (splice) in the house
+A template for the OLT and Customer Service Point (splice) in the house
 
 ![alt text](./images/KuwaibaTemplateHouse1.png  "Figure KuwaibaTemplateHouse1.png")
 
