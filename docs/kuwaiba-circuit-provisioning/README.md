@@ -8,11 +8,14 @@ An excerpt of the standard built-in model is shown below.
 ![alt text](./images/KuwaibaInventoryObjects.png  "Figure KuwaibaInventoryObjects.png")
 
 These physical and logical model objects can be assembled and specialised using templates which allow repeatable configurations of telecoms equipment to be applied in different parts of the network. 
-In this proof of concept, we are using OpenStreetMap data to generate a realistic example network using templates for fiber exchanges, street cabinets and fiber cables.
+
 Some example templates are shown at the bottom of this page.
 
-Kuwaiba also provides the ability to extend the internal code using groovy scripts. 
-The model importing mechanism we use in this POC is written as a groovy script which runs as a `task` within a standard Kuwaiba release.
+In this proof of concept, we are using OpenStreetMap data to generate a realistic example network using templates for fiber exchanges, street cabinets and fiber cables.
+
+Kuwaiba also provides the ability to extend its internal code using groovy scripts. 
+The model importing mechanism we use in this POC is written as a groovy script (EntimossKuwaibaProvisioningTask_v2.groovy) which runs as a `task` within a standard Kuwaiba release.
+(The base Kuwaiba model included with this docker compose project includes the script)
 
 ![alt text](./images/importingKuwaiba1.png  "Figure importingKuwaiba1.png")
 
