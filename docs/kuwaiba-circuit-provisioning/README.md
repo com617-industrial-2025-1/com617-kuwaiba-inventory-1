@@ -132,7 +132,9 @@ Connecting the CSP to the ONT terminal
 
 ![alt text](./images/editconnections5.png  "Figure editconnections5.png")
 
-Onve the path has been created, it is possible to visualise it from the LTE port right down to the house,
+Once the path has been created, it is possible to visualise it from the LTE port right down to the house,
+
+Select the port you want to visualise and then select the Path or Tree view to trace the gpon from the LTE to the OLD.
 
 Path view
 
@@ -145,7 +147,7 @@ Tree View
 
 ## Generated Kuwaiba Templates
 
-The following templates are created as part of the population. These tempaltes are used to simplify the provisionig requisition.
+The following templates are created as part of the population. These tempaltes are used to simplify the provisioning requisition.
 
 A template for a fiber exchange rack
 
