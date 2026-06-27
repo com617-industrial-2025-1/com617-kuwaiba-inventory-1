@@ -2,19 +2,19 @@
 
 ## Core Kuwaiba concepts (Objects and Templates)
 Kuwaiba is a telecoms inventory system which is able to model physical and logical infrastructure deloyed at city scales.
-Central to Kuwaiba is the concept of an extensable physical and logical object model. 
+Central to Kuwaiba is the concept of an extensible physical and logical object model. 
 
 ![alt text](./images/KuwaibaInventoryObjects.png  "Figure KuwaibaInventoryObjects.png")
 
 These can be assembled and specialised using templates which allow repeatable configurations of telecoms equipment to be applied in different parts of the network. 
-In this proof of concept, we are using Open Streetmap data to generate a realistic example network with templates for fiber exchanges, street cabinates and fiber cables.
+In this proof of concept, we are using OpenStreetMap data to generate a realistic example network with templates for fiber exchanges, street cabinets and fiber cables.
 
 Kuwaiba also provides the ability to extend the internal code using groovy scripts. 
-The model importing mechanism we use in this POC is written as a groovy script which runs with in a standard kuwaiba release.
+The model importing mechanism we use in this POC is written as a groovy script which runs with in a standard Kuwaiba release.
 
 ![alt text](./images/importingKuwaiba1.png  "Figure importingKuwaiba1.png")
 
-The following steps can be used to generate and install a configuration in the kuwaiba system.
+The following steps can be used to generate and install a configuration in the Kuwaiba system.
 
 ## Select the area geographic you want to generate a model for
 
@@ -24,11 +24,11 @@ Select the area then press `Import Area`
 
 ![alt text](./images/select-area-to-provision.png  "Figure select-area-to-provision.png")
 
-## Use the imported Open Steet Map data generate predicted infrastructure and fiber ducting.
+## Use the imported OpenStreetMap data generate predicted infrastructure and fiber ducting.
 
 ![alt text](./images/prediction-controller-provision.png  "Figure prediction-controller-provision.png")
 
-The prediction can be visualised using the QGIS desktop applciation connected to the Postgis database.
+The prediction can be visualised using the QGIS desktop application connected to the Postgis database.
 This visualiation can show where the model predicts the infrastructure should be.
 
 ![alt text](./images/qgis-visualisation.png  "Figure qgis-visualisation.png")
