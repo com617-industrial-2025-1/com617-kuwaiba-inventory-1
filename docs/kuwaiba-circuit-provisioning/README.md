@@ -80,28 +80,31 @@ The generated model provides the base network on top of which individual custome
 ![alt text](./images/export-circuits-provision.png  "Figure export-circuits-provision.png")
 
 ### 5. Copy the generated json into a file which is injected into the Kuwaiba container.
-The Kuwaiba script could be extended to use a ReST call to generate and import the json model directly. 
-However at this point, we are simply loading the file from a known location injected within the Kuwaiba container.
+
+At this point, the proces of creating the kuwaiba inventory is performed by simply loading the kuwaiba requisition file from a known location injected within the Kuwaiba container. 
+
 Having generated the Json, we need to copy and paste it into the file which will be imported.
 
 `osm-to-kuwaiba/container-fs/kuwaiba/external-data/kuwaibaProvisioningRequisition-data.json`
 
 ![alt text](./images/eclipse-kuwaiba-provision.png  "Figure eclipse-kuwaiba-provision.png")
  
-If you change this file, the docker compose project should make the changes available inside the container in orde to run the script.
+If you change this file, the docker compose project should make the changes available inside the container in order to run the script.
+
+(TODO: In a future iteration, the Kuwaiba script could be extended to use a ReST call to generate and import the json model directly).
 
 ### 6. Select and run the Kuwaiba Importing Script using the tasks dialogue.
 
-Note that you can run the script without changing the database as a test of the data integrity, or you can select to commit the changes. 
+Note that you can run the script without changing the database as a test of the data integrity, or you can select to commit the changes once the script completes. 
 
 ![alt text](./images/importingKuwaiba2.png  "Figure importingKuwaiba2.png")
 
-### 7. Check the script completed correctly
-The script will take some time to complete as it is single threaded.
+### 7. Check the script has completed correctly
+Depending on the number of objects to be imported, the script may take a number of minutes complete.
 You should get a result page once the script completes. 
-However if you are importing a large data file, the Kuwaiba jetty session may time out and you will see an error result.
+However if you are importing a large data file, the Kuwaiba jetty session may time out and you will see an error result page.
 This does not necessarily mean that the script has failed.
-Look at the logs to check the script completes
+Look at the logs to check if the script has completed.
 
 ![alt text](./images/FinishImportingKuwaiba1.png  "Figure FinishImportingKuwaiba1.png")
 
@@ -110,41 +113,43 @@ You can navigate through the network to identify the components, in this case or
 
 ![alt text](./images/kuwaibanavigation1.png  "Figure kuwaibanavigation1.png")
 
-## Manually adding end to end GPON circuits over the generated fiber containers
-Having imported the fiber containers and the templates for the Fiber Exchanges, cabinets, poles and fiber cables, we can now manually add end to end circuits on top of the model using the tools provided natively by Kuwaiba.
-In order to connect a circuit end to end, you need to identify each segment and connect the optical terminals, splitters and splice points to the correct fiber in each cable segment. 
+## Manually adding end-to-end optical GPON circuits over the generated fiber containers
+Having imported the fiber containers referencing the templates for the Fiber Exchanges, cabinets, poles and fiber cables, we can now manually add end-to-end circuits on top of the model using the tools provided natively by Kuwaiba.
 
-It does take a bit of time manually searching for the correct next hop, so it will be useful in future to generate all of these links at the same time as the underlying infrastructure.
+In order to connect a circuit end to end, you need to identify each segment and connect the optical terminals, splitters and splice points to the correct fiber at each end of the cable segment connection . 
 
-Connecting the LTE in the fiber exchange to the first splitter (Aggregator)
+This is a relatively simple process but it does take a bit of time manually searching for the correct next hop. 
+
+(TODO: It will be useful in future to have an option to also generate all of these optical links at the same time as the underlying infrastructure).
+
+**a) Connecting the LTE in the fiber exchange to the first splitter (Aggregator)**
 
 ![alt text](./images/editconnections1.png  "Figure editconnections1.png")
 
-Conecting the Aggregator to the street cabinet
+**b) Connecting the Aggregator to the street cabinet**
 
 ![alt text](./images/editconnections2.png  "Figure editconnections2.png")
 
-Connectign the street cabinet to the pole
+**c) Connecting the street cabinet to the pole**
 
 ![alt text](./images/editconnections3.png  "Figure editconnections3.png")
 
-Connecting the pole to the customer service point (CSP splice) in the home
+**d) Connecting the pole to the customer service point (CSP splice) in the home**
 
 ![alt text](./images/editconnections4.png  "Figure editconnections4.png")
 
-Connecting the CSP to the ONT terminal
+**e) Connecting the CSP to the ONT terminal**
 
 ![alt text](./images/editconnections5.png  "Figure editconnections5.png")
 
 Once the path has been created, it is possible to visualise it from the LTE port right down to the house,
+GPON from the LTE to the OLT.
 
-Select the port you want to visualise and then select the Path or Tree view to trace the gpon from the LTE to the OLT.
-
-Path view
+**Path view**
 
 ![alt text](./images/editconnections6-pathview.png  "Figure editconnections6-pathview.png")
 
-Tree View
+**Tree View**
 
 ![alt text](./images/editconnections6-treeview.png  "Figure editconnections6-treeview.png")
 
