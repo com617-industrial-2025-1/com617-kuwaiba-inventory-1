@@ -19,6 +19,8 @@ system:
 **TL;DR** An overview of the overall process of generating and importing data to Kuwaiba is explained in  
 [Circuit Provisioning Process](./docs/kuwaiba-circuit-provisioning/README.md)
 
+See also the [Demonstration video](https://youtu.be/88bHfGp3LTA)
+
 See the [osm-to-kuwaiba](./osm-to-kuwaiba/) directory for setup and user instructions. Docker 
 Desktop is the only prerequisite.
 
