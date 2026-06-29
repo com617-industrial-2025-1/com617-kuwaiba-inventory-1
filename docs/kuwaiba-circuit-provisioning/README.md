@@ -126,6 +126,10 @@ This is a relatively simple process but it does take a bit of time manually sear
 
 ![alt text](./images/editconnections1.png  "Figure editconnections1.png")
 
+Note that the Fiber Exchange Rack containing the 4U LTE devices can also be rendered in Kuwaiba
+
+![alt text](./images/FEXRackView.png  "Figure FEXRackView.png")
+
 **b) Connecting the Aggregator to the street cabinet**
 
 ![alt text](./images/editconnections2.png  "Figure editconnections2.png")
