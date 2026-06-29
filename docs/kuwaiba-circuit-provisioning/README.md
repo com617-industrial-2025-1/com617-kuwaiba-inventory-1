@@ -156,7 +156,7 @@ GPON from the LTE to the OLT.
 
 ## Generated Kuwaiba Templates
 
-The following templates are created as part of the population. These tempaltes are used to simplify the provisioning requisition.
+The following templates are created as part of the population. These templates are used to simplify the provisioning requisition.
 
 A template for a fiber exchange rack
 
