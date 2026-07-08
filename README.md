@@ -4,9 +4,11 @@ A university industrial consulting project (COM617) at Solent University. The pr
 an automated pipeline that predicts fibre telecommunications infrastructure from OpenStreetMap data
 and exports the results into Kuwaiba, an open-source network inventory management system.
 
-This work was presented at [NETUK 3, 2006](https://www.netuk.org/netuk3#tab-about). 
+This work was presented at [NETUK-3 2006](https://www.netuk.org/netuk3#tab-about). 
 
-A full video of the presentation is available at [Using Kuwaba adn Open StreetMap to model GPON](https://youtu.be/vwZYWlCIx0Q)
+A full video of the presentation is available at [Using Kuwaba and OpenStreetMap to model a GPON](https://youtu.be/vwZYWlCIx0Q)
+
+[NetUK Slides](./docs/Netuk-Inventory-gpon-kuwaiba_V_1.0.pdf)
 
 ## What It Does
 
